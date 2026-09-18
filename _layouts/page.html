@@ -1,6 +1,14 @@
 ---
 layout: default
 ---
+<style>
+  .page-shell.prose-page {
+    --page-gutter: clamp(1.5rem, 6vw, 5rem);
+    width: min(800px, calc(100% - var(--page-gutter) - var(--page-gutter)));
+    margin-inline: auto;
+  }
+  .prose-page .prose { max-width: 100%; overflow-wrap: break-word; }
+</style>
 <main id="main-content" class="page-shell prose-page">
   <header class="page-header">
     <p class="eyebrow">Mnemosyne</p>
