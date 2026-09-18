@@ -1,10 +1,10 @@
 <header class="site-header">
   <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="Mnemosyne home">
     <img src="{{ '/assets/images/mnemosyne-mark.png' | relative_url }}" alt="">
-    <span>MNEMOSYNE</span>
   </a>
   <button class="menu-button" aria-expanded="false" aria-controls="site-navigation">Menu</button>
   <nav id="site-navigation" class="site-nav" aria-label="Primary navigation">
+    <a href="{{ '/' | relative_url }}">Home</a>
     <a href="{{ '/articles/' | relative_url }}">Articles</a>
     <a href="{{ '/about/' | relative_url }}">About</a>
     {% if site.instagram_url != "" %}<a href="{{ site.instagram_url }}" rel="me">Instagram</a>{% endif %}
