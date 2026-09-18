@@ -43,7 +43,13 @@ a:hover { color: var(--terracotta); }
   background: rgba(245, 241, 232, .94);
 }
 .site-brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
-.site-brand img { width: 34px; height: 46px; object-fit: contain; }
+.site-brand img {
+  width: 30px;
+  height: 48px;
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: multiply;
+}
 .site-brand span { font: 600 .9rem/1 var(--sans); letter-spacing: .16em; }
 .site-nav { display: flex; gap: 2rem; }
 .site-nav a { font: 500 .78rem/1 var(--sans); letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
@@ -73,13 +79,19 @@ a:hover { color: var(--terracotta); }
 .hero {
   display: grid;
   place-items: center;
-  min-height: min(68vh, 720px);
-  padding: 4rem 1.5rem 5rem;
+  min-height: min(54vh, 580px);
+  padding: 3rem 1.5rem 4rem;
   background: var(--paper-light);
   border-bottom: 1px solid var(--line);
 }
-.hero__identity { width: min(1050px, 94vw); text-align: center; }
-.hero__wordmark { width: 100%; max-height: 430px; margin: 0 auto; object-fit: contain; }
+.hero__identity { width: min(760px, 86vw); text-align: center; }
+.hero__wordmark {
+  width: 100%;
+  max-height: 315px;
+  margin: 0 auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
 .hero__deck { margin: 1.4rem 0 0; color: var(--muted); font-style: italic; font-size: clamp(1.1rem, 2vw, 1.5rem); }
 
 .featured, .recent, .page-shell, .article-shell, .empty-state {
@@ -161,7 +173,7 @@ a:hover { color: var(--terracotta); }
   .menu-button { display: block; border: 0; background: none; font: 500 .75rem/1 var(--sans); text-transform: uppercase; letter-spacing: .09em; }
   .site-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; padding: 1.5rem; flex-direction: column; background: var(--paper); border-bottom: 1px solid var(--line); }
   .site-nav.is-open { display: flex; }
-  .hero { min-height: 52vh; padding-block: 2.5rem 3.5rem; }
+  .hero { min-height: 44vh; padding-block: 2.25rem 3rem; }
   .featured { padding: 4rem 0; }
   .featured__grid, .archive-item { grid-template-columns: 1fr; }
   .article-grid { grid-template-columns: 1fr; }
