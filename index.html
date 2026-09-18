@@ -49,12 +49,14 @@ title: Home
     </div>
   </section>
   {% endif %}
+{% include explore.html %}
 </main>
 {% else %}
 <main id="main-content" class="empty-state">
   <p class="eyebrow">Opening shortly</p>
   <h1>The first Mnemosyne article is being prepared.</h1>
   <p>Illustrated essays on archaeology, objects, landscapes, and the lives that made them.</p>
+{% include explore.html %}
 </main>
 {% endif %}
 

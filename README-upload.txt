@@ -1,0 +1,1 @@
+Upload _includes, assets, regions, and index.html to the repository root. Existing animation and branding files are not included or replaced. For future articles add regions: [africa, asia] to article front matter (choose from africa, asia, europe, oceania, americas). Image citations will be added later as requested.

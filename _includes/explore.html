@@ -1,0 +1,20 @@
+<style>
+.explore-section{width:min(1180px,calc(100% - 3rem));margin:0 auto;padding:4rem 0 6rem;border-top:1px solid #cfc7b8}
+.explore-heading{text-align:center;margin:0 auto 2.5rem;padding:0 1rem}
+.explore-kicker{font:500 .65rem/1.5 "Inter",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#6e695f;margin:0 0 .9rem}
+.explore-section h2{font-family:"EB Garamond",Georgia,serif;font-size:clamp(2.1rem,3.6vw,3.1rem);font-weight:400;letter-spacing:-.025em;text-align:center;margin:0;line-height:1.15}
+.explore-heading::after{content:"";display:block;width:48px;height:1px;background:#985b43;opacity:.6;margin:1.5rem auto 0}
+.explore-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.5rem}
+.explore-card{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#171713;padding:1.4rem .6rem 1rem;border-radius:4px}
+.explore-art{height:260px;width:100%;display:flex;align-items:center;justify-content:center;flex:0 0 260px;margin-bottom:1.75rem;position:relative}
+.explore-art img{display:block;width:88%;height:86%;min-width:0;min-height:0;object-fit:contain;transform:rotate(var(--tilt));transition:transform .35s ease,filter .35s ease;filter:grayscale(1) drop-shadow(5px 9px 7px rgba(30,24,15,.20))}
+.explore-label{font-family:"Inter",Arial,sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-align:center;line-height:1.5}
+@media(hover:hover){.explore-card:hover .explore-art img{transform:rotate(var(--tilt)) scale(1.075);filter:grayscale(0) drop-shadow(7px 13px 9px rgba(30,24,15,.24))}.explore-card:hover{color:#985b43}}
+.explore-card:focus-visible{outline:2px solid #985b43;outline-offset:5px}.explore-card:focus-visible .explore-art img{transform:rotate(var(--tilt)) scale(1.075);filter:grayscale(0) drop-shadow(7px 13px 9px rgba(30,24,15,.24))}
+.explore-card:active .explore-art img{filter:grayscale(0) drop-shadow(7px 13px 9px rgba(30,24,15,.24))}
+@media(max-width:900px){.explore-grid{gap:.6rem}.explore-art{height:205px;flex-basis:205px}}
+@media(max-width:650px){.explore-section{padding:3rem 0 4rem}.explore-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem 1rem}.explore-card:last-child{grid-column:1 / -1;width:50%;justify-self:center}.explore-art{height:215px;flex-basis:215px}.explore-label{font-size:.74rem}}
+@media(prefers-reduced-motion:reduce){.explore-art img{transition:none}.explore-card:hover .explore-art img,.explore-card:focus-visible .explore-art img{transform:rotate(var(--tilt))}}
+.home-page .empty-state{min-height:0;padding:4rem 0}
+</style>
+<section class="explore-section" aria-labelledby="explore-heading"><header class="explore-heading"><p class="explore-kicker">Objects · Places · Histories</p><h2 id="explore-heading">Begin exploring</h2></header><div class="explore-grid"><a class="explore-card" href="{{ '/regions/africa/' | relative_url }}" style="--tilt:-5deg"><span class="explore-art"><img src="{{ '/assets/images/explore/africa.png' | relative_url }}" alt="" loading="lazy"></span><span class="explore-label">Africa</span></a><a class="explore-card" href="{{ '/regions/asia/' | relative_url }}" style="--tilt:5deg"><span class="explore-art"><img src="{{ '/assets/images/explore/asia.png' | relative_url }}" alt="" loading="lazy"></span><span class="explore-label">Asia</span></a><a class="explore-card" href="{{ '/regions/europe/' | relative_url }}" style="--tilt:-4deg"><span class="explore-art"><img src="{{ '/assets/images/explore/europe.png' | relative_url }}" alt="" loading="lazy"></span><span class="explore-label">Europe</span></a><a class="explore-card" href="{{ '/regions/oceania/' | relative_url }}" style="--tilt:6deg"><span class="explore-art"><img src="{{ '/assets/images/explore/oceania.png' | relative_url }}" alt="" loading="lazy"></span><span class="explore-label">Oceania</span></a><a class="explore-card" href="{{ '/regions/americas/' | relative_url }}" style="--tilt:-5deg"><span class="explore-art"><img src="{{ '/assets/images/explore/americas.png' | relative_url }}" alt="" loading="lazy"></span><span class="explore-label">The Americas</span></a></div></section>
