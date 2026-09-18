@@ -1,4 +1,11 @@
 {% if page.title == 'Home' %}
+<style>
+  /* Optical alignment: the artwork sits left of center inside the video. */
+  @media (max-width: 760px) {
+    .intro { overflow: hidden; }
+    .intro__video { transform: translateX(8.5vw); }
+  }
+</style>
 <div class="intro" data-intro hidden aria-label="Welcome to Mnemosyne">
   <video class="intro__video" style="clip-path: inset(1%); border: 0; outline: 0;" data-intro-video muted playsinline preload="auto" poster="{{ '/assets/images/intro-poster.jpg' | relative_url }}">
     <source src="{{ '/assets/media/mnemosyne-intro.webm' | relative_url }}" type="video/webm">
