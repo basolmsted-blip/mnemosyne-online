@@ -14,6 +14,7 @@
 .explore-card:active .explore-art img{filter:grayscale(0) drop-shadow(7px 13px 9px rgba(30,24,15,.24))}
 @media(max-width:900px){.explore-grid{gap:.6rem}.explore-art{height:205px;flex-basis:205px}}
 @media(max-width:650px){.explore-section{padding:3rem 0 4rem}.explore-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem 1rem}.explore-card:last-child{grid-column:1 / -1;width:50%;justify-self:center}.explore-art{height:215px;flex-basis:215px}.explore-label{font-size:.74rem}}
+@media(hover:none), (pointer:coarse){.explore-art img{filter:grayscale(0) drop-shadow(5px 9px 7px rgba(30,24,15,.20))}}
 @media(prefers-reduced-motion:reduce){.explore-art img{transition:none}.explore-card:hover .explore-art img,.explore-card:focus-visible .explore-art img{transform:rotate(var(--tilt))}}
 .home-page .empty-state{min-height:0;padding:4rem 0}
 </style>
