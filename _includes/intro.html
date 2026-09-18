@@ -1,0 +1,10 @@
+{% if page.title == 'Home' %}
+<div class="intro" data-intro hidden aria-label="Welcome to Mnemosyne">
+  <video class="intro__video" data-intro-video muted playsinline preload="auto" poster="{{ '/assets/images/intro-poster.jpg' | relative_url }}">
+    <source src="{{ '/assets/media/mnemosyne-intro.webm' | relative_url }}" type="video/webm">
+    <source src="{{ '/assets/media/mnemosyne-intro.mp4' | relative_url }}" type="video/mp4">
+  </video>
+  <button class="intro__skip" data-intro-skip type="button">Skip intro</button>
+</div>
+{% endif %}
+

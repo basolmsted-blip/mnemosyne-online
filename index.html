@@ -1,0 +1,60 @@
+---
+layout: default
+title: Home
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__identity">
+    <img src="{{ '/assets/images/mnemosyne-title.png' | relative_url }}" alt="Mnemosyne" class="hero__wordmark">
+    <p id="hero-title" class="hero__deck">Archaeology, material culture, and the human past.</p>
+  </div>
+</section>
+
+{% assign featured = site.posts.first %}
+{% if featured %}
+<main id="main-content">
+  <section class="featured" aria-labelledby="featured-title">
+    <p class="eyebrow">Latest article</p>
+    <div class="featured__grid">
+      {% if featured.hero_image %}
+      <a href="{{ featured.url | relative_url }}" class="featured__image-link" aria-hidden="true" tabindex="-1">
+        <img src="{{ featured.hero_image | relative_url }}" alt="" class="featured__image">
+      </a>
+      {% endif %}
+      <div class="featured__copy">
+        <p class="article-date">{{ featured.date | date: "%e %B %Y" }}</p>
+        <h1 id="featured-title"><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h1>
+        {% if featured.subtitle %}<p class="featured__standfirst">{{ featured.subtitle }}</p>{% endif %}
+        {% if featured.excerpt_text %}<p>{{ featured.excerpt_text }}</p>{% endif %}
+        <a class="text-link" href="{{ featured.url | relative_url }}">Read the article <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  {% if site.posts.size > 1 %}
+  <section class="recent" aria-labelledby="recent-title">
+    <div class="section-heading">
+      <p class="eyebrow">From the archive</p>
+      <h2 id="recent-title">Recent articles</h2>
+    </div>
+    <div class="article-grid">
+      {% for post in site.posts offset:1 limit:6 %}
+      <article class="article-card">
+        {% if post.hero_image %}<img src="{{ post.hero_image | relative_url }}" alt="{{ post.hero_alt | default: '' }}">{% endif %}
+        <p class="article-date">{{ post.date | date: "%e %B %Y" }}</p>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</main>
+{% else %}
+<main id="main-content" class="empty-state">
+  <p class="eyebrow">Opening shortly</p>
+  <h1>The first Mnemosyne article is being prepared.</h1>
+  <p>Illustrated essays on archaeology, objects, landscapes, and the lives that made them.</p>
+</main>
+{% endif %}
+

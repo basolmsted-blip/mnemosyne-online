@@ -1,0 +1,28 @@
+---
+layout: default
+title: Articles
+permalink: /articles/
+---
+
+<main id="main-content" class="page-shell archive-page">
+  <header class="page-header">
+    <p class="eyebrow">Mnemosyne</p>
+    <h1>Articles</h1>
+    <p>Illustrated essays on archaeology, material culture, landscapes, and the human past.</p>
+  </header>
+
+  <div class="archive-list">
+    {% for post in site.posts %}
+    <article class="archive-item">
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %B %Y" }}</time>
+      <div>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
+      </div>
+    </article>
+    {% else %}
+    <p>The first article will appear here soon.</p>
+    {% endfor %}
+  </div>
+</main>
+

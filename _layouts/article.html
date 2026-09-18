@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<main id="main-content" class="article-shell">
+  <article>
+    <header class="article-header">
+      <p class="eyebrow">{{ page.category | default: "Archaeology" }}</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.subtitle %}<p class="article-subtitle">{{ page.subtitle }}</p>{% endif %}
+      <div class="article-meta">
+        <span>By {{ page.author | default: site.author }}</span>
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%e %B %Y" }}</time>
+        {% if page.reading_time %}<span>{{ page.reading_time }} min read</span>{% endif %}
+      </div>
+    </header>
+
+    {% if page.hero_image %}
+    <figure class="hero-figure">
+      <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | default: '' }}">
+      {% if page.hero_caption %}<figcaption>{{ page.hero_caption }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
+
+    <div class="article-body prose">
+      {{ content }}
+    </div>
+  </article>
+
+  <nav class="article-end" aria-label="Article navigation">
+    <img src="{{ '/assets/images/mnemosyne-mark.png' | relative_url }}" alt="" aria-hidden="true">
+    <p>Continue exploring the archaeology of memory.</p>
+    <a class="text-link" href="{{ '/articles/' | relative_url }}">Browse all articles <span aria-hidden="true">→</span></a>
+  </nav>
+</main>
+

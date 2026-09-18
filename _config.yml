@@ -1,0 +1,26 @@
+title: Mnemosyne
+description: Archaeology, material culture, and the human past.
+url: ""
+baseurl: "/mnemosyne-online"
+author: Sebastian Olmsted
+instagram_url: ""
+permalink: /articles/:title/
+future: false
+markdown: kramdown
+
+collections:
+  posts:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: article
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
