@@ -16,6 +16,7 @@ layout: default
 
     {% if page.hero_image %}
     <figure class="hero-figure">
+      {% if page.hero_figure_number %}<p class="figure-label">Figure {{ page.hero_figure_number }}</p>{% endif %}
       <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | default: '' }}">
       {% if page.hero_caption %}<figcaption>{{ page.hero_caption }}</figcaption>{% endif %}
     </figure>
@@ -32,4 +33,3 @@ layout: default
     <a class="text-link" href="{{ '/articles/' | relative_url }}">Browse all articles <span aria-hidden="true">→</span></a>
   </nav>
 </main>
-
