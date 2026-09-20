@@ -9,7 +9,7 @@ layout: default
   }
   .prose-page .prose { max-width: 100%; overflow-wrap: break-word; }
 </style>
-<main id="main-content" class="page-shell prose-page">
+<main id="main-content" class="page-shell prose-page{% if page.page_class %} {{ page.page_class }}{% endif %}">
   <header class="page-header">
     <p class="eyebrow">Mnemosyne</p>
     <h1>{{ page.title }}</h1>
@@ -19,4 +19,3 @@ layout: default
     {{ content }}
   </div>
 </main>
-
