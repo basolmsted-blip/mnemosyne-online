@@ -132,8 +132,12 @@ a:hover { color: var(--terracotta); }
 .prose h2 { margin: 2.5em 0 .7em; font-size: 2rem; line-height: 1.15; font-weight: 500; }
 .prose h3 { margin: 2em 0 .6em; font-size: 1.45rem; font-weight: 500; }
 .prose blockquote { margin: 2.5rem 0; padding-left: 1.5rem; border-left: 2px solid var(--terracotta); color: var(--muted); font-style: italic; }
-.prose figure { margin: 3rem 0; }
-.prose figcaption, .hero-figure figcaption { margin-top: .8rem; color: var(--muted); font: .85rem/1.5 var(--sans); text-align: center; }
+.prose figure {
+  margin: 3rem 0;
+  padding: 1rem 1rem 1.25rem;
+  background: var(--paper-light);
+}
+.prose figcaption, .hero-figure figcaption { margin-top: 1.25rem; color: var(--muted); font: .85rem/1.5 var(--sans); text-align: center; }
 .prose .wide-figure { width: min(100vw - 3rem, 1080px); max-width: none; margin-left: 50%; transform: translateX(-50%); }
 
 .archive-list { border-top: 1px solid var(--line); }
@@ -143,10 +147,11 @@ a:hover { color: var(--terracotta); }
 
 .article-shell { padding: 6rem 0 8rem; }
 .article-header { max-width: 960px; margin: 0 auto 4rem; text-align: center; }
-.article-header h1 { margin: .5rem 0 2rem; font-size: clamp(3.2rem, 8vw, 7rem); font-weight: 500; line-height: .92; }
+.article-header h1 { margin: .5rem 0 1.35rem; font-size: clamp(3.2rem, 8vw, 7rem); font-weight: 500; line-height: .92; }
+.article-header h1::after { content: ""; display: block; width: 64px; height: 1px; margin: 1.6rem auto 0; background: var(--line); }
 .article-subtitle { max-width: 760px; margin: 0 auto 1.6rem; color: var(--muted); font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.35; }
 .article-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem 1.8rem; }
-.hero-figure { width: min(900px, 100%); margin: 0 auto 5rem; }
+.hero-figure { width: min(900px, 100%); margin: 0 auto 5rem; padding: 1rem 1rem 1.25rem; background: var(--paper-light); }
 .hero-figure img { width: 100%; max-height: 600px; object-fit: cover; }
 .article-body { margin-inline: auto; }
 .article-contents { margin: 3rem 0; padding: 1.5rem 1.75rem; border-block: 1px solid var(--line); }
@@ -182,6 +187,7 @@ a:hover { color: var(--terracotta); }
   .featured h1 { font-size: 3rem; }
   .page-shell, .article-shell { padding-top: 4rem; }
   .article-header { text-align: left; }
+  .article-header h1::after { margin-left: 0; }
   .article-meta { justify-content: flex-start; }
   .hero-figure { margin-bottom: 3rem; }
   .site-footer { align-items: start; flex-direction: column; }
