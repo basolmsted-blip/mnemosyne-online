@@ -148,6 +148,52 @@ a:hover { color: var(--terracotta); }
 .archive-item h2 { margin: 0; font-size: 2rem; font-weight: 500; line-height: 1.1; }
 .archive-item p { margin: .5rem 0 0; color: var(--muted); }
 
+.region-map { position: relative; width: 100%; aspect-ratio: 1640 / 1650; margin: 0 0 4rem; overflow: hidden; }
+.region-map > img { position: absolute; inset: -21.3% 0 auto; width: 100%; height: auto; }
+.map-pin {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--ink);
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+}
+.map-pin::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--paper);
+  border-radius: 50% 50% 50% 0;
+  background: var(--terracotta);
+  box-shadow: 0 2px 5px rgba(23, 23, 19, .24);
+  transform: rotate(-45deg);
+  transition: transform .2s ease, background-color .2s ease;
+}
+.map-pin:hover::before, .map-pin:focus-visible::before { background: #7f4936; transform: rotate(-45deg) scale(1.15); }
+.map-pin:focus-visible { outline: 1px solid var(--terracotta); outline-offset: 1px; }
+.map-pin__label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 4px);
+  width: max-content;
+  max-width: 220px;
+  padding: .55rem .7rem;
+  background: var(--ink);
+  color: var(--paper-light);
+  font: 500 .7rem/1.35 var(--sans);
+  letter-spacing: .04em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 5px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  visibility: hidden;
+}
+.map-pin:hover .map-pin__label, .map-pin:focus-visible .map-pin__label { opacity: 1; transform: translate(-50%, 0); visibility: visible; }
+.map-pin--adulis { left: 73.8%; top: 30.1%; }
+
 .article-shell { padding: 6rem 0 8rem; }
 .article-header { max-width: 960px; margin: 0 auto 4rem; text-align: center; }
 .article-header h1 { margin: .5rem 0 1.5rem; font-size: clamp(2.8rem, 6.2vw, 5.4rem); font-weight: 500; line-height: .98; }
@@ -197,6 +243,8 @@ a:hover { color: var(--terracotta); }
   .featured__grid, .archive-item { grid-template-columns: 1fr; }
   .article-grid { grid-template-columns: 1fr; }
   .featured h1 { font-size: 3rem; }
+  .region-map { margin-bottom: 3rem; }
+  .map-pin__label { max-width: 180px; white-space: normal; }
   .page-shell, .article-shell { padding-top: 4rem; }
   .article-header { text-align: left; }
   .article-header h1::after { margin-left: 0; }
