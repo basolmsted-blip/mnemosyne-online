@@ -130,17 +130,18 @@ a:hover { color: var(--terracotta); }
 .page-header > p:last-child { color: var(--muted); font-size: 1.4rem; }
 .prose { max-width: var(--measure); }
 .prose p { margin: 0 0 1.45em; }
-.prose h2 { margin: 2.5em 0 .7em; font-size: 2rem; line-height: 1.15; font-weight: 500; }
-.prose h3 { margin: 2em 0 .6em; font-size: 1.45rem; font-weight: 500; }
+.prose h2 { margin: 1.65em 0 .7em; font-size: 2rem; line-height: 1.15; font-weight: 500; }
+.prose h3 { margin: 1.5em 0 .6em; font-size: 1.45rem; font-weight: 500; }
 .prose blockquote { margin: 2.5rem 0; padding-left: 1.5rem; border-left: 2px solid var(--terracotta); color: var(--muted); font-style: italic; }
 .prose figure {
+  width: 100%;
   margin: 3rem 0;
   padding: 1rem 1rem 1.25rem;
   background: var(--figure-paper);
 }
 .figure-label { margin: 0 0 .85rem; color: var(--ink); font: 700 .72rem/1.4 var(--sans); letter-spacing: .13em; text-align: left; text-transform: uppercase; }
 .prose figcaption, .hero-figure figcaption { margin-top: 1.25rem; color: var(--muted); font: .85rem/1.5 var(--sans); text-align: center; }
-.prose .wide-figure { width: min(100vw - 3rem, 1080px); max-width: none; margin-left: 50%; transform: translateX(-50%); }
+.prose .wide-figure { width: 100%; max-width: none; margin-left: 0; transform: none; }
 
 .archive-list { border-top: 1px solid var(--line); }
 .archive-item { display: grid; grid-template-columns: 170px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--line); }
@@ -162,7 +163,7 @@ a:hover { color: var(--terracotta); }
 }
 .article-subtitle { max-width: 760px; margin: 0 auto 1.6rem; color: var(--muted); font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.35; }
 .article-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem 1.8rem; }
-.hero-figure { width: min(900px, 100%); margin: 0 auto 5rem; padding: 1rem 1rem 1.25rem; background: var(--figure-paper); }
+.hero-figure { width: min(var(--measure), 100%); margin: 0 auto 5rem; padding: 1rem 1rem 1.25rem; background: var(--figure-paper); }
 .hero-figure img { width: 100%; max-height: 600px; object-fit: cover; }
 .article-body { margin-inline: auto; }
 .article-contents { margin: 3rem 0; padding: 1.5rem 1.75rem; border-block: 1px solid var(--line); }
