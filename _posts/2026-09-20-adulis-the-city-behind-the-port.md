@@ -9,7 +9,8 @@ regions:
   - africa
 hero_image: /assets/images/articles/adulis/adulis-excavated-site.jpg
 hero_alt: "Excavated stone walls at Adulis on the coastal plain near Zula, Eritrea"
-hero_caption: "Figure 1. Excavated structures at Adulis, viewed in December 2012. The exposed remains represent only a small part of the ancient settlement, whose maritime functions extended across the coastal plain, landing places and offshore anchorages. Photograph by David Stanley, CC BY 2.0, via Wikimedia Commons."
+hero_figure_number: 1
+hero_caption: "Excavated structures at Adulis, viewed in December 2012. The exposed remains represent only a small part of the ancient settlement, whose maritime functions extended across the coastal plain, landing places and offshore anchorages. Photograph by David Stanley, CC BY 2.0, via Wikimedia Commons."
 excerpt_text: "A port is more than a possession. Adulis joined anchorages, roads, labour and institutions into the coastal system that made Aksumite power possible."
 reading_time: 26
 ---
@@ -84,8 +85,9 @@ Daniel Habtemichael has brought the cost of that construction to the centre of t
 Religious buildings provide a particularly rich example. Re-excavation of two churches, together with radiocarbon dates and architectural phasing, places their principal development in the sixth and early seventh centuries. Their plans changed over time as liturgical practice and community use changed.[^18] The dates are later than older stylistic chronologies sometimes allowed. But they should not be converted into the date at which Adulis “became Christian.” Textual traditions refer to a bishop of the Adulites before the monumental phases, while religious affiliation, episcopal organisation and church construction need not proceed in lockstep. Reused materials and changing sacred practices also complicate any clean replacement of one religious world by another.
 
 <figure>
-  <img src="{{ '/assets/images/articles/adulis/holmes-adulis-church-1868.jpg' | relative_url }}" alt="Nineteenth-century view of workers clearing the excavated church at Adulis, with columns and low walls visible">
-  <figcaption>Figure 2. The church at Adulis during its clearance in 1868, after a view attributed to Richard Rivington Holmes. Holmes accompanied the British expedition against Tewodros II as a representative of the British Museum; Captain William West Goodfellow oversaw the excavation on site. The image is evidence both for the exposed building and for the military and collecting circumstances under which Adulis first entered a British museum archive. Public-domain original; reproduced from David Peacock and Lucy Blue, eds., <em>The Ancient Red Sea Port of Adulis, Eritrea</em> (2007), fig. 3.3.</figcaption>
+  <p class="figure-label">Figure 2</p>
+  <img src="{{ '/assets/images/articles/adulis/adulis-holmes-church-drawing-1867-1868.jpg' | relative_url }}" alt="Colour drawing of the excavated church at Adulis, with standing columns, workers and horses in a mountainous landscape">
+  <figcaption>The church at Adulis during its clearance in 1867–1868, after a view attributed to Richard Rivington Holmes. Holmes accompanied the British expedition against Tewodros II as a representative of the British Museum; Captain William West Goodfellow oversaw the excavation on site. The image is evidence both for the exposed building and for the military and collecting circumstances under which Adulis first entered a British museum archive. Public-domain original.</figcaption>
 </figure>
 
 The buildings materialised long-distance connection while making it local. A marble architectural element excavated in 1868 has been identified as Proconnesian, from the quarrying and workshop zone in the Sea of Marmara that supplied major building projects across the late Roman world.[^19] Its arrival at Adulis required procurement, sea transport, unloading and installation. Whether the marble came by purchase, patronage or diplomatic gift is unknown. Once installed, however, it belonged to an Adulitan building and to the uses its community made of imported prestige. Calling it “Byzantine” without qualification would mistake origin for ownership.
