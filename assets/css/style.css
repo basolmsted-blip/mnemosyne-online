@@ -149,8 +149,17 @@ a:hover { color: var(--terracotta); }
 
 .article-shell { padding: 6rem 0 8rem; }
 .article-header { max-width: 960px; margin: 0 auto 4rem; text-align: center; }
-.article-header h1 { margin: .5rem 0 1.35rem; font-size: clamp(3.2rem, 8vw, 7rem); font-weight: 500; line-height: .92; }
-.article-header h1::after { content: ""; display: block; width: 64px; height: 1px; margin: 1.6rem auto 0; background: var(--line); }
+.article-header h1 { margin: .5rem 0 1.5rem; font-size: clamp(2.8rem, 6.2vw, 5.4rem); font-weight: 500; line-height: .98; }
+.article-header h1::after {
+  content: "";
+  display: block;
+  width: 88px;
+  height: 9px;
+  margin: 1.75rem auto 0;
+  background:
+    linear-gradient(45deg, transparent 42%, var(--terracotta) 43% 57%, transparent 58%) center / 9px 9px no-repeat,
+    linear-gradient(var(--line), var(--line)) center / 100% 1px no-repeat;
+}
 .article-subtitle { max-width: 760px; margin: 0 auto 1.6rem; color: var(--muted); font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.35; }
 .article-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem 1.8rem; }
 .hero-figure { width: min(900px, 100%); margin: 0 auto 5rem; padding: 1rem 1rem 1.25rem; background: var(--figure-paper); }
