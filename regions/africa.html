@@ -5,6 +5,12 @@ permalink: /regions/africa/
 subtitle: Explore archaeology, material culture, and landscapes.
 ---
 {% assign region_posts = site.posts | where_exp: "post", "post.regions contains 'africa'" %}
+<div class="region-map" aria-label="Article locations in Africa">
+  <img src="{{ '/assets/images/maps/africa-article-map.png' | relative_url }}" alt="Map of Africa and adjacent regions">
+  <a class="map-pin map-pin--adulis" href="{{ '/articles/adulis-the-city-behind-the-port/' | relative_url }}" aria-label="Read Adulis: the city behind the port">
+    <span class="map-pin__label" aria-hidden="true">Adulis: the city behind the port</span>
+  </a>
+</div>
 <div class="archive-list">
 {% for post in region_posts %}
 <article class="archive-item"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %B %Y" }}</time><div><h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>{% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}</div></article>
