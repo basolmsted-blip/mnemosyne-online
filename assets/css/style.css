@@ -85,7 +85,10 @@ a:hover { color: var(--terracotta); }
   background: var(--paper-light);
   border-bottom: 1px solid var(--line);
 }
-.hero__identity { width: min(760px, 86vw); text-align: center; }
+.hero__identity {
+  width: min(850px, 90vw);
+  text-align: center;
+}
 .hero__wordmark {
   width: 100%;
   max-height: 315px;
