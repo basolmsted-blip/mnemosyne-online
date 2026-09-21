@@ -1,7 +1,7 @@
 title: Mnemosyne
 description: Archaeology, material culture, and the human past.
-url: ""
-baseurl: "/mnemosyne-online"
+url: "https://mnemosynearchaeology.org"
+baseurl: ""
 author: Sebastian Olmsted
 instagram_url: ""
 permalink: /articles/:title/
