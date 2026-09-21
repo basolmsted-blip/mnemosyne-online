@@ -86,7 +86,7 @@ a:hover { color: var(--terracotta); }
   border-bottom: 1px solid var(--line);
 }
 .hero__identity {
-  width: min(850px, 90vw);
+  width: min(760px, 86vw);
   text-align: center;
 }
 .hero__wordmark {
