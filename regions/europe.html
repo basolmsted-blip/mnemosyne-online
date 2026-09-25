@@ -2,9 +2,16 @@
 layout: page
 title: "Europe"
 permalink: /regions/europe/
-subtitle: Explore archaeology, material culture, and landscapes.
+page_class: region-page
 ---
 {% assign region_posts = site.posts | where_exp: "post", "post.regions contains 'europe'" %}
+
+<div class="region-intro">
+  <p>Beneath modern cities, across cultivated fields, and among the ruins of monuments still standing today lie traces of worlds layered one upon another. Prehistoric communities raised stones across ancient landscapes; Greeks and Romans reshaped the Mediterranean; migrations carried peoples, objects, and ideas across the continent; kingdoms, empires, and faiths transformed cities and countryside alike. Few places reveal so vividly how the past can survive within the present.</p>
+  <p>Europe’s archaeology is not one continuous story, but an intricate accumulation of them. Monuments were abandoned and rediscovered, cities rebuilt upon their predecessors, objects treasured or forgotten, and ancient pasts repeatedly invoked to explain new worlds.</p>
+  <p>Walk through these layers and encounter a continent where archaeology does more than recover what has disappeared, it reveals how generations have inherited, transformed, and remembered the worlds that came before them.</p>
+</div>
+
 <div class="archive-list">
 {% for post in region_posts %}
 <article class="archive-item"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %B %Y" }}</time><div><h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>{% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}</div></article>
