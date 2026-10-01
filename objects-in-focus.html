@@ -1,0 +1,28 @@
+---
+layout: default
+title: Objects in Focus
+permalink: /objects-in-focus/
+---
+
+{% assign object_posts = site.posts | where: "article_type", "object-in-focus" %}
+<main id="main-content" class="page-shell archive-page">
+  <header class="page-header">
+    <p class="eyebrow">Material histories</p>
+    <h1>Objects in Focus</h1>
+    <p>A forthcoming series of close studies exploring how individual objects carry memory, meaning and history.</p>
+  </header>
+
+  <div class="archive-list">
+    {% for post in object_posts %}
+    <article class="archive-item">
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %B %Y" }}</time>
+      <div>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
+      </div>
+    </article>
+    {% else %}
+    <p>The first Objects in Focus article is coming soon.</p>
+    {% endfor %}
+  </div>
+</main>
