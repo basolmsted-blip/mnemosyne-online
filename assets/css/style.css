@@ -571,13 +571,20 @@ a:hover { color: var(--terracotta); }
 }
 .editorial-feature__panel {
   position: absolute;
-  left: clamp(1.5rem, 4vw, 4rem);
+  left: clamp(-1rem, -1.25vw, -.5rem);
   bottom: clamp(1.5rem, 3.5vw, 3.5rem);
   width: min(440px, calc(100% - 3rem));
   padding: clamp(1.5rem, 2.5vw, 2.35rem);
   border-left: 3px solid var(--accent);
   background: rgba(251, 250, 246, .97);
   color: var(--ink);
+  transform-origin: left center;
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.editorial-feature__panel:hover,
+.editorial-feature__panel:focus-within {
+  transform: scale(1.018);
+  box-shadow: 0 1rem 2.5rem rgba(21, 19, 16, .12);
 }
 .editorial-feature__panel .eyebrow {
   display: inline-block;
@@ -726,7 +733,7 @@ a:hover { color: var(--terracotta); }
 .object-focus__item h3 a { text-decoration: none; }
 
 .explore-section { border-top: 1px solid var(--line); }
-.explore-heading { display: block; margin-inline: auto; text-align: center; }
+.explore-heading { display: block; margin-inline: auto; padding-bottom: 2.15rem; text-align: center; }
 .explore-heading .eyebrow { margin-bottom: .9rem; }
 .explore-heading h2 { font-size: clamp(2.5rem, 4.5vw, 4.3rem); }
 .explore-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.75rem, 2vw, 1.75rem); }
@@ -871,6 +878,7 @@ a:hover { color: var(--terracotta); }
     width: calc(100% - 1.5rem);
     margin: -2.5rem 0 0 1.5rem;
     padding: 1.4rem;
+    transform-origin: center;
   }
   .recent-strip { margin-top: 4rem; }
   .recent-strip__grid { grid-template-columns: 1fr; }
@@ -887,10 +895,13 @@ a:hover { color: var(--terracotta); }
 
 @media (prefers-reduced-motion: reduce) {
   .cover-hero__link span,
+  .editorial-feature__panel,
   .story-card__image img,
   .story-card__link span,
   .explore-art img { transition: none; }
   .story-card:hover .story-card__image img,
+  .editorial-feature__panel:hover,
+  .editorial-feature__panel:focus-within,
   .explore-card:hover .explore-art img,
   .recent-strip__item:hover .recent-strip__image img { transform: none; }
 }
