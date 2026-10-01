@@ -404,7 +404,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   font-size: clamp(4rem, 7.1vw, 7.8rem);
   font-weight: 400;
   letter-spacing: -.035em;
-  line-height: .86;
+  line-height: 1.05 !important;
   text-wrap: balance;
 }
 .cover-hero__deck {
@@ -677,7 +677,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   margin: 0;
   font-size: clamp(1.45rem, 2.2vw, 2.15rem);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.15 !important;
   overflow-wrap: anywhere;
 }
 .recent-strip__copy h3 a { text-decoration: none; }
@@ -835,7 +835,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   }
   .cover-hero__copy { left: 1.5rem; bottom: 5.5rem; width: calc(100% - 3rem); }
   .cover-hero__label { margin-bottom: .9rem; }
-  .cover-hero h1 { max-width: 8ch; margin-bottom: 1rem; font-size: clamp(3.45rem, 16vw, 5.5rem); line-height: .9; }
+  .cover-hero h1 { max-width: 8ch; margin-bottom: 1rem; font-size: clamp(3.45rem, 16vw, 5.5rem); line-height: 1.05 !important; }
   .cover-hero__deck { max-width: 34ch; margin-bottom: 1.4rem; font-size: 1.08rem; }
   .cover-hero__credit { right: 3.2rem; bottom: .7rem; left: 1rem; max-width: none; font-size: .54rem; text-align: left; }
   .cover-hero__rail {
