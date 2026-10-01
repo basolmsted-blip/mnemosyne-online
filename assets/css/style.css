@@ -31,6 +31,9 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration-color: var(--terracotta); text-underline-offset: .18em; }
 a:hover { color: var(--terracotta); }
 
+/* Keep display titles open enough for tall serif letterforms at every breakpoint. */
+h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
+
 .skip-link {
   position: fixed; left: 1rem; top: -5rem; z-index: 1000;
   background: var(--ink); color: white; padding: .6rem 1rem;
@@ -533,7 +536,7 @@ a:hover { color: var(--terracotta); }
   font-weight: 400;
   letter-spacing: -.025em;
   line-height: 1.18;
-  text-transform: uppercase;
+  text-transform: none;
 }
 .editorial-lead__statement > p:not(.eyebrow) {
   max-width: 30ch;
@@ -779,7 +782,7 @@ a:hover { color: var(--terracotta); }
   font-weight: 400;
   letter-spacing: -.025em;
   line-height: 1.08;
-  text-transform: uppercase;
+  text-transform: none;
 }
 .home-manifesto__inner > p:not(.eyebrow) { max-width: 590px; color: var(--muted); font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.4; }
 
@@ -859,6 +862,8 @@ a:hover { color: var(--terracotta); }
   .explore-card, .explore-card:nth-child(n) { display: flex; padding: 0 .2rem 1rem; border: 0; }
   .explore-card:last-child { grid-column: 1 / -1; width: 50%; justify-self: center; }
   .explore-art { height: 210px; margin: 0 0 1rem; overflow: visible; }
+  .explore-art img,
+  .explore-card:hover .explore-art img { filter: none; }
   .home-manifesto { padding-inline: 1.5rem; }
   .home-manifesto h2 { max-width: 18ch; font-size: clamp(2.35rem, 8vw, 3rem); line-height: 1.18; }
   .site-footer { grid-template-columns: 1fr; align-items: start; gap: 2rem; }
