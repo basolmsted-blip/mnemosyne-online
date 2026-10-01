@@ -3,76 +3,125 @@ layout: default
 title: Home
 ---
 
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero__identity">
-    <img src="{{ '/assets/images/mnemosyne-title.png' | relative_url }}" alt="Mnemosyne" class="hero__wordmark">
-    <p id="hero-title" class="hero__deck">Archaeology of Memory</p>
-  </div>
-</section>
-
-{% assign featured_posts = site.posts | slice: 0, 2 %}
-{% if featured_posts.size > 0 %}
+{% assign featured = site.posts.first %}
 <main id="main-content">
-  <section class="featured" aria-labelledby="latest-articles-title" data-article-carousel>
-    <div class="featured__heading">
-      <p class="eyebrow" id="latest-articles-title">Latest articles</p>
-      {% if featured_posts.size > 1 %}
-      <div class="carousel-controls" aria-label="Latest articles controls">
-        <button type="button" data-carousel-previous aria-label="Show previous article">←</button>
-        <span class="carousel-status" data-carousel-status aria-live="polite">1 / {{ featured_posts.size }}</span>
-        <button type="button" data-carousel-next aria-label="Show next article">→</button>
-      </div>
-      {% endif %}
+  {% if featured %}
+  <section class="cover-hero" id="cover" aria-labelledby="featured-story-title">
+    <picture class="cover-hero__media">
+      <source
+        srcset="{{ '/assets/images/home/tomb-of-the-diver-hero-1280.jpg' | relative_url }} 1280w, {{ '/assets/images/home/tomb-of-the-diver-hero-2400.jpg' | relative_url }} 2400w"
+        sizes="100vw">
+      <img
+        src="{{ '/assets/images/home/tomb-of-the-diver-hero-2400.jpg' | relative_url }}"
+        width="2400"
+        height="1343"
+        alt="The painted covering slab of the Tomb of the Diver, showing a solitary youth diving towards water between two trees"
+        fetchpriority="high">
+    </picture>
+    <div class="cover-hero__shade" aria-hidden="true"></div>
+    <div class="cover-hero__copy">
+      <p class="cover-hero__label">Featured story</p>
+      <h1 id="featured-story-title">Between two worlds</h1>
+      <p class="cover-hero__deck">The Tomb of the Diver and the imagination of death in ancient Mediterranean society.</p>
+      <a class="cover-hero__link" href="{{ featured.url | relative_url }}">Read the story <span aria-hidden="true">→</span></a>
     </div>
-    <div class="featured__viewport">
-      <div class="featured__track" data-carousel-track>
-        {% for featured in featured_posts %}
-        <article class="featured__slide" data-carousel-slide{% unless forloop.first %} aria-hidden="true" inert{% endunless %}>
-          <div class="featured__grid">
-            {% if featured.hero_image %}
-            <a href="{{ featured.url | relative_url }}" class="featured__image-link" aria-hidden="true" tabindex="-1">
-              <img src="{{ featured.hero_image | relative_url }}" alt="" class="featured__image">
-            </a>
-            {% endif %}
-            <div class="featured__copy">
-              <p class="article-date">{{ featured.date | date: "%e %B %Y" }}</p>
-              <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
-              {% if featured.subtitle %}<p class="featured__standfirst">{{ featured.subtitle }}</p>{% endif %}
-              {% if featured.excerpt_text %}<p>{{ featured.excerpt_text }}</p>{% endif %}
-              <a class="text-link" href="{{ featured.url | relative_url }}">Read the article <span aria-hidden="true">→</span></a>
-            </div>
+    <nav class="cover-hero__rail" aria-label="Homepage sections">
+      <a class="is-current" href="#cover"><span>01</span><small>Featured</small></a>
+      <a href="#stories-overview-title"><span>02</span><small>Stories</small></a>
+      <a href="#explore"><span>03</span><small>Explore</small></a>
+      <a href="#manifesto"><span>04</span><small>About</small></a>
+    </nav>
+    <p class="cover-hero__credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Tomb_of_the_diver_in_Paestum_-_Cover.jpg">PaestumPaestum / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> · Resized</p>
+  </section>
+  {% else %}
+  <section class="cover-hero cover-hero--empty" aria-labelledby="featured-story-title">
+    <div class="cover-hero__copy">
+      <p class="cover-hero__label">Mnemosyne</p>
+      <h1 id="featured-story-title">Archaeology of memory</h1>
+      <p class="cover-hero__deck">Illustrated essays on objects, landscapes and the human past.</p>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if site.posts.size > 0 %}
+  <section class="stories-overview" aria-labelledby="stories-overview-title">
+    <div class="editorial-lead">
+      <div class="editorial-lead__statement">
+        <p class="eyebrow">Archaeology of memory</p>
+        <h2 id="stories-overview-title">Stories that connect the past and present</h2>
+        <p>Long-form features, object studies and regional explorations on the archaeology of memory.</p>
+        <a class="editorial-lead__about" href="{{ '/about/' | relative_url }}">Read more about Mnemosyne <span aria-hidden="true">→</span></a>
+      </div>
+
+      <article class="editorial-feature">
+        <img
+          src="{{ '/assets/images/home/tomb-of-the-diver-feature-3200.jpg' | relative_url }}"
+          width="3200"
+          height="1790"
+          alt="The painted covering slab of the Tomb of the Diver"
+          loading="lazy">
+        <div class="editorial-feature__panel">
+          <p class="eyebrow">Featured story</p>
+          <h3>Between two worlds</h3>
+          <p>The Tomb of the Diver and the imagination of death in ancient Mediterranean society.</p>
+          <a href="{{ featured.url | relative_url }}">Read the story <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="recent-strip" id="recent-stories" aria-labelledby="recent-stories-title">
+      <header class="recent-strip__header">
+        <h2 id="recent-stories-title">Recent stories</h2>
+        <a href="{{ '/articles/' | relative_url }}">View all stories <span aria-hidden="true">→</span></a>
+      </header>
+      <div class="recent-strip__grid">
+        {% for post in site.posts limit:4 %}
+        <article class="recent-strip__item">
+          {% if post.hero_image %}
+          <a class="recent-strip__image" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
+            <img src="{{ post.hero_image | relative_url }}?v=15" alt="" loading="lazy" width="360" height="270">
+          </a>
+          {% endif %}
+          <div class="recent-strip__copy">
+            <p>{% if post.category %}<span>{{ post.category }}</span>{% endif %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %b %Y" }}</time></p>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
           </div>
         </article>
         {% endfor %}
       </div>
     </div>
   </section>
+  {% endif %}
 
-  {% if site.posts.size > 2 %}
-  <section class="recent" aria-labelledby="recent-title">
-    <div class="section-heading">
-      <p class="eyebrow">From the archive</p>
-      <h2 id="recent-title">Recent articles</h2>
-    </div>
-    <div class="article-grid">
-      {% for post in site.posts offset:2 limit:6 %}
-      <article class="article-card">
-        {% if post.hero_image %}<img src="{{ post.hero_image | relative_url }}" alt="{{ post.hero_alt | default: '' }}">{% endif %}
-        <p class="article-date">{{ post.date | date: "%e %B %Y" }}</p>
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-        {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
-      </article>
-      {% endfor %}
+  {% assign object_posts = site.posts | where: "article_type", "object-in-focus" %}
+  {% if object_posts.size > 0 %}
+  <section class="object-focus" id="objects-in-focus" aria-labelledby="objects-title">
+    <div class="object-focus__inner">
+      <header class="object-focus__header">
+        <p class="eyebrow">A closer look at the material world</p>
+        <h2 id="objects-title">Objects in focus</h2>
+      </header>
+      <div class="object-focus__grid">
+        {% for post in object_posts limit:3 %}
+        <article class="object-focus__item">
+          {% if post.hero_image %}<img src="{{ post.hero_image | relative_url }}" alt="{{ post.hero_alt | default: '' }}" loading="lazy">{% endif %}
+          <p class="article-date">{{ post.date | date: "%e %B %Y" }}</p>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        </article>
+        {% endfor %}
+      </div>
     </div>
   </section>
   {% endif %}
-{% include explore.html %}
+
+  {% include explore.html %}
+
+  <section class="home-manifesto" id="manifesto" aria-labelledby="manifesto-title">
+    <div class="home-manifesto__inner">
+      <p class="eyebrow">Mnemosyne</p>
+      <h2 id="manifesto-title">Archaeology does not recover the past unchanged.</h2>
+      <p>Mnemosyne explores how archaeology shapes what is remembered, forgotten, reconstructed and contested.</p>
+      <a class="text-link" href="{{ '/about/' | relative_url }}">About Mnemosyne <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
 </main>
-{% else %}
-<main id="main-content" class="empty-state">
-  <p class="eyebrow">Opening shortly</p>
-  <h1>The first Mnemosyne article is being prepared.</h1>
-  <p>Illustrated essays on archaeology, objects, landscapes, and the lives that made them.</p>
-{% include explore.html %}
-</main>
-{% endif %}
