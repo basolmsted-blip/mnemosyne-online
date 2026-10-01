@@ -9,6 +9,9 @@ title: Home
   <section class="cover-hero" id="cover" aria-labelledby="featured-story-title">
     <picture class="cover-hero__media">
       <source
+        media="(max-width: 760px)"
+        srcset="{{ '/assets/images/home/tomb-of-the-diver-feature-3200.jpg' | relative_url }}">
+      <source
         srcset="{{ '/assets/images/home/tomb-of-the-diver-hero-1280.jpg' | relative_url }} 1280w, {{ '/assets/images/home/tomb-of-the-diver-hero-2400.jpg' | relative_url }} 2400w"
         sizes="100vw">
       <img
