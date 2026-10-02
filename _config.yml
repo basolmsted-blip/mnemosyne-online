@@ -11,6 +11,9 @@ markdown: kramdown
 collections:
   posts:
     output: true
+  objects_in_focus:
+    output: true
+    permalink: /objects-in-focus/:name/
 
 defaults:
   - scope:
@@ -18,6 +21,11 @@ defaults:
       type: posts
     values:
       layout: article
+  - scope:
+      path: ""
+      type: objects_in_focus
+    values:
+      layout: object-focus
 
 exclude:
   - README.md

@@ -96,27 +96,6 @@ title: Home
   </section>
   {% endif %}
 
-  {% assign object_posts = site.posts | where: "article_type", "object-in-focus" %}
-  {% if object_posts.size > 0 %}
-  <section class="object-focus" id="objects-in-focus" aria-labelledby="objects-title">
-    <div class="object-focus__inner">
-      <header class="object-focus__header">
-        <p class="eyebrow">A closer look at the material world</p>
-        <h2 id="objects-title">Objects in focus</h2>
-      </header>
-      <div class="object-focus__grid">
-        {% for post in object_posts limit:3 %}
-        <article class="object-focus__item">
-          {% if post.hero_image %}<img src="{{ post.hero_image | relative_url }}" alt="{{ post.hero_alt | default: '' }}" loading="lazy">{% endif %}
-          <p class="article-date">{{ post.date | date: "%e %B %Y" }}</p>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
   {% include explore.html %}
 
   <section class="home-manifesto" id="manifesto" aria-labelledby="manifesto-title">
