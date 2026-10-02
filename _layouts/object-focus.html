@@ -8,9 +8,16 @@ layout: default
     <section class="object-stage" aria-label="Interactive object">
       <div class="object-stage__toolbar">
         <p data-side-label>Verso</p>
-        {% if page.secondary_image %}
-        <button type="button" data-mode-toggle aria-pressed="false">Turn the page</button>
-        {% endif %}
+        <div class="object-stage__actions">
+          <div class="object-stage__zoom" role="group" aria-label="Image zoom controls">
+            <button type="button" data-zoom-out aria-label="Zoom out" title="Zoom out" disabled>−</button>
+            <button type="button" data-zoom-reset aria-label="Reset zoom" title="Reset zoom"><span data-zoom-level>100%</span></button>
+            <button type="button" data-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
+          </div>
+          {% if page.secondary_image %}
+          <button type="button" data-mode-toggle aria-pressed="false">Turn the page</button>
+          {% endif %}
+        </div>
       </div>
 
       <div class="object-stage__viewport">
