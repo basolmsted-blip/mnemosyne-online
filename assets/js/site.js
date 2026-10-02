@@ -66,14 +66,65 @@ if (objectFocus) {
   const counter = objectFocus.querySelector('[data-counter]');
   const sideLabel = objectFocus.querySelector('[data-side-label]');
   const modeToggle = objectFocus.querySelector('[data-mode-toggle]');
+  const objectViewport = objectFocus.querySelector('.object-stage__viewport');
+  const objectCanvas = objectFocus.querySelector('[data-object-canvas]');
+  const zoomOut = objectFocus.querySelector('[data-zoom-out]');
+  const zoomReset = objectFocus.querySelector('[data-zoom-reset]');
+  const zoomIn = objectFocus.querySelector('[data-zoom-in]');
+  const zoomLevelLabel = objectFocus.querySelector('[data-zoom-level]');
   const conclusion = objectFocus.querySelector('[data-conclusion]');
   const detail = objectFocus.querySelector('[data-point-detail]');
   const detailImage = objectFocus.querySelector('[data-detail-image]');
   const detailCaption = objectFocus.querySelector('[data-detail-caption]');
   let activeIndex = -1;
   let currentSide = 'verso';
+  const zoomLevels = [1, 1.25, 1.5, 2];
+  let zoomIndex = 0;
+  let baseCanvasWidth = objectCanvas?.getBoundingClientRect().width || 0;
 
   const paragraphMarkup = (paragraphs = []) => paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('');
+
+  function setZoom(nextIndex, { preservePosition = true } = {}) {
+    if (!objectCanvas || !objectViewport) return;
+    zoomIndex = Math.max(0, Math.min(nextIndex, zoomLevels.length - 1));
+    const zoom = zoomLevels[zoomIndex];
+    const previousWidth = objectViewport.scrollWidth;
+    const centreRatio = previousWidth
+      ? (objectViewport.scrollLeft + objectViewport.clientWidth / 2) / previousWidth
+      : .5;
+
+    if (!baseCanvasWidth) baseCanvasWidth = objectCanvas.getBoundingClientRect().width / zoom;
+    objectCanvas.style.width = `${Math.round(baseCanvasWidth * zoom)}px`;
+    objectCanvas.style.maxWidth = 'none';
+    objectViewport.classList.toggle('is-zoomed', zoomIndex > 0);
+    if (zoomLevelLabel) zoomLevelLabel.textContent = `${Math.round(zoom * 100)}%`;
+    if (zoomOut) zoomOut.disabled = zoomIndex === 0;
+    if (zoomIn) zoomIn.disabled = zoomIndex === zoomLevels.length - 1;
+
+    window.requestAnimationFrame(() => {
+      if (!preservePosition || zoomIndex === 0) {
+        objectViewport.scrollTo({ left: 0, top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+        return;
+      }
+      objectViewport.scrollLeft = Math.max(0, centreRatio * objectViewport.scrollWidth - objectViewport.clientWidth / 2);
+    });
+  }
+
+  zoomOut?.addEventListener('click', () => setZoom(zoomIndex - 1));
+  zoomIn?.addEventListener('click', () => setZoom(zoomIndex + 1));
+  zoomReset?.addEventListener('click', () => setZoom(0, { preservePosition: false }));
+
+  let zoomResizeTimer;
+  window.addEventListener('resize', () => {
+    window.clearTimeout(zoomResizeTimer);
+    zoomResizeTimer = window.setTimeout(() => {
+      if (!objectCanvas) return;
+      objectCanvas.style.width = '';
+      objectCanvas.style.maxWidth = '';
+      baseCanvasWidth = objectCanvas.getBoundingClientRect().width;
+      setZoom(zoomIndex, { preservePosition: false });
+    }, 120);
+  });
 
   function showSide(side) {
     currentSide = side;
