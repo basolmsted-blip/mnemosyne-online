@@ -1,0 +1,141 @@
+---
+layout: default
+---
+<main id="main-content" class="object-exhibition" data-object-focus>
+  <a class="object-exhibition__return" href="{{ '/objects-in-focus/' | relative_url }}">← All Objects</a>
+
+  <div class="object-exhibition__opening-grid">
+    <section class="object-stage" aria-label="Interactive object">
+      <div class="object-stage__toolbar">
+        <p data-side-label>Verso</p>
+        {% if page.secondary_image %}
+        <button type="button" data-mode-toggle aria-pressed="false">Turn the page</button>
+        {% endif %}
+      </div>
+
+      <div class="object-stage__viewport">
+        <div class="object-stage__canvas" data-object-canvas>
+          <img
+            class="object-stage__image is-active"
+            src="{{ page.hero_image | relative_url }}"
+            alt="{{ page.hero_image_alt }}"
+            width="2535"
+            height="3520"
+            fetchpriority="high"
+            data-object-image="verso">
+          {% if page.secondary_image %}
+          <img
+            class="object-stage__image"
+            src="{{ page.secondary_image | relative_url }}"
+            alt="{{ page.secondary_image_alt }}"
+            width="2505"
+            height="3520"
+            data-object-image="recto"
+            hidden>
+          {% endif %}
+
+          <div class="object-hotspots" aria-label="Points of interest">
+            {% for hotspot in page.hotspots %}
+              {% unless hotspot.type == "page-turn" %}
+              <button
+                type="button"
+                class="object-hotspot{% if hotspot.unlock_after %} is-locked{% endif %}"
+                style="--hotspot-x: {{ hotspot.x }}%; --hotspot-y: {{ hotspot.y }}%;"
+                data-hotspot="{{ forloop.index0 }}"
+                {% if hotspot.unlock_after %}data-unlock-after="{{ hotspot.unlock_after }}" hidden{% endif %}
+                aria-label="Explore hotspot {{ hotspot.number }}: {{ hotspot.title }}">
+                <span>{{ hotspot.number }}</span>
+              </button>
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <p class="object-stage__credit">{{ page.image_credit }}</p>
+    </section>
+
+    <aside class="interpretation-panel" aria-labelledby="object-title">
+      <div class="interpretation-panel__opening" data-opening-panel>
+        <p class="interpretation-panel__label">Objects in Focus · {{ page.number }}</p>
+        <h1 id="object-title">{{ page.title }}</h1>
+        <p class="interpretation-panel__subtitle">{{ page.subtitle }}</p>
+        <div class="interpretation-panel__intro">
+          {% for paragraph in page.opening_copy %}<p>{{ paragraph }}</p>{% endfor %}
+        </div>
+        <button class="object-button" type="button" data-explore>Explore the object <span aria-hidden="true">→</span></button>
+      </div>
+
+      <div class="interpretation-panel__content" data-interpretation hidden aria-live="polite" aria-atomic="true">
+        <p class="interpretation-panel__label" data-point-label></p>
+        <h2 data-point-title></h2>
+        <div class="interpretation-panel__short" data-point-short></div>
+        <figure class="interpretation-panel__detail" data-point-detail hidden>
+          <img src="" alt="" loading="lazy" data-detail-image>
+          <figcaption data-detail-caption></figcaption>
+        </figure>
+        <div class="interpretation-panel__long" data-point-long></div>
+        <button class="interpretation-panel__more" type="button" data-more hidden>Why does this matter?</button>
+        <div class="interpretation-panel__controls">
+          <button type="button" data-previous>← Previous</button>
+          <span data-counter></span>
+          <button type="button" data-next>Next →</button>
+        </div>
+        <button class="interpretation-panel__whole" type="button" data-whole>Return to the whole object</button>
+      </div>
+    </aside>
+  </div>
+
+  <nav class="object-index" aria-label="Object details" data-object-index>
+    {% for hotspot in page.hotspots %}
+    <button type="button" data-index="{{ forloop.index0 }}"{% if hotspot.unlock_after %} data-unlock-after="{{ hotspot.unlock_after }}" hidden{% endif %}>
+      <span>{{ hotspot.number | prepend: '0' | slice: -2, 2 }}</span>
+      <strong>{{ hotspot.title }}</strong>
+    </button>
+    {% endfor %}
+  </nav>
+
+  <section class="object-conclusion" id="object-conclusion" data-conclusion tabindex="-1">
+    <p class="eyebrow">The whole object</p>
+    <h2>{{ page.conclusion.title }}</h2>
+    {% for paragraph in page.conclusion.paragraphs %}<p>{{ paragraph }}</p>{% endfor %}
+  </section>
+
+  {% if page.related_article.url %}
+  <aside class="object-related">
+    <p class="eyebrow">Continue the story</p>
+    <h2>{{ page.related_article.title }}</h2>
+    <p>{{ page.related_article.copy }}</p>
+    <a class="text-link" href="{{ page.related_article.url | relative_url }}">{{ page.related_article.cta }} <span aria-hidden="true">→</span></a>
+  </aside>
+  {% endif %}
+
+  <section class="object-record" aria-labelledby="object-record-title">
+    <h2 id="object-record-title">Object Information</h2>
+    <dl>
+      {% for field in page.object_info %}
+      {% unless field[1] == nil or field[1] == "" %}
+      <div><dt>{{ field[0] | replace: '_', ' ' | capitalize }}</dt><dd>{{ field[1] }}</dd></div>
+      {% endunless %}
+      {% endfor %}
+    </dl>
+    <p class="object-record__credit">{{ page.image_credit }}</p>
+    {% if page.image_source_url %}<a class="text-link" href="{{ page.image_source_url }}">View museum record <span aria-hidden="true">↗</span></a>{% endif %}
+  </section>
+
+  <details class="object-sources">
+    <summary>Sources &amp; Further Reading</summary>
+    {% for group in page.sources %}
+    <section>
+      <h2>{{ group.group }}</h2>
+      <ol>
+        {% for source in group.items %}
+        <li>{% if source.url %}<a href="{{ source.url }}">{{ source.citation }}</a>{% else %}{{ source.citation }}{% endif %}</li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% endfor %}
+  </details>
+
+  <script type="application/json" data-object-data>{{ page.hotspots | jsonify }}</script>
+</main>
