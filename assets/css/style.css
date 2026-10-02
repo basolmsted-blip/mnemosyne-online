@@ -1135,9 +1135,16 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   min-height: 38px;
   margin-bottom: .75rem;
 }
+.object-stage__actions,
+.object-stage__zoom { display: flex; align-items: center; }
+.object-stage__actions { gap: .65rem; }
+.object-stage__zoom button { min-width: 38px; padding-inline: .55rem; }
+.object-stage__zoom button + button { margin-left: -1px; }
+.object-stage__zoom [data-zoom-reset] { min-width: 58px; letter-spacing: .08em; }
 .object-stage__toolbar p,
 .object-stage__toolbar button {
   margin: 0;
@@ -1155,18 +1162,30 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 }
 .object-stage__toolbar button:hover,
 .object-stage__toolbar button:focus-visible { border-color: var(--exhibition-brass); color: var(--exhibition-ink); }
+.object-stage__toolbar button:disabled { color: #666158; cursor: not-allowed; }
+.object-stage__toolbar button:disabled:hover { border-color: var(--exhibition-line); }
 .object-stage__viewport {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 0;
-  overflow: hidden;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--exhibition-brass) #24231f;
+  scrollbar-width: thin;
+}
+.object-stage__viewport.is-zoomed {
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .object-stage__canvas {
   position: relative;
+  flex: 0 0 auto;
   width: min(100%, calc((100svh - 245px) * .72));
   max-width: 760px;
   margin: auto;
   background: #0e0e0d;
+  transition: width .2s ease;
 }
 .object-stage__image { width: 100%; height: auto; }
 .object-stage__image:not(.is-active) { display: none; }
@@ -1427,6 +1446,9 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 
   .object-exhibition { padding-inline: 1rem; }
   .object-exhibition__opening-grid { min-height: 0; }
+  .object-stage__toolbar { align-items: flex-start; }
+  .object-stage__actions { flex-wrap: wrap; justify-content: flex-end; }
+  .object-stage__toolbar [data-mode-toggle] { min-width: 100%; }
   .object-stage__canvas { width: min(92vw, 520px); }
   .object-stage__credit { font-size: .52rem; }
   .interpretation-panel { padding: 2.5rem .75rem; }
@@ -1451,6 +1473,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 
 @media (prefers-reduced-motion: reduce) {
   .objects-archive__thumb img,
+  .object-stage__canvas,
   .object-hotspot,
   .object-hotspot span { transition: none; animation: none; }
 }
