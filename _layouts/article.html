@@ -3,6 +3,11 @@ layout: default
 ---
 <main id="main-content" class="article-shell">
   <article>
+    {% if page.cover_art %}
+    <figure class="article-cover-art">
+      <img src="{{ page.cover_art | relative_url }}" alt="{{ page.cover_art_alt | default: '' }}" fetchpriority="high">
+    </figure>
+    {% endif %}
     <header class="article-header">
       <p class="eyebrow">{{ page.category | default: "Archaeology" }}</p>
       <h1>{{ page.title }}</h1>
@@ -10,11 +15,10 @@ layout: default
       <div class="article-meta">
         <span>By {{ page.author | default: site.author }}</span>
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%e %B %Y" }}</time>
-        {% if page.reading_time %}<span>{{ page.reading_time }} min read</span>{% endif %}
       </div>
     </header>
 
-    {% if page.hero_image %}
+    {% if page.hero_image and page.show_hero != false %}
     <figure class="hero-figure">
       {% if page.hero_figure_number %}<p class="figure-label">Figure {{ page.hero_figure_number }}</p>{% endif %}
       <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | default: '' }}">
