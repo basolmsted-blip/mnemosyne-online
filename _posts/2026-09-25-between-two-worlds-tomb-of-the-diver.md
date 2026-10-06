@@ -13,6 +13,15 @@ hero_alt: "A nude youth diving from a masonry platform towards a narrow band of 
 hero_caption: "The painted underside of the covering slab of the Tomb of the Diver, c. 480–470 BCE. The Diver descends between two trees towards a narrow body of water. Museo Archeologico Nazionale di Paestum. Photograph by PaestumPaestum, via Wikimedia Commons, CC BY-SA 4.0; resized."
 excerpt_text: "A funerary image made to disappear has become an icon. What can archaeology recover about its ancient meaning—and what has interpretation added since 1968?"
 reading_time: 25
+homepage_feature: true
+home_title: "Between two worlds"
+home_deck: "The Tomb of the Diver and the imagination of death in ancient Mediterranean society."
+home_hero_image: /assets/images/home/tomb-of-the-diver-hero-2400.jpg
+home_feature_image: /assets/images/home/tomb-of-the-diver-feature-3200.jpg
+home_image_width: 2400
+home_image_height: 1343
+home_image_position: "52% center"
+home_credit: "Photo: PaestumPaestum / Wikimedia Commons · CC BY-SA 4.0 · Resized"
 ---
 
 5 June 1968. Poseidonia’s Archaic necropolis. Excavators reach the fourth tomb of the season: five slabs of local travertine, their joints sealed with white stucco against earth and groundwater. A familiar type. A plain stone box. Nothing announces a masterpiece.
