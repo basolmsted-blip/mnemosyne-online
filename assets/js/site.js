@@ -48,6 +48,49 @@ if (siteHeader && document.body.classList.contains('home-page')) {
   window.addEventListener('scroll', updateHeader, { passive: true });
 }
 
+const featuredCarousel = document.querySelector('[data-featured-carousel]');
+
+if (featuredCarousel) {
+  const featuredSlides = [...featuredCarousel.querySelectorAll('[data-featured-slide]')];
+  const featuredButtons = [...featuredCarousel.querySelectorAll('[data-featured-go]')];
+  let featuredIndex = 0;
+  let featuredTimer;
+
+  function showFeaturedSlide(index) {
+    featuredIndex = (index + featuredSlides.length) % featuredSlides.length;
+    featuredSlides.forEach((slide, slideIndex) => {
+      const active = slideIndex === featuredIndex;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+      slide.querySelectorAll('a, button').forEach((control) => {
+        control.tabIndex = active ? 0 : -1;
+      });
+    });
+    featuredButtons.forEach((button, buttonIndex) => {
+      const active = buttonIndex === featuredIndex;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  function startFeaturedCarousel() {
+    window.clearInterval(featuredTimer);
+    if (featuredSlides.length > 1 && !document.hidden) {
+      featuredTimer = window.setInterval(() => showFeaturedSlide(featuredIndex + 1), 15000);
+    }
+  }
+
+  featuredButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      showFeaturedSlide(Number(button.dataset.featuredGo));
+      startFeaturedCarousel();
+    });
+  });
+  document.addEventListener('visibilitychange', startFeaturedCarousel);
+  showFeaturedSlide(0);
+  startFeaturedCarousel();
+}
+
 const objectFocus = document.querySelector('[data-object-focus]');
 
 if (objectFocus) {
