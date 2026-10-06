@@ -149,6 +149,11 @@ conclusion:
     - "The folio cannot tell us precisely when every banana variety travelled, who carried it, or which route brought the particular plant known to the people who made this manuscript. Archaeology itself cannot yet answer all of those questions."
     - "But the image establishes something quieter. By the early fifteenth century, the banana could appear on this page without explanation as an impossibly foreign thing. It had a name. It had a shape. It had a place within an ordered universe."
     - "The banana no longer needed an introduction. It belonged on the page."
+related_article:
+  title: "The Making of the Banana"
+  copy: "Follow the banana beyond this painted page, from its wild ancestors and earliest cultivation to its dispersal across Oceania, Asia and Africa."
+  url: /articles/the-making-of-the-banana/
+  cta: "Read the article"
 object_info:
   object: "Folio from ʿAjaʾib al-makhluqat (Wonders of Creation)"
   author_of_work: "Zakariyya ibn Muhammad al-Qazwini (1203-1283)"
