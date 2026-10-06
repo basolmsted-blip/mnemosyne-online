@@ -3,38 +3,47 @@ layout: default
 title: Home
 ---
 
-{% assign featured = site.posts.first %}
+{% assign featured_stories = site.posts | where: "homepage_feature", true %}
+{% assign featured = featured_stories.first %}
 <main id="main-content">
   {% if featured %}
-  <section class="cover-hero" id="cover" aria-labelledby="featured-story-title">
-    <picture class="cover-hero__media">
-      <source
-        media="(max-width: 760px)"
-        srcset="{{ '/assets/images/home/tomb-of-the-diver-feature-3200.jpg' | relative_url }}">
-      <source
-        srcset="{{ '/assets/images/home/tomb-of-the-diver-hero-1280.jpg' | relative_url }} 1280w, {{ '/assets/images/home/tomb-of-the-diver-hero-2400.jpg' | relative_url }} 2400w"
-        sizes="100vw">
-      <img
-        src="{{ '/assets/images/home/tomb-of-the-diver-hero-2400.jpg' | relative_url }}"
-        width="2400"
-        height="1343"
-        alt="The painted covering slab of the Tomb of the Diver, showing a solitary youth diving towards water between two trees"
-        fetchpriority="high">
-    </picture>
-    <div class="cover-hero__shade" aria-hidden="true"></div>
-    <div class="cover-hero__copy">
-      <p class="cover-hero__label">Featured story</p>
-      <h1 id="featured-story-title">Between two worlds</h1>
-      <p class="cover-hero__deck">The Tomb of the Diver and the imagination of death in ancient Mediterranean society.</p>
-      <a class="cover-hero__link" href="{{ featured.url | relative_url }}">Read the story <span aria-hidden="true">→</span></a>
+  <section class="cover-hero" id="cover" aria-label="Featured stories" data-featured-carousel>
+    <div class="cover-hero__slides">
+      {% for story in featured_stories %}
+      <article class="cover-hero__slide{% if forloop.first %} is-active{% endif %}" data-featured-slide aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
+        <picture class="cover-hero__media">
+          <img
+            src="{{ story.home_hero_image | default: story.hero_image | relative_url }}"
+            width="{{ story.home_image_width | default: 1600 }}"
+            height="{{ story.home_image_height | default: 1000 }}"
+            alt="{{ story.hero_alt | escape }}"
+            style="object-position: {{ story.home_image_position | default: 'center' }}"
+            {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+        </picture>
+        <div class="cover-hero__shade" aria-hidden="true"></div>
+        <div class="cover-hero__copy">
+          <p class="cover-hero__label">Featured story</p>
+          {% if forloop.first %}<h1>{{ story.home_title | default: story.title }}</h1>{% else %}<h2>{{ story.home_title | default: story.title }}</h2>{% endif %}
+          <p class="cover-hero__deck">{{ story.home_deck | default: story.excerpt_text | default: story.subtitle }}</p>
+          <a class="cover-hero__link" href="{{ story.url | relative_url }}">Read the story <span aria-hidden="true">→</span></a>
+        </div>
+        {% if story.home_credit %}<p class="cover-hero__credit">{{ story.home_credit }}</p>{% endif %}
+      </article>
+      {% endfor %}
     </div>
+    {% if featured_stories.size > 1 %}
+    <div class="cover-hero__carousel-controls" role="group" aria-label="Choose featured story">
+      {% for story in featured_stories %}
+      <button type="button" data-featured-go="{{ forloop.index0 }}" class="{% if forloop.first %}is-active{% endif %}" aria-label="Show {{ story.home_title | default: story.title | escape }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span></button>
+      {% endfor %}
+    </div>
+    {% endif %}
     <nav class="cover-hero__rail" aria-label="Homepage sections">
       <a class="is-current" href="#cover"><span>01</span><small>Featured</small></a>
       <a href="#stories-overview-title"><span>02</span><small>Stories</small></a>
       <a href="#explore"><span>03</span><small>Explore</small></a>
       <a href="#manifesto"><span>04</span><small>About</small></a>
     </nav>
-    <p class="cover-hero__credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Tomb_of_the_diver_in_Paestum_-_Cover.jpg">PaestumPaestum / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> · Resized</p>
   </section>
   {% else %}
   <section class="cover-hero cover-hero--empty" aria-labelledby="featured-story-title">
@@ -58,15 +67,15 @@ title: Home
 
       <article class="editorial-feature">
         <img
-          src="{{ '/assets/images/home/tomb-of-the-diver-feature-3200.jpg' | relative_url }}"
-          width="3200"
-          height="1790"
-          alt="The painted covering slab of the Tomb of the Diver"
+          src="{{ featured.home_feature_image | default: featured.hero_image | relative_url }}"
+          width="{{ featured.home_image_width | default: 1600 }}"
+          height="{{ featured.home_image_height | default: 1000 }}"
+          alt="{{ featured.hero_alt | escape }}"
           loading="lazy">
         <div class="editorial-feature__panel">
           <p class="eyebrow">Featured story</p>
-          <h3>Between two worlds</h3>
-          <p>The Tomb of the Diver and the imagination of death in ancient Mediterranean society.</p>
+          <h3>{{ featured.home_title | default: featured.title }}</h3>
+          <p>{{ featured.home_deck | default: featured.excerpt_text | default: featured.subtitle }}</p>
           <a href="{{ featured.url | relative_url }}">Read the story <span aria-hidden="true">→</span></a>
         </div>
       </article>
