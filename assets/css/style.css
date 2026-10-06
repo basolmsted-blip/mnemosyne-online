@@ -223,6 +223,12 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .map-pin--adulis { left: 78.5%; top: 31.3%; }
 
 .article-shell { padding: 6rem 0 8rem; overflow-x: clip; }
+.article-cover-art {
+  width: min(520px, calc(100% - 3rem));
+  margin: 0 auto clamp(2rem, 5vw, 4rem);
+  text-align: center;
+}
+.article-cover-art img { display: block; width: 100%; height: auto; object-fit: contain; }
 .article-header { max-width: 960px; margin: 0 auto 4rem; text-align: center; }
 .article-header h1 { margin: .5rem 0 1.5rem; font-size: clamp(2.8rem, 6.2vw, 5.4rem); font-weight: 500; line-height: .98; }
 .article-header h1::after {
@@ -242,10 +248,23 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .article-body { min-width: 0; margin-inline: auto; overflow-wrap: anywhere; }
 .article-body img { max-width: 100%; height: auto; }
 .article-body pre { max-width: 100%; overflow-x: auto; }
-.article-contents { margin: 3rem 0; padding: 1.5rem 1.75rem; border-block: 1px solid var(--line); }
+.article-contents { margin: 3rem 0; padding: 1.5rem 1.75rem; border: 1px solid var(--line); background: rgba(255,255,255,.2); }
 .article-contents p { margin-bottom: .6rem; font: 600 .72rem/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
-.article-contents ol { margin: 0; padding-left: 1.2rem; }
+.article-contents ol { margin: 0; padding-left: 0; list-style: none; }
 .article-contents li { margin: .25rem 0; }
+.article-body h2.article-chapter {
+  margin-top: clamp(5rem, 9vw, 8rem);
+  text-align: center;
+}
+.article-body h2.article-chapter::before {
+  content: attr(data-chapter);
+  display: block;
+  margin-bottom: .6rem;
+  color: var(--muted);
+  font: 600 .72rem/1.4 var(--sans);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
 .article-body hr { border: 0; border-top: 1px solid var(--line); margin: 4rem 0; }
 .article-body .exhibition-plate {
   width: min(1120px, calc(100vw - 3rem)); max-width: none; margin: 5rem 50%; padding: clamp(1rem, 2.5vw, 2rem);
@@ -254,6 +273,41 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .article-body .exhibition-plate img { width: 100%; max-height: 78vh; object-fit: contain; }
 .article-body .exhibition-plate figcaption { color: #c9c2b5; }
 .article-body .comparison-plate { width: min(1040px, calc(100vw - 3rem)); max-width: none; margin-left: 50%; transform: translateX(-50%); }
+.article-prologue,
+.article-epilogue {
+  margin: 0 0 4rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-block: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 1.08em;
+}
+.article-epilogue { margin: 5rem 0 4rem; }
+.article-prologue h2,
+.article-epilogue h2 { margin-top: 0; color: var(--ink); }
+.article-prologue p:last-child,
+.article-epilogue p:last-child { margin-bottom: 0; }
+.article-body .banana-figure {
+  width: min(860px, calc(100vw - 3rem));
+  max-width: none;
+  margin: 3rem 50%;
+  padding: clamp(1rem, 2.5vw, 2rem);
+  background: var(--figure-paper);
+  transform: translateX(-50%);
+}
+.article-body .banana-figure--wide { width: min(1100px, calc(100vw - 3rem)); }
+.article-body .banana-figure--transparent { background: transparent; }
+.article-body .banana-figure--original {
+  width: min(1440px, calc(100vw - 1.5rem));
+  padding-inline: clamp(.5rem, 1.5vw, 1rem);
+  background: transparent;
+}
+.article-body .banana-figure img { width: 100%; max-height: 78vh; object-fit: contain; }
+.article-body .banana-figure--original img { max-height: none; }
+.article-body .banana-figure figcaption {
+  width: min(var(--measure), calc(100% - 2rem));
+  margin-inline: auto;
+}
+.figure-label--inline { display: inline; margin: 0; }
 .comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: stretch; }
 .comparison-grid img { width: 100%; height: 100%; max-height: 540px; object-fit: cover; }
 .visual-pause { margin: 4rem 0; font-size: clamp(1.45rem, 2.8vw, 2.15rem); line-height: 1.35; text-align: center; }
@@ -358,6 +412,14 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   background: var(--surface-dark);
   color: #fff;
 }
+.cover-hero__slides,
+.cover-hero__slide { position: absolute; inset: 0; }
+.cover-hero__slide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+.cover-hero__slide.is-active { opacity: 1; pointer-events: auto; }
 .cover-hero::after {
   content: "";
   position: absolute;
@@ -398,7 +460,8 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   letter-spacing: .2em;
   text-transform: uppercase;
 }
-.cover-hero h1 {
+.cover-hero h1,
+.cover-hero h2 {
   max-width: 9ch;
   margin: 0 0 1.25rem;
   font-size: clamp(4rem, 7.1vw, 7.8rem);
@@ -406,6 +469,30 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   letter-spacing: -.035em;
   line-height: 1.05 !important;
   text-wrap: balance;
+}
+.cover-hero__carousel-controls {
+  position: absolute;
+  z-index: 4;
+  left: clamp(1.5rem, 6vw, 6.5rem);
+  bottom: 2rem;
+  display: flex;
+  gap: .6rem;
+}
+.cover-hero__carousel-controls button {
+  width: 2.9rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,.45);
+  background: transparent;
+  color: rgba(255,255,255,.68);
+  font: 600 .62rem/1 var(--sans);
+  letter-spacing: .1em;
+  cursor: pointer;
+}
+.cover-hero__carousel-controls button.is-active {
+  border-bottom-color: #fff;
+  color: #fff;
 }
 .cover-hero__deck {
   max-width: 560px;
@@ -950,9 +1037,11 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   }
   .cover-hero__copy { left: 1.5rem; bottom: 5.5rem; width: calc(100% - 3rem); }
   .cover-hero__label { margin-bottom: .9rem; }
-  .cover-hero h1 { max-width: 8ch; margin-bottom: 1rem; font-size: clamp(3.45rem, 16vw, 5.5rem); line-height: 1.05 !important; }
+  .cover-hero h1,
+  .cover-hero h2 { max-width: 8ch; margin-bottom: 1rem; font-size: clamp(3.45rem, 16vw, 5.5rem); line-height: 1.05 !important; }
   .cover-hero__deck { max-width: 34ch; margin-bottom: 1.4rem; font-size: 1.08rem; }
   .cover-hero__credit { right: 3.2rem; bottom: .7rem; left: 1rem; max-width: none; font-size: .54rem; text-align: left; }
+  .cover-hero__carousel-controls { left: 1.5rem; bottom: 3.1rem; }
   .cover-hero__rail {
     top: 5.5rem;
     right: .65rem;
