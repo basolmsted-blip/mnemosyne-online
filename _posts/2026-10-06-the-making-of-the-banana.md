@@ -13,7 +13,7 @@ article_type: mnemosyne-iii
 hero_image: /assets/images/articles/banana/banana-hero-image.jpg
 hero_alt: "A cluster of bananas ripening among broad green leaves"
 show_hero: false
-cover_art: /assets/images/articles/banana/banana-cover-art.png
+cover_art: /assets/images/articles/banana/banana-cover-art.png?v=2
 cover_art_alt: "A bold black banana silhouette on a warm cream ground"
 excerpt_text: "The cultivated banana was not made once. Archaeology, genetics and language reveal a crop repeatedly transformed by human movement, selection and care."
 homepage_feature: true
