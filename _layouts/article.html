@@ -13,9 +13,14 @@ layout: default
       <h1>{{ page.title }}</h1>
       {% if page.subtitle %}<p class="article-subtitle">{{ page.subtitle }}</p>{% endif %}
       <div class="article-meta">
-        <span>By {{ page.author | default: site.author }}</span>
+        <span>By <a rel="author" href="{{ site.author_url | relative_url }}">{{ page.author | default: site.author }}</a></span>
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%e %B %Y" }}</time>
       </div>
+      {% if page.topics %}
+      <ul class="article-topics" aria-label="Article topics">
+        {% for topic in page.topics %}{% assign topic_slug = topic | slugify %}<li><a href="{{ '/topics/#' | append: topic_slug | relative_url }}">{{ topic }}</a></li>{% endfor %}
+      </ul>
+      {% endif %}
     </header>
 
     {% if page.hero_image and page.show_hero != false %}
@@ -30,6 +35,33 @@ layout: default
       {{ content }}
     </div>
   </article>
+
+  {% assign related_count = 0 %}
+  {% capture related_articles %}
+    {% for candidate in site.posts %}
+      {% unless candidate.url == page.url %}
+        {% assign matches = false %}
+        {% for topic in page.topics %}
+          {% if candidate.topics contains topic %}{% assign matches = true %}{% endif %}
+        {% endfor %}
+        {% if matches and related_count < 3 %}
+          {% assign related_count = related_count | plus: 1 %}
+          <article class="related-article">
+            <p>{{ candidate.category }}</p>
+            <h3><a href="{{ candidate.url | relative_url }}">{{ candidate.title }}</a></h3>
+            <p>{{ candidate.excerpt_text | default: candidate.subtitle }}</p>
+          </article>
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  {% endcapture %}
+  {% if related_count > 0 %}
+  <aside class="related-articles" aria-labelledby="related-articles-title">
+    <p class="eyebrow">Continue exploring</p>
+    <h2 id="related-articles-title">Related articles</h2>
+    <div class="related-articles__grid">{{ related_articles }}</div>
+  </aside>
+  {% endif %}
 
   <nav class="article-end" aria-label="Article navigation">
     <img src="{{ '/assets/images/mnemosyne-mark.png' | relative_url }}" alt="" aria-hidden="true">
