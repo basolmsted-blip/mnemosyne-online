@@ -106,7 +106,7 @@ seo_description: "Mnemosyne Archaeology publishes illustrated, rigorously resear
           {% endif %}
           <div class="recent-strip__copy">
             <p>{% if post.category %}<span>{{ post.category }}</span>{% endif %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %b %Y" }}</time></p>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.home_title | default: post.title }}</a></h3>
           </div>
         </article>
         {% endfor %}
