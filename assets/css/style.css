@@ -371,8 +371,8 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   padding: 0;
   list-style: none;
 }
-.article-topics a,
-.archive-item__topics a,
+.article-topics span,
+.archive-item__topics span,
 .topic-directory a {
   display: inline-flex;
   align-items: center;
@@ -386,8 +386,6 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   text-decoration: none;
   text-transform: uppercase;
 }
-.article-topics a:hover,
-.archive-item__topics a:hover,
 .topic-directory a:hover { border-color: var(--ink); color: var(--ink); }
 .archive-item__topics { justify-content: flex-start; margin-top: 1rem; }
 
