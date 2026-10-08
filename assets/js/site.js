@@ -1,6 +1,38 @@
 const menuButton = document.querySelector('.menu-button');
 const navigation = document.querySelector('.site-nav');
 
+const articleSearch = document.querySelector('[data-article-search]');
+
+if (articleSearch) {
+  const input = articleSearch.querySelector('[data-article-search-input]');
+  const status = articleSearch.querySelector('[data-article-search-status]');
+  const items = [...document.querySelectorAll('[data-article-search-item]')];
+  const empty = document.querySelector('[data-article-search-empty]');
+  const normalise = (value) => value
+    .toLocaleLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+
+  function filterArticles() {
+    const terms = normalise(input.value).split(/\s+/).filter(Boolean);
+    let visible = 0;
+    items.forEach((item) => {
+      const haystack = normalise(item.dataset.search || '');
+      const matches = terms.every((term) => haystack.includes(term));
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    empty.hidden = visible !== 0;
+    status.textContent = terms.length
+      ? `${visible} ${visible === 1 ? 'article' : 'articles'} found.`
+      : `Showing all ${items.length} articles.`;
+  }
+
+  input.addEventListener('input', filterArticles);
+  articleSearch.addEventListener('reset', () => window.setTimeout(filterArticles, 0));
+}
+
 if (menuButton && navigation) {
   menuButton.addEventListener('click', () => {
     const open = menuButton.getAttribute('aria-expanded') === 'true';
