@@ -406,6 +406,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   width: 100%;
   aspect-ratio: 1;
   object-fit: contain;
+  clip-path: inset(0 2px 0 0);
   transition: transform .3s ease;
 }
 .archive-item:hover .archive-item__thumbnail img { transform: scale(1.018); }
@@ -428,6 +429,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .article-filter {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: .75rem;
   margin: 0 0 2.25rem;
   padding: 0;
@@ -436,6 +438,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .article-filter legend {
   width: 100%;
   margin-bottom: .75rem;
+  text-align: center;
   font: 600 .68rem/1 var(--sans);
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -469,7 +472,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   border: 1px solid var(--line);
-  background: #fff;
+  background: rgba(255, 255, 255, .62);
 }
 .article-search input {
   min-width: 0;
