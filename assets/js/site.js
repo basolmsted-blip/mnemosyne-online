@@ -30,6 +30,10 @@ if (articleSearch) {
   }
 
   input.addEventListener('input', filterArticles);
+  articleSearch.addEventListener('submit', (event) => {
+    event.preventDefault();
+    filterArticles();
+  });
   articleSearch.addEventListener('reset', () => window.setTimeout(filterArticles, 0));
 }
 
