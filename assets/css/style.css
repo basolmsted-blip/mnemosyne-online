@@ -169,6 +169,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 
 .archive-list { border-top: 1px solid var(--line); }
 .archive-item { display: grid; grid-template-columns: 170px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--line); }
+.archive-item[hidden] { display: none; }
 .archive-item h2 { margin: 0; font-size: 2rem; font-weight: 500; line-height: 1.1; }
 .archive-item p { margin: .5rem 0 0; color: var(--muted); }
 
