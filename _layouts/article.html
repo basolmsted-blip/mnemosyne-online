@@ -18,7 +18,7 @@ layout: default
       </div>
       {% if page.topics %}
       <ul class="article-topics" aria-label="Article topics">
-        {% for topic in page.topics %}{% assign topic_slug = topic | slugify %}<li><a href="{{ '/topics/#' | append: topic_slug | relative_url }}">{{ topic }}</a></li>{% endfor %}
+        {% for topic in page.topics %}<li><span>{{ topic }}</span></li>{% endfor %}
       </ul>
       {% endif %}
     </header>
