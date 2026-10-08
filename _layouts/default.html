@@ -13,7 +13,7 @@
     {% if page.title == 'Home' %}
     <link rel="preload" as="image" href="{{ '/assets/images/articles/banana/banana-hero-image.jpg' | relative_url }}">
     {% endif %}
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v=27">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v=28">
   </head>
   <body{% if page.title == 'Home' %} class="home-page"{% endif %}>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -21,6 +21,6 @@
     {% include header.html %}
     {{ content }}
     {% include footer.html %}
-    <script src="{{ '/assets/js/site.js' | relative_url }}?v=4" defer></script>
+    <script src="{{ '/assets/js/site.js' | relative_url }}?v=5" defer></script>
   </body>
 </html>

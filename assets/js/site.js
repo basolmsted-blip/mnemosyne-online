@@ -103,6 +103,32 @@ if (siteHeader && document.body.classList.contains('home-page')) {
   window.addEventListener('scroll', updateHeader, { passive: true });
 }
 
+const homepageRail = document.querySelector('.cover-hero__rail');
+
+if (homepageRail && 'IntersectionObserver' in window) {
+  const railLinks = [...homepageRail.querySelectorAll('a[href^="#"]')];
+  const railSections = railLinks
+    .map((link) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      return target?.closest('section') || target;
+    })
+    .filter(Boolean);
+  const railObserver = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    railLinks.forEach((link) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      const active = target === visible.target || target?.closest('section') === visible.target;
+      link.classList.toggle('is-current', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-30% 0px -45%', threshold: [0, .15, .35] });
+  railSections.forEach((section) => railObserver.observe(section));
+}
+
 const featuredCarousel = document.querySelector('[data-featured-carousel]');
 
 if (featuredCarousel) {
