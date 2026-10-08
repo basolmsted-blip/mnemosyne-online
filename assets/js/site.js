@@ -6,6 +6,7 @@ const articleSearch = document.querySelector('[data-article-search]');
 if (articleSearch) {
   const input = articleSearch.querySelector('[data-article-search-input]');
   const status = articleSearch.querySelector('[data-article-search-status]');
+  const filters = [...articleSearch.querySelectorAll('input[name="article-type"]')];
   const items = [...document.querySelectorAll('[data-article-search-item]')];
   const empty = document.querySelector('[data-article-search-empty]');
   const normalise = (value) => value
@@ -16,25 +17,43 @@ if (articleSearch) {
 
   function filterArticles() {
     const terms = normalise(input.value).split(/\s+/).filter(Boolean);
+    const selectedType = filters.find((filter) => filter.checked)?.value || 'all';
     let visible = 0;
     items.forEach((item) => {
       const haystack = normalise(item.dataset.search || '');
-      const matches = terms.every((term) => haystack.includes(term));
+      const matchesSearch = terms.every((term) => haystack.includes(term));
+      const matchesType = selectedType === 'all' || item.dataset.articleType === selectedType;
+      const matches = matchesSearch && matchesType;
       item.hidden = !matches;
       if (matches) visible += 1;
     });
     empty.hidden = visible !== 0;
-    status.textContent = terms.length
+    status.textContent = terms.length || selectedType !== 'all'
       ? `${visible} ${visible === 1 ? 'article' : 'articles'} found.`
       : `Showing all ${items.length} articles.`;
   }
 
   input.addEventListener('input', filterArticles);
+  filters.forEach((filter) => filter.addEventListener('change', filterArticles));
   articleSearch.addEventListener('submit', (event) => {
     event.preventDefault();
     filterArticles();
   });
   articleSearch.addEventListener('reset', () => window.setTimeout(filterArticles, 0));
+}
+
+const contactForm = document.querySelector('[data-contact-form]');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(contactForm);
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const message = String(data.get('message') || '').trim();
+    const body = [`Name: ${name}`, `Email: ${email}`, '', message].join('\n');
+    window.location.href = `mailto:bas.olmsted@gmail.com?subject=${encodeURIComponent('MNEMOSYNE INQUIRY')}&body=${encodeURIComponent(body)}`;
+  });
 }
 
 if (menuButton && navigation) {

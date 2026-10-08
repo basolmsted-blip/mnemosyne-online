@@ -1,12 +1,13 @@
 ---
 layout: article
-title: "The Making of the Banana"
-subtitle: "An Archaeology of Its Origins and Dispersal"
+title: "The Making of the Banana: An Archaeology of Its Origins and Dispersal"
+subtitle: "From the rainforests of New Guinea to plantations across the world, the banana's story is one of remarkable transformations, ancient migrations, and an enduring partnership with humanity. Discover how archaeology, genetics, and botany are piecing together the origins of one of the world's most familiar fruits."
 seo_title: "The Making of the Banana: Origins and Dispersal"
 seo_description: "Trace the banana’s origins and dispersal through archaeology, genetics, and language, from wild Musa to a crop transformed by human movement and care."
 date: 2026-10-06 08:00:00 +0300
 author: Sebastian Olmsted
 category: Archaeobotany
+article_kind: Investigation
 topics:
   - African archaeology
   - Archaeobotany
@@ -19,11 +20,12 @@ regions:
   - asia
 article_type: mnemosyne-iii
 hero_image: /assets/images/articles/banana/banana-hero-image.jpg
+thumbnail_image: /assets/images/articles/banana/banana-thumbnail.png
 hero_alt: "A cluster of bananas ripening among broad green leaves"
 show_hero: false
 cover_art: /assets/images/articles/banana/banana-cover-art.png?v=2
 cover_art_alt: "A bold black banana silhouette on a warm cream ground"
-excerpt_text: "The cultivated banana was not made once. Archaeology, genetics and language reveal a crop repeatedly transformed by human movement, selection and care."
+excerpt_text: "From the rainforests of New Guinea to plantations across the world, the banana's story is one of remarkable transformations, ancient migrations, and an enduring partnership with humanity. Discover how archaeology, genetics, and botany are piecing together the origins of one of the world's most familiar fruits."
 homepage_feature: true
 home_title: "The Making of the Banana"
 home_deck: "An Archaeology of Its Origins and Dispersal"

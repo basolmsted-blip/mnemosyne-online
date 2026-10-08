@@ -8,12 +8,18 @@ seo_description: "Browse every Mnemosyne Archaeology essay by title, subject, re
 
 <main id="main-content" class="page-shell archive-page">
   <header class="page-header">
-    <p class="eyebrow">Mnemosyne</p>
-    <h1>Articles</h1>
-    <p>Illustrated essays on archaeology, material culture, landscapes, and the human past.</p>
+    <p class="eyebrow">Articles</p>
+    <h1>Begin investigating</h1>
+    <p>From forgotten civilizations and extraordinary discoveries to the everyday lives of people who came before us, explore the stories preserved in the archaeological record. Through in-depth investigations, fresh perspectives, and the material traces of the past, we examine not only what we know about history, but how we have come to know it.</p>
   </header>
 
   <form class="article-search" role="search" data-article-search>
+    <fieldset class="article-filter" data-article-filter>
+      <legend>Filter by</legend>
+      <label><input type="radio" name="article-type" value="all" checked><span>All articles</span></label>
+      <label><input type="radio" name="article-type" value="perspective"><span>Perspectives</span></label>
+      <label><input type="radio" name="article-type" value="investigation"><span>Investigations</span></label>
+    </fieldset>
     <label for="article-search-input">Search the articles</label>
     <div class="article-search__field">
       <input id="article-search-input" type="search" placeholder="Try “banana”, “Paestum”, or “Red Sea”" autocomplete="off" data-article-search-input>
@@ -24,11 +30,19 @@ seo_description: "Browse every Mnemosyne Archaeology essay by title, subject, re
 
   <div class="archive-list" data-article-list>
     {% for post in site.posts %}
-    <article class="archive-item" data-article-search-item data-search="{{ post.title | append: ' ' | append: post.subtitle | append: ' ' | append: post.excerpt_text | append: ' ' | append: post.category | append: ' ' | append: post.regions | append: ' ' | append: post.topics | downcase | escape }}">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %B %Y" }}</time>
-      <div>
+    <article class="archive-item" data-article-search-item data-article-type="{{ post.article_kind | default: 'article' | downcase }}" data-search="{{ post.title | append: ' ' | append: post.subtitle | append: ' ' | append: post.excerpt_text | append: ' ' | append: post.article_kind | append: ' ' | append: post.category | append: ' ' | append: post.regions | append: ' ' | append: post.topics | downcase | escape }}">
+      {% if post.thumbnail_image or post.hero_image %}
+      <a class="archive-item__thumbnail" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
+        <img src="{{ post.thumbnail_image | default: post.hero_image | relative_url }}" alt="" width="420" height="300" loading="lazy">
+      </a>
+      {% endif %}
+      <div class="archive-item__copy">
+        <p class="archive-item__meta">
+          {% if post.article_kind %}<span>{{ post.article_kind }}</span>{% endif %}
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %B %Y" }}</time>
+        </p>
         <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-        {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
+        {% if post.excerpt_text %}<p class="archive-item__excerpt">{{ post.excerpt_text }}</p>{% endif %}
         {% if post.topics %}<ul class="archive-item__topics" aria-label="Topics">{% for topic in post.topics %}<li><span>{{ topic }}</span></li>{% endfor %}</ul>{% endif %}
       </div>
     </article>

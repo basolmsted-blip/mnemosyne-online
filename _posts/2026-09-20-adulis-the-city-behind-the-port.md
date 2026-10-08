@@ -7,6 +7,7 @@ seo_description: "Discover the archaeology of Adulis, the Eritrean Red Sea port 
 date: 2026-09-20 08:00:00 +0300
 author: Sebastian Olmsted
 category: Africa
+article_kind: Perspective
 topics:
   - African archaeology
   - Ancient trade
@@ -16,6 +17,7 @@ topics:
 regions:
   - africa
 hero_image: /assets/images/articles/adulis/adulis-excavated-site.jpg
+thumbnail_image: /assets/images/articles/adulis/adulis-thumbnail.png
 hero_alt: "Excavated stone walls at Adulis on the coastal plain near Zula, Eritrea"
 hero_figure_number: 1
 hero_caption: "Excavated structures at Adulis, viewed in December 2012. The exposed remains represent only a small part of the ancient settlement, whose maritime functions extended across the coastal plain, landing places and offshore anchorages. Photograph by David Stanley, CC BY 2.0, via Wikimedia Commons."

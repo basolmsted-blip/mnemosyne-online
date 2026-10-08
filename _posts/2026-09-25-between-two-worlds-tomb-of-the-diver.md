@@ -7,6 +7,7 @@ seo_description: "Explore the Tomb of the Diver at Paestum: its painted symposiu
 date: 2026-09-25 08:00:00 +0300
 author: Sebastian Olmsted
 category: Europe
+article_kind: Perspective
 topics:
   - Archaeological interpretation
   - Funerary archaeology
@@ -17,6 +18,7 @@ regions:
   - europe
 article_type: mnemosyne-iii
 hero_image: /assets/images/articles/tomb-of-the-diver/tomb-of-diver-cover.jpg
+thumbnail_image: /assets/images/articles/tomb-of-the-diver/tomb-of-diver-thumbnail.png
 hero_alt: "A nude youth diving from a masonry platform towards a narrow band of water between two trees"
 hero_caption: "The painted underside of the covering slab of the Tomb of the Diver, c. 480–470 BCE. The Diver descends between two trees towards a narrow body of water. Museo Archeologico Nazionale di Paestum. Photograph by PaestumPaestum, via Wikimedia Commons, CC BY-SA 4.0; resized."
 excerpt_text: "A funerary image made to disappear has become an icon. What can archaeology recover about its ancient meaning—and what has interpretation added since 1968?"
