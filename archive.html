@@ -29,12 +29,12 @@ seo_description: "Browse every Mnemosyne Archaeology essay by title, subject, re
       <div>
         <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
         {% if post.subtitle %}<p>{{ post.subtitle }}</p>{% endif %}
-        {% if post.topics %}<ul class="archive-item__topics" aria-label="Topics">{% for topic in post.topics %}{% assign topic_slug = topic | slugify %}<li><a href="{{ '/topics/#' | append: topic_slug | relative_url }}">{{ topic }}</a></li>{% endfor %}</ul>{% endif %}
+        {% if post.topics %}<ul class="archive-item__topics" aria-label="Topics">{% for topic in post.topics %}<li><span>{{ topic }}</span></li>{% endfor %}</ul>{% endif %}
       </div>
     </article>
     {% else %}
     <p>The first article will appear here soon.</p>
     {% endfor %}
   </div>
-  <p class="article-search__empty" data-article-search-empty hidden>No articles match that search. Try a broader subject or browse the <a href="{{ '/topics/' | relative_url }}">topic index</a>.</p>
+  <p class="article-search__empty" data-article-search-empty hidden>No articles match that search. Try a broader subject.</p>
 </main>
