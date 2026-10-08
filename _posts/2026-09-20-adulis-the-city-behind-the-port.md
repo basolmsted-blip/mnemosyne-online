@@ -2,9 +2,17 @@
 layout: article
 title: "Adulis: the city behind the port"
 subtitle: "Adulis is often called Aksum’s port. The phrase is accurate as far as it goes. Yet it conceals almost everything that made the relationship possible: a dispersed harbour landscape, regulated exchange, inland transport, urban labour and institutions with histories of their own."
+seo_title: "Adulis: Archaeology of the Ancient Red Sea Port"
+seo_description: "Discover the archaeology of Adulis, the Eritrean Red Sea port whose harbours, trade routes, labour, and institutions connected Aksum to wider worlds."
 date: 2026-09-20 08:00:00 +0300
 author: Sebastian Olmsted
 category: Africa
+topics:
+  - African archaeology
+  - Ancient trade
+  - Archaeological interpretation
+  - Aksum
+  - Red Sea archaeology
 regions:
   - africa
 hero_image: /assets/images/articles/adulis/adulis-excavated-site.jpg

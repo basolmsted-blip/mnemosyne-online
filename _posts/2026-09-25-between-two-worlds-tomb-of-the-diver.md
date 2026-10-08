@@ -2,9 +2,17 @@
 layout: article
 title: "Between two worlds: interpreting the Tomb of the Diver"
 subtitle: "The painted tomb discovered near Poseidonia in 1968 preserves an extraordinary funerary interior, but not the explanation that once made it intelligible. Its modern history shows how archaeological comparison can recover context, generate plausible meanings and turn provisional interpretations into cultural memory."
+seo_title: "Tomb of the Diver: Meaning, Art and Archaeology"
+seo_description: "Explore the Tomb of the Diver at Paestum: its painted symposium, contested meaning, funerary context, and place in ancient Mediterranean archaeology."
 date: 2026-09-25 08:00:00 +0300
 author: Sebastian Olmsted
 category: Europe
+topics:
+  - Archaeological interpretation
+  - Funerary archaeology
+  - Greek art
+  - Paestum
+  - Tomb of the Diver
 regions:
   - europe
 article_type: mnemosyne-iii

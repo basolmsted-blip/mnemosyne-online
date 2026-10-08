@@ -2,9 +2,17 @@
 layout: article
 title: "The Making of the Banana"
 subtitle: "An Archaeology of Its Origins and Dispersal"
+seo_title: "The Making of the Banana: Origins and Dispersal"
+seo_description: "Trace the banana’s origins and dispersal through archaeology, genetics, and language, from wild Musa to a crop transformed by human movement and care."
 date: 2026-10-06 08:00:00 +0300
 author: Sebastian Olmsted
 category: Archaeobotany
+topics:
+  - African archaeology
+  - Archaeobotany
+  - Crop dispersal
+  - Domestication
+  - Plant archaeology
 regions:
   - africa
   - oceania
