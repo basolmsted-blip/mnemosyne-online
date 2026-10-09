@@ -14,6 +14,7 @@
     <link rel="preload" as="image" href="{{ '/assets/images/articles/banana/banana-hero-image.jpg' | relative_url }}">
     {% endif %}
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v=32">
+    {% if page.kids %}<link rel="stylesheet" href="{{ '/assets/css/kids.css' | relative_url }}?v=1">{% endif %}
   </head>
   <body{% if page.title == 'Home' %} class="home-page"{% endif %}>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -22,5 +23,6 @@
     {{ content }}
     {% include footer.html %}
     <script src="{{ '/assets/js/site.js' | relative_url }}?v=5" defer></script>
+    {% if page.game_script %}<script src="{{ page.game_script | relative_url }}?v=1" defer></script>{% endif %}
   </body>
 </html>
