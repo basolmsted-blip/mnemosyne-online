@@ -1,0 +1,46 @@
+---
+layout: default
+title: Mnemosyne Kids
+permalink: /kids/
+kids: true
+seo_title: Mnemosyne Kids — Explore the Past
+seo_description: Games, stories, activities, and big questions for curious young minds.
+---
+<main id="main-content" class="kids-page kids-home">
+  <section class="kids-hero">
+    <div class="kids-hero__copy">
+      <p class="kids-label">Mnemosyne Kids</p>
+      <h1>Welcome future archaeologists!</h1>
+      <p>Games, stories, activities, and big questions for curious minds.</p>
+      <a class="kids-button" href="#kids-categories">Start exploring <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="kids-media-placeholder kids-hero__media" aria-label="Panoramic archaeological media placeholder"><span>Hero media to be supplied</span></div>
+  </section>
+
+  <nav id="kids-categories" class="kids-categories" aria-label="Explore Mnemosyne Kids">
+    <a class="kids-category-card kids-category-card--games" href="{{ '/kids/games/' | relative_url }}"><span class="kids-category-card__media" aria-hidden="true">Media</span><strong>Games</strong><span>Play, explore, and test your archaeology skills.</span><b aria-hidden="true">→</b></a>
+    <a class="kids-category-card kids-category-card--stories" href="{{ '/kids/stories/' | relative_url }}"><span class="kids-category-card__media" aria-hidden="true">Media</span><strong>Stories</strong><span>Journeys, people, and discoveries from the past.</span><b aria-hidden="true">→</b></a>
+    <a class="kids-category-card kids-category-card--activities" href="{{ '/kids/activities/' | relative_url }}"><span class="kids-category-card__media" aria-hidden="true">Media</span><strong>DIY Activities</strong><span>Make, build, and try it yourself.</span><b aria-hidden="true">→</b></a>
+    <a class="kids-category-card kids-category-card--questions" href="{{ '/kids/how-did-they/' | relative_url }}"><span class="kids-category-card__media" aria-hidden="true">Media</span><strong>How Did They...?</strong><span>Big questions about the ancient world.</span><b aria-hidden="true">→</b></a>
+    <a class="kids-category-card kids-category-card--archaeologist" href="{{ '/kids/becoming-an-archaeologist/' | relative_url }}"><span class="kids-category-card__media" aria-hidden="true">Media</span><strong>Becoming an Archaeologist</strong><span>Discover how archaeologists work today.</span><b aria-hidden="true">→</b></a>
+  </nav>
+
+  {% assign featured = site.data.kids_content | where: 'slug', 'stratigraphy-game' | first %}
+  <section class="kids-featured" aria-labelledby="kids-featured-title">
+    <div>
+      <p class="kids-label">Featured game</p>
+      <h2 id="kids-featured-title">{{ featured.title }}</h2>
+      <p>{{ featured.description }}</p>
+      <p class="kids-meta">Ages {{ featured.age }} · Game · {{ featured.duration }}</p>
+      <span class="kids-card-status">Coming soon</span>
+    </div>
+    <div class="kids-media-placeholder kids-featured__media" aria-label="Stratigraphy game media placeholder"><span>Featured media to be supplied</span></div>
+  </section>
+
+  <section class="kids-latest" aria-labelledby="kids-latest-title">
+    <div class="kids-section-heading"><h2 id="kids-latest-title">Latest for Young Explorers</h2><a href="{{ '/kids/games/' | relative_url }}">View all <span aria-hidden="true">→</span></a></div>
+    <div class="kids-content-grid">
+      {% for item in site.data.kids_content %}{% if item.status == 'published' %}{% include kids-content-card.html item=item %}{% endif %}{% endfor %}
+    </div>
+  </section>
+</main>
