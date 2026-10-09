@@ -1,0 +1,353 @@
+.kids-page {
+  --kids-ivory: #f7f2e8;
+  --kids-parchment: #ede3d0;
+  --kids-charcoal: #282820;
+  --kids-ochre: #d8aa59;
+  --kids-sage: #bcc7a3;
+  --kids-terracotta: #d9987b;
+  --kids-blue: #a9c8d7;
+  --kids-olive: #b5be92;
+  --kids-forest: #34483b;
+  color: var(--kids-charcoal);
+  background: var(--kids-ivory);
+  font-size: max(1rem, 17px);
+}
+
+.kids-page :where(a, button, input):focus-visible { outline: 3px solid var(--kids-forest); outline-offset: 4px; }
+.kids-label,
+.kids-meta,
+.kids-card-status,
+.kids-card-action,
+.game-instruction {
+  font: 600 .72rem/1.35 var(--sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.kids-label { margin: 0 0 .75rem; color: var(--kids-forest); }
+.kids-meta { color: rgba(40, 40, 32, .7); }
+.kids-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: .85rem 1.25rem;
+  border: 1px solid var(--kids-forest);
+  border-radius: 4px 7px 5px 6px;
+  background: var(--kids-forest);
+  color: #fff;
+  font: 600 .72rem/1 var(--sans);
+  letter-spacing: .1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.kids-button:hover { color: #fff; background: #26382d; transform: translateY(-1px); }
+.kids-button > span[aria-hidden] { margin-left: .72rem; font-size: 1.12em; line-height: 1; }
+[data-restart] > span[aria-hidden] { margin-left: .85rem; font-size: 1.5em; }
+.kids-button--secondary { background: transparent; color: var(--kids-forest); }
+.kids-button--secondary:hover { color: #fff; }
+.kids-media-placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  border: 1px dashed rgba(40, 40, 32, .28);
+  background: rgba(255, 255, 255, .28);
+  color: rgba(40, 40, 32, .52);
+  font: 600 .68rem/1.3 var(--sans);
+  letter-spacing: .09em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.kids-hero {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(420px, 1.18fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  min-height: 680px;
+  padding: clamp(4rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1280px) / 2));
+}
+.kids-hero h1 {
+  max-width: 11ch;
+  margin: .2rem 0 1.25rem;
+  font-family: "Caveat", var(--serif);
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: .82 !important;
+}
+.kids-hero__copy > p:not(.kids-label) { max-width: 25ch; margin-bottom: 2rem; font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.35; }
+.kids-hero__media { aspect-ratio: 16 / 10; border-radius: 31px 18px 27px 14px; }
+
+.kids-categories {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(1380px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 2rem 0 7rem;
+  scroll-margin-top: 6rem;
+}
+.kids-category-card {
+  display: grid;
+  grid-template-rows: 128px auto 1fr auto;
+  gap: .75rem;
+  min-height: 390px;
+  padding: 1rem 1.15rem 1.25rem;
+  border: 1px solid rgba(40, 40, 32, .12);
+  border-radius: 13px 8px 15px 9px;
+  color: var(--kids-charcoal);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.kids-category-card:hover { color: var(--kids-charcoal); transform: translateY(-5px); box-shadow: 0 14px 28px rgba(40,40,32,.12); }
+.kids-category-card__media { display: grid; place-items: center; border: 1px dashed rgba(40,40,32,.24); color: rgba(40,40,32,.46); font: 600 .62rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.kids-category-card strong { font-size: clamp(1.55rem, 2vw, 2rem); font-weight: 500; line-height: 1; }
+.kids-category-card > span:not(.kids-category-card__media) { font-size: .98rem; line-height: 1.4; }
+.kids-category-card b { font: 400 1.5rem/1 var(--serif); }
+.kids-category-card--games { background: var(--kids-ochre); }
+.kids-category-card--stories { background: var(--kids-sage); }
+.kids-category-card--activities { background: var(--kids-terracotta); }
+.kids-category-card--questions { background: var(--kids-blue); }
+.kids-category-card--archaeologist { background: var(--kids-olive); }
+
+.kids-featured {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(380px, 1.18fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  padding: clamp(3rem, 6vw, 6rem) max(1.5rem, calc((100vw - 1180px) / 2));
+  background: var(--kids-parchment);
+}
+.kids-featured h2 { margin: .3rem 0 1rem; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 400; line-height: .92 !important; }
+.kids-featured > div > p:not(.kids-label,.kids-meta) { max-width: 38ch; font-size: 1.2rem; }
+.kids-featured__media { aspect-ratio: 4 / 3; }
+.kids-card-status { display: inline-block; margin-top: 1rem; padding: .65rem .9rem; border: 1px solid currentColor; }
+
+.kids-latest,
+.kids-category-content { width: min(1180px, calc(100% - 3rem)); margin: 0 auto; padding: 6rem 0 8rem; }
+.kids-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(40,40,32,.22); }
+.kids-section-heading h2,
+.kids-category-content > h2 { margin: 0 0 1rem; font-size: clamp(2.2rem, 4vw, 3.7rem); font-weight: 400; }
+.kids-section-heading a { margin-bottom: 1rem; font: 600 .7rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.kids-content-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
+.kids-content-grid:empty { display: none; }
+.kids-content-card { overflow: hidden; border: 1px solid rgba(40,40,32,.2); border-radius: 12px 8px 14px 9px; background: rgba(255,255,255,.42); }
+.kids-content-card__media { display: block; min-height: 180px; aspect-ratio: 4 / 3; }
+.kids-content-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.kids-content-card__media--carbon {
+  position: relative;
+  overflow: hidden;
+  background: #72513b url('/assets/images/kids/carbon-dating/carbon-game-workbench.png') center / cover no-repeat;
+}
+.kids-content-card__media--carbon .carbon-card-object {
+  position: absolute;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 8px 5px rgba(24, 13, 7, .62))
+    drop-shadow(0 2px 1px rgba(24, 13, 7, .42));
+}
+.carbon-card-object--bone { top: 29%; left: 13%; width: 20% !important; transform: rotate(-12deg); }
+.carbon-card-object--pottery { top: 43%; left: 40%; width: 19% !important; }
+.carbon-card-object--stone { top: 28%; right: 13%; width: 21% !important; transform: rotate(8deg); }
+.carbon-card-object--charcoal { top: 49%; left: 18%; width: 16% !important; transform: rotate(7deg); }
+.carbon-card-object--nail { top: 25%; left: 46%; width: 11% !important; transform: rotate(22deg); }
+.carbon-card-object--rope { top: 49%; right: 16%; width: 23% !important; transform: rotate(-7deg); }
+.carbon-card-object--grain { bottom: 11%; left: 23%; width: 16% !important; transform: rotate(-5deg); }
+.carbon-card-object--coin { right: 43%; bottom: 12%; width: 13% !important; transform: rotate(8deg); }
+.carbon-card-object--shell { right: 21%; bottom: 11%; width: 16% !important; transform: rotate(9deg); }
+.kids-content-card__body { padding: 1.25rem; }
+.kids-content-card h3 { margin: .35rem 0 .65rem; font-size: 1.8rem; font-weight: 500; line-height: 1.05 !important; }
+.kids-content-card h3 a { text-decoration: none; }
+.kids-content-card__body > p:not(.kids-label) { font-size: 1rem; line-height: 1.42; }
+.kids-card-action { display: inline-block; margin-top: 1rem; color: var(--kids-forest); }
+
+.kids-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5rem 1.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(40,40,32,.16);
+  font: 600 .68rem/1.4 var(--sans);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.kids-category-header { padding: clamp(5rem, 9vw, 9rem) max(1.5rem, calc((100vw - 980px) / 2)); }
+.kids-category-header h1 { margin: .3rem 0 1rem; font-size: clamp(4rem, 9vw, 7.5rem); font-weight: 400; line-height: .9 !important; }
+.kids-category-header > p:last-child { max-width: 650px; font-size: 1.35rem; line-height: 1.45; }
+.kids-category-header--games { background: color-mix(in srgb, var(--kids-ochre), white 35%); }
+.kids-category-header--stories { background: color-mix(in srgb, var(--kids-sage), white 35%); }
+.kids-category-header--activities { background: color-mix(in srgb, var(--kids-terracotta), white 40%); }
+.kids-category-header--how-did-they { background: color-mix(in srgb, var(--kids-blue), white 35%); }
+.kids-category-header--becoming-an-archaeologist { background: color-mix(in srgb, var(--kids-olive), white 35%); }
+.kids-empty-state { padding: 3rem; border: 1px dashed rgba(40,40,32,.3); background: var(--kids-parchment); }
+
+/* Carbon-dating game */
+.carbon-game { min-height: 100vh; padding-bottom: 7rem; }
+.carbon-game__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem clamp(1rem, 4vw, 3rem); border-bottom: 1px solid rgba(40,40,32,.18); }
+.carbon-game__bar a,
+.carbon-game__bar button,
+.game-back { border: 0; background: transparent; color: inherit; font: 600 .68rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.carbon-game__tools { display: flex; gap: .5rem; }
+.carbon-game__tools button { min-height: 40px; padding: .55rem .75rem; border: 1px solid rgba(40,40,32,.35); border-radius: 4px; }
+.carbon-game__tools [data-sound-toggle] { display: inline-flex; align-items: center; gap: .48rem; }
+.carbon-game__tools [data-sound-icon] { font-size: 1rem; line-height: 1; }
+.carbon-game__progress { position: relative; display: flex; justify-content: space-between; max-width: 1180px; margin: 0 auto; padding: 1rem 1.5rem .8rem; color: rgba(40,40,32,.66); font: 600 .65rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.carbon-game__progress::after { content: ""; position: absolute; left: 1.5rem; right: 1.5rem; bottom: 0; height: 3px; background: var(--kids-parchment); }
+.carbon-game__progress i { position: absolute; z-index: 1; left: 1.5rem; bottom: 0; width: calc((100% - 3rem) / 7); height: 3px; background: var(--kids-ochre); transition: width .35s ease; }
+.carbon-game__announcer { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.game-stage { width: min(1180px, calc(100% - 3rem)); margin: 0 auto; padding: clamp(3rem, 6vw, 6rem) 0; animation: gameFade .35s ease both; }
+.game-stage[hidden] { display: none; }
+@keyframes gameFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.game-stage h1 { margin: .25rem 0 .5rem; font-size: clamp(3.6rem, 7vw, 6.7rem); font-weight: 400; line-height: .88 !important; }
+.game-stage h2 { margin: .25rem 0 1rem; font-size: clamp(3rem, 6vw, 5.4rem); font-weight: 400; line-height: .92 !important; }
+.game-stage h3 { font-weight: 500; }
+.game-stage__split { display: grid; grid-template-columns: minmax(0, .85fr) minmax(400px, 1.15fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.game-stage--welcome { width: 100%; max-width: none; padding-top: clamp(1.5rem, 4vw, 3.5rem); }
+.game-stage--welcome .game-stage__split {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: min(760px, calc(100svh - 145px));
+  padding: clamp(2rem, 7vw, 6rem) max(1.25rem, calc((100vw - 1180px) / 2));
+  background:
+    linear-gradient(90deg, rgba(22, 24, 19, .35), rgba(22, 24, 19, .04)),
+    url('/assets/images/kids/carbon-dating/carbon-game-excavation.png') center / cover no-repeat;
+}
+.game-stage--welcome .game-stage__copy {
+  position: relative;
+  z-index: 1;
+  width: min(680px, 100%);
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+  border: 1px solid rgba(40, 40, 32, .18);
+  border-radius: 12px 8px 15px 9px;
+  background: rgba(247, 242, 232, .94);
+  box-shadow: 0 22px 58px rgba(20, 20, 14, .26);
+  backdrop-filter: blur(3px);
+}
+.game-stage--welcome h1 {
+  margin: .45rem 0 .8rem;
+  font-family: "Caveat", var(--serif);
+  font-size: clamp(4rem, 7.4vw, 7rem);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: .88 !important;
+  text-wrap: balance;
+}
+.game-stage--welcome .game-subtitle { margin: 0 0 2rem; line-height: 1.1; }
+.game-stage--welcome .kids-meta { margin: 0 0 .65rem; color: var(--kids-forest); }
+.game-stage__credit {
+  width: min(1180px, calc(100% - 3rem));
+  margin: .65rem auto 0;
+  color: rgba(40,40,32,.78);
+  font: .68rem/1.4 var(--sans);
+  text-align: right;
+}
+.game-stage__copy p { max-width: 52ch; margin: .7rem 0; line-height: 1.42; }
+.game-stage__copy .game-subtitle { margin: 0 0 1.5rem; color: var(--kids-forest); font: 500 clamp(1.4rem, 2.5vw, 2rem)/1.2 var(--serif); }
+.game-stage__copy .kids-button { margin-top: 1.5rem; }
+.game-stage__illustration { margin: 0; }
+.game-stage__illustration img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px 10px 22px 12px; }
+.game-stage__illustration figcaption { margin-top: .5rem; color: rgba(40,40,32,.68); font: .72rem/1.35 var(--sans); }
+.game-panel { max-width: 760px; margin-bottom: 2rem; }
+.game-panel--center { margin-inline: auto; text-align: center; }
+.game-instruction { margin-top: 1.5rem; color: var(--kids-forest); }
+
+.game-workbench { position: relative; display: grid; gap: 1rem; overflow: hidden; min-height: 430px; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 17px 11px 20px 12px; background: #72513b url('/assets/images/kids/carbon-dating/carbon-game-workbench.png') center / cover no-repeat; }
+.game-workbench--three { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; }
+.game-workbench--practice { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+.game-object { position: relative; display: grid; place-items: center; gap: .5rem; min-width: 0; padding: .75rem; border: 2px solid transparent; border-radius: 14px; background: rgba(247,242,232,.12); color: #fff; cursor: pointer; text-shadow: 0 1px 3px #1b100b; transition: transform .2s ease, background-color .2s ease, border-color .2s ease; }
+.game-object:hover { transform: translateY(-6px); background: rgba(247,242,232,.22); }
+.game-workbench img {
+  filter:
+    drop-shadow(0 15px 9px rgba(24, 13, 7, .58))
+    drop-shadow(0 3px 2px rgba(24, 13, 7, .38));
+}
+.game-object img { width: 100%; height: 210px; object-fit: contain; }
+.game-object span { font: 600 .73rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.game-object.is-examined::after { content: "✓ Examined"; position: absolute; top: .5rem; right: .5rem; padding: .35rem .5rem; border-radius: 999px; background: var(--kids-sage); color: var(--kids-charcoal); font: 700 .6rem/1 var(--sans); text-shadow: none; text-transform: uppercase; }
+.game-object.is-correct { border-color: var(--kids-sage); background: rgba(188,199,163,.32); }
+.game-object.is-incorrect { border-color: var(--kids-terracotta); background: rgba(217,152,123,.32); }
+.game-feedback,
+.game-completion { max-width: 850px; margin: 1.5rem auto; padding: 1.4rem 1.6rem; border-left: 5px solid var(--kids-ochre); background: var(--kids-parchment); }
+.game-feedback h3 { margin: 0 0 .85rem; font: 700 .78rem/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.game-feedback p { margin: .35rem 0; }
+.game-feedback.is-correct { border-color: var(--kids-sage); }
+.game-feedback.is-incorrect { border-color: var(--kids-terracotta); }
+.game-completion .kids-button { margin-top: .5rem; }
+.game-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+.game-actions--center { justify-content: center; }
+
+.carbon-lesson { max-width: 850px; margin: 0 auto; }
+.carbon-demo { margin: 2rem 0; padding: 1.5rem; border: 1px solid rgba(40,40,32,.18); background: var(--kids-parchment); text-align: center; }
+.carbon-demo svg { width: min(520px, 100%); }
+.carbon-tree-trunk,.carbon-tree-branch { fill: none; stroke: #75543d; stroke-width: 22; stroke-linecap: round; }
+.carbon-tree-branch { stroke-width: 13; }
+.carbon-tree-crown { fill: var(--kids-sage); stroke: var(--kids-forest); stroke-width: 3; }
+.carbon-particle { animation: carbonDrift 3s ease-in-out infinite alternate; }
+.carbon-particle:nth-of-type(2) { animation-delay: .5s; }.carbon-particle:nth-of-type(3) { animation-delay: 1s; }
+.carbon-particle circle { fill: var(--kids-ochre); stroke: var(--kids-charcoal); }
+.carbon-particle text { fill: var(--kids-charcoal); font: 600 15px var(--sans); text-anchor: middle; }
+@keyframes carbonDrift { to { transform: translate(18px, 12px); } }
+.carbon-demo > p { margin: .5rem 0 0; font: 600 .7rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.carbon-decay { display: grid; grid-template-columns: 150px 1fr; gap: 1rem 1.5rem; align-items: center; margin: 2rem 0; padding: 1.5rem; border: 1px solid rgba(40,40,32,.18); background: var(--kids-parchment); }
+.carbon-decay__specimen { grid-row: span 2; display: grid; place-items: center; aspect-ratio: 1; border-radius: 46% 54% 45% 55%; background: #765844; color: #fff; font: 600 .68rem/1.2 var(--sans); text-align: center; text-transform: uppercase; }
+.carbon-decay__readout span { display: block; font-size: 2.5rem; line-height: 1; }.carbon-decay__readout small { font: .7rem/1 var(--sans); text-transform: uppercase; }
+.carbon-meter { overflow: hidden; height: 22px; border: 1px solid var(--kids-charcoal); background: var(--kids-ivory); }.carbon-meter i { display: block; width: 100%; height: 100%; background: var(--kids-ochre); }
+.carbon-decay label { font: 600 .7rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }.carbon-decay input { width: 100%; accent-color: var(--kids-forest); }.carbon-decay output { font-variant-numeric: tabular-nums; }
+.game-note { padding-left: 1rem; border-left: 3px solid var(--kids-blue); color: rgba(40,40,32,.72); font-size: .95rem; }
+
+.investigation > header { display: flex; justify-content: space-between; gap: 1rem; align-items: end; margin-bottom: 1.5rem; }.investigation > header h2 { margin-bottom: 0; font-size: clamp(2.3rem, 5vw, 4.5rem); }.investigation__counter { font: 600 .72rem/1.3 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.game-workbench--single { display: flex; flex-direction: column; align-items: center; justify-content: center; }.game-workbench--single img { width: min(360px, 62%); height: 230px; object-fit: contain; }.game-workbench--single span { color: #fff; font: 600 .8rem/1 var(--sans); letter-spacing: .1em; text-shadow: 0 1px 3px #000; text-transform: uppercase; }
+.investigation__question { max-width: 850px; margin: 2rem auto 0; text-align: center; }.investigation__question h3 { font-size: clamp(1.6rem, 3vw, 2.25rem); }
+.answer-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 760px; margin: 1.5rem auto; }.answer-buttons button { min-height: 60px; padding: .9rem 1rem; border: 2px solid var(--kids-forest); border-radius: 7px; background: transparent; color: var(--kids-forest); font: 700 .72rem/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }.answer-buttons button:hover { background: var(--kids-forest); color: #fff; }.answer-buttons button:disabled { opacity: .62; cursor: default; }.answer-buttons button.is-selected { background: var(--kids-forest); color: #fff; }
+
+.lab-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; margin: 3rem 0; }.lab-groups > section { padding: 1.5rem; border: 1px solid rgba(40,40,32,.2); background: var(--kids-parchment); }.lab-groups h3 { margin-top: 0; font-size: 1.5rem; }.lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }.lab-card { padding: .75rem; background: var(--kids-ivory); }.lab-card img { width: 100%; height: 110px; object-fit: contain; }.lab-card h4 { margin: .35rem 0; font-size: 1.05rem; }.lab-card p { margin: 0; font: .7rem/1.3 var(--sans); }.lab-card details { margin-top: .5rem; font-size: .82rem; }.lab-card summary { cursor: pointer; font: 600 .64rem/1.2 var(--sans); letter-spacing: .06em; text-transform: uppercase; }
+.learning-summary { max-width: 880px; margin: 3rem auto; }.learning-summary h3 { font-size: 2.5rem; }.learning-summary ol { padding: 0; list-style: none; counter-reset: learn; }.learning-summary li { counter-increment: learn; display: grid; grid-template-columns: 3rem 1fr; gap: 0 .75rem; margin-bottom: 1.25rem; }.learning-summary li::before { content: counter(learn); grid-row: span 2; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--kids-ochre); font-weight: 600; }.learning-summary li strong,.learning-summary li span { grid-column: 2; }
+.game-workbench--practice > img { width: 100%; height: 230px; object-fit: contain; }
+.mission-complete { max-width: 800px; margin: 0 auto 3rem; text-align: center; }.mission-complete blockquote { margin: 2rem 0; color: var(--kids-forest); font-size: 1.4rem; font-style: italic; }
+.game-certificate { max-width: 900px; margin: 0 auto; padding: clamp(2rem, 6vw, 5rem); border: 10px double var(--kids-forest); outline: 2px solid var(--kids-ochre); outline-offset: -18px; background: var(--kids-parchment); text-align: center; box-shadow: 0 18px 45px rgba(40,40,32,.16); }.game-certificate p { font: 700 .75rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; }.game-certificate h3 { margin: 1rem auto 2rem; font-size: clamp(2rem, 5vw, 4rem); }.game-certificate span,.game-certificate strong,.game-certificate b { display: block; }.game-certificate strong { margin: .5rem 0 1.5rem; font-size: 2rem; }.game-certificate b { margin-top: .75rem; color: var(--kids-forest); font: 700 1rem/1 var(--sans); letter-spacing: .13em; text-transform: uppercase; }
+
+.field-notes { width: min(620px, calc(100% - 2rem)); max-height: calc(100vh - 2rem); padding: 0; border: 0; background: transparent; }.field-notes::backdrop { background: rgba(22,24,19,.68); }.field-notes form { position: relative; padding: 2rem; border: 2px solid var(--kids-forest); border-radius: 8px 13px 9px 12px; background: var(--kids-parchment); box-shadow: 0 20px 60px rgba(0,0,0,.28); }.field-notes h2 { margin: .3rem 0 1rem; font-size: 2.6rem; font-weight: 400; }.field-notes__close { position: absolute; top: .75rem; right: .75rem; width: 40px; height: 40px; border: 0; background: transparent; font-size: 2rem; cursor: pointer; }.field-note-unlocked { margin: 1rem 0; padding: 1rem; border-left: 4px solid var(--kids-ochre); background: var(--kids-ivory); }
+
+@media (max-width: 980px) {
+  .kids-categories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kids-content-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kids-hero,.kids-featured,.game-stage__split { grid-template-columns: 1fr; }
+  .kids-hero { min-height: 0; }
+  .kids-hero__media { min-height: 340px; }
+}
+@media (max-width: 700px) {
+  .kids-categories { grid-template-columns: 1fr; }
+  .kids-category-card { grid-template-rows: 100px auto auto auto; min-height: 0; }
+  .kids-featured { grid-template-columns: 1fr; }
+  .kids-content-grid,.lab-groups { grid-template-columns: 1fr; }
+  .kids-subnav { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }.kids-subnav a { flex: 0 0 auto; }
+  .game-stage { width: min(100% - 2rem, 1180px); padding-top: 2.5rem; }
+  .game-stage__split { grid-template-columns: minmax(0, 1fr); }
+  .game-stage--welcome .game-stage__split { min-height: 720px; padding: 2rem 1rem 3.5rem; background-position: 58% center; }
+  .game-stage--welcome .game-stage__copy { padding: 1.4rem; }
+  .game-stage--welcome h1 { font-size: clamp(3.6rem, 15vw, 5.4rem); line-height: .9 !important; }
+  .game-stage__credit { width: calc(100% - 2rem); text-align: left; }
+  .game-workbench--three { grid-template-columns: 1fr; }.game-workbench--practice { min-height: 320px; }.game-object img { height: 180px; }
+  .answer-buttons { grid-template-columns: 1fr; }.investigation > header { display: block; }.game-workbench--single img { width: min(310px, 68%); height: 190px; }
+  .carbon-decay { grid-template-columns: 1fr; }.carbon-decay__specimen { grid-row: auto; width: 120px; }.lab-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .kids-hero { padding-inline: 1rem; }.kids-hero__media { min-height: 230px; }
+  .carbon-game__bar { align-items: flex-start; }.carbon-game__tools { flex-direction: column; }.game-workbench--practice { grid-template-columns: 1fr; }.game-workbench--practice > img { height: 170px; }
+  .lab-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kids-page * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
+@media print {
+  body * { visibility: hidden !important; }
+  .game-certificate,.game-certificate * { visibility: visible !important; }
+  .game-certificate { position: absolute; inset: 1in; max-width: none; box-shadow: none; }
+}

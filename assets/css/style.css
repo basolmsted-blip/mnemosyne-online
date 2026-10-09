@@ -391,6 +391,12 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .archive-item__topics { justify-content: flex-start; margin-top: 1rem; }
 
 .archive-page .page-header { max-width: 900px; margin-inline: auto; text-align: center; }
+.archive-page__cover {
+  width: min(330px, 68vw);
+  max-height: 220px;
+  margin: 0 auto 1.5rem;
+  object-fit: contain;
+}
 .archive-page .page-header h1 { max-width: none; font-size: clamp(3.25rem, 7vw, 5.75rem); }
 .archive-page .page-header > p:last-child { max-width: 780px; margin-inline: auto; line-height: 1.48; }
 .archive-list { border-top: 1px solid var(--line); }
