@@ -1,0 +1,163 @@
+---
+layout: default
+title: Can You Carbon Date It?
+permalink: /kids/games/carbon-dating/
+kids: true
+game_script: /assets/js/carbon-dating-game.js
+seo_title: Can You Carbon Date It? — Mnemosyne Kids
+seo_description: Examine archaeological discoveries and decide which materials scientists can radiocarbon date.
+---
+<main id="main-content" class="kids-page carbon-game" data-carbon-game data-asset-root="{{ '/assets/images/kids/carbon-dating/' | relative_url }}">
+  <header class="carbon-game__bar">
+    <a href="{{ '/kids/games/' | relative_url }}">← Games</a>
+    <div class="carbon-game__tools">
+      <button type="button" data-notes-open>Field notes</button>
+      <button type="button" data-sound-toggle aria-pressed="false"><span data-sound-icon aria-hidden="true">🔇</span><span data-sound-label>Sound off</span></button>
+    </div>
+  </header>
+
+  <div class="carbon-game__progress" aria-label="Mission progress"><span data-stage-label>Welcome</span><span aria-hidden="true">1 / 7</span><i data-stage-progress></i></div>
+  <div class="carbon-game__announcer" aria-live="polite" aria-atomic="true" data-announcer></div>
+
+  <section class="game-stage game-stage--welcome is-active" data-stage="welcome">
+    <div class="game-stage__split">
+      <div class="game-stage__copy">
+        <p class="kids-meta">Ages 10+ · Archaeology game · 5–10 minutes</p>
+        <h1>Can You Carbon Date It?</h1>
+        <p class="game-subtitle">The Dating Detective</p>
+        <p><strong>Welcome, Archaeologist!</strong></p>
+        <p>We've made an exciting discovery, and we need your help!</p>
+        <p>Our archaeological team has uncovered mysterious objects buried beneath the ground. Some might be hundreds or even thousands of years old.</p>
+        <p>But how can we find out how old they are?</p>
+        <p>That's where you come in.</p>
+        <p>Your mission is to help our team decide which discoveries can be investigated using a scientific technique called radiocarbon dating.</p>
+        <button class="kids-button" type="button" data-go="mystery">Accept mission <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+    <p class="game-stage__credit">Archaeological excavation, Grund, Luxembourg. Paul Braun, CC0, via Wikimedia Commons.</p>
+  </section>
+
+  <section class="game-stage" data-stage="mystery" hidden>
+    <div class="game-panel">
+      <p class="kids-label">Stage 2 · A Mystery of Time</p>
+      <h2>How Old Is It?</h2>
+      <p>Archaeologists find all sorts of things buried underground.</p>
+      <p>Some objects are made from stone. Others come from plants or animals.</p>
+      <p>But how do we work out how old they are?</p>
+      <p>One important clue is what an object is made from.</p>
+      <p>Let's investigate!</p>
+      <p class="game-instruction">Select each discovery to examine it.</p>
+    </div>
+    <div class="game-workbench game-workbench--three" data-tutorial-objects>
+      <button class="game-object" type="button" data-examine="animal-bone"><img src="{{ '/assets/images/kids/carbon-dating/carbon-game-animal-bone.png' | relative_url }}" alt="Animal bone"><span>Animal bone</span></button>
+      <button class="game-object" type="button" data-examine="pottery"><img src="{{ '/assets/images/kids/carbon-dating/carbon-game-pottery.png' | relative_url }}" alt="Pottery vessel"><span>Pottery</span></button>
+      <button class="game-object" type="button" data-examine="stone-tool"><img src="{{ '/assets/images/kids/carbon-dating/carbon-game-stone-tool.png' | relative_url }}" alt="Stone tool"><span>Stone tool</span></button>
+    </div>
+    <div class="game-feedback" data-examine-feedback aria-live="polite"><p>Select an object to open your first field observation.</p></div>
+    <div class="game-completion" data-mystery-complete hidden>
+      <p><strong>Excellent observations!</strong></p>
+      <p>These objects are all archaeological discoveries, but they're made from very different materials. That's important because one of the tools archaeologists use to investigate the past relies on a special kind of carbon.</p>
+      <button class="kids-button" type="button" data-go="carbon-clock">Discover carbon-14 <span aria-hidden="true">→</span></button>
+    </div>
+    <button class="game-back" type="button" data-go="welcome">← Back</button>
+  </section>
+
+  <section class="game-stage" data-stage="carbon-clock" hidden>
+    <div class="carbon-lesson is-active" data-carbon-screen="living">
+      <p class="kids-label">Stage 3 · The Carbon-14 Clock</p>
+      <h2>A Clock Hidden in Nature</h2>
+      <p>Did you know that every living thing contains carbon?</p>
+      <p>Some of that carbon is a special kind called carbon-14.</p>
+      <p>Plants take in carbon from their surroundings. Animals get carbon by eating plants or other animals.</p>
+      <p>As long as something is alive, it continues taking in carbon.</p>
+      <div class="carbon-demo carbon-demo--living" aria-label="Carbon-14 moving into a living plant">
+        <svg viewBox="0 0 520 260" role="img" aria-labelledby="carbon-tree-title">
+          <title id="carbon-tree-title">A living tree taking in carbon-14</title>
+          <path d="M250 230V105" class="carbon-tree-trunk"/><path d="M250 150l-80-55M250 135l75-65M250 180l95-35" class="carbon-tree-branch"/>
+          <circle cx="170" cy="82" r="52" class="carbon-tree-crown"/><circle cx="328" cy="70" r="58" class="carbon-tree-crown"/><circle cx="365" cy="145" r="48" class="carbon-tree-crown"/>
+          <g class="carbon-particle"><circle cx="65" cy="60" r="20"/><text x="65" y="67">¹⁴C</text></g>
+          <g class="carbon-particle"><circle cx="455" cy="55" r="20"/><text x="455" y="62">¹⁴C</text></g>
+          <g class="carbon-particle"><circle cx="460" cy="190" r="20"/><text x="460" y="197">¹⁴C</text></g>
+        </svg>
+        <p>Living organism — taking in carbon</p>
+      </div>
+      <div class="game-actions"><button class="game-back" type="button" data-go="mystery">← Back</button><button class="kids-button" type="button" data-carbon-next>What happens when it dies? <span aria-hidden="true">→</span></button></div>
+    </div>
+    <div class="carbon-lesson" data-carbon-screen="decay" hidden>
+      <p class="kids-label">Stage 3 · The Carbon-14 Clock</p>
+      <h2>The Clock Keeps Ticking</h2>
+      <p>When a living thing dies, it stops taking in new carbon.</p>
+      <p>The carbon-14 already inside it continues to disappear, little by little.</p>
+      <p>Scientists can measure how much carbon-14 remains to help estimate how long ago it died.</p>
+      <p><strong>That's radiocarbon dating!</strong></p>
+      <div class="carbon-decay">
+        <div class="carbon-decay__specimen" aria-hidden="true">Organic material</div>
+        <div class="carbon-decay__readout"><span data-carbon-percent>100%</span><small>carbon-14 remaining</small></div>
+        <div class="carbon-meter" role="img" aria-label="Carbon-14 remaining"><i data-carbon-meter></i></div>
+        <label for="carbon-time">Time passing</label>
+        <input id="carbon-time" data-carbon-slider type="range" min="0" max="50000" step="10" value="0">
+        <output for="carbon-time" data-carbon-years>0 years</output>
+      </div>
+      <p>More carbon-14 remaining usually means less time has passed since the organism died. Less carbon-14 remaining usually means more time has passed.</p>
+      <p class="game-note">This is a simplified scientific model. Real radiocarbon dates involve careful sampling, measurement, and calibration.</p>
+      <div class="game-actions"><button class="game-back" type="button" data-carbon-back>← Back</button><button class="kids-button" type="button" data-go="practice">Let's try it! <span aria-hidden="true">→</span></button></div>
+    </div>
+  </section>
+
+  <section class="game-stage" data-stage="practice" hidden>
+    <div class="game-panel">
+      <p class="kids-label">Stage 4</p><h2>Your First Discovery</h2>
+      <p>Our team has found two objects.</p><p>Remember: radiocarbon dating works with carbon from things that were once alive.</p><p>Which of these discoveries could we radiocarbon date?</p>
+      <p class="game-instruction">Select the object you would send to the lab.</p>
+    </div>
+    <div class="game-workbench game-workbench--practice">
+      <button class="game-object" type="button" data-practice="animal-bone"><img src="{{ '/assets/images/kids/carbon-dating/carbon-game-animal-bone.png' | relative_url }}" alt="Animal bone"><span>Animal bone</span></button>
+      <button class="game-object" type="button" data-practice="stone-tool"><img src="{{ '/assets/images/kids/carbon-dating/carbon-game-stone-tool.png' | relative_url }}" alt="Stone tool"><span>Stone tool</span></button>
+    </div>
+    <div class="game-feedback" data-practice-feedback aria-live="polite">Choose one discovery.</div>
+    <div class="game-completion" data-practice-complete hidden><h3>You're Ready!</h3><p>Great work, Archaeologist!</p><p>You're ready to investigate the discoveries from our excavation.</p><p>Remember to think carefully about what each object is made from. And be careful — some discoveries are trickier than they look!</p><button class="kids-button" type="button" data-go="investigation">Begin the investigation <span aria-hidden="true">→</span></button></div>
+    <button class="game-back" type="button" data-go="carbon-clock">← Back</button>
+  </section>
+
+  <section class="game-stage" data-stage="investigation" hidden>
+    <div class="game-panel game-panel--center" data-round-intro>
+      <p class="kids-label">Stage 5 · The Dating Detective</p><h2>The First Discoveries</h2>
+      <p>Our team has collected five discoveries from the excavation.</p><p>Some came from living organisms. Others were made from materials that were never alive.</p><p>Your job is to decide which discoveries we should send to the radiocarbon laboratory.</p><p>Ready, Archaeologist?</p>
+      <button class="kids-button" type="button" data-start-round>Investigate <span aria-hidden="true">→</span></button>
+    </div>
+    <div class="investigation" data-investigation hidden>
+      <header><div><p class="kids-label">The Dating Detective</p><h2>Examine each discovery</h2></div><p class="investigation__counter">Discoveries investigated: <strong data-discovery-progress>0 / 9</strong></p></header>
+      <div class="game-workbench game-workbench--single"><img data-discovery-image src="" alt=""><span data-discovery-name></span></div>
+      <div class="investigation__question">
+        <h3 data-discovery-question></h3>
+        <div class="answer-buttons" data-answer-buttons><button type="button" data-answer="lab"><span aria-hidden="true">✓</span> Send to the lab</button><button type="button" data-answer="not-suitable"><span aria-hidden="true">✕</span> Not suitable</button></div>
+        <div class="game-feedback" data-discovery-feedback aria-live="polite" hidden></div>
+        <button class="kids-button" type="button" data-next-discovery hidden>Next discovery <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+    <div class="game-panel game-panel--center" data-round-transition hidden><p class="kids-label">Round 2 · Archaeological Mysteries</p><h2>Things Are Getting Trickier!</h2><p>Excellent work, Archaeologist!</p><p>You've investigated five discoveries and helped our team identify promising materials for the laboratory.</p><p>But archaeological discoveries aren't always straightforward. Sometimes even objects that came from living things can be difficult to date.</p><p>Let's investigate four more mysterious discoveries!</p><button class="kids-button" type="button" data-continue-round>Continue investigation <span aria-hidden="true">→</span></button></div>
+  </section>
+
+  <section class="game-stage" data-stage="report" hidden>
+    <div class="game-panel game-panel--center"><p class="kids-label">Stage 6</p><h2>Your Laboratory Report</h2><p>Excellent work, Archaeologist!</p><p>You've examined nine archaeological discoveries and helped our team decide which materials might be suitable for radiocarbon dating.</p><p>Let's see what we've discovered!</p></div>
+    <div class="lab-groups"><section><h3><span aria-hidden="true">✓</span> Sent to the Laboratory</h3><div class="lab-grid" data-lab-items="lab"></div></section><section><h3><span aria-hidden="true">⌕</span> Investigated Using Other Methods</h3><div class="lab-grid" data-lab-items="not-suitable"></div></section></div>
+    <section class="learning-summary"><h3>What did we learn?</h3><ol><li><strong>Material matters.</strong><span>Radiocarbon dating works by measuring carbon-14 in suitable materials, especially those that came from living organisms.</span></li><li><strong>Every method has limits.</strong><span>Even when something was once alive, it might be too old or too poorly preserved for radiocarbon dating.</span></li><li><strong>Archaeologists use many kinds of evidence.</strong><span>When radiocarbon dating isn't possible, archaeologists use archaeological context and other scientific methods to investigate the past.</span></li></ol></section>
+    <button class="kids-button" type="button" data-go="final-question">One final question <span aria-hidden="true">→</span></button>
+  </section>
+
+  <section class="game-stage" data-stage="final-question" hidden>
+    <div class="game-panel"><p class="kids-label">Final question</p><h2>One Final Mystery</h2><p>During your excavation, you discover a stone tool and a piece of charcoal buried in the same archaeological layer.</p><p>You know that you cannot radiocarbon date the stone tool itself.</p><p>But could dating the charcoal help you investigate when the tool might have been used?</p></div>
+    <div class="game-workbench game-workbench--practice"><img src="{{ '/assets/images/kids/carbon-dating/carbon-game-stone-tool.png' | relative_url }}" alt="Stone tool"><img src="{{ '/assets/images/kids/carbon-dating/carbon-game-charcoal.png' | relative_url }}" alt="Charcoal"></div>
+    <div class="answer-buttons" data-final-buttons><button type="button" data-final-answer="yes">Yes, it could!</button><button type="button" data-final-answer="no">No, it couldn't!</button></div>
+    <div class="game-feedback" data-final-feedback aria-live="polite" hidden></div>
+    <div class="game-completion" data-final-complete hidden><p>Archaeologists don't just study individual objects. They also investigate where objects were found and how they relate to the evidence around them.</p><p>That's what makes archaeology so fascinating!</p><button class="kids-button" type="button" data-go="complete">Complete your mission <span aria-hidden="true">→</span></button></div>
+  </section>
+
+  <section class="game-stage" data-stage="complete" hidden>
+    <div class="mission-complete"><p class="kids-label">Stage 7</p><h2>Mission Complete!</h2><p>Congratulations, Archaeologist!</p><p>You've completed your first radiocarbon dating investigation!</p><p>You've learned how scientists use carbon-14 to study the past, identified materials suitable for dating, and discovered why some archaeological objects require different methods.</p><blockquote>Archaeology isn't just about finding answers. It's about asking good questions!</blockquote></div>
+    <section class="game-certificate" aria-label="Certificate of Archaeological Investigation"><p>Mnemosyne Kids</p><h3>Certificate of Archaeological Investigation</h3><span>This certifies that you have successfully completed</span><strong>The Dating Detective</strong><span>and earned the title of</span><b>Carbon-14 Investigator</b></section>
+    <div class="game-actions game-actions--center"><button class="game-back" type="button" data-print>Print certificate</button><button class="kids-button" type="button" data-restart>Play again <span aria-hidden="true">↻</span></button><a class="kids-button kids-button--secondary" href="{{ '/kids/games/' | relative_url }}">Explore more games <span aria-hidden="true">→</span></a></div>
+  </section>
+
+  <dialog class="field-notes" data-notes-dialog aria-labelledby="field-notes-title"><form method="dialog"><button class="field-notes__close" value="cancel" aria-label="Close field notes">×</button><p class="kids-label">Archaeologist's notebook</p><h2 id="field-notes-title">Your Field Notes</h2><p>Radiocarbon dating helps scientists estimate how long ago suitable materials stopped exchanging carbon with their environment.</p><p>Before sending a discovery to the laboratory, ask yourself:</p><ul><li>What is this object made from?</li><li>Did its material come from something living?</li><li>Could it be too old for radiocarbon dating?</li></ul><div data-unlocked-notes></div><button class="kids-button" value="cancel">Return to the investigation</button></form></dialog>
+</main>
