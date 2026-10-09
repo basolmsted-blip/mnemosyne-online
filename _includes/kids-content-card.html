@@ -1,0 +1,31 @@
+<article class="kids-content-card">
+  {% if include.item.slug == 'carbon-dating' %}
+  <a class="kids-content-card__media kids-content-card__media--carbon" href="{{ include.item.route | relative_url }}" tabindex="-1" aria-hidden="true">
+    <img class="carbon-card-object carbon-card-object--bone" src="{{ '/assets/images/kids/carbon-dating/carbon-game-animal-bone.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--pottery" src="{{ '/assets/images/kids/carbon-dating/carbon-game-pottery.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--stone" src="{{ '/assets/images/kids/carbon-dating/carbon-game-stone-tool.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--charcoal" src="{{ '/assets/images/kids/carbon-dating/carbon-game-charcoal.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--nail" src="{{ '/assets/images/kids/carbon-dating/carbon-game-iron-nail.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--rope" src="{{ '/assets/images/kids/carbon-dating/carbon-game-rope.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--grain" src="{{ '/assets/images/kids/carbon-dating/carbon-game-charred-grain.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--coin" src="{{ '/assets/images/kids/carbon-dating/carbon-game-coin.png' | relative_url }}" alt="">
+    <img class="carbon-card-object carbon-card-object--shell" src="{{ '/assets/images/kids/carbon-dating/carbon-game-shell.png' | relative_url }}" alt="">
+  </a>
+  {% elsif include.item.image %}
+  <a class="kids-content-card__media" href="{{ include.item.route | relative_url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ include.item.image | relative_url }}" alt="" loading="lazy">
+  </a>
+  {% else %}
+  <div class="kids-media-placeholder kids-content-card__media" aria-hidden="true"><span>Media to be supplied</span></div>
+  {% endif %}
+  <div class="kids-content-card__body">
+    <p class="kids-label">{{ include.item.category }} · Ages {{ include.item.age }}</p>
+    <h3>{% if include.item.route %}<a href="{{ include.item.route | relative_url }}">{{ include.item.title }}</a>{% else %}{{ include.item.title }}{% endif %}</h3>
+    <p>{{ include.item.description }}</p>
+    {% if include.item.status == 'published' %}
+    <a class="kids-card-action" href="{{ include.item.route | relative_url }}">{% if include.item.duration %}{{ include.item.duration }} · {% endif %}{{ include.item.action | default: 'Explore' }} <span aria-hidden="true">→</span></a>
+    {% else %}
+    <span class="kids-card-status">Coming soon</span>
+    {% endif %}
+  </div>
+</article>

@@ -1,0 +1,15 @@
+<article class="archive-item">
+  {% if include.post.thumbnail_image or include.post.hero_image %}
+  <a class="archive-item__thumbnail" href="{{ include.post.url | relative_url }}" aria-hidden="true" tabindex="-1">
+    <img src="{{ include.post.thumbnail_image | default: include.post.hero_image | relative_url }}" alt="" width="420" height="300" loading="lazy">
+  </a>
+  {% endif %}
+  <div class="archive-item__copy">
+    <p class="archive-item__meta">
+      {% if include.post.article_kind %}<span>{{ include.post.article_kind }}</span>{% endif %}
+      <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%e %B %Y" }}</time>
+    </p>
+    <h2><a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a></h2>
+    {% if include.post.excerpt_text or include.post.subtitle %}<p class="archive-item__excerpt">{{ include.post.excerpt_text | default: include.post.subtitle }}</p>{% endif %}
+  </div>
+</article>

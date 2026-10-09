@@ -1,0 +1,33 @@
+<main id="main-content" class="kids-page kids-category-page">
+  <nav class="kids-subnav" aria-label="Mnemosyne Kids categories">
+    <a href="{{ '/kids/' | relative_url }}">Kids home</a>
+    <a href="{{ '/kids/games/' | relative_url }}">Games</a>
+    <a href="{{ '/kids/stories/' | relative_url }}">Stories</a>
+    <a href="{{ '/kids/activities/' | relative_url }}">DIY Activities</a>
+    <a href="{{ '/kids/how-did-they/' | relative_url }}">How Did They...?</a>
+    <a href="{{ '/kids/becoming-an-archaeologist/' | relative_url }}">Becoming an Archaeologist</a>
+  </nav>
+  <header class="kids-category-header kids-category-header--{{ page.category_slug }}">
+    <p class="kids-label">Mnemosyne Kids</p>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.introduction }}</p>
+  </header>
+  <section class="kids-category-content" aria-labelledby="kids-category-content-title">
+    <h2 id="kids-category-content-title">Explore {{ page.title }}</h2>
+    <div class="kids-content-grid">
+      {% assign visible_count = 0 %}
+      {% for item in site.data.kids_content %}
+        {% if item.category_slug == page.category_slug and item.status == 'published' %}
+          {% assign visible_count = visible_count | plus: 1 %}
+          {% include kids-content-card.html item=item %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if visible_count == 0 %}
+    <div class="kids-empty-state">
+      <p class="kids-label">Fieldwork in progress</p>
+      <p>New {{ page.title | downcase }} are being prepared. Return soon to continue exploring.</p>
+    </div>
+    {% endif %}
+  </section>
+</main>
