@@ -1,0 +1,43 @@
+- slug: carbon-dating
+  title: Can You Carbon Date It?
+  subtitle: The Dating Detective
+  category: Games
+  category_slug: games
+  age: 10+
+  duration: 5–10 minutes
+  description: Examine archaeological discoveries and decide which materials scientists can radiocarbon date.
+  image: /assets/images/kids/carbon-dating/carbon-game-workbench.png
+  image_alt: Archaeological objects arranged on a wooden fieldwork table
+  status: published
+  published: 2026-10-09
+  route: /kids/games/carbon-dating/
+  action: Play
+- slug: stratigraphy-game
+  title: Stratigraphy Game
+  category: Games
+  category_slug: games
+  age: 8+
+  duration: 5–10 minutes
+  description: Can you put the layers in the right order? Discover how archaeologists use the ground beneath our feet to piece together the past.
+  status: coming-soon
+- slug: journey-with-vikings
+  title: A Journey with the Vikings
+  category: Stories
+  category_slug: stories
+  age: 7+
+  description: Set sail and discover who the Vikings really were, where they went, and what archaeology tells us about their lives.
+  status: draft
+- slug: make-papyrus
+  title: Make Your Own Papyrus
+  category: DIY Activities
+  category_slug: activities
+  age: 8+
+  description: Learn how ancient Egyptians made a writing surface from plants, then try making your own.
+  status: draft
+- slug: build-pyramids
+  title: How Did They Build the Pyramids?
+  category: How Did They...?
+  category_slug: how-did-they
+  age: 9+
+  description: Explore the evidence, engineering, and unanswered questions behind the building of the pyramids.
+  status: draft
