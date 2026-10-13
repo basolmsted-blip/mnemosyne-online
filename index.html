@@ -115,7 +115,29 @@ seo_description: "Mnemosyne Archaeology publishes illustrated, rigorously resear
   </section>
   {% endif %}
 
+  <aside class="marco-polo-teaser" aria-labelledby="marco-polo-title">
+    <p class="eyebrow">Coming soon</p>
+    <h2 id="marco-polo-title"><span>Marco Polo:</span><small>The Archaeology Behind the Travels</small></h2>
+  </aside>
+
   {% include explore.html %}
+
+  <section class="home-kids-latest" aria-labelledby="home-kids-latest-title">
+    <header>
+      <p class="eyebrow">Play · investigate · discover</p>
+      <h2 id="home-kids-latest-title">Latest on Mnemosyne Kids</h2>
+      <a href="{{ '/kids/' | relative_url }}">Explore Mnemosyne Kids <span aria-hidden="true">→</span></a>
+    </header>
+    <div class="home-kids-latest__grid">
+      {% assign kids_latest = site.data.kids_content | where: 'status', 'published' | sort: 'published' | reverse %}
+      {% for item in kids_latest limit: 3 %}
+      <article class="home-kids-card">
+        {% if item.image %}<a href="{{ item.route | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ item.image | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+        <div><p class="eyebrow">{{ item.category }} · Ages {{ item.age }}</p><h3><a href="{{ item.route | relative_url }}">{{ item.title }}</a></h3><p>{{ item.description }}</p><a class="text-link" href="{{ item.route | relative_url }}">{{ item.duration }} · {{ item.action | default: 'Explore' }} <span aria-hidden="true">→</span></a></div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
 
   <section class="home-manifesto" id="manifesto" aria-labelledby="manifesto-title">
     <div class="home-manifesto__inner">

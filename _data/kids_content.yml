@@ -1,3 +1,17 @@
+- slug: mystery-of-the-missing-meal
+  title: The Mystery of the Missing Meal
+  subtitle: Can you solve an ancient dinner mystery?
+  category: Games
+  category_slug: games
+  age: 8+
+  duration: 15–25 minutes
+  description: An ancient settlement has been discovered, but what did its inhabitants eat? Grab your magnifying glass, examine archaeological evidence, and reconstruct a meal from thousands of years ago!
+  image: /assets/images/kids/food-game/food-game-excavation.png
+  image_alt: Illustrated archaeological excavation with a fireplace, storage pit, stones, and animal bones
+  status: published
+  published: 2026-10-13
+  route: /kids/games/mystery-of-the-missing-meal/
+  action: Play
 - slug: carbon-dating
   title: Can You Carbon Date It?
   subtitle: The Dating Detective

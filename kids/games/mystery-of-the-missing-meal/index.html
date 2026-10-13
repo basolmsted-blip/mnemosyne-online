@@ -1,0 +1,172 @@
+---
+layout: default
+title: The Mystery of the Missing Meal
+permalink: /kids/games/mystery-of-the-missing-meal/
+kids: true
+game_script: /assets/js/food-game.js
+seo_title: The Mystery of the Missing Meal — Mnemosyne Kids
+seo_description: Search an archaeological excavation, examine ancient food evidence, and reconstruct a possible meal.
+---
+<main id="main-content" class="kids-page food-game" data-food-game data-asset-root="{{ '/assets/images/kids/food-game/' | relative_url }}">
+  <header class="carbon-game__bar">
+    <a href="{{ '/kids/games/' | relative_url }}">← Games</a>
+    <div class="carbon-game__tools">
+      <button type="button" data-notebook-open>Notebook <span data-notebook-count>0 / 5</span></button>
+      <button type="button" data-food-sound aria-pressed="true"><span aria-hidden="true">🔊</span> <span>Sound on</span></button>
+    </div>
+  </header>
+
+  <div class="carbon-game__progress" aria-label="Investigation progress"><span data-food-stage-label>A Mystery Beneath the Ground</span><span data-food-stage-count>1 / 5</span><i data-food-progress></i></div>
+  <div class="carbon-game__announcer" aria-live="polite" aria-atomic="true" data-food-announcer></div>
+
+  <section class="food-stage food-stage--welcome is-active" data-food-stage="welcome">
+    <div class="food-welcome__image" aria-hidden="true"></div>
+    <div class="food-welcome__copy">
+      <p class="kids-meta">Ages 8+ · Archaeological adventure · 15–25 minutes</p>
+      <p class="kids-label">Mnemosyne Kids presents</p>
+      <h1>The Mystery of the Missing Meal</h1>
+      <p class="game-subtitle">An archaeological adventure into the foods of the past.</p>
+      <button class="kids-button" type="button" data-food-go="introduction">Begin investigation <span aria-hidden="true">→</span></button>
+    </div>
+  </section>
+
+  <section class="food-stage" data-food-stage="introduction" hidden>
+    <div class="food-dialogue" data-food-dialogue>
+      <p class="kids-label">Stage 1 · A Mystery Beneath the Ground</p>
+      <p class="food-dialogue__step" data-food-dialogue-step>1 / 4</p>
+      <div data-food-dialogue-copy></div>
+      <div class="game-actions">
+        <button class="game-back" type="button" data-food-skip>Skip introduction</button>
+        <button class="kids-button" type="button" data-food-dialogue-next>Continue <span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="food-stage food-stage--excavation" data-food-stage="excavation" hidden>
+    <header class="food-stage-heading">
+      <div><p class="kids-label">Stage 2 · Fieldwork</p><h2>Explore the Excavation</h2><p>Search the archaeological site for clues about ancient food.</p></div>
+      <p class="food-clue-count">Clues discovered: <strong data-food-clue-count>0 / 5</strong></p>
+    </header>
+
+    <div class="food-tutorial" data-food-tutorial>
+      <strong>Archaeologists have to look carefully!</strong>
+      <p>Move your magnifying glass around the excavation to search for tiny clues. When you spot something interesting, select it to investigate.</p>
+      <button type="button" data-food-tutorial-close>Start searching</button>
+    </div>
+
+    <div class="food-excavation-layout">
+      <div>
+        <div class="food-excavation" data-food-excavation aria-label="Illustrated archaeological excavation with five hidden food clues">
+          <div class="food-scene" aria-hidden="true">
+            <img class="food-scene__background" src="{{ '/assets/images/kids/food-game/food-game-excavation.png' | relative_url }}" alt="">
+            <img class="food-artifact food-artifact--grains" src="{{ '/assets/images/kids/food-game/food-game-charred-grains.png' | relative_url }}" alt="">
+            <img class="food-artifact food-artifact--lentils" src="{{ '/assets/images/kids/food-game/food-game-lentils.png' | relative_url }}" alt="">
+            <img class="food-artifact food-artifact--pottery" src="{{ '/assets/images/kids/food-game/food-game-pottery.png' | relative_url }}" alt="">
+            <img class="food-artifact food-artifact--grinding" src="{{ '/assets/images/kids/food-game/food-game-grinding-stone.png' | relative_url }}" alt="">
+            <img class="food-artifact food-artifact--bones" src="{{ '/assets/images/kids/food-game/food-game-animal-bone.png' | relative_url }}" alt="">
+            <img class="food-artifact food-artifact--charcoal" src="{{ '/assets/images/kids/food-game/food-game-charcoal.png' | relative_url }}" alt="">
+          </div>
+          <button class="food-hotspot food-hotspot--grains" type="button" data-artifact="grains" aria-label="Investigate the tiny objects near the fireplace"></button>
+          <button class="food-hotspot food-hotspot--lentils" type="button" data-artifact="lentils" aria-label="Investigate the storage pit"></button>
+          <button class="food-hotspot food-hotspot--pottery" type="button" data-artifact="pottery" aria-label="Investigate the ceramic vessel to the left of the storage pit"></button>
+          <button class="food-hotspot food-hotspot--grinding" type="button" data-artifact="grinding" aria-label="Investigate the stone tool near the center"></button>
+          <button class="food-hotspot food-hotspot--bones" type="button" data-artifact="bones" aria-label="Investigate the animal bones at the upper right"></button>
+          <div class="food-magnifier" data-food-magnifier aria-hidden="true" hidden>
+            <div class="food-magnifier__lens"><div class="food-zoom-scene" data-food-zoom-scene>
+              <img class="food-scene__background" src="{{ '/assets/images/kids/food-game/food-game-excavation-detail.jpg' | relative_url }}" alt="">
+              <img class="food-artifact food-artifact--grains" src="{{ '/assets/images/kids/food-game/food-game-charred-grains.png' | relative_url }}" alt="">
+              <img class="food-artifact food-artifact--lentils" src="{{ '/assets/images/kids/food-game/food-game-lentils.png' | relative_url }}" alt="">
+              <img class="food-artifact food-artifact--pottery" src="{{ '/assets/images/kids/food-game/food-game-pottery.png' | relative_url }}" alt="">
+              <img class="food-artifact food-artifact--grinding" src="{{ '/assets/images/kids/food-game/food-game-grinding-stone.png' | relative_url }}" alt="">
+              <img class="food-artifact food-artifact--bones" src="{{ '/assets/images/kids/food-game/food-game-animal-bone.png' | relative_url }}" alt="">
+              <img class="food-artifact food-artifact--charcoal" src="{{ '/assets/images/kids/food-game/food-game-charcoal.png' | relative_url }}" alt="">
+            </div></div>
+            <img class="food-magnifier__frame" src="{{ '/assets/images/kids/food-game/food-game-magnifying-glass.png' | relative_url }}" alt="">
+          </div>
+        </div>
+        <div class="food-search-tools">
+          <button type="button" data-food-hint>Need a clue?</button>
+          <p data-food-hint-copy aria-live="polite">Move the magnifying glass around the excavation.</p>
+        </div>
+        <details class="food-keyboard-explore">
+          <summary>Explore discoveries without spatial searching</summary>
+          <p>Choose an undiscovered area to investigate. This list makes the activity fully accessible by keyboard or screen reader.</p>
+          <div data-food-accessible-list></div>
+        </details>
+      </div>
+
+      <aside class="food-notebook-preview" aria-labelledby="food-notebook-preview-title">
+        <p class="kids-label">Archaeologist's Notebook</p>
+        <h3 id="food-notebook-preview-title">Your Discoveries</h3>
+        <p><strong data-food-notebook-progress>0 / 5</strong> clues collected</p>
+        <div data-food-notebook-preview><p class="food-notebook-empty">Your field notes will appear here as you examine the evidence.</p></div>
+        <div class="food-notebook-complete" data-food-notebook-complete hidden>
+          <p><strong>Incredible work, archaeologist!</strong></p>
+          <p>You've examined the evidence. But what did the people here actually eat?</p>
+          <button class="kids-button" type="button" data-food-go="menu">Reconstruct the Ancient Menu <span aria-hidden="true">→</span></button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="food-stage" data-food-stage="investigation" hidden>
+    <div class="food-investigation" data-food-investigation>
+      <p class="kids-label">Stage 3 · Examine the Evidence</p>
+      <div class="food-investigation__object"><img data-investigation-image alt=""><span data-investigation-name></span></div>
+      <div><h2 data-investigation-title></h2><div data-investigation-opening></div><h3 data-investigation-question></h3><div class="food-answer-list" data-investigation-answers></div><div class="game-feedback" data-investigation-feedback hidden aria-live="polite"></div><button class="kids-button" type="button" data-investigation-return hidden>Record in notebook and return <span aria-hidden="true">→</span></button></div>
+    </div>
+  </section>
+
+  <section class="food-stage" data-food-stage="menu" hidden>
+    <header class="food-menu-intro">
+      <p class="kids-label">Stage 4 · The Ancient Menu</p>
+      <h2>The Ancient Menu</h2>
+      <p class="game-subtitle">You've discovered the clues. Now, can you reconstruct the meal?</p>
+      <p>Examine each illustrated dish and decide which archaeological evidence supports it. Several meals may be plausible. “Not enough evidence” is also an important answer.</p>
+    </header>
+    <div class="food-dishes" data-food-dishes></div>
+    <section class="food-evidence-panel is-empty" data-food-evidence-panel aria-live="polite">
+      <div class="food-evidence-panel__dish"><img data-dish-image alt=""></div>
+      <div><p class="kids-label" data-dish-status>Test a reconstruction</p><h3 data-dish-question>Choose a dish above to begin.</h3><p>Select the evidence that supports your reasoning. You may choose more than one clue, or choose “None of the Above” if the evidence is insufficient.</p><div class="food-evidence-tokens" data-evidence-tokens></div><button class="kids-button" type="button" data-evaluate-evidence disabled>Evaluate my evidence</button><div class="game-feedback" data-dish-feedback hidden></div></div>
+    </section>
+    <div class="food-menu-progress" data-food-menu-progress>Evaluate all five dishes to continue. <strong>0 / 5</strong></div>
+    <button class="kids-button" type="button" data-food-go="reconstruct" data-reconstruct-unlock disabled>Reconstruct the Meal <span aria-hidden="true">→</span></button>
+  </section>
+
+  <section class="food-stage" data-food-stage="reconstruct" hidden>
+    <div class="food-reconstruct">
+      <p class="kids-label">Stage 4 · Final Challenge</p><h2>Reconstruct the Meal</h2>
+      <p>Choose one or more dishes you believe could reasonably have been prepared at the settlement. A strong reconstruction fits the evidence without claiming more than we know.</p>
+      <div class="food-reconstruct-options" data-reconstruct-options></div>
+      <button class="kids-button" type="button" data-complete-reconstruction>Complete my reconstruction</button>
+      <div class="game-feedback" data-reconstruction-feedback hidden aria-live="polite"></div>
+      <button class="kids-button" type="button" data-food-go="reflection" data-reflection-unlock hidden>Continue to Case Closed? <span aria-hidden="true">→</span></button>
+    </div>
+  </section>
+
+  <section class="food-stage" data-food-stage="reflection" hidden>
+    <div class="food-reflection">
+      <p class="kids-label">Stage 5 · Case Closed?</p><h2>One final question</h2>
+      <p>Why can't archaeologists always know exactly what ancient people ate?</p>
+      <div class="food-answer-list" data-reflection-answers>
+        <button type="button" data-reflection-answer="a">A. Because all archaeologists are bad at cooking.</button>
+        <button type="button" data-reflection-answer="b">B. Because only some evidence survives, and it can support different interpretations.</button>
+        <button type="button" data-reflection-answer="c">C. Because ancient people never ate food.</button>
+      </div>
+      <div class="game-feedback" data-reflection-feedback hidden aria-live="polite"></div>
+      <button class="kids-button" type="button" data-food-go="complete" data-completion-unlock hidden>Reveal your badge <span aria-hidden="true">→</span></button>
+    </div>
+  </section>
+
+  <section class="food-stage" data-food-stage="complete" hidden>
+    <div class="food-complete">
+      <p class="kids-label">Stage 5 · Case Closed?</p><h2>Case Closed?</h2><p class="game-subtitle">You've solved an ancient food mystery! Or have you?</p>
+      <p>Congratulations, archaeologist! You searched an ancient settlement, investigated food evidence, and reconstructed a possible meal.</p>
+      <p>Archaeologists rarely discover the complete story. They use what survives to build the most convincing explanations possible. Sometimes there is more than one reasonable interpretation. At other times, the most important thing to say is, <strong>“We don't know yet.”</strong></p>
+      <div class="food-badge"><span aria-hidden="true">⌕</span><p>Mnemosyne Kids</p><h3>Ancient Food Detective</h3><p>You investigated the past using archaeological evidence!</p><ul><li>5 clues discovered</li><li>5 investigations completed</li><li>Final reconstruction completed</li></ul></div>
+      <div class="game-actions game-actions--center"><button class="kids-button" type="button" data-food-restart>Play again <span aria-hidden="true">↻</span></button><a class="kids-button kids-button--secondary" href="{{ '/kids/games/' | relative_url }}">Explore more Mnemosyne Kids games <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <dialog class="field-notes food-notebook-dialog" data-food-notebook aria-labelledby="food-notebook-title"><form method="dialog"><button class="field-notes__close" value="cancel" aria-label="Close notebook">×</button><p class="kids-label">Archaeologist's Notebook</p><h2 id="food-notebook-title">Your Discoveries</h2><p><strong data-food-dialog-progress>0 / 5</strong> clues collected</p><div data-food-dialog-entries><p>Complete investigations to add field notes.</p></div><button class="kids-button" value="cancel">Return to the investigation</button></form></dialog>
+</main>

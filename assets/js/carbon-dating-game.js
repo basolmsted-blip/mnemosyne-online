@@ -89,6 +89,14 @@
     oscillator.start(); oscillator.stop(audioContext.currentTime + notes.length * .12 + .2);
   }
 
+  function celebrate() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const layer = document.createElement('div'); layer.className = 'kids-confetti'; layer.setAttribute('aria-hidden', 'true');
+    const colors = ['#d8aa59', '#34483b', '#d9987b', '#a9c8d7', '#bcc7a3'];
+    layer.innerHTML = Array.from({ length: 70 }, (_, index) => `<i style="--x:${Math.random() * 100}%;--delay:${Math.random() * .8}s;--duration:${2.2 + Math.random() * 1.8}s;--spin:${240 + Math.random() * 720}deg;--color:${colors[index % colors.length]}"></i>`).join('');
+    document.body.append(layer); window.setTimeout(() => layer.remove(), 5000);
+  }
+
   function showStage(name) {
     state.stage = name;
     $$('[data-stage]').forEach((stage) => { const active = stage.dataset.stage === name; stage.hidden = !active; stage.classList.toggle('is-active', active); });
@@ -98,7 +106,7 @@
     $('.carbon-game__progress > span:nth-child(2)').textContent = `${index + 1} / 7`;
     $('[data-stage-progress]').style.width = `calc((100% - 3rem) * ${(index + 1) / 7})`;
     if (name === 'report') buildReport();
-    if (name === 'complete') tone('complete');
+    if (name === 'complete') { tone('complete'); celebrate(); }
     announce(stageNames[name]);
     root.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     const heading = root.querySelector(`[data-stage="${name}"] h1, [data-stage="${name}"] h2`);
@@ -119,7 +127,10 @@
   $('[data-carbon-next]').addEventListener('click', () => {
     $('[data-carbon-screen="living"]').hidden = true; $('[data-carbon-screen="living"]').classList.remove('is-active');
     $('[data-carbon-screen="decay"]').hidden = false; $('[data-carbon-screen="decay"]').classList.add('is-active');
-    $('[data-carbon-screen="decay"] h2').focus?.();
+    const decayHeading = $('[data-carbon-screen="decay"] h2');
+    decayHeading.setAttribute('tabindex', '-1');
+    decayHeading.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    window.setTimeout(() => decayHeading.focus({ preventScroll: true }), 350);
   });
   $('[data-carbon-back]').addEventListener('click', () => {
     $('[data-carbon-screen="decay"]').hidden = true; $('[data-carbon-screen="decay"]').classList.remove('is-active');
