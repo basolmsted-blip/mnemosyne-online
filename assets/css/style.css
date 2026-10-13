@@ -889,7 +889,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .stories-overview {
   width: min(1320px, calc(100% - clamp(3rem, 8vw, 7rem)));
   margin-inline: auto;
-  padding-block: clamp(5rem, 8vw, 8rem) clamp(4.5rem, 7vw, 7rem);
+  padding-block: clamp(5rem, 8vw, 8rem) clamp(2rem, 3vw, 3rem);
 }
 #stories-overview-title,
 #recent-stories-title,
@@ -1258,7 +1258,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 
 .marco-polo-teaser {
   width: min(1120px, calc(100% - clamp(3rem, 10vw, 9rem)));
-  margin: clamp(5rem, 9vw, 8rem) auto 0;
+  margin: 0 auto;
   padding: clamp(2.5rem, 5vw, 4.5rem) 1.5rem;
   border-block: 1px solid var(--line);
   text-align: center;
@@ -1267,6 +1267,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .marco-polo-teaser h2 { margin: 0; font-family: var(--sans); font-weight: 800; line-height: .95 !important; text-transform: uppercase; }
 .marco-polo-teaser h2 span { display: block; color: #111; font-size: clamp(2.9rem, 7vw, 6.8rem); letter-spacing: -.05em; }
 .marco-polo-teaser h2 small { display: block; margin-top: .75rem; color: #71362c; font-size: clamp(.95rem, 2vw, 1.75rem); letter-spacing: .08em; }
+.marco-polo-teaser h2 small em { font-style: italic; }
 
 .home-kids-latest { padding: clamp(5rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1180px) / 2)); border-top: 1px solid var(--line); background: #ece3d3; }
 .home-kids-latest > header { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 2.5rem; }
@@ -1401,7 +1402,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   .site-footer__nav, .site-footer__legal { justify-self: start; }
   .site-footer__nav { flex-wrap: wrap; gap: 1rem 1.5rem; }
   .site-footer__legal { grid-column: 1; }
-  .stories-overview { width: calc(100% - 3rem); padding-block: 4.5rem; }
+  .stories-overview { width: calc(100% - 3rem); padding-block: 4.5rem 2.5rem; }
   .editorial-lead { grid-template-columns: 1fr; gap: 2.5rem; }
   .editorial-lead__statement h2 { max-width: 18ch; font-size: clamp(2.35rem, 8vw, 3.1rem); line-height: 1.18; }
   .editorial-lead__statement > p:not(.eyebrow) { max-width: 35ch; }
