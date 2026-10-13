@@ -1267,7 +1267,7 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
 .marco-polo-teaser h2 { margin: 0; font-family: var(--sans); font-weight: 800; line-height: .95 !important; text-transform: uppercase; }
 .marco-polo-teaser h2 span { display: block; color: #111; font-size: clamp(2.9rem, 7vw, 6.8rem); letter-spacing: -.05em; }
 .marco-polo-teaser h2 small { display: block; margin-top: .75rem; color: #71362c; font-size: clamp(.95rem, 2vw, 1.75rem); letter-spacing: .08em; }
-.marco-polo-teaser h2 small em { font-style: italic; }
+.marco-polo-teaser h2 small em { font-style: italic; font-weight: 800; }
 
 .home-kids-latest { padding: clamp(5rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1180px) / 2)); border-top: 1px solid var(--line); background: #ece3d3; }
 .home-kids-latest > header { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 2.5rem; }
