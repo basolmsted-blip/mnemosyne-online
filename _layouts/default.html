@@ -22,7 +22,7 @@
         const tablet=/iPad|Tablet|Android/i.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
         if(!standard&&!location.hash&&!tablet&&!navigator.userAgentData?.mobile&&matchMedia('(hover: hover) and (pointer: fine)').matches){
           document.documentElement.classList.add('exhibition-launch');
-          location.replace({{ '/exhibition/' | relative_url | jsonify }});
+          location.replace({{ '/exhibition/?intro=20261020' | relative_url | jsonify }});
           window.setTimeout(()=>document.documentElement.classList.remove('exhibition-launch'),12000);
         }
       })();
@@ -36,7 +36,7 @@
     {% endif %}
     {% if site.data.exhibition.enabled %}
     <style>[data-exhibition-entry][hidden]{display:none!important}[data-exhibition-entry]{font-size:11px;opacity:.8}</style>
-    <script type="module" src="{{ '/assets/js/exhibition-entry.js' | relative_url }}?v=4"></script>
+    <script type="module" src="{{ '/assets/js/exhibition-entry.js' | relative_url }}?v=5"></script>
     {% endif %}
   </head>
   <body{% if page.title == 'Home' %} class="home-page"{% endif %}>

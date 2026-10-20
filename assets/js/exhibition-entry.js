@@ -15,5 +15,5 @@ if (entry) {
 // the exhibition document itself, so its fade reveals only the exhibition wall.
 if(document.body.classList.contains('home-page') && desktopEligible() && !location.hash){
   let standard=false;try{standard=sessionStorage.getItem('mnemosyne-standard-visit')==='yes';}catch{}
-  if(!standard)location.replace(entry.href);
+  if(!standard){const destination=new URL(entry.href);destination.searchParams.set('intro','20261020');location.replace(destination.href);}
 }
