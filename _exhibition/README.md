@@ -77,3 +77,7 @@ Removed the clipped top rail and styled the independent controls as small rounde
 ## Launch behavior
 
 A fresh desktop homepage visit plays the existing intro and then opens /exhibition/. Standard destinations and Exit leave Exhibition Mode, stop music/writing audio, and mark the current tab's visit as standard, preventing a homepage redirect loop. The regular site does not load the audio module or show a sound button. Phones/tablets retain the existing homepage flow. Re-entering via Exhibition Mode clears the standard-visit flag. Browser sound requires an explicit gesture. The former cross-page audio frame is removed.
+
+## Launch transition and soundtrack optimization
+
+The desktop entry path hides standard homepage content before first paint and throughout the intro fade, preventing a homepage flash before the exhibition redirect. An optimized 128 kbps AAC file (about 874 KB versus 10 MB WAV) preloads and decodes with OfflineAudioContext while the exhibition is open. Real-time playback still requires a visitor gesture; the original WAV remains the compatibility fallback. Verified predecode readiness before selecting Sound On, immediate playback with an empty preparation status, no console errors, and automatic intro completion into the exhibition.

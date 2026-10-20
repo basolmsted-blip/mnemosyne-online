@@ -1,4 +1,4 @@
-import { playWriting, stopWriting } from './exhibition-player.js?v=2';
+import { playWriting, stopWriting } from './exhibition-player.js?v=3';
 import { installNotes } from './exhibition-notes.js?v=2';
 import { exhibitionLighting as lighting, desktopEligible, preference } from './exhibition-config.js?v=2';
 const wall = document.querySelector('.exhibition');

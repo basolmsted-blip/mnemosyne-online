@@ -1,6 +1,6 @@
 import {desktopEligible, preference, exhibitionAudio as settings} from './exhibition-config.js?v=2';
 const nested=window.parent!==window;
-const track=new URL('../exhibition/awestruck.wav',import.meta.url).href;
+const track=new URL('../exhibition/awestruck.m4a',import.meta.url).href;
 let context, gain, buffer, source, loading, wanted=false, token=0, scratch, scratchGain;
 let button, status;
 export function stopWriting(){
@@ -23,6 +23,15 @@ export function playWriting(seconds){
   scratchGain=context.createGain();scratchGain.gain.value=.45;
   scratch.connect(filter).connect(scratchGain).connect(context.destination);scratch.start();
 }
+function prepareSoundtrack(){
+  // Decode quietly before the visitor clicks; playback still needs their gesture.
+  const OfflineEngine=window.OfflineAudioContext||window.webkitOfflineAudioContext;
+  const decoder=new OfflineEngine(2,1,48000);
+  const decode=url=>fetch(url).then(r=>{if(!r.ok)throw new Error('Audio unavailable');return r.arrayBuffer();}).then(data=>decoder.decodeAudioData(data));
+  return decode(track).catch(()=>decode(new URL('../exhibition/awestruck.wav',import.meta.url).href)).then(decoded=>{
+    buffer=decoded;if(button)button.dataset.audioReady='true';return decoded;
+  }).catch(()=>{loading=null;return null;});
+}
 function display(){
   button.textContent=wanted?'Sound On':'Sound Off';button.setAttribute('aria-pressed',String(wanted));
 }
@@ -32,7 +41,7 @@ async function enable(){
     if(!context){context=new (window.AudioContext||window.webkitAudioContext)();gain=context.createGain();gain.gain.value=0;gain.connect(context.destination);}
     await context.resume();
     if(context.state!=='running') throw new Error('Gesture required');
-    if(!buffer){status.textContent='Preparing soundtrack…';loading ||= fetch(track).then(r=>{if(!r.ok)throw new Error('Audio unavailable');return r.arrayBuffer();}).then(b=>context.decodeAudioData(b)).catch(e=>{loading=null;throw e;});buffer=await loading;}
+    if(!buffer){status.textContent='Preparing soundtrack…';loading ||= prepareSoundtrack();buffer=await loading;if(!buffer)throw new Error('Audio unavailable');}
     if(!wanted||attempt!==token)return;
     if(!source){source=context.createBufferSource();source.buffer=buffer;source.loop=true;source.connect(gain);source.start();}
     gain.gain.cancelScheduledValues(context.currentTime);gain.gain.setTargetAtTime(settings.volume,context.currentTime,.25);status.textContent='';
@@ -43,6 +52,7 @@ if(!nested && desktopEligible() && document.querySelector('.exhibition')){
   button=document.createElement('button');button.type='button';button.className='exhibition-sound';button.dataset.sound='';
   status=document.createElement('span');status.className='exhibition-audio-status';status.setAttribute('role','status');
   document.body.append(button,status);display();document.body.classList.add('exhibition-landing');
+  loading=prepareSoundtrack();
   button.addEventListener('click',()=>wanted?disable():enable());
   document.addEventListener('exhibition-writing',e=>playWriting(e.detail));
   document.addEventListener('exhibition-writing-stop',stopWriting);

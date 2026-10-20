@@ -12,6 +12,7 @@ if (entry) {
 }
 
 // A fresh desktop homepage visit plays its intro, then opens the exhibition.
+// The head's launch cover keeps the homepage hidden during the intro fade and redirect.
 // Explicit standard-page navigation stays standard for the rest of this tab's visit.
 if(document.body.classList.contains('home-page') && desktopEligible() && !location.hash){
   let standard=false;try{standard=sessionStorage.getItem('mnemosyne-standard-visit')==='yes';}catch{}

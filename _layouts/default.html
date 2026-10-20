@@ -15,9 +15,27 @@
     {% endif %}
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v=33">
     {% if page.kids %}<link rel="stylesheet" href="{{ '/assets/css/kids.css' | relative_url }}?v=2">{% endif %}
+    {% if site.data.exhibition.enabled and page.title == 'Home' %}
+    <script>
+      (()=>{
+        let standard=false;try{standard=sessionStorage.getItem('mnemosyne-standard-visit')==='yes';}catch{}
+        const tablet=/iPad|Tablet|Android/i.test(navigator.userAgent)||(/Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1);
+        if(!standard&&!location.hash&&!tablet&&!navigator.userAgentData?.mobile&&matchMedia('(hover: hover) and (pointer: fine)').matches){
+          document.documentElement.classList.add('exhibition-launch');
+          window.setTimeout(()=>document.documentElement.classList.remove('exhibition-launch'),12000);
+        }
+      })();
+    </script>
+    <style>
+      html.exhibition-launch,html.exhibition-launch body{background:#151411!important}
+      .exhibition-launch body>:not([data-mn-intro]){visibility:hidden!important}
+      .exhibition-launch [data-mn-intro]{visibility:visible}
+    </style>
+    <noscript><style>.exhibition-launch body>*{visibility:visible!important}</style></noscript>
+    {% endif %}
     {% if site.data.exhibition.enabled %}
     <style>[data-exhibition-entry][hidden]{display:none!important}[data-exhibition-entry]{font-size:11px;opacity:.8}</style>
-    <script type="module" src="{{ '/assets/js/exhibition-entry.js' | relative_url }}?v=2"></script>
+    <script type="module" src="{{ '/assets/js/exhibition-entry.js' | relative_url }}?v=3"></script>
     {% endif %}
   </head>
   <body{% if page.title == 'Home' %} class="home-page"{% endif %}>
