@@ -65,16 +65,7 @@ export function installNotes(wall,playWriting,stopWriting){
     if(selected===link)return;
     hide();selected=link;heading.textContent=link.getAttribute('aria-label').toUpperCase();note.replaceChildren();
     navigation.textContent=`Navigate to ${link.dataset.destination}`;navigation.hidden=false;
-    let count=0;
-    for(const text of [link.dataset.title,link.dataset.date,link.dataset.origin]){
-      const p=document.createElement('p');const accessible=document.createElement('span');accessible.className='note-accessible';accessible.textContent=text;p.append(accessible);
-      for(const word of text.split(' ')){
-        const span=document.createElement('span');span.className='word';span.setAttribute('aria-hidden','true');
-        for(const letter of word){const ink=document.createElement('span');ink.className='ink';ink.textContent=letter;ink.style.setProperty('--ink-delay',`${count++*14}ms`);span.append(ink);}
-        p.append(span,document.createTextNode(' '));
-      }
-      note.append(p);
-    }
+    const count=writeNote(note,[link.dataset.title,link.dataset.date,link.dataset.origin]);
     note.style.setProperty('--note-tilt',links.indexOf(link)%2?'3deg':'-4deg');
     note.hidden=false;link.setAttribute('aria-describedby',note.id);position();
     if(!reduced.matches)playWriting(count*.014+.13);
@@ -91,4 +82,18 @@ export function installNotes(wall,playWriting,stopWriting){
   document.fonts.ready.then(position);
   links.forEach(link=>link.querySelector('.artifact__image').addEventListener('load',position));
   document.addEventListener('visibilitychange',()=>{if(document.hidden)hide();});
+}
+
+export function writeNote(note,lines){
+    let count=0;
+    for(const text of lines){
+      const p=document.createElement('p');const accessible=document.createElement('span');accessible.className='note-accessible';accessible.textContent=text;p.append(accessible);
+      for(const word of text.split(' ')){
+        const span=document.createElement('span');span.className='word';span.setAttribute('aria-hidden','true');
+        for(const letter of word){const ink=document.createElement('span');ink.className='ink';ink.textContent=letter;ink.style.setProperty('--ink-delay',`${count++*14}ms`);span.append(ink);}
+        p.append(span,document.createTextNode(' '));
+      }
+      note.append(p);
+    }
+  return count;
 }

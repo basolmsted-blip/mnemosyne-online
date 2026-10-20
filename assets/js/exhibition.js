@@ -1,4 +1,4 @@
-import { playWriting, stopWriting } from './exhibition-player.js?v=3';
+import { playWriting, stopWriting } from './exhibition-player.js?v=5';
 import { installNotes } from './exhibition-notes.js?v=2';
 import { exhibitionLighting as lighting, desktopEligible, preference } from './exhibition-config.js?v=2';
 const wall = document.querySelector('.exhibition');
@@ -9,10 +9,10 @@ if (!desktopEligible()) {
 } else if (wall) {
   preference.set('mode', 'exhibition');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const artifacts = [...wall.querySelectorAll('.artifact')];
+  const artifacts = [...wall.querySelectorAll('.artifact, .room-object')];
   const sources = wall.querySelector('dialog');
   const credits = wall.querySelector('[data-credits]');
-  installNotes(wall, playWriting, stopWriting);
+  if (!wall.hasAttribute('data-explore')) installNotes(wall, playWriting, stopWriting);
   let bounds, geometry = [], frame = 0, last = 0, strength = 0;
   let current = { x:-1000, y:-1000 }, target = { ...current }, active = false;
   let focused = null, firstPointer = null;
@@ -24,7 +24,7 @@ if (!desktopEligible()) {
   const green=Math.max(0,Math.min(255,99.4708*Math.log(kelvin)-161.1196));
   const blue=Math.max(0,Math.min(255,138.5177*Math.log(Math.max(1,kelvin-10))-305.0448));
   wall.style.setProperty('--warmth-rgb', `255,${green.toFixed(0)},${blue.toFixed(0)}`);
-  wall.style.setProperty('--ambient', String(1-lighting.ambientVisibility));
+  wall.style.setProperty('--ambient', String(1-(wall.hasAttribute('data-explore')?.40:lighting.ambientVisibility)));
   // A single scene overlay reveals the wall, lettering, images and shadows together.
   // CSS radial gradients avoid mask/filter compositing differences across browsers.
   wall.classList.add('is-ready');
@@ -43,7 +43,7 @@ if (!desktopEligible()) {
   const requestFrame = () => { if (!frame && !isReduced && !document.hidden) frame=requestAnimationFrame(render); };
   function aimAt(link) {
     const g = geometry.find(item => item.link === link);
-    if (!g) return;
+    if (!g) { const b=link.getBoundingClientRect(); target={x:b.left-bounds.left+b.width/2,y:b.top-bounds.top+b.height/2};current={...target};active=true;requestFrame();return; }
     target={x:g.x,y:g.y}; current={...target}; active=true;
     wall.classList.add('has-explored'); requestFrame();
   }
@@ -56,6 +56,7 @@ if (!desktopEligible()) {
     wall.style.setProperty('--light-x', `${current.x.toFixed(2)}px`);
     wall.style.setProperty('--light-y', `${current.y.toFixed(2)}px`);
     wall.style.setProperty('--light-strength',strength.toFixed(4));
+    wall.dispatchEvent(new CustomEvent('exhibition-light',{detail:{x:current.x+bounds.left,y:current.y+bounds.top,active}}));
     for (const g of geometry) {
       const factor=g.depth/(lighting.lightDepth-g.depth);
       let dx=(g.x-current.x)*factor, dy=(g.y-current.y)*factor;
@@ -72,10 +73,10 @@ if (!desktopEligible()) {
   }
   artifacts.forEach(link => {
     link.style.setProperty('--shadow-softness',`${Number(link.dataset.softness)*lighting.shadowSoftness}px`);
-    link.querySelector('.artifact__shadow').style.opacity=lighting.shadowIntensity;
+    const shadow=link.querySelector('.artifact__shadow, .saber-shadow');if(shadow)shadow.style.opacity=lighting.shadowIntensity;
   });
   wall.addEventListener('pointermove',event => {
-    if (event.pointerType==='touch' || sources.open || isReduced) return;
+    if (event.pointerType==='touch' || sources?.open || isReduced) return;
     if (!firstPointer) firstPointer={x:event.clientX,y:event.clientY};
     if (Math.hypot(event.clientX-firstPointer.x,event.clientY-firstPointer.y)>8) wall.classList.add('has-explored');
     focused=null; target={x:event.clientX-bounds.left,y:event.clientY-bounds.top};
@@ -84,7 +85,7 @@ if (!desktopEligible()) {
   },{passive:true});
   wall.addEventListener('pointerleave',() => { if (!focused) { active=false; requestFrame(); } });
   wall.addEventListener('focusin',event => {
-    const link=event.target.closest('.artifact');
+    const link=event.target.closest('.artifact, .room-object, .topic-link, .explore-panel a, .explore-mask, .explore-tabs button, .explore-panel button');
     if (link) { focused=link; aimAt(link); }
     else { focused=null; active=false; requestFrame(); }
   });
@@ -101,10 +102,10 @@ if (!desktopEligible()) {
   window.addEventListener('scroll',measure,{passive:true});
   window.visualViewport?.addEventListener('resize',measure,{passive:true});
   document.fonts.ready.then(measure);
-  credits.addEventListener('click',() => { active=false; requestFrame(); sources.showModal(); });
-  wall.querySelector('[data-close]').addEventListener('click',() => sources.close());
-  sources.addEventListener('close',() => credits.focus());
-  sources.addEventListener('click',event => { if (event.target===sources) {
+  credits?.addEventListener('click',() => { active=false; requestFrame(); sources.showModal(); });
+  wall.querySelector('[data-close]')?.addEventListener('click',() => sources.close());
+  sources?.addEventListener('close',() => credits.focus());
+  sources?.addEventListener('click',event => { if (event.target===sources) {
     const b=sources.getBoundingClientRect();
     if(event.clientX<b.left || event.clientX>b.right || event.clientY<b.top || event.clientY>b.bottom) sources.close();
   }});

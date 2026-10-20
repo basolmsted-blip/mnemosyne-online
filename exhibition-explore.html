@@ -1,0 +1,48 @@
+---
+layout: exhibition
+title: Explore
+permalink: /exhibition/explore/
+explore_room: true
+---
+<main class="exhibition explore-room" data-explore>
+  <div class="exhibition__scene explore-scene">
+    <div class="explore-installation">
+      <div class="explore-objects" aria-label="Objects in this gallery">
+        <button class="room-object room-object--mask" type="button" aria-label="Read about the mask" data-title="Mask" data-date="19th century" data-origin="Probably Umboi or Siassi Islands, Papua New Guinea" data-depth="35" data-displacement="38" data-softness="10">
+          <img class="artifact__shadow" src="{{ '/assets/exhibition/explore/mask-foreground.png' | relative_url }}" alt="" aria-hidden="true">
+          {% include explore-mask-eyes.html %}
+          <img class="artifact__image" src="{{ '/assets/exhibition/explore/mask-foreground.png' | relative_url }}" alt="Wooden mask, probably Umboi or Siassi Islands">
+        </button>
+        <button class="room-object room-object--saber" type="button" aria-label="Read about the saber and scabbard" data-title="Saber with Scabbard" data-date="Blade: 1688 CE · mounts: 18th–19th century" data-origin="Indian grip · Iranian blade · Turkish guard, scabbard and decoration" data-depth="28" data-displacement="34" data-softness="8">
+          {% include explore-saber.html %}
+        </button>
+      </div>
+      <header class="explore-heading">
+        <h1>EXPLORE</h1>
+        <p class="explore-caption">The past is not a single story, but a world of countless histories waiting to be uncovered. From the objects we leave behind to the places we once called home, every discovery offers another glimpse into the lives of those who came before us. Choose a path, follow your curiosity, and see where the evidence leads.</p>
+      </header>
+      <div class="explore-tabs" role="tablist" aria-label="Explore by">
+        <button class="room-button" role="tab" id="tab-topic" aria-controls="panel-topic" aria-selected="true" data-mode="topic">Topic</button>
+        <button class="room-button" role="tab" id="tab-region" aria-controls="panel-region" aria-selected="false" tabindex="-1" data-mode="region">Region</button>
+        <button class="room-button" role="tab" id="tab-timeline" aria-controls="panel-timeline" aria-selected="false" tabindex="-1" data-mode="timeline">Timeline</button>
+      </div>
+      <div class="explore-content">
+        <section class="explore-panel" id="panel-topic" role="tabpanel" aria-labelledby="tab-topic">
+          <div class="topic-gallery">
+          {% assign topics = site.data.exhibition_topics | where: "published", true | sort: "title" %}
+          {% for topic in topics %}<a class="topic-link" href="{{ topic.path | relative_url }}" aria-label="{{ topic.title }} — {{ topic.description }}"><img src="{{ topic.image | relative_url }}" alt="" width="600" height="591"><span class="topic-link__prompt" aria-hidden="true">Explore {{ topic.title }}</span></a>{% endfor %}
+          </div>
+        </section>
+        <section class="explore-panel" id="panel-region" role="tabpanel" aria-labelledby="tab-region" hidden>
+          <h2>Exploration by Region is coming soon.</h2><p>We are preparing a new way to discover the past through the places and landscapes that shaped it. In the meantime, continue exploring by topic.</p><button class="room-button" data-return-topics>Return to Topics</button>
+        </section>
+        <section class="explore-panel" id="panel-timeline" role="tabpanel" aria-labelledby="tab-timeline" hidden>
+          <h2>Exploration by Timeline is coming soon.</h2><p>Soon, you will be able to journey through the past, discovering investigations across centuries and civilizations. For now, explore our growing collection by topic.</p><button class="room-button" data-return-topics>Return to Topics</button>
+        </section>
+      </div>
+    </div>
+    <footer class="explore-credit"><a href="https://www.metmuseum.org/art/collection/search/311167" target="_blank" rel="noopener">Mask, probably Umboi or Siassi Islands, Papua New Guinea, 19th century. Wood, paint.<br>The Metropolitan Museum of Art · 1978.412.721 · Public Domain.</a><p>The Michael C. Rockefeller Memorial Collection, Gift of Nelson A. Rockefeller, 1972.</p><a href="https://www.metmuseum.org/art/collection/search/22871" target="_blank" rel="noopener">Saber with Scabbard · The Metropolitan Museum of Art · 23.232.2a, b · Public Domain.</a><p>Gift of Giulia P. Morosini, in memory of her father, Giovanni P. Morosini, 1923.</p></footer>
+  </div>
+  <div class="exhibition__darkness" aria-hidden="true"></div><div class="exhibition__warmth" aria-hidden="true"></div>
+  {% include explore-controls.html %}
+</main>

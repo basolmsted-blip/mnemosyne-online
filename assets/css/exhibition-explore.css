@@ -1,0 +1,84 @@
+/* Explore is a second room in the existing desktop exhibition. */
+.explore-room.exhibition{height:auto;min-height:100svh;overflow:clip;--ambient:.86}
+.explore-room .explore-scene{position:relative;inset:auto;min-height:100svh;background:#353531 url('../exhibition/explore/wall.png') center top/cover;user-select:text;padding:68px 24px 24px}
+.explore-installation{max-width:1080px;margin:auto;text-align:center}
+.explore-mask{display:block;width:clamp(250px,27vw,360px);height:auto;margin:-26px auto -34px;overflow:visible;filter:drop-shadow(14px 18px 10px #0009)}
+.explore-heading h1{font:700 clamp(42px,4.1vw,68px)/1.18 'Instrument Sans',sans-serif;letter-spacing:.075em;margin:0 0 14px;color:#bcb5a4;background:linear-gradient(#c4bdaba8,#c4bdaba8),url('../exhibition/explore/wall.png');background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.explore-welcome{font:500 clamp(24px,2.5vw,34px)/1.25 'Caveat',cursive;margin:0 0 10px;color:#d6c8ac}
+.explore-caption{font:400 14px/1.7 'Instrument Sans',sans-serif;color:#b9b2a3;margin:0 auto;max-width:580px}
+.room-button{display:inline-block;border:1px solid #bfb9a544;border-radius:8px;background:#201e19ed;color:#e5dece;text-decoration:none;padding:11px 16px;font:500 12px/1.3 'Instrument Sans',sans-serif;letter-spacing:.025em;cursor:pointer}
+.room-button:hover{background:#353025;border-color:#bfb9a57a}.room-button:focus-visible{outline:2px solid #ead4a3;outline-offset:4px}
+.explore-controls{position:fixed;z-index:10;inset:18px 22px auto;display:flex;justify-content:space-between;pointer-events:none}.explore-controls a{pointer-events:auto}.explore-controls a:last-child{margin-left:auto}
+body.explore-page.exhibition-landing>.exhibition-sound{left:auto;right:205px;top:18px;bottom:auto;padding:11px 16px;font-size:12px}
+body.explore-page>.exhibition-audio-status{right:205px;top:64px}
+.explore-tabs{position:relative;z-index:4;display:flex;justify-content:center;gap:12px;margin:27px 0 30px}.explore-tabs button{text-transform:uppercase;min-width:100px;letter-spacing:.12em}.explore-tabs [aria-selected=true]{border-color:#b49d6d;background:#373126;color:#f0dfbd}
+.explore-content{min-height:305px}.explore-panel{max-width:100%;margin:auto;animation:room-content .35s ease}.explore-panel[hidden]{display:none}.explore-panel h2{font:500 29px/1.3 'Caveat',cursive;margin:20px auto 12px}.explore-panel p{font:400 15px/1.8 'Instrument Sans',sans-serif;max-width:560px;margin:0 auto 24px}
+.topic-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px;justify-content:center}.topic-link:only-child{grid-column:2 / span 2;justify-self:center;width:240px}.topic-link{display:block;text-decoration:none}.topic-link img{display:block;width:100%;max-width:210px;height:auto;margin:auto;transition:transform .25s}.topic-link:hover img{transform:translateY(-3px)}.topic-link span{display:block;font:500 24px/1.3 'Caveat',cursive;margin:13px 0}.topic-link:focus-visible{position:relative;z-index:4;background:#25241f;outline:2px solid #e3c68c;outline-offset:8px;border-radius:4px}
+.explore-credit{font:400 10px/1.7 'Instrument Sans',sans-serif;color:#aaa79c;margin:35px 0 0;max-width:650px}.explore-credit a{text-decoration:none}.explore-credit p{margin:4px 0}.explore-credit a:focus-visible{position:relative;z-index:4;background:#24231f}
+.explore-room .exhibition__darkness,.explore-room .exhibition__warmth{position:absolute;inset:0}.explore-room .explore-scene{z-index:auto}.mask-eye{transition:opacity .8s ease;transform-box:view-box;transform-origin:center}
+.maritime-emblem{width:220px;height:auto;margin:60px auto 30px}.maritime-room h1{font-size:clamp(30px,4vw,58px)}.collection-preview{margin:55px auto 40px;max-width:650px}.maritime-room .explore-installation>.room-button{position:relative;z-index:4;margin-bottom:65px}
+.exhibition-page{transition:opacity .45s ease}.exhibition-page.room-leaving{opacity:0}
+.eye-calibration{position:fixed;z-index:20000;left:15px;bottom:15px;max-height:70vh;overflow:auto;padding:18px;background:#222;color:#eee;font:12px system-ui;width:270px}.eye-calibration label{display:flex;justify-content:space-between;margin:7px 0}.eye-calibration input{width:90px}
+@keyframes room-content{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){.explore-room .explore-scene{padding:100px 20px 20px}.explore-mask{width:290px}.explore-controls{inset:14px 12px auto}.explore-controls a{padding:10px;font-size:10px}body.explore-page.exhibition-landing>.exhibition-sound{top:55px;right:12px;font-size:10px;padding:9px 12px}.explore-tabs{gap:8px}.explore-tabs button{min-width:80px;padding:11px}.topic-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.topic-link:only-child{grid-column:1 / -1}.explore-credit{font-size:9px}.explore-welcome{max-width:340px;margin-left:auto;margin-right:auto}.explore-content{min-height:300px}}
+@media(prefers-reduced-motion:reduce){.explore-panel{animation:none}.mask-eye{transition:none}.topic-link:hover img{transform:none}.exhibition-page{transition:none}}
+
+.explore-heading h1{background-image:radial-gradient(circle 150px at calc(var(--light-x) - var(--title-left,0px)) calc(var(--light-y) - var(--title-top,0px)),rgba(255,232,178,calc(var(--light-strength)*.72)),transparent 100%),linear-gradient(#aaa69baa,#aaa69baa),url('../exhibition/explore/wall.png');background-size:auto,auto,100vw auto}
+.mask-note{z-index:8;transform:rotate(-3deg);font-size:21px;background:none;text-shadow:none}.mask-note p:first-child{font-size:28px}.mask-note p:last-child{font-size:19px}
+.explore-mask:focus-visible{outline:1px solid #e8d9b9;outline-offset:-18px}
+@media(max-width:700px){.mask-note{font-size:17px;line-height:1.2;padding:8px}.mask-note p:first-child{font-size:22px}.mask-note p:last-child{font-size:16px}}
+/* Latest review: a larger title, clean subtitle, and low-key mode controls. */
+.explore-room:not(.maritime-room) .explore-heading h1{font-size:clamp(62px,6.4vw,96px);letter-spacing:.065em}
+.explore-room:not(.maritime-room) .explore-welcome{font:400 clamp(16px,1.65vw,23px)/1.5 'Instrument Sans',sans-serif;letter-spacing:.015em;color:#c7bdab;max-width:760px}
+.explore-tabs{z-index:auto}
+.explore-tabs .room-button{background:#161612;border-color:#77705d;color:#bbb3a0}
+.explore-tabs [aria-selected=true]{background:#242119;border-color:#ad9564;color:#dfd0af}
+.explore-tabs .room-button:focus-visible{position:relative;z-index:4;background:#29251c;outline:2px solid #e3c68c}
+
+.explore-mask{filter:none;margin-bottom:-20px}.mask-foreground{filter:drop-shadow(10px 12px 8px #0007)}
+/* Perimeter objects frame a quiet centre; use the navigation room's shadow geometry. */
+.explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(470px,65svh,640px);background-color:#242420;background-blend-mode:multiply;background-size:cover}
+.explore-room:not(.maritime-room) .explore-installation{max-width:1100px}
+.explore-objects{position:absolute;inset:0 0 auto;height:660px;pointer-events:none}
+.room-object{position:absolute;padding:0;pointer-events:auto;background:none;border:0;transform:translate(-50%,-50%) rotate(var(--object-tilt));isolation:isolate;outline:none}
+.room-object:focus-visible{outline:1px solid #b9a67f;outline-offset:-30px}
+.room-object--mask{left:17%;top:180px;width:53vw;height:850px;--object-tilt:32deg}
+.room-object--saber{left:78%;top:110px;width:43vw;height:900px;--object-tilt:180deg}
+.room-object .artifact__image{transform:none!important;object-fit:contain}
+.room-object .artifact__shadow{filter:brightness(0) blur(var(--shadow-softness,7px));transform:translate(var(--shadow-x,8px),var(--shadow-y,12px));object-fit:contain}
+.saber-art{width:100%;height:100%;overflow:visible;display:block}
+.saber-shadow{fill:#000;filter:blur(var(--shadow-softness,6px));transform:translate(var(--shadow-x,8px),var(--shadow-y,12px))}
+.saber-shine{mix-blend-mode:screen;pointer-events:none;transition:opacity .15s}
+.explore-room:not(.maritime-room) .explore-heading{position:relative;margin:auto;max-width:750px;pointer-events:none}
+.explore-room:not(.maritime-room) .explore-heading h1{font-size:clamp(62px,6.4vw,96px);margin-bottom:24px}
+.explore-room:not(.maritime-room) .explore-caption{max-width:690px;font-size:15px;line-height:1.85;color:#d1c8b6;padding:0 20px}
+.explore-room:not(.maritime-room) .explore-tabs{margin:28px 0 38px}
+.room-object-note{background:none;transform:rotate(-3deg);color:#e3d1aa}
+@media(max-width:900px){.room-object--mask{left:10%;top:170px;width:65vw;height:640px}.room-object--saber{left:89%;top:110px;width:62vw;height:710px}.explore-room:not(.maritime-room) .explore-scene{padding-top:470px}.explore-room:not(.maritime-room) .explore-caption{font-size:14px}.room-object-note{font-size:18px}.room-object-note p:first-child{font-size:23px}.room-object-note p:last-child{font-size:17px}}
+@media(max-width:480px){.room-object--mask{top:140px;height:500px;width:82vw}.room-object--saber{top:100px;height:520px;width:76vw}.explore-room:not(.maritime-room) .explore-scene{padding-top:390px}.explore-room:not(.maritime-room) .explore-heading h1{font-size:58px}}
+.explore-room:not(.maritime-room) .explore-scene{background-image:linear-gradient(#0003,#0003),url('../exhibition/explore/wall.png');background-blend-mode:normal}
+/* Supplied transparent artwork already has the intended orientation. */
+.room-object--saber{--object-tilt:0deg}
+.saber-shadow{filter:brightness(0) blur(var(--shadow-softness,6px))}
+/* Stronger projected shadows, retaining cursor-driven displacement. */
+.room-object .artifact__shadow{filter:brightness(0) blur(5px);opacity:1!important;transform:translate(calc(var(--shadow-x,8px)*1.5),calc(var(--shadow-y,12px)*1.5))}
+.saber-shadow{filter:brightness(0) blur(12px);opacity:1!important;transform:translate(calc(var(--shadow-x,8px)*5),calc(var(--shadow-y,12px)*5))}
+.explore-room:not(.maritime-room) .explore-heading h1{font-size:clamp(66px,6.9vw,104px);position:relative;top:-10px;margin-bottom:14px}
+@media(max-width:480px){.explore-room:not(.maritime-room) .explore-heading h1{font-size:62px}}
+/* Increase the supplied saber composition by roughly fifteen percent. */
+.room-object--saber{width:50vw;height:1035px;top:145px}
+@media(max-width:900px){.room-object--saber{width:71vw;height:815px;top:140px}}
+@media(max-width:480px){.room-object--saber{width:87vw;height:600px;top:125px}}
+/* Faint eyes remain behind the original transparent sockets and carved eyelids. */
+.mask-watch{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.room-object--mask .artifact__image{z-index:2}
+.mask-watch__eyes{opacity:.38;transition:opacity .65s ease}
+.room-object--mask[data-note-visible] .mask-watch__eyes{opacity:0;transition-duration:.18s}
+@media(prefers-reduced-motion:reduce){.mask-watch__eyes{transition:none}}
+/* One continuous eye surface avoids seams around the travelling pupils. */
+.mask-watch[data-blink] .mask-watch__blink{animation:eye-blink .5s linear}
+@keyframes eye-blink{0%,100%{opacity:1}20%,80%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.mask-watch__blink{animation:none!important}}
+.topic-link{position:relative}
+.topic-link .topic-link__prompt{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);z-index:4;display:block;white-space:nowrap;margin:0;padding:9px 12px;border:1px solid #bfb9a544;border-radius:7px;background:#201e19ed;color:#e5dece;font:500 12px/1.4 'Instrument Sans',sans-serif;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s}
+.topic-link:hover .topic-link__prompt,.topic-link:focus-visible .topic-link__prompt{opacity:1;visibility:visible}

@@ -2,10 +2,13 @@ import {desktopEligible, preference, exhibitionAudio as settings} from './exhibi
 const nested=window.parent!==window;
 const track=new URL('../exhibition/awestruck.m4a',import.meta.url).href;
 let context, gain, buffer, source, loading, wanted=false, token=0, scratch, scratchGain;
-let button, status;
+let button, status, startedAt=0, startOffset=0;
+let internalNavigation=false;
+try{startOffset=Number(sessionStorage.getItem('mnemosyne-audio-offset'))||0;}catch{}
 export function stopWriting(){
   if(nested){parent.document.dispatchEvent(new CustomEvent('exhibition-writing-stop'));return;}
   if(scratch){try{scratch.stop();}catch{} scratch=null;}
+  if(button)delete button.dataset.writingActive;
 }
 export function playWriting(seconds){
   if(nested){parent.document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:seconds}));return;}
@@ -21,7 +24,10 @@ export function playWriting(seconds){
   scratch=context.createBufferSource();scratch.buffer=noise;
   const filter=context.createBiquadFilter();filter.type='bandpass';filter.frequency.value=2200;filter.Q.value=.7;
   scratchGain=context.createGain();scratchGain.gain.value=.45;
-  scratch.connect(filter).connect(scratchGain).connect(context.destination);scratch.start();
+  scratch.connect(filter).connect(scratchGain).connect(context.destination);
+  const strokeSource=scratch;if(button)button.dataset.writingActive='true';
+  strokeSource.onended=()=>{if(scratch===strokeSource){scratch=null;if(button)delete button.dataset.writingActive;}};
+  scratch.start();
 }
 function prepareSoundtrack(){
   // Decode quietly before the visitor clicks; playback still needs their gesture.
@@ -43,7 +49,7 @@ async function enable(){
     if(context.state!=='running') throw new Error('Gesture required');
     if(!buffer){status.textContent='Preparing soundtrack…';loading ||= prepareSoundtrack();buffer=await loading;if(!buffer)throw new Error('Audio unavailable');}
     if(!wanted||attempt!==token)return;
-    if(!source){source=context.createBufferSource();source.buffer=buffer;source.loop=true;source.connect(gain);source.start();}
+    if(!source){source=context.createBufferSource();source.buffer=buffer;source.loop=true;source.connect(gain);source.start(0,startOffset % buffer.duration);startedAt=context.currentTime;}
     gain.gain.cancelScheduledValues(context.currentTime);gain.gain.setTargetAtTime(settings.volume,context.currentTime,.25);status.textContent='';
   }catch{if(attempt!==token)return;wanted=false;display();button.textContent='Sound On · resume';status.textContent='Select sound to resume playback.';}
 }
@@ -56,18 +62,24 @@ if(!nested && desktopEligible() && document.querySelector('.exhibition')){
   button.addEventListener('click',()=>wanted?disable():enable());
   document.addEventListener('exhibition-writing',e=>playWriting(e.detail));
   document.addEventListener('exhibition-writing-stop',stopWriting);
-  if(preference.get('sound')==='on')button.textContent='Sound On · resume';
+  if(preference.get('sound')==='on'){button.textContent='Sound On · resume';enable();}
   // Standard destinations leave Exhibition Mode. No player or audio survives the visit.
   const stop=()=>{disable();if(source){try{source.stop();}catch{}source=null;}context?.suspend();};
   document.querySelector('.exhibition').addEventListener('click',event=>{
     const link=event.target.closest('a[href]');
     if(!link||event.defaultPrevented||link.target==='_blank'||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
     const url=new URL(link.href);
+    if(url.origin===location.origin && url.pathname.includes('/exhibition/')){
+      internalNavigation=true;
+      try{sessionStorage.setItem('mnemosyne-audio-offset',String(startOffset+(source?context.currentTime-startedAt:0)));}catch{}
+      if(!matchMedia('(prefers-reduced-motion: reduce)').matches){event.preventDefault();document.body.classList.add('room-leaving');setTimeout(()=>location.assign(url.href),450);}
+      return;
+    }
     if(url.origin===location.origin){
       try{sessionStorage.setItem('mnemosyne-standard-visit','yes');sessionStorage.removeItem('mnemosyne-exhibition-session');}catch{}
       preference.set('mode','standard');stop();
     }
   });
-  window.addEventListener('pagehide',stop);
-  window.addEventListener('pageshow',e=>{if(e.persisted){wanted=false;display();}});
+  window.addEventListener('pagehide',()=>{if(internalNavigation){stopWriting();context?.suspend();}else stop();});
+  window.addEventListener('pageshow',e=>{document.body.classList.remove('room-leaving');internalNavigation=false;if(e.persisted){wanted=false;if(preference.get('sound')==='on')enable();else display();}});
 }

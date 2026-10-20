@@ -6,17 +6,18 @@
   <meta name="theme-color" content="#080807">
   <script>if(location.search==='?intro=20261020')history.replaceState(null,'',location.pathname);</script>
   <style>html,body{background:#151411}.mn-intro-playing .exhibition-sound{visibility:hidden}</style>
-  <title>Exhibition Mode · Mnemosyne</title>
+  <title>{{ page.title | default: "Exhibition Mode" }} · Mnemosyne</title>
   <meta name="description" content="Illuminate the past. Explore Mnemosyne through an archaeological exhibition.">
   <link rel="icon" href="{{ '/assets/images/mnemosyne-favicon-v3.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Instrument+Sans:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/exhibition.css' | relative_url }}?v=8">
-  <script type="module" src="{{ '/assets/js/exhibition.js' | relative_url }}?v=6"></script>
+  <link rel="stylesheet" href="{{ '/assets/css/exhibition.css' | relative_url }}?v=9">
+  <script type="module" src="{{ '/assets/js/exhibition.js' | relative_url }}?v=8"></script>
+  {% if page.explore_room %}<link rel="stylesheet" href="{{ '/assets/css/exhibition-explore.css' | relative_url }}?v=6"><script type="module" src="{{ '/assets/js/exhibition-explore.js' | relative_url }}?v=8"></script>{% endif %}
   <link rel="stylesheet" href="{{ "/assets/css/exhibition-player.css" | relative_url }}">
 </head>
-<body class="exhibition-page" data-home="{{ '/' | relative_url }}">
+<body class="exhibition-page{% if page.explore_room %} explore-page{% endif %}" data-home="{{ '/' | relative_url }}">
 {% include intro.html %}
 {{ content }}
 </body>

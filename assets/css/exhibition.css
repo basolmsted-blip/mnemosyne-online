@@ -246,3 +246,6 @@
  .wayfinding--articles{left:49.5%;top:28.5%}
  .wayfinding--explore{left:15.5%;top:72%}
 }
+
+.exhibition-page{transition:opacity .45s ease}.exhibition-page.room-leaving{opacity:0}
+@media(prefers-reduced-motion:reduce){.exhibition-page{transition:none}}

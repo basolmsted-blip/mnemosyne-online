@@ -1,0 +1,23 @@
+<svg class="mask-watch" viewBox="0 0 1368 1824" aria-hidden="true">
+ <defs>
+  <clipPath id="watch-left"><path d="M483 872 Q505 873 548 897 Q590 923 655 908 Q667 920 646 931 Q548 971 508 929 Q493 906 483 872Z"/></clipPath>
+  <clipPath id="watch-right"><path d="M737 918 Q797 937 862 923 Q860 958 817 967 Q775 971 737 918Z"/></clipPath>
+  <clipPath id="left-iris"><ellipse cx="570" cy="915" rx="25" ry="26"/></clipPath>
+  <clipPath id="right-iris"><ellipse cx="802" cy="944" rx="24" ry="25"/></clipPath>
+  <filter id="eye-seam" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.5"/></filter>
+  <mask id="left-eye-surface" maskUnits="userSpaceOnUse" x="0" y="0" width="1368" height="1824"><rect width="1368" height="1824" fill="white"/><ellipse cx="570" cy="915" rx="36" ry="36" fill="black" filter="url(#eye-seam)"/></mask>
+  <mask id="right-eye-surface" maskUnits="userSpaceOnUse" x="0" y="0" width="1368" height="1824"><rect width="1368" height="1824" fill="white"/><ellipse cx="802" cy="944" rx="36" ry="36" fill="black" filter="url(#eye-seam)"/></mask>
+ </defs>
+ <g class="mask-watch__eyes"><g class="mask-watch__blink">
+  <g clip-path="url(#watch-left)">
+   <svg class="eye-texture-repair" x="527" y="872" width="86" height="86" viewBox="640 770 25 30" preserveAspectRatio="none"><image href="{{ '/assets/exhibition/explore/eyes.png' | relative_url }}" width="1647" height="1503"/></svg>
+   <image class="eye-artwork" href="{{ '/assets/exhibition/explore/eyes.png' | relative_url }}" x="-58" y="218" width="1454" height="1327" mask="url(#left-eye-surface)"/>
+   <g data-pupil="left" data-cx="570" data-cy="915"><g clip-path="url(#left-iris)"><image href="{{ '/assets/exhibition/explore/eyes.png' | relative_url }}" x="-58" y="218" width="1454" height="1327"/></g></g>
+  </g>
+  <g clip-path="url(#watch-right)">
+   <svg class="eye-texture-repair" x="759" y="901" width="86" height="86" viewBox="898 800 24 24" preserveAspectRatio="none"><image href="{{ '/assets/exhibition/explore/eyes.png' | relative_url }}" width="1647" height="1503"/></svg>
+   <image class="eye-artwork" href="{{ '/assets/exhibition/explore/eyes.png' | relative_url }}" x="-58" y="228" width="1454" height="1327" mask="url(#right-eye-surface)"/>
+   <g data-pupil="right" data-cx="802" data-cy="944"><g clip-path="url(#right-iris)"><image href="{{ '/assets/exhibition/explore/eyes.png' | relative_url }}" x="-58" y="228" width="1454" height="1327"/></g></g>
+  </g>
+ </g></g>
+</svg>
