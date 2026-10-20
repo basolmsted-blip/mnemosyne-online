@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080807">
+  <style>html,body{background:#151411}.mn-intro-playing .exhibition-sound{visibility:hidden}</style>
   <title>Exhibition Mode · Mnemosyne</title>
   <meta name="description" content="Illuminate the past. Explore Mnemosyne through an archaeological exhibition.">
   <link rel="icon" href="{{ '/assets/images/mnemosyne-favicon-v3.png' | relative_url }}">
@@ -15,6 +16,7 @@
   <link rel="stylesheet" href="{{ "/assets/css/exhibition-player.css" | relative_url }}">
 </head>
 <body class="exhibition-page" data-home="{{ '/' | relative_url }}">
+{% include intro.html %}
 {{ content }}
 </body>
 </html>

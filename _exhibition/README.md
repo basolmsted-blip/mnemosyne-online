@@ -81,3 +81,7 @@ A fresh desktop homepage visit plays the existing intro and then opens /exhibiti
 ## Launch transition and soundtrack optimization
 
 The desktop entry path hides standard homepage content before first paint and throughout the intro fade, preventing a homepage flash before the exhibition redirect. An optimized 128 kbps AAC file (about 874 KB versus 10 MB WAV) preloads and decodes with OfflineAudioContext while the exhibition is open. Real-time playback still requires a visitor gesture; the original WAV remains the compatibility fallback. Verified predecode readiness before selecting Sound On, immediate playback with an empty preparation status, no console errors, and automatic intro completion into the exhibition.
+
+## Single-document intro transition
+
+The root desktop entry now redirects before homepage paint, and the existing intro is included inside the exhibition document. Its fade reveals the exhibition wall in the same document, eliminating the post-intro navigation handoff. Standard exit visits and mobile/tablet entry retain their previous behavior. The sound control stays hidden while the intro plays, and the optimized soundtrack prepares behind it.

@@ -11,18 +11,9 @@ if (entry) {
   window.addEventListener('pageshow', update);
 }
 
-// A fresh desktop homepage visit plays its intro, then opens the exhibition.
-// The head's launch cover keeps the homepage hidden during the intro fade and redirect.
-// Explicit standard-page navigation stays standard for the rest of this tab's visit.
+// The head redirects before homepage content can paint. The intro now lives on
+// the exhibition document itself, so its fade reveals only the exhibition wall.
 if(document.body.classList.contains('home-page') && desktopEligible() && !location.hash){
   let standard=false;try{standard=sessionStorage.getItem('mnemosyne-standard-visit')==='yes';}catch{}
-  if(!standard){
-    const intro=document.querySelector('[data-mn-intro]');
-    const enter=()=>location.replace(entry.href);
-    if(!intro||intro.hidden)enter();
-    else{
-      const observer=new MutationObserver(()=>{if(intro.hidden){observer.disconnect();enter();}});
-      observer.observe(intro,{attributes:true,attributeFilter:['hidden']});
-    }
-  }
+  if(!standard)location.replace(entry.href);
 }
