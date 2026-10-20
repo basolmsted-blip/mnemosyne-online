@@ -1,0 +1,14 @@
+{% comment %}
+Insertion point for a future published investigation. Requires deliberate activation,
+a published article path AND approved media; never renders an unpublished title alone.
+The initial experience always begins on the independent exploration wall.
+{% endcomment %}
+{% assign featured = site.data.exhibition.featured_investigation %}
+{% if featured.enabled and featured.article_path and featured.banner_media %}
+<section class="exhibition-featured" aria-label="Featured investigation">
+  <img src="{{ featured.banner_media | relative_url }}" alt="">
+  <h1>{{ featured.title }}</h1>
+  <a href="{{ featured.article_path | relative_url }}">Read Investigation</a>
+  <a href="#exhibition">Begin Exploring ↓</a>
+</section>
+{% endif %}

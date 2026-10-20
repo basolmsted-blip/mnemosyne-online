@@ -15,5 +15,6 @@
     <a href="{{ '/#explore' | relative_url }}">Explore</a>
     <a href="{{ '/about/' | relative_url }}">About</a>
     <a href="{{ '/contact/' | relative_url }}">Contact</a>
+    {% if site.data.exhibition.enabled %}<a href="{{ '/exhibition/' | relative_url }}" data-exhibition-entry hidden>Exhibition Mode</a>{% endif %}
   </nav>
 </header>

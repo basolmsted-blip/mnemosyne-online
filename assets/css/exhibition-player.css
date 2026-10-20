@@ -1,0 +1,14 @@
+.exhibition-sound{position:fixed;right:22px;bottom:12px;z-index:10000;border:1px solid #bfb9a52b;border-radius:3px;padding:9px 12px;background:#191916e8;color:#e5dece;font:500 12px/1.3 'Instrument Sans',system-ui,sans-serif;letter-spacing:.03em;cursor:pointer;box-shadow:none}
+.exhibition-sound:hover{background:#302c22}.exhibition-sound:focus-visible{outline:2px solid #d7bd85;outline-offset:3px}
+.exhibition-audio-status{position:fixed;right:22px;bottom:55px;z-index:10000;color:#ddd3bd;background:#191916;font:12px/1.4 system-ui,sans-serif;max-width:240px}.exhibition-audio-status:empty{display:none}
+body.exhibition-browsing{overflow:hidden!important;height:100svh!important}
+body.exhibition-browsing> :not(.exhibition-page-frame):not(.exhibition-sound):not(.exhibition-audio-status){display:none!important}
+.exhibition-page-frame{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:9990;background:#f5f1e8}
+.exhibition-page-frame[hidden]{display:none}
+body.exhibition-landing>.exhibition-sound{top:20px;bottom:auto;right:22px;background:transparent;border-color:transparent;font-size:13px}
+body.exhibition-landing>.exhibition-audio-status{top:62px;bottom:auto}
+@media(min-width:1024px){body.exhibition-landing>.exhibition-sound{right:auto;left:76%;top:24px;font-size:12px}}
+@media(min-width:1024px){body.exhibition-landing>.exhibition-sound{top:15px}}
+body.exhibition-landing>.exhibition-sound{border:1px solid #bfb9a544;border-radius:8px;background:#201e19ed;font-size:12px}
+body.exhibition-landing>.exhibition-sound:hover{background:#302c22}
+@media(min-width:1024px){body.exhibition-landing>.exhibition-sound{left:73%;font-size:11px}}

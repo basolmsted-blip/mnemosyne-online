@@ -1,0 +1,46 @@
+<main class="exhibition" id="exhibition" aria-label="Archaeological exhibition" data-audio="{{ '/assets/exhibition/awestruck.wav' | relative_url }}">
+  <div class="exhibition__scene">
+    <header class="exhibition__heading">
+      <p>Welcome to Mnemosyne</p>
+      <h1>BEGIN EXPLORING</h1>
+      <p class="exhibition__instruction">select an object to begin navigating</p>
+    </header>
+    <nav class="exhibition__collection" aria-label="Explore Mnemosyne">
+    {% for object in site.data.exhibition.objects %}
+      <a draggable="false" class="artifact artifact--{{ object.id }}" href="{{ object.standard_path | relative_url }}" aria-label="{{ object.label | capitalize }}" data-destination="{{ object.destination | escape }}" data-title="{{ object.title | escape }}" data-date="{{ object.date | escape }}" data-origin="{{ object.origin | escape }}" data-depth="{{ object.depth }}" data-softness="{{ object.softness }}" data-displacement="{{ object.displacement }}" data-exhibition-path="{{ object.exhibition_path }}">
+        <picture><source type="image/webp" srcset="{{ '/assets/exhibition/' | append: object.image | replace: '.png', '.webp' | relative_url }}"><img draggable="false" class="artifact__shadow" src="{{ '/assets/exhibition/' | append: object.image | relative_url }}" alt="" aria-hidden="true" width="{{ object.width }}" height="{{ object.height }}"></picture>
+        <picture><source type="image/webp" srcset="{{ '/assets/exhibition/' | append: object.image | replace: '.png', '.webp' | relative_url }}"><img draggable="false" class="artifact__image" src="{{ '/assets/exhibition/' | append: object.image | relative_url }}" alt="" width="{{ object.width }}" height="{{ object.height }}" decoding="async" fetchpriority="high"></picture>
+        <span class="artifact__label">{{ object.label }}</span>
+      </a>
+    {% endfor %}
+    </nav>
+    <div class="exhibition-wayfinding" aria-hidden="true">
+      <span class="exhibition-wayfinding__label wayfinding--home">Home</span>
+      <span class="exhibition-wayfinding__label wayfinding--articles">Articles</span>
+      <span class="exhibition-wayfinding__label wayfinding--kids">Kids</span>
+      <span class="exhibition-wayfinding__label wayfinding--explore">Explore</span>
+      <span class="exhibition-wayfinding__label wayfinding--objects">Objects</span>
+      <span class="exhibition-wayfinding__label wayfinding--about">About</span>
+    </div>
+  </div>
+  <div class="exhibition__darkness" aria-hidden="true"></div>
+  <div class="exhibition__warmth" aria-hidden="true"></div>
+  <div class="exhibition__controls">
+    <a href="{{ '/' | relative_url }}" data-exit>Exit Exhibition Mode</a>
+
+  </div>
+  <p class="exhibition__hint">Move your cursor to illuminate the collection.<br><span>Or press Tab to explore.</span></p>
+  <button class="exhibition__credits" type="button" data-credits aria-haspopup="dialog">Object imagery: The Metropolitan Museum of Art · Open Access</button>
+  <p class="exhibition__status" role="status" aria-live="polite"></p>
+  <dialog class="exhibition__sources" aria-labelledby="source-title">
+    <div class="sources__header"><h2 id="source-title">Exhibition sources</h2><button type="button" data-close autofocus aria-label="Close exhibition sources">Close ×</button></div>
+    <p>Object imagery: The Metropolitan Museum of Art. All six collection records identify the corresponding images as Public Domain, available through Open Access.</p>
+    <ul>
+    {% for object in site.data.exhibition.objects %}
+      <li><span>{{ object.label }}</span><a href="https://www.metmuseum.org/art/collection/search/{{ object.museum_id }}" target="_blank" rel="noopener noreferrer">{{ object.title }}</a><small>{{ object.date }} · {{ object.origin }}</small><small>{{ object.credit }} · Public Domain</small></li>
+    {% endfor %}
+    </ul>
+    <p class="sources__music">Music: <a href="https://opengameart.org/content/awestruck" target="_blank" rel="noopener noreferrer">Awestruck — isaiah658</a> · CC0. Used in its original seamless-loop form.</p>
+  </dialog>
+</main>
+<noscript><p class="exhibition__noscript">The flashlight and sound require JavaScript. All six navigation links remain available. <a href="{{ '/' | relative_url }}">Return to the standard website</a>.</p></noscript>

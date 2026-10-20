@@ -15,6 +15,10 @@
     {% endif %}
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v=33">
     {% if page.kids %}<link rel="stylesheet" href="{{ '/assets/css/kids.css' | relative_url }}?v=2">{% endif %}
+    {% if site.data.exhibition.enabled %}
+    <style>[data-exhibition-entry][hidden]{display:none!important}[data-exhibition-entry]{font-size:11px;opacity:.8}</style>
+    <script type="module" src="{{ '/assets/js/exhibition-entry.js' | relative_url }}?v=2"></script>
+    {% endif %}
   </head>
   <body{% if page.title == 'Home' %} class="home-page"{% endif %}>
     <a class="skip-link" href="#main-content">Skip to content</a>

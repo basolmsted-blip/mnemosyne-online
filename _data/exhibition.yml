@@ -1,0 +1,107 @@
+enabled: true
+# Prepared for later; the unpublished investigation is never rendered.
+featured_investigation:
+  enabled: false
+  title: 'Marco Polo: The Archaeology Behind The Travels'
+  article_path:
+  banner_media:
+  animation_enabled: true
+entrance:
+  default_page: exploration-wall
+objects:
+  - id: home
+    destination: homepage
+    label: HOME
+    image: explore-home.png
+    width: 1206
+    height: 1700
+    standard_path: /
+    exhibition_path:
+    title: Head from a Statue of King Amenhotep I
+    museum_id: 544453
+    date: "ca. 1525–1504 BCE"
+    origin: "Deir el-Bahri, Thebes, Egypt · MMA excavations, 1921–22"
+    credit: Rogers Fund, 1926
+    depth: 44
+    softness: 8
+    displacement: 51
+  - id: explore
+    destination: Explore Page
+    label: EXPLORE
+    image: explore-explore.png
+    width: 1412
+    height: 1403
+    standard_path: /#explore
+    exhibition_path:
+    title: 'Figure of a man with an oryx, a monkey, and a leopard skin'
+    museum_id: 325089
+    date: "ca. 8th century BCE"
+    origin: "Nimrud (ancient Kalhu), Mesopotamia · Assyrian"
+    credit: Rogers Fund, 1960
+    depth: 35
+    softness: 6
+    displacement: 42
+  - id: articles
+    destination: Articles
+    label: ARTICLES
+    image: explore-articles.png
+    width: 1634
+    height: 1225
+    standard_path: /articles/
+    exhibition_path:
+    title: Jaharis Byzantine Lectionary
+    museum_id: 477499
+    date: "ca. 1100"
+    origin: "Made in Constantinople · Byzantine"
+    credit: Purchase, Mary and Michael Jaharis Gift and Lila Acheson Wallace Gift, 2007
+    depth: 13
+    softness: 3
+    displacement: 18
+  - id: objects
+    destination: Objects in Focus
+    label: OBJECTS
+    image: explore-objects.png
+    width: 1394
+    height: 1216
+    standard_path: /objects-in-focus/
+    exhibition_path:
+    title: Mask
+    museum_id: 315802
+    date: "3rd–7th century"
+    origin: "Mexico, Mesoamerica · Teotihuacan"
+    credit: 'Bequest of Jane Costello Goldberg, from the Collection of Arnold I. Goldberg, 1986'
+    depth: 28
+    softness: 5
+    displacement: 36
+  - id: kids
+    destination: Mnemosyne Kids
+    label: KIDS
+    image: explore-kids.png
+    width: 1116
+    height: 1394
+    standard_path: /kids/
+    exhibition_path:
+    title: Marble grave stele of a little girl
+    museum_id: 252890
+    date: "ca. 450–440 BCE"
+    origin: "Greek · Parian marble; findspot not recorded in the overview"
+    credit: Fletcher Fund, 1927
+    depth: 16
+    softness: 3
+    displacement: 22
+  - id: about
+    destination: About
+    label: ABOUT
+    image: explore-about.png
+    width: 869
+    height: 1416
+    standard_path: /about/
+    exhibition_path:
+    title: Tekoteko (gable figure)
+    museum_id: 313626
+    date: "1820s"
+    origin: "Aotearoa New Zealand · Māori, Te Arawa"
+    credit: 'The Michael C. Rockefeller Memorial Collection, Bequest of Nelson A. Rockefeller, 1979'
+    depth: 39
+    softness: 7
+    displacement: 46
