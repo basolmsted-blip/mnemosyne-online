@@ -103,3 +103,5 @@ body.exhibition-page.exhibition-landing>.exhibition-audio-status{top:61px;right:
 
 @media(max-width:700px){.explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 420px),380px)}}
 @media(max-width:480px){.explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 500px),300px)}}
+
+.exhibition__controls{position:fixed;left:auto}
