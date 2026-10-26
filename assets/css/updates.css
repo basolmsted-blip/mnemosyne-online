@@ -4,7 +4,7 @@
 .control-icon{width:21px;height:16px;object-fit:contain;vertical-align:middle;margin-right:8px;filter:brightness(1.8)}
 .exhibition-sound{display:flex;align-items:center;gap:0}.exhibition-sound[aria-pressed=true] .control-icon{animation:sound-wave .85s ease-in-out infinite alternate;transform-origin:center}
 @keyframes sound-wave{from{transform:scaleY(.55)}to{transform:scaleY(1.1)}}
-.maritime-room .explore-scene{min-height:100svh;padding:0;background:#30302c url('/assets/exhibition/maritime/background.png') center/cover}
+.maritime-room .explore-scene{min-height:100svh;padding:0;background:#30302c url('/assets/exhibition/maritime/background.webp') center/cover}
 .maritime-copy{position:relative;z-index:1;padding:clamp(130px,21vh,220px) 0 150px 5.5vw;width:40vw;text-align:left}
 .maritime-room .explore-heading h1{font-size:clamp(34px,4.1vw,70px);line-height:1.1;letter-spacing:.025em;margin:12px 0 24px}
 .maritime-room .explore-welcome{font:400 clamp(14px,1.4vw,20px)/1.5 'Instrument Sans',sans-serif;margin:0;color:#d5cebe}
@@ -35,7 +35,7 @@ body.explore-page.exhibition-landing>.exhibition-sound{right:225px}
 .maritime-room .maritime-note.exhibition-note{left:59vw;width:26vw}
 .maritime-room .explore-welcome{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:clamp(14px,1.3vw,19px);letter-spacing:.045em;line-height:1.5}
 @media(max-width:700px){.maritime-room .maritime-note.exhibition-note{left:53vw;width:31vw}.maritime-room .explore-welcome{font-size:14px}}
-.maritime-room .explore-scene{background-image:linear-gradient(rgba(1,11,25,.27),rgba(1,11,25,.27)),url('/assets/exhibition/maritime/background.png');background-color:#111922}
+.maritime-room .explore-scene{background-image:linear-gradient(rgba(1,11,25,.27),rgba(1,11,25,.27)),url('/assets/exhibition/maritime/background.webp');background-color:#111922}
 .maritime-room .explore-welcome{text-transform:uppercase;letter-spacing:.12em;font-size:clamp(12px,1.1vw,16px)}
 .maritime-room .explore-heading h1{font-size:clamp(36px,4.4vw,76px);letter-spacing:.015em}
 .maritime-copy{width:43vw}
@@ -71,9 +71,9 @@ body.exhibition-page.exhibition-landing>.exhibition-sound,
  font:500 12px/1.3 'Instrument Sans',sans-serif;letter-spacing:.025em;
  text-decoration:none;
 }
-body.exhibition-page.exhibition-landing>.exhibition-sound{position:fixed;left:auto;right:230px;top:15px;bottom:auto;width:108px}
+body.exhibition-page.exhibition-landing>.exhibition-sound{position:fixed;left:auto;right:214px;top:15px;bottom:auto;width:108px}
 .exhibition__controls,.explore-controls{top:15px;right:22px}
-.exhibition__controls [data-exit],.explore-controls [data-exit]{width:196px}
+.exhibition__controls [data-exit],.explore-controls [data-exit]{width:180px}
 .control-icon{display:block;flex:0 0 21px;width:21px;height:16px;margin:0;object-fit:contain}
 .exhibition-sound span{white-space:nowrap;flex:none}
 .room-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;white-space:nowrap;background:rgba(32,30,25,.78)}
@@ -82,12 +82,12 @@ body.exhibition-page.exhibition-landing>.exhibition-sound{position:fixed;left:au
 .exhibition__sources button{background:rgba(55,49,38,.78);border-radius:5px}
 body.exhibition-page.exhibition-landing>.exhibition-sound:hover,.room-button:hover,
 .exhibition__controls [data-exit]:hover{background:rgba(53,48,37,.88);text-decoration:none}
-body.exhibition-page.exhibition-landing>.exhibition-audio-status{top:61px;right:230px;bottom:auto}
+body.exhibition-page.exhibition-landing>.exhibition-audio-status{top:61px;right:214px;bottom:auto}
 .explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 420px),540px)}
 .explore-content{scroll-margin-top:76px;min-height:max(305px,calc(100svh - 76px))}
 .wayfinding--about{margin-left:18px}
 @media(max-width:700px){
- body.exhibition-page.exhibition-landing>.exhibition-sound{top:15px;right:224px}
+ body.exhibition-page.exhibition-landing>.exhibition-sound{top:15px;right:208px}
  .exhibition__controls,.explore-controls{top:15px;right:16px;left:16px}
  .explore-controls a:not([data-exit]){position:absolute;left:0;top:50px;background:rgba(32,30,25,.78)}
  body.exhibition-page.exhibition-landing>.exhibition-audio-status{right:16px;top:110px}
@@ -105,3 +105,25 @@ body.exhibition-page.exhibition-landing>.exhibition-audio-status{top:61px;right:
 @media(max-width:480px){.explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 500px),300px)}}
 
 .exhibition__controls{position:fixed;left:auto}
+
+/* Preview refinements: keep only the filter rail in the first viewport. */
+.explore-room:not(.maritime-room) .explore-scene{padding-top:var(--explore-entry-top,calc(100svh - 320px))}
+.exhibition__controls{position:absolute;left:auto;right:200px;top:28px}
+body.exhibition-page.exhibition-landing:not(.explore-page)>.exhibition-sound{left:auto;right:22px;top:20px}
+@media(min-width:1024px){
+ .exhibition__controls{left:20%;right:auto;top:15px}
+ body.exhibition-page.exhibition-landing:not(.explore-page)>.exhibition-sound{left:73%;right:auto;top:15px}
+}
+@media(max-width:680px){.exhibition__controls{left:16px;right:auto;top:28px}}
+.explore-topics-reading .explore-card{width:240px;--tilt:0deg}
+.explore-topics-reading .explore-art{height:220px;margin:0}
+.explore-topics-reading .explore-art img,
+.explore-topics-reading .explore-card:hover .explore-art img,
+.explore-topics-reading .explore-card:focus-visible .explore-art img{filter:brightness(0);width:100%;height:100%;object-fit:contain}
+.maritime-reading__intro{display:grid;grid-template-columns:minmax(0,1fr) 240px;align-items:center;gap:48px}
+.maritime-reading__thumbnail{display:block;width:100%;height:auto;filter:brightness(0)}
+@media(max-width:700px){.maritime-reading__intro{grid-template-columns:minmax(0,1fr) 150px;gap:24px}.maritime-reading h1{font-size:clamp(28px,5vw,40px)}}
+@media(max-width:480px){.maritime-reading__intro{grid-template-columns:minmax(0,1fr);gap:28px}.maritime-reading__thumbnail{width:160px;justify-self:end}}
+
+.exhibition__controls [data-exit],.explore-controls [data-exit]{justify-content:flex-start;padding-left:8px;gap:6px}
+.exhibition__controls [data-exit] .control-icon,.explore-controls [data-exit] .control-icon{width:16px;flex-basis:16px}

@@ -1,7 +1,7 @@
 import {desktopEligible, preference, exhibitionAudio as settings} from './exhibition-config.js?v=2';
 const nested=window.parent!==window;
 const kindFor=url=>new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
-const tracks={gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.mp3',import.meta.url).href};
+const tracks={gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.m4a',import.meta.url).href};
 const cache=new Map();
 let context,master,voice,wanted=false,playing=false,request=0,button,status,scratch,waveTimer,waveSource,waveGain;
 let kind=kindFor(location.href),roomFrame,internalNavigation=false;
@@ -24,28 +24,46 @@ function display(){
 }
 function remember(current){
  if(!current)return;
+ if(current.element){try{sessionStorage.setItem('mnemosyne-audio-offset:'+current.kind,String(current.element.currentTime));}catch{}return;}
  try{sessionStorage.setItem('mnemosyne-audio-offset:'+current.kind,String((current.offset+context.currentTime-current.started)%current.buffer.duration));}catch{}
 }
 function stopVoice(current){
  if(!current)return;
- try{current.source.stop();}catch{}
+ if(current.element){current.element.pause();current.source.disconnect();}
+ else{try{current.source.stop();}catch{}}
  current.gain.disconnect();voices.delete(current);
 }
 async function selectTrack(next){
  const attempt=++request;kind=next;stopWaves();
  if(!wanted)return;
- const buffer=await decode(next);
- if(attempt!==request||!wanted)return;
  if(voice?.kind===next){playing=true;display();status.textContent='';if(next==='maritime')scheduleWave(true);return;}
  let offset=0;
  try{offset=Number(sessionStorage.getItem('mnemosyne-audio-offset:'+next))||0;}catch{}
- const source=context.createBufferSource(),gain=context.createGain(),now=context.currentTime;
- source.buffer=buffer;source.loop=true;gain.gain.value=0;source.connect(gain).connect(master);
- const nextVoice={source,gain,buffer,kind:next,offset:offset%buffer.duration,started:now};
- const old=voice;remember(old);voice=nextVoice;voices.add(nextVoice);
- source.start(now,nextVoice.offset);
- gain.gain.linearRampToValueAtTime(next==='maritime'?.12:settings.volume,now+(old?2.2:1.5));
- if(old){old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(old.gain.gain.value,now);old.gain.gain.linearRampToValueAtTime(0,now+2.2);old.source.stop(now+2.25);old.source.onended=()=>{old.gain.disconnect();voices.delete(old);};}
+ let nextVoice;
+ if(next==='maritime'){
+  // Stream the nine-minute track instead of downloading and decoding it all.
+  const element=new Audio(tracks.maritime);element.loop=true;element.preload='auto';
+  const source=context.createMediaElementSource(element),gain=context.createGain();
+  gain.gain.value=0;source.connect(gain).connect(master);
+  nextVoice={element,source,gain,kind:next};voices.add(nextVoice);
+  element.addEventListener('loadedmetadata',()=>{if(offset&&Number.isFinite(element.duration))element.currentTime=offset%element.duration;},{once:true});
+  try{await element.play();}catch(error){stopVoice(nextVoice);throw error;}
+ }else{
+  const buffer=await decode(next);
+  if(attempt!==request||!wanted)return;
+  const source=context.createBufferSource(),gain=context.createGain(),now=context.currentTime;
+  source.buffer=buffer;source.loop=true;gain.gain.value=0;source.connect(gain).connect(master);
+  nextVoice={source,gain,buffer,kind:next,offset:offset%buffer.duration,started:now};
+  source.start(now,nextVoice.offset);voices.add(nextVoice);
+ }
+ if(attempt!==request||!wanted){stopVoice(nextVoice);return;}
+ const old=voice,now=context.currentTime;remember(old);voice=nextVoice;
+ nextVoice.gain.gain.linearRampToValueAtTime(next==='maritime'?.12:settings.volume,now+(old?2.2:1.5));
+ if(old){
+  old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(old.gain.gain.value,now);old.gain.gain.linearRampToValueAtTime(0,now+2.2);
+  if(old.element)setTimeout(()=>stopVoice(old),2250);
+  else{old.source.stop(now+2.25);old.source.onended=()=>{old.gain.disconnect();voices.delete(old);};}
+ }
  playing=true;display();button.dataset.track=next;status.textContent='';if(next==='maritime')scheduleWave(true);
 }
 async function enable(){
@@ -136,7 +154,7 @@ if(desktopEligible()&&document.querySelector('.exhibition')){
   button=document.createElement('button');button.type='button';button.className='exhibition-sound';button.dataset.sound='';
   button.innerHTML='<img class="control-icon" src="/assets/exhibition/controls/sound.png" alt="" aria-hidden="true"><span></span>';
   status=document.createElement('span');status.className='exhibition-audio-status';status.setAttribute('role','status');document.body.append(button,status);document.body.classList.add('exhibition-landing');display();
-  decode(kind).then(()=>{button.dataset.audioReady='true';}).catch(()=>{});
+  if(kind==='gallery')decode(kind).then(()=>{button.dataset.audioReady='true';}).catch(()=>{});
   // Fetch other room soundtracks only when that room is selected.
   button.addEventListener('click',()=>wanted?disable():enable());
   document.addEventListener('exhibition-writing',event=>playWriting(event.detail));document.addEventListener('exhibition-writing-stop',stopWriting);

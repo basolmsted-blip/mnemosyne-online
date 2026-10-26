@@ -6,6 +6,19 @@ const wall=document.querySelector('[data-explore]');
 if(wall){
 
  const tabs=[...wall.querySelectorAll('[data-mode]')];
+ // Place the filters close to the bottom edge; thumbnails start below it.
+ if(tabs.length){
+  const scene=wall.querySelector('.explore-scene'),rail=wall.querySelector('.explore-tabs');
+  const fitEntry=()=>{
+   const inset=parseFloat(getComputedStyle(scene).paddingTop)||0;
+   const railBottom=rail.getBoundingClientRect().bottom+scrollY;
+   scene.style.setProperty('--explore-entry-top',Math.max(140,inset+innerHeight-24-railBottom)+'px');
+  };
+  const entryObserver=new ResizeObserver(fitEntry);
+  entryObserver.observe(wall.querySelector('.explore-heading'));entryObserver.observe(rail);
+  addEventListener('resize',fitEntry,{passive:true});document.fonts.ready.then(fitEntry);fitEntry();
+ }
+
  function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});wall.querySelector('.explore-content')?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(tab));tab.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==undefined){e.preventDefault();select(tabs[n]);tabs[n].focus();}});});
  wall.querySelectorAll('[data-return-topics]').forEach(button=>button.addEventListener('click',()=>{select(tabs[0]);tabs[0].focus();}));

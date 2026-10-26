@@ -12,7 +12,7 @@
   </div>
 
   <div class="explore-topics-reading" aria-label="Explore by topic">
-    <a class="explore-card" href="{{ '/topics/maritime-archaeology/' | relative_url }}"><span class="explore-art"><img src="{{ '/assets/exhibition/explore/maritime.png' | relative_url }}" alt="" width="600" height="591" loading="lazy"></span><span class="explore-label">Maritime Archaeology</span></a>
+    <a class="explore-card" href="{{ '/topics/maritime-archaeology/' | relative_url }}" aria-label="Explore Maritime Archaeology"><span class="explore-art"><img src="{{ '/assets/exhibition/explore/maritime.png' | relative_url }}" alt="" width="600" height="591" loading="lazy"></span></a>
   </div>
   {% assign featured_objects = site.objects_in_focus | sort: "number" | reverse %}
   {% if featured_objects.size > 0 %}
