@@ -84,7 +84,7 @@ body.exhibition-page.exhibition-landing>.exhibition-sound:hover,.room-button:hov
 .exhibition__controls [data-exit]:hover{background:rgba(53,48,37,.88);text-decoration:none}
 body.exhibition-page.exhibition-landing>.exhibition-audio-status{top:61px;right:230px;bottom:auto}
 .explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 420px),540px)}
-.explore-content{scroll-margin-top:76px}
+.explore-content{scroll-margin-top:76px;min-height:max(305px,calc(100svh - 76px))}
 .wayfinding--about{margin-left:18px}
 @media(max-width:700px){
  body.exhibition-page.exhibition-landing>.exhibition-sound{top:15px;right:224px}
