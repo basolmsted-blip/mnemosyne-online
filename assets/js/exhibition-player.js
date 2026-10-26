@@ -1,85 +1,150 @@
 import {desktopEligible, preference, exhibitionAudio as settings} from './exhibition-config.js?v=2';
 const nested=window.parent!==window;
-const track=new URL('../exhibition/awestruck.m4a',import.meta.url).href;
-let context, gain, buffer, source, loading, wanted=false, token=0, scratch, scratchGain;
-let button, status, startedAt=0, startOffset=0;
-let internalNavigation=false;
-try{startOffset=Number(sessionStorage.getItem('mnemosyne-audio-offset'))||0;}catch{}
-export function stopWriting(){
-  if(nested){parent.document.dispatchEvent(new CustomEvent('exhibition-writing-stop'));return;}
-  if(scratch){try{scratch.stop();}catch{} scratch=null;}
-  if(button)delete button.dataset.writingActive;
+const kindFor=url=>new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
+const tracks={gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.mp3',import.meta.url).href};
+const cache=new Map();
+let context,master,voice,wanted=false,request=0,button,status,scratch,waveTimer,waveSource,waveGain;
+let kind=kindFor(location.href),roomFrame,internalNavigation=false;
+const voices=new Set();
+function decode(kind){
+ if(!cache.has(kind)){
+  const Decoder=window.OfflineAudioContext||window.webkitOfflineAudioContext;
+  const decoder=new Decoder(2,1,48000);
+  const read=url=>fetch(url).then(r=>{if(!r.ok)throw new Error('Sound unavailable');return r.arrayBuffer();}).then(bytes=>decoder.decodeAudioData(bytes));
+  let result=read(tracks[kind]);
+  if(kind==='gallery')result=result.catch(()=>read(new URL('../exhibition/awestruck.wav',import.meta.url).href));
+  cache.set(kind,result.catch(error=>{cache.delete(kind);throw error;}));
+ }
+ return cache.get(kind);
 }
-export function playWriting(seconds){
-  if(nested){parent.document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:seconds}));return;}
-  stopWriting();
-  if(!wanted || context?.state!=='running') return;
-  // Original synthesized pencil friction: band-limited noise with irregular short strokes.
-  const length=Math.ceil(context.sampleRate*seconds), noise=context.createBuffer(1,length,context.sampleRate);
-  const samples=noise.getChannelData(0);
-  for(let i=0;i<length;i++){
-    const t=i/context.sampleRate, stroke=Math.max(0,Math.sin(t*48)+.3*Math.sin(t*91));
-    samples[i]=(Math.random()*2-1)*stroke*.025*Math.min(1,t*30,(seconds-t)*20);
-  }
-  scratch=context.createBufferSource();scratch.buffer=noise;
-  const filter=context.createBiquadFilter();filter.type='bandpass';filter.frequency.value=2200;filter.Q.value=.7;
-  scratchGain=context.createGain();scratchGain.gain.value=.45;
-  scratch.connect(filter).connect(scratchGain).connect(context.destination);
-  const strokeSource=scratch;if(button)button.dataset.writingActive='true';
-  strokeSource.onended=()=>{if(scratch===strokeSource){scratch=null;if(button)delete button.dataset.writingActive;}};
-  scratch.start();
+function display(resume=false){
+ if(!button)return;
+ button.querySelector('span').textContent=resume?'Sound On · resume':wanted?'Sound On':'Sound Off';
+ button.setAttribute('aria-pressed',String(wanted));
 }
-function prepareSoundtrack(){
-  // Decode quietly before the visitor clicks; playback still needs their gesture.
-  const OfflineEngine=window.OfflineAudioContext||window.webkitOfflineAudioContext;
-  const decoder=new OfflineEngine(2,1,48000);
-  const decode=url=>fetch(url).then(r=>{if(!r.ok)throw new Error('Audio unavailable');return r.arrayBuffer();}).then(data=>decoder.decodeAudioData(data));
-  return decode(track).catch(()=>decode(new URL('../exhibition/awestruck.wav',import.meta.url).href)).then(decoded=>{
-    buffer=decoded;if(button)button.dataset.audioReady='true';return decoded;
-  }).catch(()=>{loading=null;return null;});
+function remember(current){
+ if(!current)return;
+ try{sessionStorage.setItem('mnemosyne-audio-offset:'+current.kind,String((current.offset+context.currentTime-current.started)%current.buffer.duration));}catch{}
 }
-function display(){
-  button.textContent=wanted?'Sound On':'Sound Off';button.setAttribute('aria-pressed',String(wanted));
+function stopVoice(current){
+ if(!current)return;
+ try{current.source.stop();}catch{}
+ current.gain.disconnect();voices.delete(current);
+}
+async function selectTrack(next){
+ const attempt=++request;kind=next;stopWaves();
+ if(!wanted)return;
+ const buffer=await decode(next);
+ if(attempt!==request||!wanted)return;
+ if(voice?.kind===next){if(next==='maritime')scheduleWave(true);return;}
+ let offset=0;
+ try{offset=Number(sessionStorage.getItem('mnemosyne-audio-offset:'+next))||0;}catch{}
+ const source=context.createBufferSource(),gain=context.createGain(),now=context.currentTime;
+ source.buffer=buffer;source.loop=true;gain.gain.value=0;source.connect(gain).connect(master);
+ const nextVoice={source,gain,buffer,kind:next,offset:offset%buffer.duration,started:now};
+ const old=voice;remember(old);voice=nextVoice;voices.add(nextVoice);
+ source.start(now,nextVoice.offset);
+ gain.gain.linearRampToValueAtTime(next==='maritime'?.12:settings.volume,now+(old?2.2:1.5));
+ if(old){old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(old.gain.gain.value,now);old.gain.gain.linearRampToValueAtTime(0,now+2.2);old.source.stop(now+2.25);old.source.onended=()=>{old.gain.disconnect();voices.delete(old);};}
+ button.dataset.track=next;status.textContent='';if(next==='maritime')scheduleWave(true);
 }
 async function enable(){
-  wanted=true;const attempt=++token;display();preference.set('sound','on');
-  try{
-    if(!context){context=new (window.AudioContext||window.webkitAudioContext)();gain=context.createGain();gain.gain.value=0;gain.connect(context.destination);}
-    await context.resume();
-    if(context.state!=='running') throw new Error('Gesture required');
-    if(!buffer){status.textContent='Preparing soundtrack…';loading ||= prepareSoundtrack();buffer=await loading;if(!buffer)throw new Error('Audio unavailable');}
-    if(!wanted||attempt!==token)return;
-    if(!source){source=context.createBufferSource();source.buffer=buffer;source.loop=true;source.connect(gain);source.start(0,startOffset % buffer.duration);startedAt=context.currentTime;}
-    gain.gain.cancelScheduledValues(context.currentTime);gain.gain.setTargetAtTime(settings.volume,context.currentTime,.25);status.textContent='';
-  }catch{if(attempt!==token)return;wanted=false;display();button.textContent='Sound On · resume';status.textContent='Select sound to resume playback.';}
+ wanted=true;preference.set('sound','on');display();
+ try{
+  if(!context){context=new (window.AudioContext||window.webkitAudioContext)();master=context.createGain();master.gain.value=0;master.connect(context.destination);}
+  await context.resume();if(context.state!=='running')throw new Error('Gesture required');
+  master.gain.cancelScheduledValues(context.currentTime);master.gain.setTargetAtTime(1,context.currentTime,.2);
+  status.textContent=voice?'':'Preparing soundtrack…';await selectTrack(kind);
+ }catch{wanted=false;display(true);status.textContent='Select sound to resume playback.';}
 }
-function disable(){wanted=false;++token;stopWriting();preference.set('sound','off');display();status.textContent='';if(gain){gain.gain.cancelScheduledValues(context.currentTime);gain.gain.setTargetAtTime(0,context.currentTime,.12);}}
-if(!nested && desktopEligible() && document.querySelector('.exhibition')){
+function disable(){
+ wanted=false;++request;preference.set('sound','off');display();stopWriting();stopWaves();status.textContent='';
+ if(master){master.gain.cancelScheduledValues(context.currentTime);master.gain.setTargetAtTime(0,context.currentTime,.12);}
+}
+export function stopWriting(){
+ if(nested){parent.document.dispatchEvent(new CustomEvent('exhibition-writing-stop'));return;}
+ if(scratch){try{scratch.stop();}catch{}scratch=null;}
+ if(button)delete button.dataset.writingActive;
+}
+export function playWriting(seconds){
+ if(nested){parent.document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:seconds}));return;}
+ stopWriting();if(!wanted||context?.state!=='running')return;
+ const length=Math.ceil(context.sampleRate*seconds),noise=context.createBuffer(1,length,context.sampleRate),samples=noise.getChannelData(0);
+ for(let i=0;i<length;i++){const t=i/context.sampleRate,stroke=Math.max(0,Math.sin(t*48)+.3*Math.sin(t*91));samples[i]=(Math.random()*2-1)*stroke*.025*Math.min(1,t*30,(seconds-t)*20);}
+ scratch=context.createBufferSource();scratch.buffer=noise;
+ const filter=context.createBiquadFilter(),gain=context.createGain();filter.type='bandpass';filter.frequency.value=2200;filter.Q.value=.7;gain.gain.value=.45;
+ scratch.connect(filter).connect(gain).connect(context.destination);const current=scratch;button.dataset.writingActive='true';
+ current.onended=()=>{gain.disconnect();if(scratch===current){scratch=null;delete button.dataset.writingActive;}};current.start();
+}
+function stopWaves(){
+ clearTimeout(waveTimer);waveTimer=null;
+ if(waveSource){try{waveSource.stop();}catch{}waveSource=null;}
+ waveGain?.disconnect();waveGain=null;if(button)delete button.dataset.waveState;
+}
+function scheduleWave(first=false){
+ if(kind!=='maritime'||!wanted||waveTimer)return;
+ button.dataset.waveState='scheduled';waveTimer=setTimeout(()=>{waveTimer=null;playWave();},first?6500:26000+Math.random()*18000);
+}
+function playWave(){
+ if(kind!=='maritime'||!wanted||context?.state!=='running')return;
+ const duration=8.5+Math.random()*2,length=Math.ceil(context.sampleRate*duration),surf=context.createBuffer(2,length,context.sampleRate);
+ for(let channel=0;channel<2;channel++){const samples=surf.getChannelData(channel);let low=0;for(let i=0;i<length;i++){const white=Math.random()*2-1;low=(low+.025*white)/1.025;samples[i]=white*.25+low*2.8;}}
+ const t=context.currentTime;waveSource=context.createBufferSource();waveSource.buffer=surf;
+ const filter=context.createBiquadFilter();filter.type='lowpass';filter.frequency.setValueAtTime(420,t);filter.frequency.exponentialRampToValueAtTime(3200,t+2.1);filter.frequency.exponentialRampToValueAtTime(480,t+duration);
+ waveGain=context.createGain();waveGain.gain.setValueAtTime(.0001,t);waveGain.gain.exponentialRampToValueAtTime(.075,t+2.1);waveGain.gain.exponentialRampToValueAtTime(.022,t+4.5);waveGain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+ waveSource.connect(filter).connect(waveGain).connect(master);button.dataset.waveState='playing';const current=waveSource;
+ current.onended=()=>{if(waveSource===current){waveSource=null;waveGain?.disconnect();waveGain=null;if(wanted)scheduleWave();}};current.start();
+}
+function exit(url){
+ preference.set('mode','standard');try{sessionStorage.setItem('mnemosyne-standard-visit','yes');sessionStorage.removeItem('mnemosyne-exhibition-session');}catch{}
+ disable();location.assign(url.href);
+}
+function navigate(url,{push=true}={}){
+ if(url.origin!==location.origin||!url.pathname.startsWith('/exhibition/')){exit(url);return;}
+ stopWriting();internalNavigation=true;
+ // The top-level player survives room changes, so decoded loops can crossfade.
+ if(!roomFrame){
+  roomFrame=document.createElement('iframe');roomFrame.className='exhibition-page-frame';roomFrame.title='Mnemosyne exhibition room';
+  roomFrame.addEventListener('load',()=>{
+   try{document.title=roomFrame.contentDocument.title;roomFrame.contentDocument.querySelector('.exhibition')?.setAttribute('tabindex','-1');roomFrame.contentDocument.querySelector('.exhibition')?.focus({preventScroll:true});}catch{}
+   internalNavigation=false;
+  });document.body.append(roomFrame);
+ }
+ roomFrame.src=url.href;document.body.classList.add('exhibition-browsing');document.body.classList.toggle('explore-page',url.pathname.includes('/explore/'));
+ if(push)history.pushState({exhibitionRoom:true},'',url.href);
+ selectTrack(kindFor(url.href)).catch(()=>{status.textContent='Soundtrack unavailable. Select sound to retry.';});
+}
+function roomClick(event){
+ const link=event.target.closest('a[href]');
+ if(!link||event.defaultPrevented||link.target==='_blank'||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||link.hasAttribute('download'))return;
+ const url=new URL(link.href);if(url.origin!==location.origin)return;
+ if(url.pathname===location.pathname&&url.hash){return;}
+ if(url.pathname.startsWith('/exhibition/')){
+  event.preventDefault();
+  if(nested)parent.document.dispatchEvent(new CustomEvent('exhibition-navigate',{detail:url.href}));else navigate(url);
+ }else{
+  event.preventDefault();
+  if(nested)parent.document.dispatchEvent(new CustomEvent('exhibition-exit',{detail:url.href}));else exit(url);
+ }
+}
+if(desktopEligible()&&document.querySelector('.exhibition')){
+ document.querySelector('.exhibition').addEventListener('click',roomClick);
+ if(nested){
+  document.addEventListener('exhibition-writing',event=>parent.document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:event.detail})));
+  document.addEventListener('exhibition-writing-stop',()=>parent.document.dispatchEvent(new CustomEvent('exhibition-writing-stop')));
+ }else{
   button=document.createElement('button');button.type='button';button.className='exhibition-sound';button.dataset.sound='';
-  status=document.createElement('span');status.className='exhibition-audio-status';status.setAttribute('role','status');
-  document.body.append(button,status);display();document.body.classList.add('exhibition-landing');
-  loading=prepareSoundtrack();
+  button.innerHTML='<img class="control-icon" src="/assets/exhibition/controls/sound.png" alt="" aria-hidden="true"><span></span>';
+  status=document.createElement('span');status.className='exhibition-audio-status';status.setAttribute('role','status');document.body.append(button,status);document.body.classList.add('exhibition-landing');display();
+  decode(kind).then(()=>{button.dataset.audioReady='true';}).catch(()=>{});
+  decode(kind==='maritime'?'gallery':'maritime').catch(()=>{});
   button.addEventListener('click',()=>wanted?disable():enable());
-  document.addEventListener('exhibition-writing',e=>playWriting(e.detail));
-  document.addEventListener('exhibition-writing-stop',stopWriting);
-  if(preference.get('sound')==='on'){button.textContent='Sound On · resume';enable();}
-  // Standard destinations leave Exhibition Mode. No player or audio survives the visit.
-  const stop=()=>{disable();if(source){try{source.stop();}catch{}source=null;}context?.suspend();};
-  document.querySelector('.exhibition').addEventListener('click',event=>{
-    const link=event.target.closest('a[href]');
-    if(!link||event.defaultPrevented||link.target==='_blank'||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-    const url=new URL(link.href);
-    if(url.origin===location.origin && url.pathname.includes('/exhibition/')){
-      internalNavigation=true;
-      try{sessionStorage.setItem('mnemosyne-audio-offset',String(startOffset+(source?context.currentTime-startedAt:0)));}catch{}
-      if(!matchMedia('(prefers-reduced-motion: reduce)').matches){event.preventDefault();document.body.classList.add('room-leaving');setTimeout(()=>location.assign(url.href),450);}
-      return;
-    }
-    if(url.origin===location.origin){
-      try{sessionStorage.setItem('mnemosyne-standard-visit','yes');sessionStorage.removeItem('mnemosyne-exhibition-session');}catch{}
-      preference.set('mode','standard');stop();
-    }
-  });
-  window.addEventListener('pagehide',()=>{if(internalNavigation){stopWriting();context?.suspend();}else stop();});
-  window.addEventListener('pageshow',e=>{document.body.classList.remove('room-leaving');internalNavigation=false;if(e.persisted){wanted=false;if(preference.get('sound')==='on')enable();else display();}});
+  document.addEventListener('exhibition-writing',event=>playWriting(event.detail));document.addEventListener('exhibition-writing-stop',stopWriting);
+  document.addEventListener('exhibition-navigate',event=>navigate(new URL(event.detail)));
+  document.addEventListener('exhibition-exit',event=>exit(new URL(event.detail)));
+  window.addEventListener('popstate',()=>{if(roomFrame)navigate(new URL(location.href),{push:false});});
+  window.addEventListener('pagehide',()=>{remember(voice);stopWriting();stopWaves();for(const current of [...voices])stopVoice(current);voice=null;context?.suspend();});
+  window.addEventListener('pageshow',event=>{if(event.persisted&&preference.get('sound')==='on')enable();});
+  if(preference.get('sound')==='on')enable();
+ }
 }

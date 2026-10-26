@@ -90,7 +90,7 @@ export function writeNote(note,lines){
       const p=document.createElement('p');const accessible=document.createElement('span');accessible.className='note-accessible';accessible.textContent=text;p.append(accessible);
       for(const word of text.split(' ')){
         const span=document.createElement('span');span.className='word';span.setAttribute('aria-hidden','true');
-        for(const letter of word){const ink=document.createElement('span');ink.className='ink';ink.textContent=letter;ink.style.setProperty('--ink-delay',`${count++*14}ms`);span.append(ink);}
+        const ink=document.createElement('span');ink.className='ink';ink.textContent=word;ink.style.setProperty('--ink-delay',`${count*14}ms`);ink.style.animationDuration=`${Math.max(100,Array.from(word).length*14)}ms`;count+=Array.from(word).length;span.append(ink);
         p.append(span,document.createTextNode(' '));
       }
       note.append(p);

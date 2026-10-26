@@ -4,15 +4,21 @@ title: Maritime Archaeology
 permalink: /exhibition/explore/maritime-archaeology/
 explore_room: true
 ---
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="canoe-definition" color-interpolation-filters="sRGB" x="-2%" y="-2%" width="104%" height="104%"><feGaussianBlur in="SourceGraphic" stdDeviation="0.55" result="soft"/><feComposite in="SourceGraphic" in2="soft" operator="arithmetic" k1="0" k2="1.6" k3="-0.6" k4="0"/></filter></defs></svg>
 <main class="exhibition explore-room maritime-room" data-explore>
-  <div class="exhibition__scene explore-scene">
-    <div class="explore-installation">
-      <img class="maritime-emblem" src="{{ '/assets/exhibition/explore/maritime.png' | relative_url }}" alt="Illustration of an underwater archaeologist" width="600" height="591">
-      <header class="explore-heading"><p class="explore-welcome">Explore by Topic</p><h1>MARITIME ARCHAEOLOGY</h1><p class="explore-caption">Discover the traces of life on, beside, and beneath the sea.</p></header>
-      <section class="explore-panel collection-preview"><p class="explore-welcome">Coming to this collection</p><h2>A Stone, a Rope, and the Sea: A Brief Archaeology of Anchors</h2><p>This investigation is being prepared for publication.</p></section>
-      <a class="room-button" href="{{ '/exhibition/explore/' | relative_url }}">← Return to Topics</a>
-    </div>
+ <div class="exhibition__scene explore-scene">
+  <div class="maritime-copy">
+   <header class="explore-heading"><p class="explore-welcome">WELCOME TO THE HALL OF</p><h1>MARITIME<br>ARCHAEOLOGY</h1>
+   <p class="explore-caption">The sea has carried people, goods, and ideas across the world for millennia. Beneath its surface lie the traces of countless journeys: shipwrecks, lost cargoes, submerged settlements, and vessels that once connected distant shores. Explore the archaeology of a world shaped by water, and discover the stories that the sea has preserved.</p></header>
+
   </div>
-  <div class="exhibition__darkness" aria-hidden="true"></div><div class="exhibition__warmth" aria-hidden="true"></div>
-  {% include explore-controls.html %}
+  <aside class="maritime-note exhibition-note" aria-live="polite" hidden></aside>
+  <button class="room-object maritime-object" aria-label="Read about the Great Canoe" data-depth="38" data-displacement="36" data-softness="9" data-title="The Great Canoe" data-date="Western red cedar · Northwest Coast" data-origin="Haíɫzaqv and Haida artists · AMNH">
+   <img class="artifact__shadow" src="/assets/exhibition/maritime/great-canoe.png" alt="" aria-hidden="true">
+   <img class="artifact__image" src="/assets/exhibition/maritime/great-canoe.png" alt="Carved and painted prow of the Great Canoe, suspended by ropes">
+  </button>
+  <footer class="maritime-credit">Great Canoe · Photo: Tony Hisgett (Birmingham, UK) · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> · via Wikimedia Commons · Modified by Sebastian Olmsted.<br><a href="https://www.amnh.org/exhibitions/permanent/northwest-coast/great-canoe" target="_blank" rel="noopener">Object information: American Museum of Natural History</a><br>Music: <a href="https://pixabay.com/users/sergepavkinmusic-6130722/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=116172" target="_blank" rel="noopener">Sergii Pavkin</a> / <a href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=116172" target="_blank" rel="noopener">Pixabay</a>.</footer>
+ </div>
+ <div class="exhibition__darkness" aria-hidden="true"></div><div class="exhibition__warmth" aria-hidden="true"></div>
+ <nav class="explore-controls" aria-label="Exhibition controls"><a class="room-button" href="/exhibition/explore/">← Return to Explore</a><a class="room-button" data-exit href="/#explore">Exit Exhibition Mode</a></nav>
 </main>

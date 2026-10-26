@@ -1,7 +1,7 @@
 {% assign seo_description = page.seo_description | default: page.excerpt_text | default: page.subtitle | default: site.description | strip_html | normalize_whitespace %}
 {% assign seo_image = page.social_image | default: page.home_hero_image | default: page.hero_image | default: page.cover_art %}
 {% if page.title == 'Home' %}
-  {% assign seo_title = site.name | append: ' | Archaeology of Memory' %}
+  {% assign seo_title = site.name | append: ' | Archaeology Made Interactive' %}
 {% else %}
   {% assign seo_page_title = page.seo_title | default: page.title %}
   {% assign seo_title = seo_page_title | append: ' | ' | append: site.name %}

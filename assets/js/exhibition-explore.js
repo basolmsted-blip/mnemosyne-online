@@ -1,11 +1,10 @@
-import {installEyes} from './exhibition-eyes.js?v=6';
-import {writeNote} from './exhibition-notes.js?v=3';
+import {writeNote} from './exhibition-notes.js?v=20261026';
 // Route note sounds through the same shared player as the navigation room.
 const playWriting=seconds=>document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:seconds}));
 const stopWriting=()=>document.dispatchEvent(new CustomEvent('exhibition-writing-stop'));
 const wall=document.querySelector('[data-explore]');
 if(wall){
- installEyes(wall);
+
  const tabs=[...wall.querySelectorAll('[data-mode]')];
  function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});}
  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(tab));tab.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==undefined){e.preventDefault();select(tabs[n]);tabs[n].focus();}});});
@@ -13,7 +12,7 @@ if(wall){
 }
 
 
-const objects=[...document.querySelectorAll('.room-object')];
+const objects=[...document.querySelectorAll('.room-object:not(.maritime-object)')];
 objects.forEach((object,i)=>{
  const note=document.createElement('aside');note.className='exhibition-note room-object-note';note.id='room-object-note-'+i;note.hidden=true;note.setAttribute('role','note');wall.append(note);
  function position(){const width=Math.min(265,innerWidth*(innerWidth<900?.30:.28));note.style.width=width+'px';const b=object.getBoundingClientRect();const x=innerWidth*(innerWidth<900?.40:.43);note.style.left=Math.max(16,Math.min(innerWidth-width-16,x))+'px';note.style.top=Math.max(100,Math.min(innerHeight-note.offsetHeight-30,b.top+b.height*.46))+'px';}
@@ -22,6 +21,7 @@ objects.forEach((object,i)=>{
  // Inset the trigger by 12% on every side in the artwork's own coordinates.
  // Using the SVG transform keeps the tilted mask and scaled saber calibrated.
  const surface=object.querySelector('.mask-watch, .saber-art');
+ if(!surface){object.addEventListener('pointerenter',show);object.addEventListener('pointerleave',hide);}
  function updateHover(event){
   if(event.pointerType==='touch')return;
   const matrix=surface?.getScreenCTM();if(!matrix)return;

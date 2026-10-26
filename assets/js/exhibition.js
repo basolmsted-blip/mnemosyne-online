@@ -1,5 +1,5 @@
-import { playWriting, stopWriting } from './exhibition-player.js?v=5';
-import { installNotes } from './exhibition-notes.js?v=2';
+import { playWriting, stopWriting } from './exhibition-player.js?v=20261026';
+import { installNotes } from './exhibition-notes.js?v=20261026';
 import { exhibitionLighting as lighting, desktopEligible, preference } from './exhibition-config.js?v=2';
 const wall = document.querySelector('.exhibition');
 const home = document.body.dataset.home;
