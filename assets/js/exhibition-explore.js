@@ -1,4 +1,4 @@
-import {writeNote} from './exhibition-notes.js?v=20261026';
+import {writeNote} from './exhibition-notes.js?v=20261026b';
 // Route note sounds through the same shared player as the navigation room.
 const playWriting=seconds=>document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:seconds}));
 const stopWriting=()=>document.dispatchEvent(new CustomEvent('exhibition-writing-stop'));
@@ -6,7 +6,7 @@ const wall=document.querySelector('[data-explore]');
 if(wall){
 
  const tabs=[...wall.querySelectorAll('[data-mode]')];
- function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});}
+ function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});wall.querySelector('.explore-content')?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(tab));tab.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==undefined){e.preventDefault();select(tabs[n]);tabs[n].focus();}});});
  wall.querySelectorAll('[data-return-topics]').forEach(button=>button.addEventListener('click',()=>{select(tabs[0]);tabs[0].focus();}));
 }

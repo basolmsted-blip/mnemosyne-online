@@ -60,3 +60,46 @@ body.explore-page.exhibition-landing>.exhibition-sound{right:225px}
 .maritime-copy{pointer-events:none}.maritime-copy .explore-heading{pointer-events:auto}
 @font-face{font-family:'Mnemosyne Notes';src:url('/assets/fonts/mnemosyne-notes/mnemosyne-notes.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
 .maritime-room .maritime-note.exhibition-note{font-family:'Mnemosyne Notes','Caveat',cursive}
+
+/* Shared exhibition controls: keep labels and icons inside stable hit areas. */
+body.exhibition-page.exhibition-landing>.exhibition-sound,
+.exhibition__controls [data-exit],.explore-controls [data-exit]{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ height:40px;box-sizing:border-box;flex:none;white-space:nowrap;
+ padding:9px 12px;border:1px solid #bfb9a544;border-radius:8px;
+ background:rgba(32,30,25,.78);color:#e5dece;
+ font:500 12px/1.3 'Instrument Sans',sans-serif;letter-spacing:.025em;
+ text-decoration:none;
+}
+body.exhibition-page.exhibition-landing>.exhibition-sound{position:fixed;left:auto;right:230px;top:15px;bottom:auto;width:108px}
+.exhibition__controls,.explore-controls{top:15px;right:22px}
+.exhibition__controls [data-exit],.explore-controls [data-exit]{width:196px}
+.control-icon{display:block;flex:0 0 21px;width:21px;height:16px;margin:0;object-fit:contain}
+.exhibition-sound span{white-space:nowrap;flex:none}
+.room-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;white-space:nowrap;background:rgba(32,30,25,.78)}
+.explore-tabs .room-button{background:rgba(22,22,18,.78)}
+.explore-tabs [aria-selected=true]{background:rgba(55,49,38,.78)}
+.exhibition__sources button{background:rgba(55,49,38,.78);border-radius:5px}
+body.exhibition-page.exhibition-landing>.exhibition-sound:hover,.room-button:hover,
+.exhibition__controls [data-exit]:hover{background:rgba(53,48,37,.88);text-decoration:none}
+body.exhibition-page.exhibition-landing>.exhibition-audio-status{top:61px;right:230px;bottom:auto}
+.explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 420px),540px)}
+.explore-content{scroll-margin-top:76px}
+.wayfinding--about{margin-left:18px}
+@media(max-width:700px){
+ body.exhibition-page.exhibition-landing>.exhibition-sound{top:15px;right:224px}
+ .exhibition__controls,.explore-controls{top:15px;right:16px;left:16px}
+ .explore-controls a:not([data-exit]){position:absolute;left:0;top:50px;background:rgba(32,30,25,.78)}
+ body.exhibition-page.exhibition-landing>.exhibition-audio-status{right:16px;top:110px}
+}
+.explore-topics-reading{display:flex;justify-content:center;border-top:1px solid var(--line);margin-top:36px;padding-top:36px}
+.explore-topics-reading .explore-card{width:240px}
+.explore-topics-reading img{filter:brightness(0);width:210px;height:auto}
+.maritime-reading{max-width:1100px;margin:auto;padding:clamp(50px,9vw,120px) clamp(24px,6vw,80px)}
+.maritime-reading h1{font:700 clamp(36px,4.4vw,76px)/1.1 'Instrument Sans',sans-serif;letter-spacing:.015em;margin:0 0 24px}
+.maritime-reading .maritime-reading__caption{font:400 clamp(14px,1.04vw,15px)/1.85 'Instrument Sans',sans-serif;max-width:680px;margin:0}
+.maritime-reading__articles{margin-top:60px}
+.article-shell figure>.figure-credit{margin:0 0 10px}
+
+@media(max-width:700px){.explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 420px),380px)}}
+@media(max-width:480px){.explore-room:not(.maritime-room) .explore-scene{padding-top:clamp(140px,calc(100svh - 500px),300px)}}

@@ -70,9 +70,10 @@ Mario Napoli’s team had not encountered it by chance. The excavation formed pa
 Napoli understood the paintings as a rare original from the largely lost tradition of Greek monumental painting. Ancient authors preserved the names and reputations of Greek painters, while vase painting and later copies offered indirect evidence of their art. Here, by contrast, was a complete ensemble painted on architectural surfaces. The combination of figured walls and a decorated ceiling seemed unprecedented. The tomb entered scholarship as an almost singular survival, capable of filling a conspicuous absence in the history of Greek art.[^4]
 
 <figure class="wide-figure">
+  <small class="figure-credit">Photograph via Wikimedia Commons.</small>
   <p class="figure-label">Figure 1</p>
   <img src="{{ '/assets/images/articles/tomb-of-the-diver/temple-of-athena-paestum.jpg' | relative_url }}" alt="The standing columns and entablature of the Temple of Athena at Paestum">
-  <figcaption>The Temple of Athena at Paestum, c. 500 BCE. Monumental building projects sustained a local community of craftspeople whose skills may also have served rare elite funerary commissions. Photograph via Wikimedia Commons.</figcaption>
+  <figcaption>The Temple of Athena at Paestum, c. 500 BCE. Monumental building projects sustained a local community of craftspeople whose skills may also have served rare elite funerary commissions.</figcaption>
 </figure>
 
 Later excavation altered that picture. Other fifth-century frescoed burials were identified around Paestum. The Tomb of the Palmettes offered a particularly important comparison: its painted lid also used a framed ceiling scheme with corner palmettes. These tombs remained rare—Gabriel Zuchtriegel counts roughly ten frescoed examples among more than 800 sixth- and fifth-century burials—but they showed that painting a grave interior belonged to a local practice rather than an isolated foreign intrusion.[^5]
@@ -86,17 +87,19 @@ The discovery therefore became less isolated as the archaeological record expand
 Interpretation begins with the room itself. The two long walls establish its dominant social environment. Three couches extend across each wall above a broad red dado. Five men occupy either side: one figure reclines alone, followed by two pairs. All wear wreaths; more wreaths rest on the small tables beside them. Their bodies continually turn towards other bodies. Hands raise cups, hold instruments and touch companions. The scene is ordered without being still.[^7]
 
 <figure class="exhibition-plate">
+  <small class="figure-credit">Photograph via Wikimedia Commons.</small>
   <p class="figure-label">Figure 2</p>
   <img src="{{ '/assets/images/articles/tomb-of-the-diver/tomb-of-diver-north-wall.jpg' | relative_url }}" alt="Five men reclining on three couches, drinking, playing kottabos and interacting at a symposium">
-  <figcaption>North wall of the Tomb of the Diver. Three couches support five symposiasts engaged in <em>kottabos</em>, conversation and courtship. Museo Archeologico Nazionale di Paestum. Photograph via Wikimedia Commons.</figcaption>
+  <figcaption>North wall of the Tomb of the Diver. Three couches support five symposiasts engaged in <em>kottabos</em>, conversation and courtship. Museo Archeologico Nazionale di Paestum.</figcaption>
 </figure>
 
 On the north wall, the solitary symposiast prepares a *kottabos* throw, watching the wine lees in his *kylix*. Another player appears to have just flicked his cup. At the far end, a youth holds a lyre against his chest while an older companion reaches towards his head; the younger figure’s gesture has commonly been read as resistance or refusal. The actions resemble motifs on contemporary Attic red-figure pottery, but their arrangement creates a sustained environment rather than a sequence of isolated quotations.[^8]
 
 <figure class="exhibition-plate">
+  <small class="figure-credit">Photograph via Wikimedia Commons.</small>
   <p class="figure-label">Figure 3</p>
   <img src="{{ '/assets/images/articles/tomb-of-the-diver/tomb-of-diver-south-wall.jpg' | relative_url }}" alt="Five reclining men at a symposium, including a lyre player and a double-flute player">
-  <figcaption>South wall of the Tomb of the Diver. A lyre player, a conversing pair and two men making music occupy the three couches. Museo Archeologico Nazionale di Paestum. Photograph via Wikimedia Commons.</figcaption>
+  <figcaption>South wall of the Tomb of the Diver. A lyre player, a conversing pair and two men making music occupy the three couches. Museo Archeologico Nazionale di Paestum.</figcaption>
 </figure>
 
 The south wall has a different rhythm. A solitary lyre player looks back towards his companions. The central pair converse. On the last couch, a youth plays the double flute while the man beside him tips back his head in song. Music, wine, games, wreaths and erotic attention define the symposium as a particular form of male social life. The images do more than record a meal. They construct a community of cultivated leisure around the person placed in the grave.[^9]
@@ -104,12 +107,13 @@ The south wall has a different rhythm. A solitary lyre player looks back towards
 The short walls extend this room while changing its tempo. On the east, a nude, wreathed serving boy stands beside a table and krater. Wreaths encircle the vessel and rest on the table. On the west, three figures move: a flute girl leads, a nearly nude youth follows with a stole over his arms, and an older man in a *himation* advances with a staff. Unlike the reclining men, they are not settled into the chamber. They are passing through it.
 
 <figure class="comparison-plate">
+  <small class="figure-credit">Photographs via Wikimedia Commons.</small>
   <p class="figure-label">Figures 4 and 5</p>
   <div class="comparison-grid">
     <img src="{{ '/assets/images/articles/tomb-of-the-diver/tomb-of-diver-east-wall.jpg' | relative_url }}" alt="A wreathed attendant standing beside a large krater and table">
     <img src="{{ '/assets/images/articles/tomb-of-the-diver/tomb-of-diver-west-wall.jpg' | relative_url }}" alt="A flute player, a nearly nude youth and an older man moving in procession">
   </div>
-  <figcaption>The east wall’s still attendant and krater face the west wall’s moving group. Whether the latter depart from the symposium, approach it or enact another activity remains disputed. Museo Archeologico Nazionale di Paestum. Photographs via Wikimedia Commons.</figcaption>
+  <figcaption>The east wall’s still attendant and krater face the west wall’s moving group. Whether the latter depart from the symposium, approach it or enact another activity remains disputed. Museo Archeologico Nazionale di Paestum.</figcaption>
 </figure>
 
 Napoli understood the west-wall youth as the deceased leaving the banquet for the afterlife. Other readings have treated the group as a *komos*, an athletic scene or a transition in social status. The surviving forms do not settle the matter. Before assigning a destination, it is worth retaining the simpler visual fact: this is the point at which the painted cycle begins to move somewhere.
@@ -145,12 +149,13 @@ Other proposals find doctrine in the symposium. The egg held by a south-wall sym
 A different approach begins with ordinary visual culture. A diving youth on an amphora from Monte Abetone shows that the action itself was available as a genre motif. On this account, the Paestan workshop adapted a recognisable scene and changed its force through isolation, placement and funerary context. The absence of an exact parallel need not point to lost esoteric iconography. It may record artistic invention.[^14]
 
 <figure class="comparison-plate">
+  <small class="figure-credit">Photographs via Wikimedia Commons.</small>
   <p class="figure-label">Figure 6</p>
   <div class="comparison-grid">
     <img src="{{ '/assets/images/articles/tomb-of-the-diver/tomb-of-diver-cover.jpg' | relative_url }}" alt="The isolated Diver from the Tomb of the Diver at Poseidonia">
     <img src="{{ '/assets/images/articles/tomb-of-the-diver/tomb-of-hunting-and-fishing-diver-detail.jpg' | relative_url }}" alt="A diver among birds, boats and coastal activity in the Tomb of Hunting and Fishing at Tarquinia">
   </div>
-  <figcaption>The isolated Poseidonian Diver beside the diver from the Tomb of Hunting and Fishing at Tarquinia, c. 520 BCE. The comparison establishes a funerary precedent for diving while making the difference in setting and visual mood equally clear. Photographs via Wikimedia Commons.</figcaption>
+  <figcaption>The isolated Poseidonian Diver beside the diver from the Tomb of Hunting and Fishing at Tarquinia, c. 520 BCE. The comparison establishes a funerary precedent for diving while making the difference in setting and visual mood equally clear.</figcaption>
 </figure>
 
 Tonio Hölscher presses the literal possibility further. He warns against a “temptation of symbolism”: exceptional monuments can encourage exceptional explanations simply because they occur in tombs. The Tomb of Hunting and Fishing at Tarquinia places a diver among fishing, bird hunting and coastal activity. A late-Archaic *skyphos* from Rhitsona also depicts a nude youth diving. Hölscher relates such imagery to elite adolescent practice, homoerotic social environments and age transition rather than to the journey of a soul.[^15]

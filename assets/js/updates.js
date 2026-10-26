@@ -1,4 +1,4 @@
-import {writeNote} from '/assets/js/exhibition-notes.js?v=20261026';
+import {writeNote} from '/assets/js/exhibition-notes.js?v=20261026b';
 const icon=(name)=>{const i=document.createElement('img');i.className='control-icon';i.src='/assets/exhibition/controls/'+name+'.png';i.alt='';i.setAttribute('aria-hidden','true');return i;};
 function decorate(){
  document.querySelectorAll('.exhibition-sound').forEach(b=>{if(!b.querySelector('img'))b.prepend(icon('sound'));});
@@ -20,8 +20,8 @@ const figures=[...document.querySelectorAll('.article-shell figure')];
 if(figures.length){
  const modal=document.createElement('dialog');modal.className='figure-viewer';modal.setAttribute('aria-label','Enlarged article figure');modal.innerHTML='<div class="figure-viewer__tools"><span>Figure viewer</span><a download>Download image ↓</a><button type="button">Close ×</button></div><img class="figure-viewer__image" alt=""><figcaption></figcaption><div class="figure-viewer__credit"></div>';document.body.append(modal);
  modal.querySelector('button').onclick=()=>modal.close();modal.addEventListener('click',e=>{if(e.target===modal)modal.close();});
- figures.forEach(f=>{const imgs=[...f.querySelectorAll('img')];const caption=f.querySelector('figcaption')?.textContent||'';const original=f.classList.contains('banana-figure--original');
- if(original){const credit=document.createElement('small');credit.className='figure-credit';credit.textContent='Figure created by Sebastian Olmsted · Free to download and reuse without restrictions.';f.append(credit);}
- imgs.forEach((im,i)=>{if(im.closest('a,button'))return;const b=document.createElement('button');b.type='button';b.className='figure-enlarge';b.setAttribute('aria-label','Enlarge '+(im.alt||'figure')+(imgs.length>1?' · panel '+(i+1):''));im.before(b);b.append(im);b.onclick=()=>{const enlarged=modal.querySelector('img');enlarged.src=im.currentSrc||im.src;enlarged.alt=im.alt;modal.querySelector('a').href=im.currentSrc||im.src;modal.querySelector('figcaption').textContent=caption;modal.querySelector('.figure-viewer__credit').textContent=original?'Figure created by Sebastian Olmsted · No restrictions on reuse.':'Image credit and reuse terms: see the figure caption.';modal.showModal();};});
+ figures.forEach(f=>{const imgs=[...f.querySelectorAll('img')];const caption=f.querySelector('figcaption')?.textContent||'';const sourceCredit=f.querySelector('.figure-credit')?.textContent||'';const original=f.classList.contains('banana-figure--original');
+ if(original){const credit=document.createElement('small');credit.className='figure-credit';credit.textContent='Figure created by Sebastian Olmsted · Free to download and reuse without restrictions.';f.prepend(credit);}
+ imgs.forEach((im,i)=>{if(im.closest('a,button'))return;const b=document.createElement('button');b.type='button';b.className='figure-enlarge';b.setAttribute('aria-label','Enlarge '+(im.alt||'figure')+(imgs.length>1?' · panel '+(i+1):''));im.before(b);b.append(im);b.onclick=()=>{const enlarged=modal.querySelector('img');enlarged.src=im.currentSrc||im.src;enlarged.alt=im.alt;modal.querySelector('a').href=im.currentSrc||im.src;modal.querySelector('figcaption').textContent=caption;modal.querySelector('.figure-viewer__credit').textContent=original?('Figure created by Sebastian Olmsted · No restrictions on reuse. '+sourceCredit):(sourceCredit||'Image credit and reuse terms: see the figure caption.');modal.showModal();};});
  });
 }

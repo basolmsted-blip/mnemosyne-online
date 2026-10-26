@@ -3,7 +3,7 @@ const nested=window.parent!==window;
 const kindFor=url=>new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
 const tracks={gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.mp3',import.meta.url).href};
 const cache=new Map();
-let context,master,voice,wanted=false,request=0,button,status,scratch,waveTimer,waveSource,waveGain;
+let context,master,voice,wanted=false,playing=false,request=0,button,status,scratch,waveTimer,waveSource,waveGain;
 let kind=kindFor(location.href),roomFrame,internalNavigation=false;
 const voices=new Set();
 function decode(kind){
@@ -17,10 +17,10 @@ function decode(kind){
  }
  return cache.get(kind);
 }
-function display(resume=false){
+function display(){
  if(!button)return;
- button.querySelector('span').textContent=resume?'Sound On · resume':wanted?'Sound On':'Sound Off';
- button.setAttribute('aria-pressed',String(wanted));
+ button.querySelector('span').textContent=playing?'Sound On':'Sound Off';
+ button.setAttribute('aria-pressed',String(playing));
 }
 function remember(current){
  if(!current)return;
@@ -36,7 +36,7 @@ async function selectTrack(next){
  if(!wanted)return;
  const buffer=await decode(next);
  if(attempt!==request||!wanted)return;
- if(voice?.kind===next){if(next==='maritime')scheduleWave(true);return;}
+ if(voice?.kind===next){playing=true;display();status.textContent='';if(next==='maritime')scheduleWave(true);return;}
  let offset=0;
  try{offset=Number(sessionStorage.getItem('mnemosyne-audio-offset:'+next))||0;}catch{}
  const source=context.createBufferSource(),gain=context.createGain(),now=context.currentTime;
@@ -46,19 +46,19 @@ async function selectTrack(next){
  source.start(now,nextVoice.offset);
  gain.gain.linearRampToValueAtTime(next==='maritime'?.12:settings.volume,now+(old?2.2:1.5));
  if(old){old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(old.gain.gain.value,now);old.gain.gain.linearRampToValueAtTime(0,now+2.2);old.source.stop(now+2.25);old.source.onended=()=>{old.gain.disconnect();voices.delete(old);};}
- button.dataset.track=next;status.textContent='';if(next==='maritime')scheduleWave(true);
+ playing=true;display();button.dataset.track=next;status.textContent='';if(next==='maritime')scheduleWave(true);
 }
 async function enable(){
  wanted=true;preference.set('sound','on');display();
  try{
   if(!context){context=new (window.AudioContext||window.webkitAudioContext)();master=context.createGain();master.gain.value=0;master.connect(context.destination);}
-  await context.resume();if(context.state!=='running')throw new Error('Gesture required');
+  await context.resume();if(!wanted)return;if(context.state!=='running')throw new Error('Gesture required');
   master.gain.cancelScheduledValues(context.currentTime);master.gain.setTargetAtTime(1,context.currentTime,.2);
   status.textContent=voice?'':'Preparing soundtrack…';await selectTrack(kind);
- }catch{wanted=false;display(true);status.textContent='Select sound to resume playback.';}
+ }catch{wanted=false;playing=false;display();status.textContent='Select sound to resume playback.';}
 }
 function disable(){
- wanted=false;++request;preference.set('sound','off');display();stopWriting();stopWaves();status.textContent='';
+ wanted=false;playing=false;++request;preference.set('sound','off');display();stopWriting();stopWaves();status.textContent='';
  if(master){master.gain.cancelScheduledValues(context.currentTime);master.gain.setTargetAtTime(0,context.currentTime,.12);}
 }
 export function stopWriting(){
@@ -137,7 +137,7 @@ if(desktopEligible()&&document.querySelector('.exhibition')){
   button.innerHTML='<img class="control-icon" src="/assets/exhibition/controls/sound.png" alt="" aria-hidden="true"><span></span>';
   status=document.createElement('span');status.className='exhibition-audio-status';status.setAttribute('role','status');document.body.append(button,status);document.body.classList.add('exhibition-landing');display();
   decode(kind).then(()=>{button.dataset.audioReady='true';}).catch(()=>{});
-  decode(kind==='maritime'?'gallery':'maritime').catch(()=>{});
+  // Fetch other room soundtracks only when that room is selected.
   button.addEventListener('click',()=>wanted?disable():enable());
   document.addEventListener('exhibition-writing',event=>playWriting(event.detail));document.addEventListener('exhibition-writing-stop',stopWriting);
   document.addEventListener('exhibition-navigate',event=>navigate(new URL(event.detail)));
@@ -145,6 +145,7 @@ if(desktopEligible()&&document.querySelector('.exhibition')){
   window.addEventListener('popstate',()=>{if(roomFrame)navigate(new URL(location.href),{push:false});});
   window.addEventListener('pagehide',()=>{remember(voice);stopWriting();stopWaves();for(const current of [...voices])stopVoice(current);voice=null;context?.suspend();});
   window.addEventListener('pageshow',event=>{if(event.persisted&&preference.get('sound')==='on')enable();});
-  if(preference.get('sound')==='on')enable();
+  // A new document starts silent until a user gesture permits playback.
+  // Room navigation keeps this player alive and preserves playing audio.
  }
 }

@@ -11,6 +11,9 @@
     <a class="explore-card" href="{{ '/regions/americas/' | relative_url }}"><span class="explore-art"><img src="{{ '/assets/images/explore/americas.png' | relative_url }}" alt="" loading="lazy"></span><span class="explore-label">The Americas</span></a>
   </div>
 
+  <div class="explore-topics-reading" aria-label="Explore by topic">
+    <a class="explore-card" href="{{ '/topics/maritime-archaeology/' | relative_url }}"><span class="explore-art"><img src="{{ '/assets/exhibition/explore/maritime.png' | relative_url }}" alt="" width="600" height="591" loading="lazy"></span><span class="explore-label">Maritime Archaeology</span></a>
+  </div>
   {% assign featured_objects = site.objects_in_focus | sort: "number" | reverse %}
   {% if featured_objects.size > 0 %}
   <section class="objects-carousel" aria-labelledby="objects-carousel-title" data-objects-carousel>
