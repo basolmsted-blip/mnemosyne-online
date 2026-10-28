@@ -1879,3 +1879,6 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.15 !important; }
   .object-hotspot,
   .object-hotspot span { transition: none; animation: none; }
 }
+
+.recent-strip__copy h3{max-width:none;text-wrap:wrap;overflow-wrap:normal}
+.recent-strip__image img[src*="featured-artifact"]{object-fit:contain}

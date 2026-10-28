@@ -99,9 +99,9 @@ seo_description: "Mnemosyne Archaeology publishes illustrated, rigorously resear
       <div class="recent-strip__grid">
         {% for post in site.posts limit:4 %}
         <article class="recent-strip__item">
-          {% if post.hero_image %}
+          {% assign recent_image = post.thumbnail_image | default: post.hero_image %}{% if recent_image %}
           <a class="recent-strip__image" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
-            <img src="{{ post.hero_image | relative_url }}?v=15" alt="" loading="lazy" width="360" height="270">
+            <img src="{{ recent_image | relative_url }}?v=15" alt="" loading="lazy" width="360" height="270">
           </a>
           {% endif %}
           <div class="recent-strip__copy">

@@ -1,7 +1,7 @@
 import {desktopEligible, preference, exhibitionAudio as settings} from './exhibition-config.js?v=2';
 const nested=window.parent!==window;
-const kindFor=url=>new URL(url,location.href).pathname.match(/nubiology|who-made-kermas-blue/)?'nubia':new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
-const tracks={nubia:new URL('../exhibition/nubia/ambience.mp3',import.meta.url).href,gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.m4a',import.meta.url).href};
+const kindFor=url=>new URL(url,location.href).pathname.includes('/egyptology/')?'egypt':new URL(url,location.href).pathname.match(/nubiology|who-made-kermas-blue/)?'nubia':new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
+const tracks={egypt:new URL('../exhibition/egypt/ambience.mp3',import.meta.url).href,nubia:new URL('../exhibition/nubia/ambience.mp3',import.meta.url).href,gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.m4a',import.meta.url).href};
 const cache=new Map();
 let context,master,voice,wanted=false,playing=false,request=0,button,status,scratch,waveTimer,waveSource,waveGain;
 let kind=kindFor(location.href),roomFrame,internalNavigation=false;
@@ -40,7 +40,7 @@ async function selectTrack(next){
  let offset=0;
  try{offset=Number(sessionStorage.getItem('mnemosyne-audio-offset:'+next))||0;}catch{}
  let nextVoice;
- if((next==='maritime'||next==='nubia')){
+ if(['maritime','nubia','egypt'].includes(next)){
   // Stream the nine-minute track instead of downloading and decoding it all.
   const element=new Audio(tracks[next]);element.loop=true;element.preload='auto';
   const source=context.createMediaElementSource(element),gain=context.createGain();
@@ -58,7 +58,7 @@ async function selectTrack(next){
  }
  if(attempt!==request||!wanted){stopVoice(nextVoice);return;}
  const old=voice,now=context.currentTime;remember(old);voice=nextVoice;
- nextVoice.gain.gain.linearRampToValueAtTime((next==='maritime'||next==='nubia')?.12:settings.volume,now+(old?2.2:1.5));
+ nextVoice.gain.gain.linearRampToValueAtTime(next==='egypt'?.08:(next==='maritime'||next==='nubia')?.12:settings.volume,now+(old?2.2:1.5));
  if(old){
   old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(old.gain.gain.value,now);old.gain.gain.linearRampToValueAtTime(0,now+2.2);
   if(old.element)setTimeout(()=>stopVoice(old),2250);

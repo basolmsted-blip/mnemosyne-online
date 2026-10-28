@@ -1,0 +1,6 @@
+---
+layout: default
+title: Egyptology
+permalink: /topics/egyptology/
+---
+<main id="main-content" class="maritime-reading"><div class="maritime-reading__intro"><header><h1>EGYPTOLOGY</h1><p class="maritime-reading__caption">Along the banks of the Nile, a civilization flourished for thousands of years, raising monumental temples, carving images of gods and kings, and preserving its stories in stone. From the great pyramids of the Old Kingdom to the painted chambers of the Valley of the Kings, explore the lives, beliefs, and remarkable achievements of ancient Egypt, and the archaeological discoveries that continue to illuminate its past.</p><p><a href="/exhibition/explore/egyptology/">Enter the exhibition →</a></p></header><img class="maritime-reading__thumbnail" src="/assets/exhibition/explore/egyptology-thumbnail.webp" alt="Egyptology emblem"></div><section class="maritime-reading__articles" aria-label="Egyptology articles">{% assign nubia_posts = site.posts | where_exp: "post", "post.topics contains 'egyptology'" %}{% for post in nubia_posts %}{% include region-article-item.html post=post %}{% endfor %}</section><p><a href="/#explore">Return to Explore →</a></p></main>

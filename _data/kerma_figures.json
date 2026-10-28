@@ -33,7 +33,7 @@
     "number": "III",
     "title": "Two Sides of Faience",
     "effect": "sides",
-    "image": "ESS001-fig-03-side-a.png",
+    "image": "ESS001-fig-03-side-a-display.webp",
     "original": "ESS001-fig-03-side-a.png",
     "width": 3338,
     "height": 2225,
@@ -43,7 +43,7 @@
     "source": "https://www.metmuseum.org/art/collection/search/329879",
     "rights": "Public Domain",
     "note": "Two documented faces of the same Egyptian spacer-bead. Select either side to examine its surface.",
-    "reverse": "ESS001-fig-03-side-b.png",
+    "reverse": "ESS001-fig-03-side-b-display.webp",
     "reverse_original": "ESS001-fig-03-side-b.png",
     "reverse_alt": "Side B of the same Egyptian faience spacer-bead: two winged deities protecting a lion-headed god"
   }

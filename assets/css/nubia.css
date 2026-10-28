@@ -114,3 +114,51 @@ body:not(.exhibition-page) .kerma-tags span,body:not(.exhibition-page) .kerma-by
 .kerma-exhibition .kerma-header h1{background-image:radial-gradient(circle 240px at var(--title-luster-x,50%) 50%,#f4f0df9c,transparent 100%),linear-gradient(#ddd3bb,#ddd3bb)}
 .kerma-exhibition .kerma-subtitle{color:#ddd3bb;text-shadow:0 0 16px #f4edda22}
 @media(max-width:760px){.kerma-header h1,.kerma-exhibition .kerma-header h1{font-size:clamp(40px,8.2vw,64px)}.kerma-header .kerma-byline{font-size:9px;letter-spacing:.09em}.kerma-tags{gap:6px}.kerma-tags span{font-size:9px;padding:6px 9px;min-height:28px}.kerma-title-divider{margin:24px auto}.kerma-subtitle{font-size:20px}}
+
+/* October 28 corrections preview. */
+.egypt-room .explore-scene{background-image:url('/assets/exhibition/egypt/background.webp')}
+.egypt-room .nubia-object.room-object{height:530px}
+.egypt-room .nubia-display{padding-bottom:0}
+.topic-gallery{grid-template-columns:repeat(3,minmax(0,240px));gap:36px}
+.kerma-continue{margin:60px 0 40px;padding:30px 0;border-top:1px solid #a79c7e66;border-bottom:1px solid #a79c7e66}
+.kerma-continue h2{font:500 34px/1.2 'EB Garamond',serif;text-align:center}
+.kerma-continue>div{display:flex;justify-content:center;gap:35px}
+.kerma-continue a{display:block;width:min(42%,240px);text-align:center;text-decoration:none}
+.kerma-continue img{display:block;width:100%;height:auto}
+.kerma-continue span{font:12px/1.5 'Instrument Sans',sans-serif}
+@media(max-width:800px){.egypt-room .nubia-object.room-object{height:340px}.topic-gallery{grid-template-columns:repeat(2,minmax(0,240px));gap:24px}}
+
+/* Dark stone backdrop and larger Amun portrait. */
+.egypt-room .explore-scene{background-image:linear-gradient(rgba(3,6,4,.55),rgba(3,6,4,.55)),url('/assets/exhibition/egypt/background-01.webp');background-size:100% auto;background-repeat:repeat-y;border:0;outline:0}
+.egypt-room .nubia-object.room-object{height:650px}
+.egypt-room .explore-scene::before,.egypt-room .explore-scene::after{display:none}
+@media(max-width:800px){.egypt-room .nubia-object.room-object{height:430px}}
+.egypt-room .egypt-object .artifact__image{filter:brightness(.78)}
+
+/* Two monumental portraits frame a quiet central introduction. */
+.egypt-room .explore-scene{padding:0 0 35px;overflow:hidden}
+.egypt-room .egypt-intro{display:flex;position:relative;min-height:max(800px,100svh);max-width:none;justify-content:center;align-items:center;isolation:isolate;margin:0;padding:100px 0 65px}
+.egypt-room .egypt-intro .explore-heading{position:relative;width:42%;max-width:640px;margin:0;z-index:2;text-align:left;padding:0}
+.egypt-room .egypt-intro .explore-heading h1{font-size:clamp(36px,4.4vw,76px);white-space:nowrap}
+.egypt-room .egypt-intro .explore-caption{max-width:none}
+.egypt-room .egypt-display{position:absolute;top:0;bottom:0;width:50vw;margin:0;padding:0;z-index:1}
+.egypt-room .egypt-display--left{left:-25vw}
+.egypt-room .egypt-display--right{right:-25vw}
+.egypt-room .egypt-display .egypt-object{height:100%;width:100%;position:absolute;inset:0}
+.egypt-room .egypt-display .artifact__image,.egypt-room .egypt-display .artifact__shadow{width:100%;height:100%;inset:0;object-fit:contain;object-position:center}
+.egypt-room .nubia-label-space{height:150px;margin:0 0 25px;position:relative}
+.egypt-room .nubia-note.exhibition-note{position:absolute;inset:0;width:100%;margin:0;transform:rotate(-2deg);display:flex;flex-direction:column;justify-content:center}
+.egypt-room .nubia-note[hidden]{display:none}
+.egypt-room .nubia-note p:first-child{font-size:25px}
+.egypt-room .nubia-note p{font-size:20px;line-height:1.25}
+.egypt-room .nubia-collection{position:relative;margin:30px auto 55px;width:88%}
+.egypt-room .nubia-credit{margin:0 6vw}
+@media(max-width:800px){.egypt-room .egypt-intro{min-height:900px;padding:90px 0 70px;align-items:center}.egypt-room .egypt-intro .explore-heading{width:66%;max-width:540px}.egypt-room .egypt-intro .explore-heading h1{font-size:clamp(27px,5.7vw,46px)}.egypt-room .egypt-intro .explore-caption{font-size:13px;line-height:1.8}.egypt-room .egypt-display{width:65vw;opacity:.7}.egypt-room .egypt-display--left{left:-49vw}.egypt-room .egypt-display--right{right:-49vw}.egypt-room .nubia-label-space{height:165px;margin:0 0 22px}.egypt-room .nubia-note p:first-child{font-size:22px}.egypt-room .nubia-note p{font-size:18px}}
+/* Larger portraits, with the right crown raised slightly. */
+.egypt-room .egypt-display{width:60vw;top:-16%;bottom:-5%}
+.egypt-room .egypt-display--left{left:-32vw}
+.egypt-room .egypt-display--right{right:-32vw;top:-20%;bottom:-1%}
+@media(max-width:800px){.egypt-room .egypt-display{width:78vw;top:-10%;bottom:-5%}.egypt-room .egypt-display--left{left:-60vw}.egypt-room .egypt-display--right{right:-60vw;top:-14%;bottom:-1%}}
+.egypt-room .egypt-display--left{left:-29vw}
+.egypt-room .egypt-display--right{right:-29vw}
+@media(max-width:800px){.egypt-room .egypt-display--left{left:-58vw}.egypt-room .egypt-display--right{right:-58vw}}
