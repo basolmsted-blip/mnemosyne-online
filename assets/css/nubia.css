@@ -1,0 +1,116 @@
+/* October review: compact controls and a stable shared top rail. */
+.exhibition__controls [data-exit],.explore-controls [data-exit]{width:auto;padding:9px 10px;gap:6px}
+.explore-controls{align-items:center;gap:12px;left:22px;right:22px;top:15px}
+body.explore-page.exhibition-landing>.exhibition-sound{right:201px}
+.explore-tabs{scroll-margin-top:76px}
+.topic-gallery{grid-template-columns:repeat(2,minmax(0,240px));gap:48px}
+.explore-topics-reading{gap:36px;flex-wrap:wrap}
+@media(max-width:700px){.explore-controls{left:12px;right:12px;gap:6px}.explore-controls a:not([data-exit]){position:static;font-size:10px;padding:8px;min-height:40px}.explore-controls [data-exit]{font-size:10px;padding:8px;gap:4px}body.explore-page.exhibition-landing>.exhibition-sound{top:65px;right:12px;width:100px;height:36px;font-size:10px}.explore-controls a .control-icon{width:14px;flex-basis:14px}.explore-tabs{scroll-margin-top:115px}.topic-gallery{gap:24px}.explore-topics-reading{gap:12px}}
+/* Nubiology retains the gallery's light, fonts, labels and controls. */
+.nubia-room .explore-scene{background:#30302c url('/assets/exhibition/nubia/background.webp') center top/100% auto repeat-y;min-height:100svh;padding:100px 6vw 35px}
+.nubia-intro{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:5vw;max-width:1400px;margin:auto}
+.nubia-display{position:relative;padding-bottom:130px}
+.nubia-object.room-object{position:relative;inset:auto;transform:none;width:100%;height:590px;--object-tilt:0deg;display:block}
+.nubia-object .artifact__image,.nubia-object .artifact__shadow{object-fit:contain;object-position:center}
+.nubia-room .explore-heading h1{font-size:clamp(36px,4.4vw,76px);margin:14px 0 26px;overflow-wrap:normal}
+.nubia-room .explore-caption{font-size:15px;line-height:1.85;margin:0;max-width:540px}
+.nubia-room .explore-welcome{font:300 clamp(12px,1.1vw,16px)/1.5 'Instrument Sans',sans-serif;letter-spacing:.12em}
+.nubia-note.exhibition-note{position:absolute;inset:auto 0 0;min-height:110px;transform:rotate(-2deg);font:500 23px/1.3 'Mnemosyne Notes','Caveat',cursive;color:#e3d1aa;background:none;text-align:center;margin:0;padding:10px 0;width:100%;pointer-events:none}
+.nubia-note p{margin:4px 0}.nubia-note p:first-child{font-size:29px}.nubia-note p:last-child{font-size:20px}.nubia-note[hidden]{display:none}
+.nubia-collection{max-width:1000px;margin:35px auto 70px}.nubia-collection .explore-content{min-height:300px}.nubia-credit{font:10px/1.8 'Instrument Sans',sans-serif;color:#bbb5a7;max-width:750px}.nubia-credit a{color:inherit}
+.kerma-card{display:flex;align-items:center;gap:40px;padding:40px;text-decoration:none;border-top:1px solid #bfb9a544;border-bottom:1px solid #bfb9a544;color:#e9e1d0;background:#18181455}.kerma-card img{width:180px;height:160px;object-fit:contain}.kerma-card span{font:11px/1.6 'Instrument Sans',sans-serif;letter-spacing:.12em}.kerma-card h2{font:500 38px/1.15 'EB Garamond',Georgia,serif!important;margin:10px 0!important}.kerma-card p{margin:12px 0!important}.kerma-card:hover{background:#18181488}
+@media(max-width:800px){.nubia-room .explore-scene{padding:125px 7vw 30px}.nubia-intro{grid-template-columns:1fr;gap:28px}.nubia-object.room-object{height:420px}.nubia-display{padding-bottom:110px}.nubia-room .explore-heading{max-width:600px;margin:auto}.nubia-room .explore-heading h1{font-size:clamp(35px,8vw,60px)}.nubia-note p:first-child{font-size:25px}.nubia-note p{font-size:19px}.nubia-note p:last-child{font-size:17px}.kerma-card{gap:24px;padding:24px}.kerma-card img{width:110px;height:100px}.kerma-card h2{font-size:28px!important}.nubia-collection .explore-tabs{gap:8px;flex-wrap:wrap}.nubia-collection .explore-tabs button{font-size:10px;min-width:70px}}
+/* One article, two presentations. */
+.kerma-article{max-width:1120px;margin:0 auto;padding:35px 28px 100px;color:#151515;font-family:'EB Garamond',Georgia,serif}
+.kerma-reading-controls{display:flex;justify-content:space-between;gap:20px;font:12px/1.4 'Inter',sans-serif;margin-bottom:35px}
+.kerma-header{text-align:center;position:relative;padding:25px 0 55px;margin-bottom:30px}
+.kerma-artifact{position:relative;width:290px;margin:0 auto 35px;display:flex;align-items:center;justify-content:center;gap:15px}
+.kerma-artifact-button{background:none;border:0;padding:0;cursor:pointer;display:block;width:240px}.kerma-artifact-button img{display:block;width:100%;height:170px;object-fit:contain}
+.kerma-plaque{position:absolute;left:calc(100% - 15px);top:63%;width:25px;height:13px;min-width:25px;padding:0;border:1px solid #bdbdb8;background:linear-gradient(135deg,#fafaf4,#c5c5bf 55%,#e7e7e0);cursor:pointer;box-shadow:1px 2px 3px #0004}
+.kerma-plaque:before{content:'';position:absolute;inset:-12px}.kerma-plaque span{display:none;position:absolute;top:20px;left:0;width:75px;font:12px/1.4 'Inter',sans-serif;background:#272820;color:#eee8d9;padding:5px;border-radius:3px}.kerma-plaque:hover span,.kerma-plaque:focus-visible span{display:block}
+.kerma-header h1{font:600 clamp(38px,5.4vw,70px)/1.08 'EB Garamond',Georgia,serif;letter-spacing:-.025em;margin:0 0 17px;color:inherit;text-wrap:balance}
+.kerma-subtitle{font:400 clamp(16px,1.7vw,23px)/1.5 'Inter','Instrument Sans',sans-serif;margin:0 auto 23px;max-width:850px;text-wrap:balance}
+.kerma-byline{font:12px/1.7 'Inter','Instrument Sans',sans-serif;margin:0;color:inherit}.kerma-byline a{color:inherit;text-decoration:none}
+.kerma-prose{max-width:760px;margin:auto;font:400 21px/1.75 'EB Garamond',Georgia,serif;color:inherit}.kerma-prose>p{margin:0 0 1.4em}.kerma-prose sup{font:11px 'Inter',sans-serif;vertical-align:super;margin-left:2px}.kerma-prose a{color:inherit}.kerma-prose>p:first-child:first-letter{float:left;font-size:68px;line-height:.9;padding:9px 9px 0 0}
+.kerma-figure{margin:45px 0;padding:20px;border:1px solid #d9d4c9;background:#eee8dc}.kerma-figure img{width:100%;max-height:530px;object-fit:contain}.kerma-figure figcaption{font:14px/1.65 'Inter',sans-serif;margin-top:16px}.kerma-figure .figure-credit{font:11px/1.6 'Inter',sans-serif;color:inherit;margin:14px 0 0}.kerma-references{border-top:1px solid #aaa5;padding-top:35px;margin-top:65px;font:14px/1.7 'Inter','Instrument Sans',sans-serif;overflow-wrap:anywhere}.kerma-references h2{font:500 34px 'EB Garamond',serif}.kerma-references p{scroll-margin-top:100px}.kerma-label{position:fixed;border:1px solid #aaa7;background:#f5f1e8;color:#171715;width:min(580px,calc(100vw - 40px));max-height:85svh;overflow:auto;padding:35px;font:16px/1.65 'Inter','Instrument Sans',sans-serif;border-radius:4px}.kerma-label::backdrop{background:#0009;backdrop-filter:blur(5px)}.kerma-label h2{font:500 35px/1.2 'EB Garamond',Georgia,serif;margin:24px 0}.kerma-label .eyebrow{font:11px/1.5 'Inter',sans-serif;letter-spacing:.12em}.label-close{display:block;margin-left:auto;background:none;border:0;color:inherit;cursor:pointer}.label-context{font-size:12px;border-top:1px solid #aaa5;padding-top:20px}
+.kerma-exhibition.exhibition{height:auto;min-height:100svh;overflow:clip;background:#252722 url('/assets/exhibition/nubia/background.webp') center top/100% auto repeat-y}
+.kerma-exhibition .kerma-article{color:#eee9de;padding-top:85px}.kerma-exhibition .kerma-header:before,.kerma-exhibition .kerma-header:after{content:'';position:absolute;pointer-events:none;inset:-25px -8%;background:radial-gradient(ellipse at 35% 35%,#fbe3a521,transparent 49%);z-index:-1}.kerma-exhibition .kerma-header:after{background:radial-gradient(ellipse at 68% 65%,#fff1c51c,transparent 48%)}
+.kerma-exhibition .kerma-header{isolation:isolate}.kerma-exhibition .kerma-header h1,.kerma-exhibition .kerma-subtitle{text-shadow:0 0 25px #ffe7a833;color:#f3ebd9}.kerma-exhibition .kerma-artifact-button img{filter:drop-shadow(15px 16px 7px #000a) drop-shadow(-8px 10px 5px #0008)}
+.kerma-exhibition .kerma-figure{background:#15171466;border-color:#bfb9a533}.kerma-exhibition .kerma-label{background:#181b18ed;color:#eee9de}.kerma-exhibition .figure-viewer{background:#181b18ed;color:#eee9de;border-color:#bfb9a555}.kerma-exhibition .figure-credit{color:inherit}
+/* Shared evidence state with theme-specific surfaces. */
+.kerma-investigation{--iv-bg:#f6f3ed;--iv-panel:#ece8df;--iv-text:#252a28;--iv-muted:#555d58;--iv-accent:#337f83;--iv-border:#d9d4c9;color:var(--iv-text);background:var(--iv-bg);border:1px solid var(--iv-border);margin:55px -70px;padding:32px;font:15px/1.7 'Inter','Instrument Sans',sans-serif;scroll-margin-top:90px}
+.kerma-exhibition .kerma-investigation{--iv-bg:#171b18e8;--iv-panel:#292e2bd9;--iv-text:#eee9de;--iv-muted:#b9b8ac;--iv-accent:#82b7b3;--iv-border:#b89c6d55}
+.kerma-investigation h2{font:500 clamp(28px,3vw,40px)/1.15 'EB Garamond',Georgia,serif;margin:7px 0 20px}.kerma-investigation h3{font:500 26px/1.25 'EB Garamond',Georgia,serif;margin:0 0 18px}.investigation-eyebrow,.evidence-count{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--iv-muted)}
+.investigation-layout{display:grid;grid-template-columns:1.15fr 1fr;gap:30px;align-items:start}.evidence-visual{background:var(--iv-panel);padding:22px;min-height:280px;display:flex;flex-direction:column;justify-content:center;gap:15px;border:1px solid var(--iv-border)}.evidence-visual svg{width:100%;max-height:260px}.evidence-visual p{font-size:11px;line-height:1.6;text-align:center;margin:0;color:var(--iv-muted)}.evidence-panel p{margin:0 0 16px}.investigation-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.kerma-investigation button{background:transparent;color:var(--iv-text);border:1px solid var(--iv-border);border-radius:3px;padding:11px 14px;font:12px/1.4 'Inter','Instrument Sans',sans-serif;cursor:pointer;min-height:42px}.kerma-investigation button:hover:not(:disabled){background:var(--iv-panel)}.kerma-investigation button:disabled{opacity:.4;cursor:default}.kerma-investigation button.primary{background:var(--iv-text);color:var(--iv-bg);border-color:var(--iv-text)}.kerma-exhibition .kerma-investigation button.primary{color:#171b18}.kerma-investigation [hidden]{display:none!important}.kerma-investigation button:focus-visible{outline:2px solid var(--iv-accent);outline-offset:4px}.evidence-interpretation{padding-top:18px;border-top:1px solid var(--iv-border);margin-top:18px}.evidence-takeaway{font-weight:500;color:var(--iv-accent)}.investigation-disclaimer{font-size:11px;line-height:1.65;color:var(--iv-muted);border-top:1px solid var(--iv-border);margin-top:24px;padding-top:15px}.investigation-disclaimer summary{cursor:pointer}.investigation-disclaimer a{color:inherit}.evidence-progress{display:flex;gap:6px;margin:15px 0 25px}.evidence-progress span{flex:1;height:3px;background:var(--iv-border)}.evidence-progress span[data-done]{background:var(--iv-accent)}.kerma-exhibition .evidence-visual{background:radial-gradient(ellipse at 50% 0,#d8bd8726,transparent 75%),var(--iv-panel)}
+@media(max-width:1000px){.kerma-investigation{margin:45px 0}}@media(max-width:600px){.kerma-article{padding-inline:22px}.kerma-header{padding-top:15px}.kerma-prose{font-size:19px}.kerma-exhibition .kerma-article{padding-top:125px}.kerma-investigation{padding:22px 18px}.investigation-layout{grid-template-columns:1fr;gap:25px}.evidence-visual{min-height:220px}.kerma-figure{padding:12px}.kerma-label{padding:22px}.kerma-artifact{width:250px}.kerma-artifact-button{width:210px}.kerma-subtitle{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.kerma-investigation *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.kerma-exhibition.exhibition{background-image:linear-gradient(#11150fd9,#11150fd9),url('/assets/exhibition/nubia/background.webp')}
+/* Review adjustment: near-black stone with only a trace of the wall texture. */
+.nubia-room .explore-scene{background-image:linear-gradient(rgba(3,6,4,.86),rgba(3,6,4,.86)),url('/assets/exhibition/nubia/background.webp');background-color:#060906}
+.kerma-exhibition.exhibition{background-image:linear-gradient(rgba(3,6,4,.96),rgba(3,6,4,.96)),url('/assets/exhibition/nubia/background.webp');background-color:#060906}
+.nubia-room .explore-heading h1{background-image:radial-gradient(circle 150px at calc(var(--light-x) - var(--title-left,0px)) calc(var(--light-y) - var(--title-top,0px)),rgba(255,232,178,calc(var(--light-strength)*.72)),transparent 100%),linear-gradient(#ddd3bb,#bcb29c);background-size:auto,auto}
+/* Fixed beams use the gallery flashlight's 220px radius and falloff stops. */
+.kerma-exhibition .kerma-header:before,.kerma-exhibition .kerma-header:after{inset:-30px -6%;background:none;z-index:-1}
+.kerma-exhibition .kerma-header:before{background:radial-gradient(circle 220px at 50% var(--artifact-beam-y,140px),rgba(255,236,196,.20) 0%,rgba(255,236,196,.17) 34%,rgba(255,221,160,.085) 60%,rgba(255,210,137,.018) 87%,transparent 115%)}
+.kerma-exhibition .kerma-header:after{background:radial-gradient(circle 220px at 50% var(--title-beam-y,350px),rgba(255,236,196,.20) 0%,rgba(255,236,196,.17) 34%,rgba(255,221,160,.085) 60%,rgba(255,210,137,.018) 87%,transparent 115%)}
+.kerma-exhibition .kerma-header h1,.kerma-exhibition .kerma-subtitle{color:#f4ead2;text-shadow:0 0 14px #ffe4a72b}
+/* Review: compact gallery, handwritten labels and textured title luster. */
+.nubia-display{padding-bottom:0}
+.nubia-intro{align-items:center}
+.nubia-label-space{height:145px;position:relative;margin-top:-100px;margin-bottom:25px}
+.nubia-room .nubia-note.exhibition-note{inset:auto 0 0;text-align:left;width:100%;padding:0;transform:rotate(-2deg);font-size:21px;min-height:0}
+.nubia-room .nubia-note p:first-child{font-size:27px}.nubia-room .nubia-note p:last-child{font-size:19px}
+.nubia-collection{margin:0 auto 55px}
+.kerma-card{gap:35px;padding:30px 35px}
+.kerma-card h2{font-size:42px!important}
+.kerma-card .kerma-card-description{font-size:13px;line-height:1.8;max-width:650px;margin:18px 0 23px!important}
+.kerma-byline{display:flex;justify-content:space-between;gap:24px;width:100%;max-width:900px;margin:25px auto 0;text-align:left}
+.kerma-byline time{white-space:nowrap;text-align:right}
+.kerma-prose{font-size:18px;line-height:1.8}
+.kerma-prose>p:first-child:first-letter{float:none;font-size:inherit;line-height:inherit;padding:0}
+.kerma-figure .figure-credit{display:block;margin-top:28px;padding-top:18px;border-top:1px solid #b4aa9633;text-align:left}
+.kerma-exhibition.exhibition,.nubia-room .explore-scene{background-image:linear-gradient(#030604e8,#030604e8),url('/assets/exhibition/nubia/background.webp');background-size:auto,100vw auto;background-position:center top;background-repeat:repeat,repeat-y}
+.kerma-exhibition .kerma-header:before,.kerma-exhibition .kerma-header:after{content:none}
+.kerma-exhibition:before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle 215px at var(--artifact-beam-x,50%) var(--artifact-beam-y,195px),rgba(255,194,103,.25) 0%,rgba(255,187,91,.19) 27%,rgba(255,179,76,.10) 55%,rgba(255,165,58,.035) 78%,transparent 100%),radial-gradient(circle 260px at var(--title-beam-x,50%) var(--title-beam-y,440px),rgba(255,203,122,.23) 0%,rgba(255,192,102,.17) 28%,rgba(255,178,77,.085) 58%,rgba(255,162,53,.025) 82%,transparent 100%)}
+.kerma-exhibition .kerma-article{position:relative;z-index:1}
+.kerma-exhibition .kerma-header h1{font:700 clamp(42px,5.8vw,78px)/1.12 'Instrument Sans',sans-serif;letter-spacing:.015em;color:#bcb5a4;background-image:radial-gradient(circle 220px at var(--title-luster-x,50%) 50%,#ffedc2cc,transparent 100%),linear-gradient(#bcb4a2b8,#bcb4a2b8),url('/assets/exhibition/nubia/background.webp');background-size:auto,auto,100vw auto;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none}
+.kerma-exhibition .kerma-subtitle{text-shadow:0 0 16px #ffc47722;color:#e9dcc1}
+.kerma-label-space{height:0;position:relative}
+.kerma-exhibition .kerma-label-space{height:142px;margin:-10px auto 30px;max-width:650px}
+.kerma-handwritten.exhibition-note{position:absolute;inset:0;width:100%;background:none;transform:rotate(-2deg);font:500 22px/1.3 'Mnemosyne Notes','Caveat',cursive;color:#e3d1aa;text-align:center;padding:10px 0;margin:0;pointer-events:auto}
+.kerma-handwritten.exhibition-note p{margin:5px 0;font-size:21px}.kerma-handwritten.exhibition-note p:first-child{font-size:28px}.kerma-handwritten.exhibition-note p:last-child{font-size:19px}
+.kerma-handwritten[hidden]{display:none}
+@media(max-width:800px){.nubia-label-space{margin:0 0 22px;height:125px}.nubia-room .nubia-note.exhibition-note{text-align:center;font-size:19px}.nubia-room .nubia-note p:first-child{font-size:24px}.nubia-collection{margin-top:32px}.kerma-card{padding:25px 20px;gap:22px}.kerma-card h2{font-size:32px!important}}
+@media(max-width:600px){.kerma-prose{font-size:17px}.kerma-exhibition .kerma-header h1{font-size:clamp(35px,7.6vw,46px)}.kerma-byline{font-size:11px;gap:16px}.kerma-exhibition .kerma-label-space{height:130px;margin-bottom:22px}.kerma-handwritten.exhibition-note p{font-size:18px}.kerma-handwritten.exhibition-note p:first-child{font-size:23px}.kerma-handwritten.exhibition-note p:last-child{font-size:17px}.kerma-card{align-items:flex-start}.kerma-card img{width:85px;height:100px}.kerma-card .kerma-card-description{font-size:12px}}
+.kerma-label-details{display:inline-block;background:none;border:0;border-bottom:1px solid #bdae8c66;color:#c7bea9;font:10px/1.5 'Instrument Sans',sans-serif;letter-spacing:.07em;padding:0 0 2px;margin-top:8px;cursor:pointer}
+.kerma-card .kerma-card-subtitle{font:400 16px/1.65 'Instrument Sans',sans-serif;margin:12px 0!important}
+.kerma-card .kerma-card-description{font:400 12px/1.8 'Instrument Sans',sans-serif;margin:16px 0 22px!important}
+@media(max-width:600px){.kerma-card .kerma-card-subtitle{font-size:14px}.kerma-card .kerma-card-description{font-size:11px}}
+.kerma-article .kerma-figure>.figure-credit{margin:28px 0 0;padding-top:18px;border-top:1px solid #b4aa9633}
+/* Hover label and restored editorial title. */
+.kerma-exhibition .kerma-header h1{font:600 clamp(42px,5.8vw,78px)/1.08 'EB Garamond',Georgia,serif;letter-spacing:-.025em;color:#ddd3bb;background-image:radial-gradient(circle 220px at var(--title-luster-x,50%) 50%,#ffedc27a,transparent 100%),linear-gradient(#ddd3bb,#ddd3bb);background-size:auto,auto}
+.kerma-exhibition .kerma-article,.kerma-exhibition .kerma-prose{color:#ddd3bb}
+.kerma-artifact{margin-bottom:22px}
+.kerma-exhibition .kerma-label-space,.kerma-label-space{position:absolute;left:calc(50% + 145px);top:45px;width:300px;max-width:calc(50% - 150px);height:0;margin:0;z-index:5}
+.kerma-handwritten.exhibition-note{inset:0 auto auto 0;width:100%;height:auto;text-align:left;font-size:19px;padding:10px 0}
+.kerma-handwritten.exhibition-note p{font-size:18px}.kerma-handwritten.exhibition-note p:first-child{font-size:25px}.kerma-handwritten.exhibition-note p:last-child{font-size:17px}
+.kerma-header .kerma-byline{width:var(--kerma-title-width,80%);max-width:100%;margin:25px auto 0}
+.kerma-title-text{display:inline}
+@media(max-width:760px){.kerma-exhibition .kerma-label-space,.kerma-label-space{top:30px;left:50%;transform:translateX(-50%);width:340px;max-width:calc(100% - 12px)}.kerma-handwritten.exhibition-note{padding:18px 22px;border:1px solid #b8ab8b55;border-radius:4px;background:#141710f5;box-shadow:0 8px 35px #0006;transform:rotate(-1deg);text-align:center}.kerma-exhibition .kerma-header h1{font-size:clamp(38px,7.6vw,58px)}.kerma-header .kerma-byline{gap:12px}.kerma-artifact{margin-bottom:18px}}
+.kerma-article:not(.kerma-exhibition .kerma-article) .kerma-handwritten{font-family:'EB Garamond',Georgia,serif}
+.kerma-handwritten .note-accessible{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+body:not(.exhibition-page) .kerma-handwritten.exhibition-note{color:#252820;background:#f5f1e8f5;border:1px solid #b8ab8b66;border-radius:4px;padding:16px;font-family:'EB Garamond',Georgia,serif}
+body:not(.exhibition-page) .kerma-label-details{color:#484d42}
+/* Reference-led title hierarchy, with a cooler ivory beam. */
+.kerma-header h1,.kerma-exhibition .kerma-header h1{font:500 clamp(46px,6.4vw,86px)/.99 'EB Garamond',Georgia,serif;letter-spacing:-.02em;margin:0 0 26px}
+.kerma-title-divider{width:88px;height:9px;margin:29px auto 27px;background:linear-gradient(45deg,transparent 42%,#a9775e 43% 57%,transparent 58%) center/9px 9px no-repeat,linear-gradient(#bdb49b66,#bdb49b66) center/100% 1px no-repeat}
+.kerma-subtitle{font:400 clamp(18px,2vw,25px)/1.35 'EB Garamond',Georgia,serif;max-width:760px;margin:0 auto 26px}
+.kerma-header .kerma-byline{margin-top:29px;font:600 11px/1.5 'Instrument Sans','Inter',sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#c3bca9}
+.kerma-byline a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:#b5aa8a66}
+.kerma-tags{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;list-style:none;max-width:900px;padding:0;margin:24px auto 0}
+.kerma-tags li{margin:0}.kerma-tags span{display:inline-flex;align-items:center;min-height:31px;padding:7px 12px;border:1px solid #bdb49b55;border-radius:999px;color:#c8c1ad;font:600 10px/1.15 'Instrument Sans','Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase}
+body:not(.exhibition-page) .kerma-tags span,body:not(.exhibition-page) .kerma-byline{color:#6b685f}
+.kerma-exhibition:before{background:radial-gradient(circle 230px at var(--artifact-beam-x,50%) var(--artifact-beam-y,195px),rgba(238,230,212,.33) 0%,rgba(237,228,207,.25) 27%,rgba(234,223,199,.14) 55%,rgba(229,217,190,.045) 78%,transparent 100%),radial-gradient(circle 285px at var(--title-beam-x,50%) var(--title-beam-y,440px),rgba(239,232,218,.31) 0%,rgba(237,230,212,.23) 28%,rgba(233,224,205,.12) 58%,rgba(228,217,194,.04) 82%,transparent 100%)}
+.kerma-exhibition .kerma-header h1{background-image:radial-gradient(circle 240px at var(--title-luster-x,50%) 50%,#f4f0df9c,transparent 100%),linear-gradient(#ddd3bb,#ddd3bb)}
+.kerma-exhibition .kerma-subtitle{color:#ddd3bb;text-shadow:0 0 16px #f4edda22}
+@media(max-width:760px){.kerma-header h1,.kerma-exhibition .kerma-header h1{font-size:clamp(40px,8.2vw,64px)}.kerma-header .kerma-byline{font-size:9px;letter-spacing:.09em}.kerma-tags{gap:6px}.kerma-tags span{font-size:9px;padding:6px 9px;min-height:28px}.kerma-title-divider{margin:24px auto}.kerma-subtitle{font-size:20px}}

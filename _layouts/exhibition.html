@@ -11,14 +11,16 @@
   <link rel="icon" href="{{ '/assets/images/mnemosyne-favicon-v3.png' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Instrument+Sans:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Caveat:wght@500&family=Instrument+Sans:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/exhibition.css' | relative_url }}?v=9">
-  <script type="module" src="{{ '/assets/js/exhibition.js' | relative_url }}?v=20261026preview2"></script>
+  {% if page.article_room %}<script type="module" src="/assets/js/exhibition-player.js?v=20261027"></script>{% else %}<script type="module" src="{{ '/assets/js/exhibition.js' | relative_url }}?v=20261026preview2"></script>{% endif %}
   {% if page.explore_room %}<link rel="stylesheet" href="{{ '/assets/css/exhibition-explore.css' | relative_url }}?v=7"><script type="module" src="{{ '/assets/js/exhibition-explore.js' | relative_url }}?v=20261026preview2"></script>{% endif %}
   <link rel="stylesheet" href="{{ "/assets/css/exhibition-player.css" | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/updates.css' | relative_url }}?v=20261026preview2">
 <script type="module" src="{{ '/assets/js/updates.js' | relative_url }}?v=20261026preview2"></script>
 {% if page.title == 'Maritime Archaeology' %}<link rel="preload" as="image" href="{{ '/assets/exhibition/maritime/great-canoe.webp' | relative_url }}">{% endif %}
+<link rel="stylesheet" href="/assets/css/nubia.css?v=20261027">
+<link rel="stylesheet" href="/assets/css/museum-article.css?v=20261028">
 </head>
 <body class="exhibition-page{% if page.explore_room %} explore-page{% endif %}" data-home="{{ '/' | relative_url }}">
 {% include intro.html %}

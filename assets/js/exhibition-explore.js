@@ -7,7 +7,7 @@ if(wall){
 
  const tabs=[...wall.querySelectorAll('[data-mode]')];
  // Place the filters close to the bottom edge; thumbnails start below it.
- if(tabs.length){
+ if(tabs.length && !wall.classList.contains('nubia-room')){
   const scene=wall.querySelector('.explore-scene'),rail=wall.querySelector('.explore-tabs');
   const fitEntry=()=>{
    const inset=parseFloat(getComputedStyle(scene).paddingTop)||0;
@@ -19,13 +19,13 @@ if(wall){
   addEventListener('resize',fitEntry,{passive:true});document.fonts.ready.then(fitEntry);fitEntry();
  }
 
- function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});wall.querySelector('.explore-content')?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+ function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});wall.querySelector('.explore-tabs')?.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
  tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>select(tab));tab.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==undefined){e.preventDefault();select(tabs[n]);tabs[n].focus();}});});
  wall.querySelectorAll('[data-return-topics]').forEach(button=>button.addEventListener('click',()=>{select(tabs[0]);tabs[0].focus();}));
 }
 
 
-const objects=[...document.querySelectorAll('.room-object:not(.maritime-object)')];
+const objects=[...document.querySelectorAll('.room-object:not(.maritime-object):not(.nubia-object)')];
 objects.forEach((object,i)=>{
  const note=document.createElement('aside');note.className='exhibition-note room-object-note';note.id='room-object-note-'+i;note.hidden=true;note.setAttribute('role','note');wall.append(note);
  function position(){const width=Math.min(265,innerWidth*(innerWidth<900?.30:.28));note.style.width=width+'px';const b=object.getBoundingClientRect();const x=innerWidth*(innerWidth<900?.40:.43);note.style.left=Math.max(16,Math.min(innerWidth-width-16,x))+'px';note.style.top=Math.max(100,Math.min(innerHeight-note.offsetHeight-30,b.top+b.height*.46))+'px';}

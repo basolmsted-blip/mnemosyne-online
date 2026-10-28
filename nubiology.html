@@ -1,0 +1,6 @@
+---
+layout: default
+title: Nubiology
+permalink: /topics/nubiology/
+---
+<main id="main-content" class="maritime-reading"><div class="maritime-reading__intro"><header><h1>NUBIOLOGY</h1><p class="maritime-reading__caption">Along the sweeping reaches of the Middle Nile, ancient cities rose, kingdoms flourished, and generations of people left their mark upon the landscape. From the monumental ruins of Kerma to the sacred heights of Jebel Barkal and the pyramids of Meroë, explore the extraordinary histories of Nubia and the archaeological discoveries that continue to bring them to light.</p><p><a href="/exhibition/explore/nubiology/">Enter the exhibition →</a></p></header><img class="maritime-reading__thumbnail" src="/assets/exhibition/explore/nubiology-thumbnail.png" alt="Nubiology emblem with pyramids"></div><section class="maritime-reading__articles" aria-label="Nubiology articles">{% assign nubia_posts = site.posts | where_exp: "post", "post.topics contains 'nubiology'" %}{% for post in nubia_posts %}{% include region-article-item.html post=post %}{% endfor %}</section><p><a href="/#explore">Return to Explore →</a></p></main>

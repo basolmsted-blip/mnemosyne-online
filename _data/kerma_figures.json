@@ -1,0 +1,50 @@
+{
+  "one": {
+    "number": "I",
+    "title": "Fragments Given New Form",
+    "effect": "magnify",
+    "image": "figure-i-ESS001-display.webp",
+    "original": "figure-i-ESS001.jpg",
+    "width": 1840,
+    "height": 1228,
+    "alt": "Sandstone ceiling block with blue faience rosettes from funerary temple K XI at Kerma",
+    "caption": "Ceiling block with rosette pattern, funerary temple K XI, Kerma, Sudan, Classic Kerma period (c. 1700–1550 BCE). Fragments of earlier Egyptian faience objects were cut and inserted into carved cavities to form blue rosettes. Some retained traces of their original decoration, revealing how imported materials could be transformed within Nubian funerary architecture.",
+    "credit": "Ceiling Block with Rosette Pattern, Kerma, Sudan, c. 1700–1550 BCE. Sandstone and faience. Museum of Fine Arts, Boston, accession 13.4360.1. Harvard University–Boston Museum of Fine Arts Expedition. Photograph supplied by the author; photographic reuse rights require confirmation before publication.",
+    "source": "https://www.mfa.org/",
+    "rights": "Photographic reuse rights not yet confirmed.",
+    "source_label": "Museum · photograph source unconfirmed"
+  },
+  "two": {
+    "number": "II",
+    "title": "The Landscape of Kerma",
+    "effect": "landscape",
+    "image": "ESS001-fig-02-kerma-landscape-display.webp",
+    "original": "ESS001-fig-02-kerma-landscape.jpg",
+    "width": 3900,
+    "height": 2613,
+    "alt": "Archaeological remains near the Western Deffufa at Kerma, with palm trees behind the excavated structures",
+    "caption": "Archaeological remains near the Western Deffufa at Kerma, Sudan. The surviving landscape offers a view of the ancient urban setting excavated by Reisner and subsequently reinterpreted by generations of archaeologists.",
+    "credit": "Kerma NNE. Photograph by Bertramz, November 2008. Wikimedia Commons, CC BY 3.0. Original photograph; no changes to colour or composition.",
+    "source": "https://commons.wikimedia.org/wiki/File:Kerma_NNE.jpg",
+    "license": "https://creativecommons.org/licenses/by/3.0/",
+    "rights": "CC BY 3.0"
+  },
+  "three": {
+    "number": "III",
+    "title": "Two Sides of Faience",
+    "effect": "sides",
+    "image": "ESS001-fig-03-side-a.png",
+    "original": "ESS001-fig-03-side-a.png",
+    "width": 3338,
+    "height": 2225,
+    "alt": "Side A of an Egyptian faience spacer-bead: a king before solar deities, accession 2021.41.101 at The Metropolitan Museum of Art",
+    "caption": "Spacer-bead with images of divinities and a king, Egypt, Third Intermediate Period, ca. 1080–721 BCE. The two documented faces invite closer examination of the object’s form and finish, though appearance alone cannot establish its method of manufacture. This Egyptian object is later than the Classic Kerma rosette installation and is not one of Spedding’s analyzed beads.",
+    "credit": "Spacer-bead with images of divinities and a king. Egypt, Third Intermediate Period, ca. 1080–721 BCE. Faience, L. 5.1 × H. 3.4 × Th. 1 cm. The Metropolitan Museum of Art, Bequest of Nanette B. Kelekian, 2020, accession 2021.41.101. Public Domain. Transparent Side A and Side B PNGs supplied by the author, derived from photographs of the same object in the museum record.",
+    "source": "https://www.metmuseum.org/art/collection/search/329879",
+    "rights": "Public Domain",
+    "note": "Two documented faces of the same Egyptian spacer-bead. Select either side to examine its surface.",
+    "reverse": "ESS001-fig-03-side-b.png",
+    "reverse_original": "ESS001-fig-03-side-b.png",
+    "reverse_alt": "Side B of the same Egyptian faience spacer-bead: two winged deities protecting a lion-headed god"
+  }
+}

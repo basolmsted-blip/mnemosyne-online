@@ -85,7 +85,7 @@ if (!desktopEligible()) {
   },{passive:true});
   wall.addEventListener('pointerleave',() => { if (!focused) { active=false; requestFrame(); } });
   wall.addEventListener('focusin',event => {
-    const link=event.target.closest('.artifact, .room-object, .topic-link, .explore-panel a, .explore-mask, .explore-tabs button, .explore-panel button');
+    const link=event.target.closest('.artifact, .room-object, .topic-link, .kerma-card, .explore-panel a, .explore-mask, .explore-tabs button, .explore-panel button');
     if (link) { focused=link; aimAt(link); }
     else { focused=null; active=false; requestFrame(); }
   });

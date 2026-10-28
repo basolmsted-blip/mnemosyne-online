@@ -16,7 +16,7 @@ if(canoe&&note){
  canoe.addEventListener('pointerenter',show);canoe.addEventListener('pointerleave',()=>{if(!pinned)hide();});canoe.addEventListener('focus',show);canoe.addEventListener('blur',()=>{if(!pinned)hide();});canoe.addEventListener('click',()=>{pinned=true;show();});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){pinned=false;hide();}});
 }
-const figures=[...document.querySelectorAll('.article-shell figure')];
+const figures=[...document.querySelectorAll('.article-shell figure:not([data-museum-figure])')];
 if(figures.length){
  const modal=document.createElement('dialog');modal.className='figure-viewer';modal.setAttribute('aria-label','Enlarged article figure');modal.innerHTML='<div class="figure-viewer__tools"><span>Figure viewer</span><a download>Download image ↓</a><button type="button">Close ×</button></div><img class="figure-viewer__image" alt=""><figcaption></figcaption><div class="figure-viewer__credit"></div>';document.body.append(modal);
  modal.querySelector('button').onclick=()=>modal.close();modal.addEventListener('click',e=>{if(e.target===modal)modal.close();});

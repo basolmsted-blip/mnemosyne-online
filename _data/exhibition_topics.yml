@@ -4,3 +4,9 @@
   description: Discover the archaeology of seafaring, ships, and the sea.
   published: true
   articles: []
+
+- title: Nubiology
+  image: /assets/exhibition/explore/nubiology-thumbnail.png
+  path: /exhibition/explore/nubiology/
+  description: Explore the archaeology of ancient Nubia.
+  published: true

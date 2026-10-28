@@ -1,0 +1,142 @@
+/* Article exhibition, October 28. Reading Mode inherits its existing design. */
+.museum-article.kerma-exhibition{background:#455668;color:#f0f2f2}
+.museum-article.kerma-exhibition:before{content:none}
+.museum-article .kerma-cover{padding:5.2vw 24px 8vw;margin:0;isolation:auto}
+.museum-article .kerma-cover .kerma-artifact{width:26vw;max-width:420px;margin:0 auto 3.4vw}
+.museum-article .kerma-cover .kerma-artifact-button{width:22vw;max-width:360px}
+.museum-article .kerma-cover .kerma-artifact-button img{width:100%;height:14vw;max-height:240px;filter:drop-shadow(0 4px 10px #101b29b3)}
+.museum-article .kerma-cover h1{font:500 clamp(44px,6.4vw,110px)/1.08 'EB Garamond',Georgia,serif;letter-spacing:-.015em;margin:0 auto 1.7vw;max-width:1500px;color:#ece8d1;background:none;-webkit-text-fill-color:currentColor;text-shadow:none}
+.museum-article .kerma-cover .kerma-subtitle{font:500 clamp(21px,2.4vw,40px)/1.3 'EB Garamond',Georgia,serif;color:#ece8d1;text-shadow:none;max-width:1200px;margin:0 auto 1.6vw}
+.museum-article .kerma-cover .kerma-byline{display:flex;justify-content:center;gap:5px;width:auto;max-width:none;margin:0;font:300 clamp(14px,1.55vw,26px)/1.5 'Instrument Sans',sans-serif;letter-spacing:-.015em;text-transform:none;color:#d9dfdf}
+.museum-article .kerma-cover .kerma-byline a{text-decoration:none}
+.museum-article .kerma-cover .kerma-label-space{top:5.2vw;left:calc(50% + 14vw);width:300px;max-width:calc(50% - 15vw)}
+.museum-article .kerma-cover .kerma-handwritten{color:#f0e8cb}
+.museum-article .kerma-article{max-width:1120px;color:#f0f2f2;padding-top:85px}
+.museum-article .kerma-prose{color:#f0f2f2;font-size:19px;line-height:1.8;max-width:740px}
+.museum-article .kerma-prose>p{margin-bottom:1.55em}
+.kerma-cover-landscape{margin:0;width:100%;position:relative}
+.kerma-cover-landscape>img{display:block;width:100%;height:75svh;min-height:400px;object-fit:cover;object-position:center 20%}
+.kerma-cover-landscape figcaption{display:flex;justify-content:space-between;gap:20px;padding:17px 5vw;font:11px/1.6 'Instrument Sans',sans-serif;color:#cad3dc;flex-wrap:wrap}
+.kerma-cover-landscape button,.kerma-cover-landscape a{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;text-decoration:none}
+.museum-figure{margin:60px 0;padding:0;border:0;background:none;color:inherit;position:relative}
+.museum-figure__track{position:relative}
+.museum-figure__canvas{width:100%;overflow:hidden;margin:auto}
+.museum-figure__image{display:block;width:100%;height:auto;margin:0 auto;transform-origin:50% 48%;will-change:auto}
+.museum-figure__caption{max-width:960px;margin:0 auto;padding:26px 28px;display:flex;align-items:flex-start;gap:28px;justify-content:space-between;font:13px/1.8 'Inter','Instrument Sans',sans-serif}
+.museum-figure__caption p{margin:0 0 12px}
+.museum-figure__name{font-size:11px;line-height:1.7;letter-spacing:.10em;text-transform:uppercase}
+.museum-figure__tools{display:flex;flex:0 0 auto;gap:14px;flex-wrap:wrap;max-width:155px;padding-top:0}
+.museum-figure__tools button{display:inline-flex;gap:6px;align-items:center;border:0;border-bottom:1px solid currentColor;background:none;color:inherit;font:11px/1.8 'Inter','Instrument Sans',sans-serif;padding:2px 0;cursor:pointer;white-space:nowrap}
+.museum-figure__note{font-size:11px;opacity:.8}
+.museum-credit{width:min(600px,calc(100vw - 36px));max-height:85svh;overflow:auto;border:1px solid #aab6c188;padding:28px;background:#f5f1e8;color:#252820;border-radius:3px;font:14px/1.8 'Inter',sans-serif}
+.museum-credit h2{font:500 29px/1.2 'EB Garamond',Georgia,serif}.museum-credit>button{display:block;margin-left:auto;border:0;background:none;color:inherit;font:12px 'Inter',sans-serif;cursor:pointer}.museum-credit::backdrop{background:#111922bb}.museum-credit a{color:inherit}
+.museum-article .museum-figure{width:100vw;margin:80px calc(50% - 50vw);color:#e2e8ec}
+.museum-article .museum-figure__track{height:175svh}
+.museum-article .museum-figure__sticky{position:sticky;top:65px;height:calc(100svh - 80px);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.museum-article .museum-figure__canvas{width:82vw;max-width:1400px;max-height:75svh}
+.museum-article .museum-figure--magnify .museum-figure__image{max-height:75svh;object-fit:contain;transform:scale(var(--figure-scale,1));will-change:transform}
+.museum-article .museum-figure--landscape .museum-figure__canvas{width:var(--landscape-width,80vw);max-width:none;max-height:none}
+.museum-article .museum-figure--landscape .museum-figure__image{width:100%;max-height:none}
+.museum-article .museum-figure__caption{color:#c9d3dd;max-width:1060px}
+.museum-article .museum-figure--single .museum-figure__track{height:auto}
+.museum-article .museum-figure--single .museum-figure__sticky{position:static;height:auto;overflow:visible;padding:40px 0 0}
+.museum-article .museum-figure--single .museum-figure__canvas{width:min(440px,70vw);max-height:none}
+.museum-article .museum-credit{background:#354658;color:#eef1f2}
+.kerma-image-credits{border-top:1px solid #b4bcc344;margin:90px auto 0;padding-top:35px;font:13px/1.8 'Inter','Instrument Sans',sans-serif;overflow-wrap:anywhere}
+.kerma-image-credits h2{font:500 32px 'EB Garamond',Georgia,serif}.kerma-image-credits p{margin:0 0 20px}
+.museum-article .kerma-image-credits{color:#c9d3dd;margin-top:130px}
+.museum-article .kerma-references{color:#c9d3dd;margin-top:70px}
+/* Native scroll timelines where supported; JS is the active-section fallback. */
+@supports(animation-timeline:view()){
+ .native-museum-scroll .museum-figure--magnify,.native-museum-scroll .museum-figure--landscape{view-timeline-name:--museum-stage;view-timeline-axis:block}
+ .native-museum-scroll .museum-figure--magnify .museum-figure__image{animation:museum-magnify linear both;animation-timeline:--museum-stage;animation-range:contain 0% contain 100%}
+ .native-museum-scroll .museum-figure--landscape .museum-figure__canvas{animation:museum-expand linear both;animation-timeline:--museum-stage;animation-range:contain 0% contain 100%}
+}
+@keyframes museum-magnify{0%,10%{transform:scale(1)}80%,100%{transform:scale(1.3)}}
+@keyframes museum-expand{0%,10%{width:80vw}80%,100%{width:100vw}}
+/* The supplied platform is a separate object beneath the statue. */
+.nubia-display{isolation:isolate;padding-bottom:28px}
+.nubia-platform{position:absolute;z-index:0;width:88%;left:6%;bottom:0;aspect-ratio:2700/663;pointer-events:none}
+.nubia-platform .platform-image,.nubia-platform .artifact__shadow{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.nubia-platform .artifact__shadow{filter:brightness(0) blur(12px);transform:translate(18px,24px) scale(1.035);opacity:1}
+.nubia-object.room-object{z-index:1;height:560px}
+/* Full-resolution examination viewer, independent of page scroll. */
+.museum-viewer{width:min(1400px,96vw);max-width:none;height:92svh;max-height:none;border:1px solid #abb5bf88;padding:0;background:#263441;color:#eef1f2;overflow:hidden;border-radius:4px;font:12px/1.5 'Inter','Instrument Sans',sans-serif}
+.museum-viewer::backdrop{background:#0b1119ed}
+.museum-viewer__bar{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 18px;min-height:56px;border-bottom:1px solid #aab6c144;flex-wrap:wrap}
+.museum-viewer__actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.museum-viewer button{border:1px solid #aab6c166;background:transparent;color:inherit;border-radius:3px;padding:7px 10px;cursor:pointer;font:12px/1.3 'Inter','Instrument Sans',sans-serif;min-height:34px}.museum-viewer button:focus-visible{outline:2px solid #eee8ce;outline-offset:3px}
+.museum-viewer__viewport{height:calc(100% - 170px);overflow:auto;touch-action:pan-x pan-y;overscroll-behavior:contain;background:#19232d;cursor:grab;scroll-behavior:auto}
+.museum-viewer__viewport[data-dragging]{cursor:grabbing}.museum-viewer__canvas{min-width:100%;min-height:100%;display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
+.museum-viewer__image{display:block;max-width:none;max-height:none;flex:none;user-select:none;-webkit-user-drag:none}
+.museum-viewer__caption{padding:12px 18px;max-height:105px;overflow:auto;font-size:11px;line-height:1.65}.museum-viewer__caption p{margin:0 0 5px}.museum-viewer__caption a{color:inherit}
+.museum-viewer:fullscreen{width:100vw;height:100svh;border:0;border-radius:0}
+@media(max-width:760px){
+ .museum-article .kerma-cover{padding:105px 22px 65px}
+ .museum-article .kerma-cover .kerma-artifact{width:260px;margin-bottom:35px}
+ .museum-article .kerma-cover .kerma-artifact-button{width:240px}.museum-article .kerma-cover .kerma-artifact-button img{height:170px;max-height:none}
+ .museum-article .kerma-cover h1{font-size:clamp(42px,8.5vw,65px);line-height:1.05;margin-bottom:20px}
+ .museum-article .kerma-cover .kerma-subtitle{font-size:24px;margin-bottom:20px}
+ .museum-article .kerma-cover .kerma-byline{font-size:13px;gap:3px;flex-wrap:wrap}
+ .museum-article .kerma-cover .kerma-label-space{top:105px;left:50%;transform:translateX(-50%);width:340px;max-width:calc(100% - 40px)}
+ .kerma-cover-landscape>img{min-height:0;height:auto;object-fit:contain}
+ .museum-article .kerma-article{padding-top:50px}.museum-article .kerma-prose{font-size:18px}
+ .museum-article .museum-figure__track{height:auto}.museum-article .museum-figure__sticky{position:static;display:block;height:auto;padding:0;overflow:visible}
+ .museum-article .museum-figure__canvas,.museum-article .museum-figure--landscape .museum-figure__canvas{width:100%;max-width:none;max-height:none}
+ .museum-article .museum-figure__image{transform:none!important;max-height:none!important;animation:none!important}
+ .museum-article .museum-figure{margin-top:55px;margin-bottom:55px}.museum-figure__caption{display:block;padding:20px 24px;font-size:12px}.museum-figure__tools{max-width:none;margin-top:20px}
+ .museum-article .museum-figure--single .museum-figure__canvas{width:min(400px,82vw)}
+ .nubia-object.room-object{height:390px}.nubia-platform{width:88%;left:6%}.nubia-display{padding-bottom:25px}
+ .museum-viewer__bar{padding:10px}.museum-viewer__bar>strong{width:100%}.museum-viewer__viewport{height:calc(100% - 215px)}.museum-viewer__actions{gap:5px}
+}
+@media(prefers-reduced-motion:reduce){
+ .museum-article .museum-figure__track{height:auto}.museum-article .museum-figure__sticky{position:static;height:auto;padding:25px 0;overflow:visible}
+ .museum-article .museum-figure__image{transform:none!important;animation:none!important}
+ .museum-article .museum-figure__canvas{animation:none!important;width:90vw;max-height:none}.museum-article .museum-figure--landscape .museum-figure__canvas{width:100vw}
+}
+/* A turn between verified photographs, without simulated intermediate surfaces. */
+.museum-turn{position:relative;width:min(640px,68vw);aspect-ratio:1880/1220;margin:40px auto 0;perspective:1200px}
+.museum-turn__photo{position:absolute;inset:0;overflow:hidden;transform-origin:center;clip-path:polygon(2% 0,98% 0,100% 3%,100% 97%,98% 100%,2% 100%,0 97%,0 3%)}
+.museum-turn__back{opacity:0;transform:scaleX(.01)}
+.museum-turn__photo>img{position:absolute!important;width:212.77%!important;height:218.6%!important;max-width:none!important;max-height:none!important;left:-57.45%;top:-59.84%;margin:0!important;object-fit:fill!important;transform:none!important;animation:none!important}
+.museum-turn__controls{display:flex;align-items:center;flex-direction:column;gap:16px;margin:30px auto 0;font:12px/1.5 'Inter','Instrument Sans',sans-serif}
+.museum-turn__controls>div{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.museum-turn__controls button{border:1px solid #aab6c177;border-radius:3px;color:inherit;background:transparent;padding:8px 15px;cursor:pointer;font:12px 'Inter','Instrument Sans',sans-serif}
+.museum-turn__controls [aria-pressed=true]{background:#dae1e3;color:#273845;border-color:#dae1e3}
+.museum-turn__controls [hidden]{display:none}
+.museum-article .museum-figure--turn .museum-figure__canvas{max-height:none}
+body:not(.exhibition-page) .museum-turn{width:min(540px,100%)}
+body:not(.exhibition-page) .museum-turn__controls [aria-pressed=true]{background:#455668;color:#f3f0e7}
+@media(max-width:760px){.museum-turn{width:85vw;margin-top:0}.museum-turn__controls{margin:24px auto}.museum-article .museum-figure--turn .museum-figure__canvas{overflow:visible}}
+.nubia-collection{margin-top:28px}
+/* Supplied transparent photographs use direct side selection. */
+.museum-article .kerma-cover .kerma-byline,.museum-article .kerma-cover .kerma-byline a,.museum-article .kerma-cover .kerma-byline time{color:#ece8d1}
+.museum-article .museum-figure--sides .museum-figure__track{height:auto}
+.museum-article .museum-figure--sides .museum-figure__sticky{position:static;height:auto;overflow:visible;padding:45px 0 0}
+.museum-article .museum-figure--sides .museum-figure__canvas{overflow:visible;max-height:none}
+.museum-figure--sides .museum-turn{aspect-ratio:1564/1030;pointer-events:none}
+.museum-figure--sides .museum-turn__photo{clip-path:none;overflow:visible;transform:none!important;opacity:1!important;pointer-events:none}
+.museum-figure--sides .museum-turn__photo[hidden]{display:none}
+.museum-figure--sides .museum-turn__photo>img{width:213.43%!important;height:216.02%!important;left:-57.54%;top:-58.25%;filter:drop-shadow(0 12px 14px #15202aa3)}
+.nubia-display .nubia-platform{width:68%;left:16%;bottom:8px}
+.nubia-object.room-object .artifact__shadow{filter:brightness(0) blur(16px);opacity:.65!important;transform:translate(calc(var(--shadow-x,8px)*1.25),calc(var(--shadow-y,12px)*1.25))}
+.museum-article .kerma-cover .kerma-artifact-button img{filter:drop-shadow(0 5px 15px #101b298c)}
+@media(max-width:760px){.museum-article .museum-figure--sides .museum-figure__sticky{padding:0}.museum-figure--sides .museum-turn__photo>img{filter:drop-shadow(0 7px 10px #15202aa3)}}
+/* Small review refinements. Programmatic room focus should not frame the page. */
+.exhibition[tabindex="-1"]:focus,.exhibition[tabindex="-1"]:focus-visible{outline:none}
+.nubia-display .nubia-platform{bottom:40px}
+.nubia-platform .platform-image{filter:brightness(.82)}
+.museum-article .kerma-cover .kerma-byline{font-size:clamp(12px,1.35vw,23px)}
+.image-examine-target{cursor:zoom-in}
+.image-examine-target:focus-visible{outline:2px solid #ece8d1;outline-offset:-4px}
+.museum-figure--sides .museum-turn__photo{overflow:hidden;pointer-events:auto;filter:drop-shadow(0 12px 14px #15202aa3)}
+.museum-figure--sides .museum-turn__photo>img{filter:none;pointer-events:auto}
+@media(max-width:760px){.museum-article .kerma-cover .kerma-byline{font-size:12px}.museum-figure--sides .museum-turn__photo{filter:drop-shadow(0 7px 10px #15202aa3)}.museum-figure--sides .museum-turn__photo>img{filter:none}}
+
+/* One supplied composition keeps the statue, platform and contact shadow together.
+   Frame only the painted bounds; the original PNG remains unmodified. */
+.nubia-room .nubia-display{padding-bottom:0}
+.nubia-display .nubia-object.nubia-composite{width:100%;height:auto;aspect-ratio:2703/2614}
+.nubia-composite .artifact__image,.nubia-composite .artifact__shadow{inset:auto;left:0;top:-44.3764%;width:100%;height:179.6863%;object-fit:fill}
+/* Shade only the plinth in the supplied composition, keeping the statue intact.
+   The overlay shares the PNG's coordinates, so it scales with the whole display. */
+.nubia-composite::after{content:"";position:absolute;z-index:2;pointer-events:none;left:0;top:-44.3764%;width:100%;height:179.6863%;background:url('/assets/exhibition/nubia/king-on-platform.png') center/100% 100% no-repeat;filter:brightness(.86);clip-path:polygon(18.9% 68.8%,51.5% 68.8%,54% 69.8%,57.5% 71.1%,61% 72.4%,63.6% 73%,65.7% 72.9%,68.3% 72.2%,69.6% 71.7%,71.4% 71.8%,73% 71.3%,75.1% 70.7%,76.8% 69.7%,77.3% 68.8%,91.6% 68.8%,99.9% 76.9%,99.9% 80.4%,10.6% 80.4%,10.6% 76.9%)}

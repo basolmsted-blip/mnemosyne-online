@@ -1,7 +1,7 @@
 import {desktopEligible, preference, exhibitionAudio as settings} from './exhibition-config.js?v=2';
 const nested=window.parent!==window;
-const kindFor=url=>new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
-const tracks={gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.m4a',import.meta.url).href};
+const kindFor=url=>new URL(url,location.href).pathname.match(/nubiology|who-made-kermas-blue/)?'nubia':new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
+const tracks={nubia:new URL('../exhibition/nubia/ambience.mp3',import.meta.url).href,gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.m4a',import.meta.url).href};
 const cache=new Map();
 let context,master,voice,wanted=false,playing=false,request=0,button,status,scratch,waveTimer,waveSource,waveGain;
 let kind=kindFor(location.href),roomFrame,internalNavigation=false;
@@ -36,13 +36,13 @@ function stopVoice(current){
 async function selectTrack(next){
  const attempt=++request;kind=next;stopWaves();
  if(!wanted)return;
- if(voice?.kind===next){playing=true;display();status.textContent='';if(next==='maritime')scheduleWave(true);return;}
+ if(voice?.kind===next){playing=true;display();status.textContent='';if((next==='maritime'||next==='nubia'))scheduleWave(true);return;}
  let offset=0;
  try{offset=Number(sessionStorage.getItem('mnemosyne-audio-offset:'+next))||0;}catch{}
  let nextVoice;
- if(next==='maritime'){
+ if((next==='maritime'||next==='nubia')){
   // Stream the nine-minute track instead of downloading and decoding it all.
-  const element=new Audio(tracks.maritime);element.loop=true;element.preload='auto';
+  const element=new Audio(tracks[next]);element.loop=true;element.preload='auto';
   const source=context.createMediaElementSource(element),gain=context.createGain();
   gain.gain.value=0;source.connect(gain).connect(master);
   nextVoice={element,source,gain,kind:next};voices.add(nextVoice);
@@ -58,13 +58,13 @@ async function selectTrack(next){
  }
  if(attempt!==request||!wanted){stopVoice(nextVoice);return;}
  const old=voice,now=context.currentTime;remember(old);voice=nextVoice;
- nextVoice.gain.gain.linearRampToValueAtTime(next==='maritime'?.12:settings.volume,now+(old?2.2:1.5));
+ nextVoice.gain.gain.linearRampToValueAtTime((next==='maritime'||next==='nubia')?.12:settings.volume,now+(old?2.2:1.5));
  if(old){
   old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(old.gain.gain.value,now);old.gain.gain.linearRampToValueAtTime(0,now+2.2);
   if(old.element)setTimeout(()=>stopVoice(old),2250);
   else{old.source.stop(now+2.25);old.source.onended=()=>{old.gain.disconnect();voices.delete(old);};}
  }
- playing=true;display();button.dataset.track=next;status.textContent='';if(next==='maritime')scheduleWave(true);
+ playing=true;display();button.dataset.track=next;status.textContent='';if((next==='maritime'||next==='nubia'))scheduleWave(true);
 }
 async function enable(){
  wanted=true;preference.set('sound','on');display();
@@ -100,16 +100,17 @@ function stopWaves(){
  waveGain?.disconnect();waveGain=null;if(button)delete button.dataset.waveState;
 }
 function scheduleWave(first=false){
- if(kind!=='maritime'||!wanted||waveTimer)return;
+ if(!['maritime','nubia'].includes(kind)||!wanted||waveTimer)return;
  button.dataset.waveState='scheduled';waveTimer=setTimeout(()=>{waveTimer=null;playWave();},first?6500:26000+Math.random()*18000);
 }
 function playWave(){
- if(kind!=='maritime'||!wanted||context?.state!=='running')return;
+ if(!['maritime','nubia'].includes(kind)||!wanted||context?.state!=='running')return;
  const duration=8.5+Math.random()*2,length=Math.ceil(context.sampleRate*duration),surf=context.createBuffer(2,length,context.sampleRate);
  for(let channel=0;channel<2;channel++){const samples=surf.getChannelData(channel);let low=0;for(let i=0;i<length;i++){const white=Math.random()*2-1;low=(low+.025*white)/1.025;samples[i]=white*.25+low*2.8;}}
  const t=context.currentTime;waveSource=context.createBufferSource();waveSource.buffer=surf;
  const filter=context.createBiquadFilter();filter.type='lowpass';filter.frequency.setValueAtTime(420,t);filter.frequency.exponentialRampToValueAtTime(3200,t+2.1);filter.frequency.exponentialRampToValueAtTime(480,t+duration);
  waveGain=context.createGain();waveGain.gain.setValueAtTime(.0001,t);waveGain.gain.exponentialRampToValueAtTime(.075,t+2.1);waveGain.gain.exponentialRampToValueAtTime(.022,t+4.5);waveGain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+ if(kind==='nubia'){filter.type='bandpass';filter.Q.value=.45;filter.frequency.setValueAtTime(220,t);filter.frequency.exponentialRampToValueAtTime(850,t+4);filter.frequency.exponentialRampToValueAtTime(280,t+duration);waveGain.gain.cancelScheduledValues(t);waveGain.gain.setValueAtTime(.0001,t);waveGain.gain.exponentialRampToValueAtTime(.025,t+4);waveGain.gain.exponentialRampToValueAtTime(.0001,t+duration);}
  waveSource.connect(filter).connect(waveGain).connect(master);button.dataset.waveState='playing';const current=waveSource;
  current.onended=()=>{if(waveSource===current){waveSource=null;waveGain?.disconnect();waveGain=null;if(wanted)scheduleWave();}};current.start();
 }
@@ -119,6 +120,7 @@ function exit(url){
 }
 function navigate(url,{push=true}={}){
  if(url.origin!==location.origin||!url.pathname.startsWith('/exhibition/')){exit(url);return;}
+ if(url.pathname.includes('who-made-kermas-blue')&&!location.pathname.includes('who-made-kermas-blue')){try{sessionStorage.setItem('kerma-return',location.pathname+location.search+location.hash);}catch{}}
  stopWriting();internalNavigation=true;
  // The top-level player survives room changes, so decoded loops can crossfade.
  if(!roomFrame){
@@ -128,7 +130,7 @@ function navigate(url,{push=true}={}){
    internalNavigation=false;
   });document.body.append(roomFrame);
  }
- roomFrame.src=url.href;document.body.classList.add('exhibition-browsing');document.body.classList.toggle('explore-page',url.pathname.includes('/explore/'));
+ roomFrame.src=url.href;document.body.classList.add('exhibition-browsing');document.body.classList.toggle('explore-page',(url.pathname.includes('/explore/')||url.pathname.includes('/exhibition/articles/')));
  if(push)history.pushState({exhibitionRoom:true},'',url.href);
  selectTrack(kindFor(url.href)).catch(()=>{status.textContent='Soundtrack unavailable. Select sound to retry.';});
 }
@@ -145,7 +147,7 @@ function roomClick(event){
   if(nested)parent.document.dispatchEvent(new CustomEvent('exhibition-exit',{detail:url.href}));else exit(url);
  }
 }
-if(desktopEligible()&&document.querySelector('.exhibition')){
+if((desktopEligible()||document.querySelector('.kerma-exhibition'))&&document.querySelector('.exhibition')){
  document.querySelector('.exhibition').addEventListener('click',roomClick);
  if(nested){
   document.addEventListener('exhibition-writing',event=>parent.document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:event.detail})));
