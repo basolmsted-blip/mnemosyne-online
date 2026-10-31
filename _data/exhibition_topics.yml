@@ -16,3 +16,9 @@
   path: /exhibition/explore/egyptology/
   description: Explore the archaeology of ancient Egypt.
   published: true
+
+- title: Medieval Archaeology
+  image: /assets/exhibition/medieval/thumbnail.webp
+  path: /exhibition/explore/medieval-archaeology/
+  description: Explore the material traces of the Middle Ages.
+  published: true

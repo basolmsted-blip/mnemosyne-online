@@ -1,0 +1,304 @@
+{
+  "id": "OIF00131102026",
+  "title": "When Death Comes Calling",
+  "subtitle": "Four Encounters in Holbein’s Dance of Death",
+  "intro": [
+    "In the early sixteenth century, the German artist Hans Holbein the Younger imagined Death going about his business.",
+    "He was no longer content to summon the living into a solemn procession. Instead, he entered their homes, interrupted their work, and appeared in the middle of their most ordinary activities.",
+    "A wealthy man sits at his table. A nun kneels in prayer. A farmer works his fields. A child stands beside the family hearth.",
+    "Death visits them all.",
+    "But look closely. He does not behave quite the same way each time.",
+    "These four small woodcuts invite us to consider what Holbein was asking his viewers to see—and whether every encounter with Death could be explained in the same way."
+  ],
+  "objects": [
+    {
+      "id": "object-1",
+      "title": "The Rich Man",
+      "theme": "Wealth",
+      "image": "/assets/objects/holbein/OIF001-fig-1.webp",
+      "original": "/assets/objects/holbein/OIF001-fig-1.jpg",
+      "alt": "Holbein woodcut depicting a richly dressed man dining beneath a canopy while a skeleton serves him at a banquet.",
+      "question": "What is Death doing at the banquet?",
+      "intro": [
+        "A richly dressed man sits beneath a canopy, surrounded by food, attendants, and the comforts of a prosperous household.",
+        "At the edge of the table stands a familiar guest.",
+        "Nobody appears to have invited him."
+      ],
+      "details": [
+        {
+          "id": "object-1-detail-1",
+          "title": "A Seat of Privilege",
+          "prompt": "What can we learn about this man before we even notice Death?",
+          "text": [
+            "The man's elaborate clothing, feathered hat, and commanding position at the centre of the table distinguish him from the surrounding attendants. Holbein establishes social privilege through ordinary visual details: dress, posture, setting, and service. The encounter with Death will unfold in a space organized around his comfort."
+          ],
+          "x": 49,
+          "y": 54
+        },
+        {
+          "id": "object-1-detail-2",
+          "title": "An Unwelcome Serving",
+          "prompt": "Who is offering the drink, and why might that matter?",
+          "text": [
+            "Death appears in the role of a server, extending a vessel toward the seated man. The action belongs to the familiar rituals of dining, yet its meaning changes when performed by a skeleton. Instead of interrupting the banquet from outside, Death has entered its ordinary activities."
+          ],
+          "x": 70,
+          "y": 46
+        },
+        {
+          "id": "object-1-detail-3",
+          "title": "Time at the Table",
+          "prompt": "What small object sits among the dishes?",
+          "text": [
+            "An hourglass stands on the table, quietly measuring the passage of time. Its presence reinforces the image's concern with mortality. Unlike the skeleton, it does not move or threaten. It simply reminds the viewer that time continues to pass, even during a feast."
+          ],
+          "x": 26,
+          "y": 64
+        },
+        {
+          "id": "object-1-detail-4",
+          "title": "A Room Made for Comfort",
+          "prompt": "Why devote so much space to the setting?",
+          "text": [
+            "The canopy, patterned hanging, and carefully arranged table establish a world of wealth and ceremony. These surroundings are not incidental decoration. They help explain the social position that the image is about to place in jeopardy. The comforts of the room remain intact, even as Death arrives to undermine their apparent security."
+          ],
+          "x": 50,
+          "y": 16
+        }
+      ],
+      "conclusion_title": "When Death Joins the Feast",
+      "conclusion": [
+        "Holbein has not shown a wealthy man walking reluctantly toward an appointed grave. He has placed Death inside the man's own household.",
+        "The encounter is unsettling precisely because it interrupts something familiar. A meal, ordinarily associated with hospitality and pleasure, becomes the setting for a reminder that privilege cannot postpone mortality.",
+        "Yet the skeleton does not simply destroy the scene. He participates in it.",
+        "That ambiguity will become increasingly important as we examine the remaining woodcuts."
+      ],
+      "accession": "19.57.27",
+      "source": "https://www.metmuseum.org/art/collection/search/336309"
+    },
+    {
+      "id": "object-2",
+      "title": "The Nun",
+      "theme": "Devotion",
+      "image": "/assets/objects/holbein/OIF001-fig-2.webp",
+      "original": "/assets/objects/holbein/OIF001-fig-2.jpg",
+      "alt": "Holbein woodcut of a nun kneeling before a devotional image, with a skeleton behind her and a seated man at right.",
+      "question": "What is happening behind the nun?",
+      "intro": [
+        "A woman kneels in prayer before a religious image.",
+        "Behind her stands Death.",
+        "Nearby, another figure occupies the room, apparently absorbed in his own activity.",
+        "At first glance, this looks like a scene of devotion. The longer we examine it, the less straightforward that impression becomes."
+      ],
+      "details": [
+        {
+          "id": "object-2-detail-1",
+          "title": "The Appearance of Devotion",
+          "prompt": "What first tells us that this is a religious scene?",
+          "text": [
+            "The nun's clothing, kneeling posture, and prayerful position establish the setting as one of religious devotion. Holbein uses recognizable signs of religious identity so that his viewers can immediately understand the social role being represented.",
+            "Yet outward appearance cannot, by itself, reveal the character or intentions of the person portrayed."
+          ],
+          "x": 31,
+          "y": 65
+        },
+        {
+          "id": "object-2-detail-2",
+          "title": "Before the Altar",
+          "prompt": "What is the nun facing?",
+          "text": [
+            "The nun kneels before a devotional image. The furnishing of the room establishes the scene's religious context and directs attention toward prayer, ritual, and the visible performance of piety.",
+            "The image also invites viewers to look beyond the figure's immediate act of devotion and consider what is happening elsewhere in the room."
+          ],
+          "x": 16,
+          "y": 39
+        },
+        {
+          "id": "object-2-detail-3",
+          "title": "An Unexpected Presence",
+          "prompt": "How does Death enter this scene?",
+          "text": [
+            "Death appears behind the kneeling woman, close enough to disrupt the apparent serenity of prayer. Holbein often places Death within the everyday setting of his subjects rather than separating the encounter into a ceremonial procession.",
+            "Here, proximity becomes part of the tension. The skeleton belongs to the same room as the worshipper, although the two seem engaged in very different activities."
+          ],
+          "x": 45,
+          "y": 38
+        },
+        {
+          "id": "object-2-detail-4",
+          "title": "Another Kind of Attention",
+          "prompt": "Why might Holbein have included this figure?",
+          "text": [
+            "The young man introduces a second human presence into a scene apparently centred upon prayer. His posture and activity complicate the atmosphere of devotion, encouraging interpretations involving distraction, temptation, or a contrast between religious conduct and worldly behaviour.",
+            "Such interpretations should be treated as readings of the composition, not as direct evidence of the nun's private actions or intentions."
+          ],
+          "x": 74,
+          "y": 49
+        }
+      ],
+      "conclusion_title": "What Can an Image Tell Us About Virtue?",
+      "conclusion": [
+        "The wealthy man's banquet seemed to offer a recognizable criticism of worldly comfort. The nun's chamber is less easily understood.",
+        "Holbein presents the outward forms of devotion, but also introduces elements that encourage viewers to question what lies behind them.",
+        "The resulting image is suggestive rather than transparent. Its meaning depends partly upon the moral expectations of the society for which it was produced.",
+        "We can observe the gestures, objects, and figures. Whether they amount to a definite accusation is another question."
+      ],
+      "accession": "19.57.24",
+      "source": "https://www.metmuseum.org/art/collection/search/365202"
+    },
+    {
+      "id": "object-3",
+      "title": "The Ploughman",
+      "theme": "Labour",
+      "image": "/assets/objects/holbein/OIF001-fig-3.webp",
+      "original": "/assets/objects/holbein/OIF001-fig-3.jpg",
+      "alt": "Holbein woodcut of a farmer behind a horse-drawn plough, with a skeleton among the animals.",
+      "question": "Is Death interrupting this man's work—or helping him?",
+      "intro": [
+        "The scene opens upon an agricultural landscape.",
+        "Two horses pull a plough through the soil. A farmer follows behind, bent over his work, while Death appears close to the animals.",
+        "In the distance, fields stretch toward a settlement beneath the rising or setting sun.",
+        "There is no banquet here, and no richly furnished chamber. Only work."
+      ],
+      "details": [
+        {
+          "id": "object-3-detail-1",
+          "title": "A Life of Labour",
+          "prompt": "What does the man's posture suggest?",
+          "text": [
+            "The farmer bends forward as he follows the plough. His posture and simple clothing identify him through physical labour rather than wealth or office.",
+            "Holbein's scene belongs to a world in which agricultural work was demanding, repetitive, and essential. The man does not appear engaged in an obvious act of greed or misconduct."
+          ],
+          "x": 80,
+          "y": 73
+        },
+        {
+          "id": "object-3-detail-2",
+          "title": "The Work Must Continue",
+          "prompt": "What occupies most of the foreground?",
+          "text": [
+            "The horses and agricultural equipment dominate the scene. They establish the immediate task and give the image its physical weight.",
+            "Death enters a process already underway. The encounter is not staged as an interruption of leisure, but within the continuous demands of work."
+          ],
+          "x": 33,
+          "y": 72
+        },
+        {
+          "id": "object-3-detail-3",
+          "title": "An Unexpected Helper",
+          "prompt": "What is Death doing with the horses?",
+          "text": [
+            "Death appears to drive the horses forward, participating in the agricultural labour rather than simply dragging the farmer away.",
+            "That choice is significant. The skeleton might be understood as bringing the farmer's work to an end, intensifying its burdens, or accompanying him toward his final rest. Holbein leaves room for interpretations that are not reducible to straightforward moral punishment."
+          ],
+          "x": 54,
+          "y": 51
+        },
+        {
+          "id": "object-3-detail-4",
+          "title": "Beyond the Furrow",
+          "prompt": "Why show so much of the world beyond the farmer?",
+          "text": [
+            "The distant buildings, cultivated fields, trees, and radiating light place the labourer's activity within a wider inhabited landscape.",
+            "This is not an isolated moral emblem against a blank background. The field belongs to a recognizable world of rural production and settlement. Death has entered that world without bringing it to an immediate halt."
+          ],
+          "x": 67,
+          "y": 19
+        }
+      ],
+      "conclusion_title": "A Different Kind of Encounter",
+      "conclusion": [
+        "Nothing in this scene demands that we regard the ploughman as a villain.",
+        "He works, bends, and struggles through a landscape shaped by human labour. Death appears beside him, but the nature of the encounter is less obvious than in the banquet or the nun's chamber.",
+        "Perhaps this is the end of a difficult life. Perhaps the skeleton is simply one more companion to the farmer's labour.",
+        "Whatever interpretation we prefer, the image has complicated the idea that Holbein's Death exists only to expose the moral failures of the living."
+      ],
+      "accession": "19.57.37",
+      "source": "https://www.metmuseum.org/art/collection/search/336312"
+    },
+    {
+      "id": "object-4",
+      "title": "The Child",
+      "theme": "Vulnerability",
+      "image": "/assets/objects/holbein/OIF001-fig-4.webp",
+      "original": "/assets/objects/holbein/OIF001-fig-4.jpg",
+      "alt": "Holbein woodcut of a child led by a skeleton from a household hearth.",
+      "question": "What meaning can we give to this encounter?",
+      "intro": [
+        "Inside a modest dwelling, two adults occupy themselves near the hearth.",
+        "A child stands between the household and an open doorway.",
+        "At the right, Death takes the child by the hand.",
+        "The scene is almost painfully ordinary."
+      ],
+      "details": [
+        {
+          "id": "object-4-detail-1",
+          "title": "A Small Figure",
+          "prompt": "How does Holbein draw our attention to the child?",
+          "text": [
+            "The child's small body and extended arms stand out against the larger figures and furnishings. The pose suggests movement and tension within the scene.",
+            "Unlike the wealthy man, nun, or farmer, the child has no clearly defined social office or occupation. Holbein presents someone whose vulnerability is central to the encounter."
+          ],
+          "x": 68,
+          "y": 62
+        },
+        {
+          "id": "object-4-detail-2",
+          "title": "The Hand That Leads Away",
+          "prompt": "What does Death actually do?",
+          "text": [
+            "Death takes the child's hand and leads the figure toward the open side of the dwelling. The gesture is simple, but its meaning is disturbing.",
+            "Holbein does not need to show a violent struggle. The act of leading the child away is enough to transform an ordinary domestic setting into an image of separation and mortality."
+          ],
+          "x": 88,
+          "y": 42
+        },
+        {
+          "id": "object-4-detail-3",
+          "title": "The Household Left Behind",
+          "prompt": "What are the adults doing as Death approaches?",
+          "text": [
+            "The adults are occupied with domestic tasks beside the hearth. Their attention appears directed toward the immediate needs of the household.",
+            "Holbein places Death's intervention within this familiar activity. The scene suggests how mortality can enter a home without warning, interrupting relationships and routines that otherwise appear entirely ordinary."
+          ],
+          "x": 25,
+          "y": 57
+        },
+        {
+          "id": "object-4-detail-4",
+          "title": "An Ordinary Day",
+          "prompt": "Why include such everyday details?",
+          "text": [
+            "The pot, fire, rough interior, and simple furnishings establish a domestic environment concerned with food, warmth, and daily survival.",
+            "These objects do not explain why Death comes for the child. Instead, they make the encounter more immediate by placing it within a world of ordinary human necessities."
+          ],
+          "x": 34,
+          "y": 79
+        }
+      ],
+      "conclusion_title": "When the Explanation Fails",
+      "conclusion": [
+        "We began with a wealthy man whose privileges seemed suddenly precarious. We encountered a nun whose image raised questions about outward devotion. We followed a labourer whose encounter with Death was harder to interpret as punishment.",
+        "Now we arrive at the child.",
+        "Here, the search for a moral failing seems particularly inadequate.",
+        "Holbein's images do not offer a single simple explanation for every death. They confront their viewers with different circumstances, some inviting criticism and others resisting it.",
+        "The child reminds us that the Dance of Death could be disturbing for reasons that extended beyond the exposure of vanity or hypocrisy."
+      ],
+      "accession": "19.57.38",
+      "source": "https://www.metmuseum.org/art/collection/search/365212"
+    }
+  ],
+  "conclusion": [
+    "Four small woodcuts. Four encounters with Death. Each belongs to Hans Holbein the Younger's remarkable reimagining of the medieval Dance of Death, a tradition that had once assembled the living into a procession according to their positions in society. Holbein changed the arrangement. Instead of summoning everyone into the same line, he sent Death into the places where people lived and worked.",
+    "The wealthy man meets him at a banquet. The nun encounters him in a religious interior. The ploughman finds him in the fields. The child is led away from a household hearth. Yet these scenes do not all invite the same interpretation. Wealth and religious conduct can be subjected to moral scrutiny. Labour introduces the possibility of hardship and release. The child makes the search for blame much more difficult.",
+    "Nor should we mistake these four images for a complete explanation of Holbein's series. They are only a selection from a larger group of designs, whose meanings were shaped by the religious, artistic, and social circumstances of the early sixteenth century. What makes the images so compelling is their attention to the particular. Holbein did not simply repeat a skeleton beside forty-one interchangeable people. He devised different spaces, gestures, objects, and interruptions.",
+    "The old procession had broken apart. Death could now appear anywhere."
+  ],
+  "related_intro": [
+    "Holbein's woodcuts belong to a much older and stranger tradition.",
+    "Long before Death entered the banquet hall, the convent, or the farmer's field, skeletal figures had already begun leading the living through painted processions on cemetery walls and church interiors.",
+    "Those processions travelled through manuscripts, printed books, and across Europe, changing as the societies that created them changed.",
+    "How did the Dance of Death begin? Why did it become so popular? And what can its surviving images tell us about the people who feared, mocked, and imagined their own mortality?",
+    "Follow the story beyond Holbein's four woodcuts."
+  ]
+}

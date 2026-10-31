@@ -1,0 +1,5 @@
+import {writeNote} from './exhibition-notes.js?v=20261026b';
+const trigger=document.querySelector('[data-medieval-label]'),note=document.querySelector('.nubia-note');
+function show(){if(!note.hidden)return;note.replaceChildren();writeNote(note,['Relief of the Betrayal and Arrest of Jesus','French, Amiens · 1264–88','Limestone, polychromy and gilding','The Metropolitan Museum of Art · 17.120.5']);note.hidden=false;trigger.setAttribute('aria-expanded','true');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.dispatchEvent(new CustomEvent('exhibition-writing',{detail:1.8}));}
+function hide(){note.hidden=true;trigger.setAttribute('aria-expanded','false');document.dispatchEvent(new CustomEvent('exhibition-writing-stop'));}
+trigger.addEventListener('pointerenter',show);trigger.addEventListener('focus',show);trigger.addEventListener('pointerleave',hide);trigger.addEventListener('blur',hide);trigger.addEventListener('click',show);document.addEventListener('keydown',e=>{if(e.key==='Escape')hide();});

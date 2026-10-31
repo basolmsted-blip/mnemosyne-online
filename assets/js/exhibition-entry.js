@@ -1,7 +1,15 @@
 import { desktopEligible, preference } from './exhibition-config.js?v=2';
 const entry = document.querySelector('[data-exhibition-entry]');
 if (entry) {
+  const corresponding = () => {
+    const p=location.pathname;
+    if(p.startsWith('/topics/'))return '/exhibition/explore/'+p.slice(8);
+    if(p.startsWith('/articles/') && document.querySelector('[data-mode-switch]'))return '/exhibition'+p;
+    if(p.startsWith('/objects-in-focus/when-death-comes-calling/'))return '/exhibition'+p;
+    return '/exhibition/';
+  };
   const update = () => {
+    entry.href=corresponding()+location.hash;
     entry.hidden = !desktopEligible();
     entry.textContent = preference.get('mode') === 'exhibition' ? 'Return to Exhibition' : 'Exhibition Mode';
   };

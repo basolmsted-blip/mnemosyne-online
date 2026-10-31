@@ -1,7 +1,7 @@
 import {desktopEligible, preference, exhibitionAudio as settings} from './exhibition-config.js?v=2';
 const nested=window.parent!==window;
-const kindFor=url=>new URL(url,location.href).pathname.includes('/egyptology/')?'egypt':new URL(url,location.href).pathname.match(/nubiology|who-made-kermas-blue/)?'nubia':new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
-const tracks={egypt:new URL('../exhibition/egypt/ambience.mp3',import.meta.url).href,nubia:new URL('../exhibition/nubia/ambience.mp3',import.meta.url).href,gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.m4a',import.meta.url).href};
+const kindFor=url=>new URL(url,location.href).pathname.match(/medieval-archaeology|the-dead-have-come-to-dance|when-death-comes-calling/)?'medieval':new URL(url,location.href).pathname.includes('/egyptology/')?'egypt':new URL(url,location.href).pathname.match(/nubiology|who-made-kermas-blue/)?'nubia':new URL(url,location.href).pathname.includes('/maritime-archaeology/')?'maritime':'gallery';
+const tracks={medieval:new URL('../exhibition/medieval/ambience-compact.mp3',import.meta.url).href,egypt:new URL('../exhibition/egypt/ambience.mp3',import.meta.url).href,nubia:new URL('../exhibition/nubia/ambience.mp3',import.meta.url).href,gallery:new URL('../exhibition/awestruck.m4a',import.meta.url).href,maritime:new URL('../exhibition/maritime/ambience.m4a',import.meta.url).href};
 const cache=new Map();
 let context,master,voice,wanted=false,playing=false,request=0,button,status,scratch,waveTimer,waveSource,waveGain;
 let kind=kindFor(location.href),roomFrame,internalNavigation=false;
@@ -40,7 +40,7 @@ async function selectTrack(next){
  let offset=0;
  try{offset=Number(sessionStorage.getItem('mnemosyne-audio-offset:'+next))||0;}catch{}
  let nextVoice;
- if(['maritime','nubia','egypt'].includes(next)){
+ if(['maritime','nubia','egypt','medieval'].includes(next)){
   // Stream the nine-minute track instead of downloading and decoding it all.
   const element=new Audio(tracks[next]);element.loop=true;element.preload='auto';
   const source=context.createMediaElementSource(element),gain=context.createGain();
@@ -58,7 +58,7 @@ async function selectTrack(next){
  }
  if(attempt!==request||!wanted){stopVoice(nextVoice);return;}
  const old=voice,now=context.currentTime;remember(old);voice=nextVoice;
- nextVoice.gain.gain.linearRampToValueAtTime(next==='egypt'?.08:(next==='maritime'||next==='nubia')?.12:settings.volume,now+(old?2.2:1.5));
+ nextVoice.gain.gain.linearRampToValueAtTime((next==='egypt'||next==='medieval')?.08:(next==='maritime'||next==='nubia')?.12:settings.volume,now+(old?2.2:1.5));
  if(old){
   old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(old.gain.gain.value,now);old.gain.gain.linearRampToValueAtTime(0,now+2.2);
   if(old.element)setTimeout(()=>stopVoice(old),2250);
@@ -121,13 +121,13 @@ function exit(url){
 function navigate(url,{push=true}={}){
  if(url.origin!==location.origin||!url.pathname.startsWith('/exhibition/')){exit(url);return;}
  if(url.pathname.includes('who-made-kermas-blue')&&!location.pathname.includes('who-made-kermas-blue')){try{sessionStorage.setItem('kerma-return',location.pathname+location.search+location.hash);}catch{}}
- stopWriting();internalNavigation=true;
+ stopWriting();internalNavigation=true;document.body.classList.add('room-loading');
  // The top-level player survives room changes, so decoded loops can crossfade.
  if(!roomFrame){
   roomFrame=document.createElement('iframe');roomFrame.className='exhibition-page-frame';roomFrame.title='Mnemosyne exhibition room';
   roomFrame.addEventListener('load',()=>{
    try{document.title=roomFrame.contentDocument.title;roomFrame.contentDocument.querySelector('.exhibition')?.setAttribute('tabindex','-1');roomFrame.contentDocument.querySelector('.exhibition')?.focus({preventScroll:true});}catch{}
-   internalNavigation=false;
+   internalNavigation=false;document.body.classList.remove('room-loading');
   });document.body.append(roomFrame);
  }
  roomFrame.src=url.href;document.body.classList.add('exhibition-browsing');document.body.classList.toggle('explore-page',(url.pathname.includes('/explore/')||url.pathname.includes('/exhibition/articles/')));
@@ -154,6 +154,7 @@ if((desktopEligible()||document.querySelector('.kerma-exhibition'))&&document.qu
   document.addEventListener('exhibition-writing-stop',()=>parent.document.dispatchEvent(new CustomEvent('exhibition-writing-stop')));
  }else{
   button=document.createElement('button');button.type='button';button.className='exhibition-sound';button.dataset.sound='';
+  button.hidden=document.readyState!=='complete';if(button.hidden)window.addEventListener('load',()=>{button.hidden=false;},{once:true});
   button.innerHTML='<img class="control-icon" src="/assets/exhibition/controls/sound.png" alt="" aria-hidden="true"><span></span>';
   status=document.createElement('span');status.className='exhibition-audio-status';status.setAttribute('role','status');document.body.append(button,status);document.body.classList.add('exhibition-landing');display();
   if(kind==='gallery')decode(kind).then(()=>{button.dataset.audioReady='true';}).catch(()=>{});
