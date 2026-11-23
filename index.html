@@ -1,150 +1,406 @@
----
-layout: default
-title: Home
-seo_description: "Mnemosyne Archaeology publishes illustrated, rigorously researched essays about archaeology, material culture, landscapes, and the human past."
----
-
-{% assign featured_stories = site.posts | where: "homepage_feature", true %}
-{% assign featured = featured_stories.first %}
-<main id="main-content">
-  {% if featured %}
-  <section class="cover-hero" id="cover" aria-label="Featured stories" data-featured-carousel>
-    <div class="cover-hero__slides">
-      {% for story in featured_stories %}
-      <article class="cover-hero__slide{% if forloop.first %} is-active{% endif %}" data-featured-slide aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
-        <picture class="cover-hero__media">
-          <img
-            src="{{ story.home_hero_image | default: story.hero_image | relative_url }}"
-            width="{{ story.home_image_width | default: 1600 }}"
-            height="{{ story.home_image_height | default: 1000 }}"
-            alt="{{ story.hero_alt | escape }}"
-            style="object-position: {{ story.home_image_position | default: 'center' }}"
-            {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
-        </picture>
-        <div class="cover-hero__shade" aria-hidden="true"></div>
-        <div class="cover-hero__copy">
-          <p class="cover-hero__label">Featured story</p>
-          {% if forloop.first %}<h1>{{ story.home_title | default: story.title }}</h1>{% else %}<h2>{{ story.home_title | default: story.title }}</h2>{% endif %}
-          <p class="cover-hero__deck">{{ story.home_deck | default: story.excerpt_text | default: story.subtitle }}</p>
-          <a class="cover-hero__link" href="{{ story.url | relative_url }}">Read the story <span aria-hidden="true">→</span></a>
-        </div>
-        {% if story.home_credit %}<p class="cover-hero__credit">{{ story.home_credit }}</p>{% endif %}
-      </article>
-      {% endfor %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mnemosyne — Archaeology</title><meta name="description" content="Explore archaeology, objects, and the human past.">
+<link rel="stylesheet" href="assets/css/homepage.css">
+<link rel="preload" href="assets/images/homepage/mnemosyne-typography.webp" as="image">
+<link rel="icon" href="/favicon.ico"></head>
+<body class="gallery-home">
+<a class="skip-link" href="#main-content">Skip to the object</a>
+<header class="gallery-header">
+  <a class="gallery-logo" href="/" aria-label="Mnemosyne home"><img src="assets/images/homepage/mnemosyne-logo-dark.webp" width="1491" height="1241" alt=""></a>
+  <nav class="desktop-nav" aria-label="Main navigation" data-navigation></nav>
+  <button class="sound-toggle" type="button" aria-pressed="false"><img class="sound-zigzag" src="assets/images/homepage/page-element-sound.webp" width="1086" height="614" alt=""><span>Sound Off</span></button>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation">MENU <span class="hamburger" aria-hidden="true"><i></i><i></i><i></i></span></button>
+</header>
+<div class="mobile-menu" id="mobile-navigation" inert><nav aria-label="Mobile navigation" data-navigation></nav></div>
+<main id="main-content" tabindex="-1">
+  <section class="gallery-hero" aria-label="An object from the collection">
+    <div class="wordmark-band wordmark-band--upper" aria-hidden="true"><div class="wordmark-track"><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""></div></div>
+    <div class="wordmark-band wordmark-band--lower" aria-hidden="true"><div class="wordmark-track"><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""></div></div>
+    <div class="artifact-stage">
+      <img class="artifact-image" alt="" fetchpriority="high" decoding="async">
+      <button class="artifact-target" type="button" aria-label="Discover this object"></button>
+      <h1 class="foreground-wordmark"><img src="assets/images/homepage/mnemosyne-typography.webp" width="4225" height="769" alt="Mnemosyne"></h1>
+      <aside class="curator-note" role="note" id="curator-note" hidden></aside>
     </div>
-    {% if featured_stories.size > 1 %}
-    <div class="cover-hero__carousel-controls" role="group" aria-label="Choose featured story">
-      {% for story in featured_stories %}
-      <button type="button" data-featured-go="{{ forloop.index0 }}" class="{% if forloop.first %}is-active{% endif %}" aria-label="Show {{ story.home_title | default: story.title | escape }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"><span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span></button>
-      {% endfor %}
-    </div>
-    {% endif %}
-    <nav class="cover-hero__rail" aria-label="Homepage sections">
-      <a class="is-current" href="#cover"><span>01</span><small>Featured</small></a>
-      <a href="#stories-overview-title"><span>02</span><small>Stories</small></a>
-      <a href="#explore"><span>03</span><small>Explore</small></a>
-      <a href="#manifesto"><span>04</span><small>About</small></a>
-    </nav>
+    <button class="discover-button" type="button">Discover object</button>
+    <button class="new-item-button" type="button">View new item</button>
+    <button class="explore-button" type="button" >BEGIN EXPLORING <span class="chevron" aria-hidden="true"></span></button>
   </section>
-  {% else %}
-  <section class="cover-hero cover-hero--empty" aria-labelledby="featured-story-title">
-    <div class="cover-hero__copy">
-      <p class="cover-hero__label">Mnemosyne</p>
-      <h1 id="featured-story-title">Archaeology of memory</h1>
-      <p class="cover-hero__deck">Illustrated essays on objects, landscapes and the human past.</p>
-    </div>
-  </section>
-  {% endif %}
-
-  <aside class="welcome-banner" aria-labelledby="welcome-banner-title">
-    <img src="{{ '/assets/images/sebastian-olmsted.jpg' | relative_url }}" alt="Sebastian Olmsted, creator, author, and illustrator of Mnemosyne" width="240" height="240" loading="lazy">
-    <div>
-      <p class="eyebrow" id="welcome-banner-title">A note from the author</p>
-      <p>Hello and welcome! My name is Sebastian Olmsted. I am the creator, author, and illustrator of Mnemosyne, a fully interactive public archaeology project aimed at exploring how this discipline shapes our memories and interpretations of the past and present. Please feel free to take a look around and I hope you enjoy!</p>
-      <p>If you have any questions or comments, please contact me <a href="{{ '/contact/' | relative_url }}">here</a>.</p>
-    </div>
-  </aside>
-
-  {% if site.posts.size > 0 %}
-  <section class="stories-overview" aria-labelledby="stories-overview-title">
-    <div class="editorial-lead">
-      <div class="editorial-lead__statement">
-        <p class="eyebrow">Archaeology made interactive</p>
-        <h2 id="stories-overview-title">Don’t Just Read About the Past. Investigate It.</h2>
-        <p>Explore history through immersive storytelling, interactive investigations, and archaeological discoveries that challenge how we understand the past.</p>
-        <a class="editorial-lead__about" href="{{ '/about/' | relative_url }}">Read more about Mnemosyne <span aria-hidden="true">→</span></a>
-      </div>
-
-      <article class="editorial-feature">
-        <img
-          src="{{ featured.home_feature_image | default: featured.hero_image | relative_url }}"
-          width="{{ featured.home_image_width | default: 1600 }}"
-          height="{{ featured.home_image_height | default: 1000 }}"
-          alt="{{ featured.hero_alt | escape }}"
-          loading="lazy">
-        <div class="editorial-feature__panel">
-          <p class="eyebrow">Featured story</p>
-          <h3>{{ featured.home_title | default: featured.title }}</h3>
-          <p>{{ featured.home_deck | default: featured.excerpt_text | default: featured.subtitle }}</p>
-          <a href="{{ featured.url | relative_url }}">Read the story <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-    </div>
-
-    <div class="recent-strip" id="recent-stories" aria-labelledby="recent-stories-title">
-      <header class="recent-strip__header">
-        <h2 id="recent-stories-title">Recent stories</h2>
-        <a href="{{ '/articles/' | relative_url }}">View all stories <span aria-hidden="true">→</span></a>
-      </header>
-      <div class="recent-strip__grid">
-        {% for post in site.posts limit:4 %}
-        <article class="recent-strip__item">
-          {% assign recent_image = post.thumbnail_image | default: post.hero_image %}{% if recent_image %}
-          <a class="recent-strip__image" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
-            <img src="{{ recent_image | relative_url }}?v=15" alt="" loading="lazy" width="360" height="270">
-          </a>
-          {% endif %}
-          <div class="recent-strip__copy">
-            <p>{% if post.category %}<span>{{ post.category }}</span>{% endif %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%e %b %Y" }}</time></p>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.home_title | default: post.title }}</a></h3>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  <aside class="marco-polo-teaser" aria-labelledby="marco-polo-title">
-    <p class="eyebrow">Coming soon</p>
-    <h2 id="marco-polo-title"><span>Marco Polo:</span><small>The Archaeology Behind <em>The Travels</em></small></h2>
-  </aside>
-
-  {% include explore.html %}
-
-  <section class="home-kids-latest" aria-labelledby="home-kids-latest-title">
-    <header>
-      <p class="eyebrow">Play · investigate · discover</p>
-      <h2 id="home-kids-latest-title">Latest on Mnemosyne Kids</h2>
-      <a href="{{ '/kids/' | relative_url }}">Explore Mnemosyne Kids <span aria-hidden="true">→</span></a>
-    </header>
-    <div class="home-kids-latest__grid">
-      {% assign kids_latest = site.data.kids_content | where: 'status', 'published' | sort: 'published' | reverse %}
-      {% for item in kids_latest limit: 3 %}
-      <article class="home-kids-card">
-        {% if item.image %}<a href="{{ item.route | relative_url }}" tabindex="-1" aria-hidden="true"><img src="{{ item.image | relative_url }}" alt="" loading="lazy"></a>{% endif %}
-        <div><p class="eyebrow">{{ item.category }} · Ages {{ item.age }}</p><h3><a href="{{ item.route | relative_url }}">{{ item.title }}</a></h3><p>{{ item.description }}</p><a class="text-link" href="{{ item.route | relative_url }}">{{ item.duration }} · {{ item.action | default: 'Explore' }} <span aria-hidden="true">→</span></a></div>
-      </article>
-      {% endfor %}
-    </div>
-  </section>
-
-  <section class="home-manifesto" id="manifesto" aria-labelledby="manifesto-title">
-    <div class="home-manifesto__inner">
-        <p class="eyebrow">Mnemosyne Archaeology</p>
-      <h2 id="manifesto-title">Archaeology does not recover the past unchanged.</h2>
-      <p>Through interactive investigations and immersive storytelling, Mnemosyne invites you to explore how archaeological evidence is interpreted, how histories are reconstructed, and how our understanding of the past continues to evolve.</p>
-      <a class="text-link" href="{{ '/about/' | relative_url }}">Discover our approach <span aria-hidden="true">→</span></a>
-    </div>
-  </section>
+  <footer class="gallery-credits"><p data-object-credit></p><p><a href="https://opengameart.org/content/awestruck" target="_blank" rel="noopener">Awestruck — isaiah658</a> · CC0</p></footer>
+  <p class="sr-only" role="status" id="gallery-status"></p>
+  <noscript><p class="no-script">Enable JavaScript to discover the collection’s objects.</p></noscript>
 </main>
+<dialog class="object-dialog" aria-labelledby="object-title">
+  <button class="dialog-close" type="button" aria-label="Close object details" autofocus>×</button>
+  <h2 id="object-title"></h2>
+  <div class="object-metadata"></div>
+  <p class="object-annotation"></p>
+  <a class="object-source" target="_blank" rel="noopener">Object details</a>
+</dialog>
+
+
+<script>
+(()=>{
+/* Add objects here; the renderer, history, labels and credits are data-driven.
+   Metadata checked 2026-11-09. Null fields are deliberately not guessed. */
+const AIC = 'Art Institute of Chicago';
+const CMA = 'Cleveland Museum of Art';
+const MET = 'The Metropolitan Museum of Art';
+const rockefeller = 'The Michael C. Rockefeller Memorial Collection, Bequest of Nelson A. Rockefeller, 1979';
+const release = {"navigation": [{"label": "Home", "href": "/", "ready": true}, {"label": "Monthly Collections", "href": "/monthly-collections/", "ready": true}, {"label": "Kids", "href": "/kids/", "ready": true}, {"label": "Articles", "href": "/articles/", "ready": true}, {"label": "Chats", "href": "/chats/", "ready": true}, {"label": "About", "href": "/about/", "ready": true}], "explore": {"ready": true, "href": "/explore/"}};
+const navigation = release.navigation.map(item => ({label:item.label, href:item.ready ? item.href : null}));
+const exploreDestination = release.explore.ready ? release.explore.href : null;
+const soundtrack = {
+  src: new URL('../audio/homepage-ambience.wav', new URL('assets/js/homepage.js', document.baseURI).href).href,
+  title: 'Awestruck', author: 'isaiah658', license: 'CC0',
+  source: 'https://opengameart.org/content/awestruck',
+  volume: 0.22,
+};
+const imageAudit = {"1": {"width": 2631, "height": 2494, "bytes": 5821047, "transparent": true, "bounds": [0.172178, 0.157177, 0.648803, 0.689254]}, "2": {"width": 1906, "height": 2497, "bytes": 3117068, "transparent": true, "bounds": [0.256034, 0.196235, 0.497901, 0.669203]}, "3": {"width": 1778, "height": 2253, "bytes": 3036844, "transparent": true, "bounds": [0.151856, 0.1336, 0.685602, 0.731469]}, "4": {"width": 2075, "height": 2559, "bytes": 2492225, "transparent": true, "bounds": [0.344578, 0.164908, 0.316627, 0.650254]}, "5": {"width": 1459, "height": 2381, "bytes": 3440441, "transparent": true, "bounds": [0.220014, 0.128517, 0.548321, 0.747165]}, "6": {"width": 2847, "height": 2863, "bytes": 4604625, "transparent": true, "bounds": [0.303477, 0.235417, 0.384967, 0.60007]}, "7": {"width": 1606, "height": 2009, "bytes": 2595081, "transparent": true, "bounds": [0.282067, 0.069189, 0.465131, 0.868591]}, "8": {"width": 3634, "height": 2303, "bytes": 9780076, "transparent": true, "bounds": [0.098514, 0.212766, 0.787837, 0.584021]}, "9": {"width": 1400, "height": 2375, "bytes": 1999015, "transparent": true, "bounds": [0.302143, 0.109053, 0.38, 0.784842]}, "10": {"width": 2159, "height": 2325, "bytes": 8795596, "transparent": true, "bounds": [0.088467, 0.084731, 0.834646, 0.750968]}};
+const records = [
+  {id:'charger',file:1,title:'Charger',maker:'Talavera de la Reina Potteries',culture:'Spain',date:'1600–1699',material:'Tin-glazed earthenware',dimensions:'5.8 × 26.7 × 26.7 cm',museum:AIC,accession:'1895.152',
+    source:'https://www.artic.edu/artworks/1605/charger',credit:'Gift of Mrs. F. H. Gardner through the Antiquarian Society',rights:'Public domain (owner supplied)',rightsVerified:false,rightsBasis:'owner-supplied',
+    note:'Follow the animal at the centre, then the branches around the rim.',scale:1.12,
+    metadataNote:'Metadata and public-domain designation supplied by project owner.'},
+  {id:'horned-male',file:2,desktopScale:1.1,mobileScale:1.07,dimensions:'41.5 × 24.9 × 24.7 cm',title:'“Horned” Male',culture:'West Mexico · Colima, Comala style',date:'100 BCE–300 CE',material:'Earthenware with colored slips, black burial deposits',museum:CMA,accession:'1991.20',
+    source:'https://www.clevelandart.org/art/1991.20',credit:'Fiftieth anniversary gift of the Womens Council in honor of the Museum’s Seventy-fifth anniversary',rights:'CC0',rightsVerified:true,
+    note:'A horn—or the spire of a conch shell? The museum leaves the question open.',scale:1},
+  {id:'bodhisattva',file:3,desktopScale:1.1,mobileScale:1.07,dimensions:'61 × 43.2 × 32.3 cm',title:'Seated Bodhisattva',culture:'Japan · Nara period',date:'8th century',material:'Wood core, dry lacquer, traces of gold leaf',museum:AIC,accession:'1962.356',
+    source:'https://www.artic.edu/artworks/111380/seated-bodhisattva',credit:'Kate S. Buckingham Endowment',rights:'Public domain',rightsVerified:true,
+    verificationSource:'https://api.artic.edu/api/v1/artworks/111380',
+    note:'Look closely: traces of gold still survive on the face and chest.',scale:1},
+  {id:'userkaf',file:4,desktopScale:1.18,mobileScale:1.04,overlapMenu:true,dimensions:'Overall: 6.5 × 7.2 cm; face: 4.8 × 4.8 cm',title:'Head of King Userkaf',culture:'Egypt · Old Kingdom, Dynasty 5',date:'c. 2454–2447 BCE',material:'Painted limestone',museum:CMA,accession:'1979.2',
+    source:'https://www.clevelandart.org/art/1979.2',credit:'Leonard C. Hanna Jr. Fund',rights:'CC0',rightsVerified:true,
+    note:'Chisel marks beside the crown suggest this king once stood beside a deity.',scale:.96},
+  {id:'tekoteko',file:5,desktopScale:1.18,mobileScale:1.04,overlapMenu:true,maker:'Māori artist',dimensions:'66 × 28.6 × 8.3 cm',title:'Tekoteko (gable figure)',culture:'Māori · Te Arawa, Aotearoa New Zealand',date:'1820s',material:'Wood, paint',museum:MET,accession:'1979.206.1437',
+    source:'https://www.metmuseum.org/art/collection/search/313626',credit:rockefeller,rights:'Public domain',rightsVerified:true,
+    note:'An ancestor once watched from a rooftop. The original painted colours remain.',scale:1.03},
+  {id:'sacrificer',file:6,dimensions:'10.8 × 7 × 7.5 cm',title:'Sacrificer Container',culture:'Central Andes · Wari style',date:'770–890 CE (radiocarbon date, 95% probability)',material:'Wood and cinnabar',museum:CMA,accession:'2007.193',
+    source:'https://www.clevelandart.org/art/2007.193',credit:'John L. Severance Fund',rights:'CC0',rightsVerified:true,
+    note:'Red traces remain in the carving: cinnabar once coloured this wooden figure.',scale:.98},
+  {id:'nikare',file:7,desktopScale:1.1,mobileScale:1.07,dimensions:'57 × 22.5 × 32.5 cm',title:'Nikare with his Wife and Daughter',culture:'Egypt · Old Kingdom, Dynasty 5',date:'c. 2420–2389 BCE or later',material:'Limestone, paint',museum:MET,accession:'52.19',
+    source:'https://www.metmuseum.org/art/collection/search/543901',credit:'Rogers Fund, 1952',rights:'Public domain',rightsVerified:true,
+    note:'A family in stone: Nikare, his wife Khuennub, and their daughter Khuennebti.',scale:1},
+  {id:'attendants',file:8,desktopScale:1.42,mobileScale:1.22,dimensions:'24.1 × 53.5 cm',title:'Attendants in a Procession',culture:'Egypt · New Kingdom, Amarna Period',date:'c. 1347–1330 BCE',material:'Limestone, paint',museum:MET,accession:'1985.328.13',
+    source:'https://www.metmuseum.org/art/collection/search/544060',credit:'Gift of Norbert Schimmel, 1985',rights:'Public domain',rightsVerified:true,
+    note:'The wavy lines below the attendants may be the reins of a royal chariot.',scale:1},
+  {id:'gwandusu',file:9,noteMaterial:'Wood, applied organic materials',desktopScale:1.18,mobileScale:1.04,overlapMenu:true,maker:'Bamana numu (blacksmith)',dimensions:'122.6 × 32.4 × 33.7 cm',title:'Gwandusu',culture:'Bamana peoples · Bougouni region, Mali',date:'15th–17th century',material:'Wood (Cordyla africana or Lonchocarpus), applied organic materials',museum:MET,accession:'1979.206.121',
+    source:'https://www.metmuseum.org/art/collection/search/312336',credit:rockefeller,rights:'Public domain',rightsVerified:true,
+    note:'Motherhood and extraordinary power meet in this figure’s amulets and gestures.',scale:1.03},
+  {id:'triptych',file:10,dimensions:'67 × 74 cm',rightsBasis:'secondary-record',metadataNote:'Museum page/API unavailable; metadata and CC0 image designation corroborated through the linked Commons record. Confirm against museum record before publication.',title:'Triptych Icon',culture:'Ethiopia',date:'1682–1706',material:'Tempera on linen, mounted on wood and bound with cord',museum:AIC,accession:'2006.11',
+    source:'https://www.artic.edu/artworks/185651/triptych',credit:'Director’s Fund',rights:'CC0 (museum image reproduced on Wikimedia Commons)',rightsVerified:true,
+    verificationSource:'https://commons.wikimedia.org/wiki/File:2006.11_-_Triptych_Icon.jpg',
+    note:'Three painted panels unfold into a portable world of sacred figures.',scale:1.06},
+];
+const artifacts = records.map(record => ({
+  maker: null, dimensions: null, desktopScale: 1, mobileScale: 1, annotationSide: 'auto',
+  rightsBasis: record.rightsVerified ? 'museum-record' : 'review-required',
+  position: {x:'0px',y:'0px'},
+  requiredAttribution: '',
+  imageCredit: record.museum,
+  image: new URL(`../images/homepage/homepage-item-${record.file}.webp`, new URL('assets/js/homepage.js', document.baseURI).href).href,
+  ...record,
+  intrinsic: imageAudit[record.file],
+  bounds: imageAudit[record.file].bounds,
+}));
+
+function chooseArtifact(records, history = [], random = Math.random) {
+  if (!records.length) throw new Error('No homepage artifacts registered');
+  const valid = new Set(records.map(item => item.id));
+  const recent = Array.isArray(history) ? history.filter(id => valid.has(id)).slice(-(Math.min(2, records.length - 1))) : [];
+  const candidates = records.filter(item => !recent.includes(item.id));
+  return candidates[Math.min(candidates.length - 1, Math.floor(random() * candidates.length))] || records[0];
+}
+function readHistory(storage) {
+  try { const value = JSON.parse(storage.getItem('mnemosyne.home.recent') || '[]'); return Array.isArray(value) ? value.filter(id => typeof id === 'string').slice(-2) : []; } catch { return []; }
+}
+
+// Same filtered, pressure-modulated noise synthesis as exhibition-player.js.
+// Isolated here so the homepage does not initialize exhibition navigation/audio.
+function createHomepageAudio(button, soundtrack, isMobileDevice, status) {
+  let context, scratch, fade, request = 0, wanted = false;
+  const audio = new Audio(); audio.loop = true; audio.preload = 'none'; audio.volume = 0;
+  audio.addEventListener('playing', () => { button.dataset.playing = 'true'; });
+  for (const event of ['pause', 'ended', 'error', 'waiting']) audio.addEventListener(event, () => { delete button.dataset.playing; });
+  function display() { button.setAttribute('aria-pressed', String(wanted)); button.querySelector('span').textContent = wanted ? 'Sound On' : 'Sound Off'; }
+  function stopWriting() { if (scratch) { try { scratch.stop(); } catch {} scratch = null; } delete button.dataset.writingActive; }
+  function ramp(target, done) {
+    cancelAnimationFrame(fade); const start = performance.now(), initial = audio.volume;
+    function tick(now) { const progress = Math.min(1, (now - start) / 550); audio.volume = initial + (target - initial) * progress; if (progress < 1) fade = requestAnimationFrame(tick); else done?.(); }
+    fade = requestAnimationFrame(tick);
+  }
+  function stop(immediate = false) {
+    ++request; wanted = false; delete button.dataset.playing; display(); stopWriting();
+    if (immediate) { cancelAnimationFrame(fade); audio.pause(); audio.volume = 0; context?.suspend(); }
+    else ramp(0, () => { audio.pause(); context?.suspend(); });
+  }
+  async function start() {
+    if (isMobileDevice) return;
+    const current = ++request; wanted = true; display();
+    cancelAnimationFrame(fade);
+    try {
+      const Context = window.AudioContext || window.webkitAudioContext;
+      if (Context) { context ||= new Context(); context.resume().catch(() => {}); }
+      if (!audio.src) audio.src = soundtrack.src;
+      await audio.play();
+      if (current !== request || isMobileDevice || document.hidden) { if (!wanted || isMobileDevice || document.hidden) audio.pause(); return; }
+      button.dataset.playing = 'true';
+      ramp(soundtrack.volume); status.textContent = '';
+    } catch { if (current === request) { stop(true); status.textContent = 'Sound could not start. Select Sound Off to try again.'; } }
+  }
+  function playWriting(seconds) {
+    stopWriting(); if (!wanted || isMobileDevice || context?.state !== 'running') return;
+    const length = Math.ceil(context.sampleRate * seconds), noise = context.createBuffer(1, length, context.sampleRate), samples = noise.getChannelData(0);
+    for (let i = 0; i < length; i++) { const t = i / context.sampleRate, stroke = Math.max(0, Math.sin(t * 48) + .3 * Math.sin(t * 91)); samples[i] = (Math.random() * 2 - 1) * stroke * .025 * Math.min(1, t * 30, (seconds - t) * 20); }
+    scratch = context.createBufferSource(); scratch.buffer = noise;
+    const filter = context.createBiquadFilter(), gain = context.createGain(); filter.type = 'bandpass'; filter.frequency.value = 2200; filter.Q.value = .7; gain.gain.value = .45;
+    scratch.connect(filter).connect(gain).connect(context.destination); const current = scratch; button.dataset.writingActive = 'true';
+    current.onended = () => { current.disconnect(); filter.disconnect(); gain.disconnect(); if (scratch === current) { scratch = null; delete button.dataset.writingActive; } }; current.start();
+  }
+  button.addEventListener('click', () => wanted ? stop() : start());
+  window.addEventListener('pagehide', () => stop(true));
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(true); });
+  return { playWriting, stopWriting };
+}
+
+function installNotes(wall,playWriting,stopWriting){
+  const note=document.createElement('aside');note.className='exhibition-note';note.hidden=true;note.id='exhibition-object-note';note.setAttribute('role','note');
+  wall.append(note);
+  const links=[...wall.querySelectorAll('.artifact')];
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  const heading=wall.querySelector('h1');
+  const defaultHeading=heading.textContent;
+  let selected=null;
+  const navigation=document.createElement('div');navigation.className='exhibition-navigate';navigation.hidden=true;wall.append(navigation);
+  const silhouettes=new Map();
+  function pixels(link){
+    if(silhouettes.has(link))return silhouettes.get(link);
+    const image=link.querySelector('.artifact__image');
+    if(!image.complete||!image.naturalWidth)return [];
+    const canvas=document.createElement('canvas');canvas.width=96;canvas.height=96;
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0,96,96);
+    const data=ctx.getImageData(0,0,96,96).data,points=[];
+    for(let y=0;y<96;y+=2)for(let x=0;x<96;x+=2)if(data[(y*96+x)*4+3]>60)points.push({x:(x+.5)/96,y:(y+.5)/96});
+    silhouettes.set(link,points);return points;
+  }
+  function visiblePoints(link){
+    const box=link.getBoundingClientRect(),image=link.querySelector('.artifact__image');
+    const scale=Math.min(link.clientWidth/image.naturalWidth,link.clientHeight/image.naturalHeight);
+    const angle=(parseFloat(getComputedStyle(link).getPropertyValue('--object-tilt'))||0)*Math.PI/180;
+    const iw=image.naturalWidth*scale,ih=image.naturalHeight*scale;
+    const cx=box.left+box.width/2,cy=box.top+box.height/2;
+    return pixels(link).map(p=>{const x=(p.x-.5)*iw,y=(p.y-.5)*ih;return {x:cx+x*Math.cos(angle)-y*Math.sin(angle),y:cy+x*Math.sin(angle)+y*Math.cos(angle)};}).filter(p=>p.x>=0&&p.x<=innerWidth&&p.y>=0&&p.y<=innerHeight);
+  }
+  function position(){
+    if(!selected)return;
+    const compact=innerWidth<1024,points=visiblePoints(selected);
+    if(!points.length)return;
+    const r={left:Math.min(...points.map(p=>p.x)),right:Math.max(...points.map(p=>p.x)),top:Math.min(...points.map(p=>p.y)),bottom:Math.max(...points.map(p=>p.y))};
+    const cx=(r.left+r.right)/2,cy=(r.top+r.bottom)/2;
+    const pad=22,w=Math.min(compact?235:250,innerWidth*.43);
+    note.style.width=`${w}px`;
+    const h=note.offsetHeight,title=heading.getBoundingClientRect();
+    const allPoints=links.flatMap(visiblePoints);
+    const preferredRight=compact?cx<innerWidth/2:cx>innerWidth*.65;
+    const targetY=compact?cy-h/2:title.top+(title.height-h)/2;
+    const ranges=compact?[[pad,Math.max(pad,innerWidth-w-pad)]]:[[pad,Math.max(pad,title.left-w-16)],[Math.min(innerWidth-w-pad,title.right+16),innerWidth-w-pad]];
+    let best;
+    for(const [lo,hi] of ranges)for(let x=lo;x<=hi+1;x+=12)for(let y=78;y<=innerHeight-h-35;y+=10){
+      const hits=allPoints.filter(p=>p.x>x-14&&p.x<x+w+14&&p.y>y-14&&p.y<y+h+14).length;
+      const headingOverlap=x<title.right+12&&x+w>title.left-12&&y<title.bottom+12&&y+h>title.top-12;
+      const sidePenalty=(x>innerWidth/2)!==preferredRight?40:0;
+      const score=hits*100000+(headingOverlap?1000000:0)+Math.abs(y-targetY)+sidePenalty+Math.abs(x-(preferredRight?innerWidth-w-innerWidth*.065:innerWidth*.065))*.3;
+      if(!best||score<best.score)best={x,y,score,hits};
+    }
+    if(best){note.style.left=`${best.x}px`;note.style.top=`${best.y}px`;note.dataset.objectOverlap=String(best.hits);}
+    // Match the visible silhouette, rather than the transparent rectangular image padding.
+    const nw=navigation.offsetWidth,nh=navigation.offsetHeight,gap=9;
+    let nx,ny;
+    if(cx<innerWidth*.28){ny=cy-nh/2;const band=points.filter(p=>Math.abs(p.y-cy)<25);nx=Math.max(...(band.length?band:points).map(p=>p.x))+gap;}
+    else if(cx>innerWidth*.72){ny=cy-nh/2;const band=points.filter(p=>Math.abs(p.y-cy)<25);nx=Math.min(...(band.length?band:points).map(p=>p.x))-nw-gap;}
+    else if(cy<innerHeight*.5){nx=cx-nw/2;ny=r.bottom+gap;}
+    else{nx=cx-nw/2;ny=r.top-nh-gap;}
+    if(compact){nx=cx-nw/2;ny=r.top-nh-gap;}
+    if(!compact&&selected.classList.contains('artifact--articles'))nx-=110;
+    navigation.style.left=`${Math.max(16,Math.min(innerWidth-nw-16,nx))}px`;
+    navigation.style.top=`${Math.max(65,Math.min(innerHeight-nh-35,ny))}px`;
+  }
+  function hide(){selected?.removeAttribute('aria-describedby');selected=null;note.hidden=true;navigation.hidden=true;heading.textContent=defaultHeading;stopWriting();}
+  function reveal(link){
+    if(selected===link)return;
+    hide();selected=link;heading.textContent=link.getAttribute('aria-label').toUpperCase();note.replaceChildren();
+    navigation.textContent=`Navigate to ${link.dataset.destination}`;navigation.hidden=false;
+    const count=writeNote(note,[link.dataset.title,link.dataset.date,link.dataset.origin]);
+    note.style.setProperty('--note-tilt',links.indexOf(link)%2?'3deg':'-4deg');
+    note.hidden=false;link.setAttribute('aria-describedby',note.id);position();
+    if(!reduced.matches)playWriting(count*.014+.13);
+  }
+  links.forEach(link=>{
+    link.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch')reveal(link);});
+    link.addEventListener('pointerleave',()=>{if(document.activeElement!==link)hide();});
+    link.addEventListener('focus',()=>reveal(link));link.addEventListener('blur',hide);
+    link.addEventListener('click',hide);
+  });
+  window.addEventListener('resize',position);window.addEventListener('scroll',position,{passive:true});
+  wall.querySelector('[data-credits]').addEventListener('click',hide);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')hide();});
+  document.fonts.ready.then(position);
+  links.forEach(link=>link.querySelector('.artifact__image').addEventListener('load',position));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)hide();});
+}
+
+function writeNote(note,lines){
+    let count=0;
+    for(const text of lines){
+      const p=document.createElement('p');const accessible=document.createElement('span');accessible.className='note-accessible';accessible.textContent=text;p.append(accessible);
+      for(const word of text.split(' ')){
+        const span=document.createElement('span');span.className='word';span.setAttribute('aria-hidden','true');
+        const ink=document.createElement('span');ink.className='ink';ink.textContent=word;ink.style.setProperty('--ink-delay',`${count*14}ms`);ink.style.animationDuration=`${Math.max(100,Array.from(word).length*14)}ms`;count+=Array.from(word).length;span.append(ink);
+        p.append(span,document.createTextNode(' '));
+      }
+      note.append(p);
+    }
+  return count;
+}
+
+const $ = selector => document.querySelector(selector);
+const mobile = matchMedia('(max-width:1000px)'), reduced = matchMedia('(prefers-reduced-motion:reduce)');
+const stage = $('.artifact-stage'), target = $('.artifact-target'), image = $('.artifact-image'), note = $('.curator-note'), dialog = $('.object-dialog'), status = $('#gallery-status');
+const isMobileDevice = Boolean(navigator.userAgentData?.mobile || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+document.body.classList.toggle('is-mobile-device', isMobileDevice);
+const audio = createHomepageAudio($('.sound-toggle'), soundtrack, isMobileDevice, status);
+let selected, memoryHistory = [], opener, noteVisible = false, loadVersion = 0;
+let storage; try { storage = localStorage; } catch {}
+function placeholder(label) { status.textContent = `${label} is coming soon.`; }
+for (const nav of document.querySelectorAll('[data-navigation]')) {
+  for (const item of navigation) {
+    const control = document.createElement(item.href ? 'a' : 'button'); control.textContent = item.label;
+    if (item.href) control.href = item.href;
+    else { control.type = 'button'; control.setAttribute('aria-disabled', 'true'); control.title = 'Coming soon'; control.addEventListener('click', () => placeholder(item.label)); }
+    nav.append(control);
+  }
+}
+$('.gallery-logo').addEventListener('click', e => e.preventDefault());
+const menuButton = $('.menu-toggle'), menu = $('.mobile-menu');
+const soundButton = $('.sound-toggle');
+function placeSoundControl() {
+  if (mobile.matches) $('#main-content').prepend(soundButton);
+  else $('.gallery-header').insertBefore(soundButton, menuButton);
+}
+placeSoundControl();
+function setMenu(open) { menuButton.setAttribute('aria-expanded', String(open)); menu.classList.toggle('is-open', open); menu.inert = !open; }
+menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { hideNote(); if (menuButton.getAttribute('aria-expanded') === 'true') { setMenu(false); menuButton.focus(); } } });
+$('.explore-button').addEventListener('click', () => { if (exploreDestination) location.assign(exploreDestination); else placeholder('Begin exploring'); });
+if (exploreDestination) $('.explore-button').removeAttribute('aria-disabled');
+function paragraph(text, parent) { if (!text) return; const p = document.createElement('p'); p.textContent = text; parent.append(p); }
+function populate() {
+  $('#object-title').textContent = selected.title;
+  const metadata = $('.object-metadata'); metadata.replaceChildren();
+  paragraph([selected.maker, selected.culture].filter(Boolean).join(' · '), metadata);
+  paragraph([selected.date, selected.noteMaterial || selected.material].filter(Boolean).join(' · '), metadata);
+  paragraph(`${selected.museum} · ${selected.accession || ''}`, metadata);
+  $('.object-annotation').textContent = selected.note;
+  $('.object-source').href = selected.source;
+  const credit = $('[data-object-credit]'); credit.replaceChildren(); const link = document.createElement('a'); link.href = selected.source; link.target = '_blank'; link.rel = 'noopener'; link.textContent = `${selected.title} · ${selected.museum}`; credit.append(link, document.createElement('br'), document.createTextNode(`${selected.credit || ''} · ${selected.rights}`));
+}
+function select() {
+  hideNote();
+  const history = storage ? readHistory(storage) : memoryHistory;
+  selected = chooseArtifact(artifacts, history); memoryHistory = [...history, selected.id].slice(-2);
+  try { storage?.setItem('mnemosyne.home.recent', JSON.stringify(memoryHistory)); } catch { storage = undefined; }
+  document.body.dataset.artifact = selected.id;
+  image.classList.remove('is-loaded'); image.alt = selected.title; image.width = selected.intrinsic?.width || 2000; image.height = selected.intrinsic?.height || 2400;
+  target.setAttribute('aria-label', `Discover ${selected.title}`); populate();
+  const version = ++loadVersion;
+  image.onload = () => { if (version !== loadVersion) return; layout(); image.classList.add('is-loaded'); };
+  image.onerror = () => { status.textContent = 'This object image could not load. Its details remain available.'; };
+  image.src = selected.image;
+  if (image.complete && image.naturalWidth) { layout(); image.classList.add('is-loaded'); }
+}
+function layout() {
+  if (!selected || !image.naturalWidth) return;
+  const bounds = selected.bounds || [0,0,1,1], [bx,by,bw,bh] = bounds;
+  const naturalW = image.naturalWidth, naturalH = image.naturalHeight;
+  const availableW = Math.min(stage.clientWidth * (mobile.matches ? .9 : .45), mobile.matches ? 620 : 660);
+  const availableH = stage.clientHeight * (mobile.matches ? .87 : .94);
+  const scale = mobile.matches ? selected.mobileScale || 1 : selected.desktopScale || 1;
+  const ratio = Math.min(.5, mobile.matches ? stage.clientWidth * .99 / (naturalW * bw) : Infinity, Math.min(availableW / (naturalW * bw), availableH / (naturalH * bh)) * scale);
+  const width = naturalW * ratio, height = naturalH * ratio;
+  target.style.width = `${width}px`; target.style.height = `${height}px`;
+  // Transparent source margins must not capture pointer input around the controls.
+  const hitPadding = 6;
+  target.style.clipPath = `inset(${Math.max(0, by * height - hitPadding)}px ${Math.max(0, (1-bx-bw) * width - hitPadding)}px ${Math.max(0, (1-by-bh) * height - hitPadding)}px ${Math.max(0, bx * width - hitPadding)}px)`;
+  target.style.left = `${(stage.clientWidth - naturalW * bw * ratio) / 2 - bx * width}px`;
+  const centeredTop = (stage.clientHeight - naturalH * bh * ratio) / 2 - by * height;
+  // Anchor the visible silhouette, excluding transparent PNG padding, four pixels over the rule.
+  const top = selected.overlapMenu && !mobile.matches
+    ? $('.gallery-header').getBoundingClientRect().bottom - stage.getBoundingClientRect().top - 4 - by * height
+    : centeredTop;
+  target.style.top = `${top}px`;
+  // The image paints independently: clipping the empty hit target never clips its shadow.
+  for (const property of ['width', 'height', 'left', 'top']) image.style[property] = target.style[property];
+  for (const element of [target, image]) {
+    element.style.setProperty('--object-x', selected.position?.x || '0px');
+    element.style.setProperty('--object-y', selected.position?.y || '0px');
+  }
+  if (!mobile.matches) {
+    const hero = $('.gallery-hero'), band = $('.wordmark-band--lower');
+    $('.new-item-button').style.top = `${Math.min(hero.clientHeight - 62, band.offsetTop + band.clientHeight * .825748 + 14)}px`;
+  } else $('.new-item-button').style.removeProperty('top');
+  if (noteVisible) positionNote();
+}
+function positionNote() {
+  const r = target.getBoundingClientRect(), s = stage.getBoundingClientRect(), [bx,by,bw,bh] = selected.bounds || [0,0,1,1];
+  const object = {left:r.left+bx*r.width,right:r.left+(bx+bw)*r.width};
+  const title = $('.foreground-wordmark').getBoundingClientRect();
+  const obstacles = [title, $('.gallery-header').getBoundingClientRect(), $('.gallery-credits').getBoundingClientRect(), $('.explore-button').getBoundingClientRect(), $('.new-item-button').getBoundingClientRect()];
+  let best;
+  // Try both sides and compact type before giving up space to any fixed text.
+  for (const size of [23,21,19]) for (const right of [true,false]) {
+    const width = Math.min(380, right ? innerWidth-object.right-48 : object.left-48);
+    if (width < 140) continue;
+    note.style.width = `${width}px`; note.style.fontSize = `${size}px`;
+    const h = note.offsetHeight, x = right ? object.right+24 : object.left-width-24;
+    const lo = Math.max(s.top+12, obstacles[1].bottom+16), hi = s.bottom-h-12;
+    for (const desired of [title.top-h-24, title.bottom+24, lo]) {
+      const y = Math.max(lo,Math.min(hi,desired));
+      const overlap = obstacles.reduce((sum,o) => sum + Math.max(0,Math.min(x+width,o.right+12)-Math.max(x,o.left-12))*Math.max(0,Math.min(y+h,o.bottom+12)-Math.max(y,o.top-12)),0);
+      const score = overlap*100 + (23-size)*30 + Math.abs(y-(title.top-h-24));
+      if (!best || score < best.score) best = {x,y,width,size,score};
+    }
+  }
+  if (best) { note.style.width=`${best.width}px`; note.style.fontSize=`${best.size}px`; note.style.left=`${best.x-s.left}px`; note.style.top=`${best.y-s.top}px`; }
+}
+function showNote() {
+  if (mobile.matches || noteVisible || !image.complete) return;
+  noteVisible = true; note.replaceChildren(); const count = writeNote(note, [selected.title, selected.culture, [selected.date, selected.noteMaterial || selected.material].filter(Boolean).join(' · '), [selected.museum, selected.accession].filter(Boolean).join(' · ')]); note.hidden = false;
+  target.setAttribute('aria-describedby', 'curator-note'); positionNote();
+  if (noteVisible && !reduced.matches) audio.playWriting(count * .014 + .13);
+}
+function hideNote() { noteVisible = false; note.hidden = true; target.removeAttribute('aria-describedby'); audio.stopWriting(); }
+function openDetails(event) { hideNote(); opener = event.currentTarget; if (!dialog.open) dialog.showModal(); }
+$('.new-item-button').addEventListener('click', () => { select(); status.textContent = `Now showing ${selected.title}. ${selected.culture || ''}`; });
+$('.discover-button').addEventListener('click', openDetails); target.addEventListener('click', openDetails);
+$('.dialog-close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } });
+dialog.addEventListener('close', () => { if (opener?.getClientRects().length) opener.focus(); else target.focus(); });
+target.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') showNote(); }); target.addEventListener('pointerleave', () => { if (document.activeElement !== target) hideNote(); });
+target.addEventListener('focus', showNote); target.addEventListener('blur', hideNote);
+new ResizeObserver(layout).observe(stage);
+mobile.addEventListener('change', () => { hideNote(); setMenu(false); placeSoundControl(); layout(); });
+document.fonts.ready.then(layout);
+window.addEventListener('pagehide', hideNote);
+window.addEventListener('pageshow', event => { if (event.persisted) { if (dialog.open) dialog.close(); select(); } });
+document.addEventListener('visibilitychange', () => { if (document.hidden) hideNote(); });
+select();
+
+})();
+</script>
+</body>
+</html>
