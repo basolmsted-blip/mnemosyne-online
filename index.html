@@ -37,10 +37,13 @@
 </main>
 <dialog class="object-dialog" aria-labelledby="object-title">
   <button class="dialog-close" type="button" aria-label="Close object details" autofocus>×</button>
+  <p class="catalogue-heading">Mnemosyne · Object catalogue</p>
+  <p class="object-culture"></p>
   <h2 id="object-title"></h2>
-  <div class="object-metadata"></div>
+  <p class="object-metadata"></p>
   <p class="object-annotation"></p>
-  <a class="object-source" target="_blank" rel="noopener">Object details</a>
+  <footer class="catalogue-footer"><div><p class="catalogue-label">Collection</p><p class="object-museum"></p><p class="object-accession"></p></div>
+  <a class="object-source" target="_blank" rel="noopener">Object details</a></footer>
 </dialog>
 
 
@@ -62,6 +65,7 @@ const soundtrack = {
   volume: 0.22,
 };
 const imageAudit = {"1": {"width": 2631, "height": 2494, "bytes": 5821047, "transparent": true, "bounds": [0.172178, 0.157177, 0.648803, 0.689254]}, "2": {"width": 1906, "height": 2497, "bytes": 3117068, "transparent": true, "bounds": [0.256034, 0.196235, 0.497901, 0.669203]}, "3": {"width": 1778, "height": 2253, "bytes": 3036844, "transparent": true, "bounds": [0.151856, 0.1336, 0.685602, 0.731469]}, "4": {"width": 2075, "height": 2559, "bytes": 2492225, "transparent": true, "bounds": [0.344578, 0.164908, 0.316627, 0.650254]}, "5": {"width": 1459, "height": 2381, "bytes": 3440441, "transparent": true, "bounds": [0.220014, 0.128517, 0.548321, 0.747165]}, "6": {"width": 2847, "height": 2863, "bytes": 4604625, "transparent": true, "bounds": [0.303477, 0.235417, 0.384967, 0.60007]}, "7": {"width": 1606, "height": 2009, "bytes": 2595081, "transparent": true, "bounds": [0.282067, 0.069189, 0.465131, 0.868591]}, "8": {"width": 3634, "height": 2303, "bytes": 9780076, "transparent": true, "bounds": [0.098514, 0.212766, 0.787837, 0.584021]}, "9": {"width": 1400, "height": 2375, "bytes": 1999015, "transparent": true, "bounds": [0.302143, 0.109053, 0.38, 0.784842]}, "10": {"width": 2159, "height": 2325, "bytes": 8795596, "transparent": true, "bounds": [0.088467, 0.084731, 0.834646, 0.750968]}};
+Object.assign(imageAudit, {"11": {"width": 2000, "height": 2000, "bounds": [0.289, 0.1535, 0.41, 0.6815]}, "12": {"width": 1656, "height": 2000, "bounds": [0.094807, 0.158, 0.809783, 0.6235]}, "13": {"width": 1500, "height": 2000, "bounds": [0.216667, 0.1435, 0.51, 0.7335]}, "14": {"width": 1784, "height": 2000, "bounds": [0.202915, 0.211, 0.57343, 0.5715]}, "15": {"width": 2000, "height": 1601, "bounds": [0.1835, 0.09619, 0.6335, 0.793879]}});
 const records = [
   {id:'charger',file:1,title:'Charger',maker:'Talavera de la Reina Potteries',culture:'Spain',date:'1600–1699',material:'Tin-glazed earthenware',dimensions:'5.8 × 26.7 × 26.7 cm',museum:AIC,accession:'1895.152',
     source:'https://www.artic.edu/artworks/1605/charger',credit:'Gift of Mrs. F. H. Gardner through the Antiquarian Society',rights:'Public domain (owner supplied)',rightsVerified:false,rightsBasis:'owner-supplied',
@@ -96,6 +100,11 @@ const records = [
     source:'https://www.artic.edu/artworks/185651/triptych',credit:'Director’s Fund',rights:'CC0 (museum image reproduced on Wikimedia Commons)',rightsVerified:true,
     verificationSource:'https://commons.wikimedia.org/wiki/File:2006.11_-_Triptych_Icon.jpg',
     note:'Three painted panels unfold into a portable world of sacred figures.',scale:1.06},
+  {"id": "campanian-amphora", "file": 11, "title": "Terracotta neck-amphora (jar)", "culture": "South Italy · Campanian Greek", "date": "5th century BCE", "material": "Black-figure terracotta", "museum": "The Metropolitan Museum of Art", "accession": "06.1021.43", "source": "https://www.metmuseum.org/art/collection/search/247215", "credit": "Rogers Fund, 1906", "note": "On one side a figure sits beside a burning altar. On the other, a satyr reclines.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
+  {"id": "nishapur-bowl", "file": 12, "title": "Bowl with Inscription, “Sovereignty is God’s”", "culture": "Iran · Excavated at Nishapur", "date": "Late 9th–early 10th century", "material": "Earthenware with white slip, black slip decoration, and transparent glaze", "museum": "The Metropolitan Museum of Art", "accession": "38.40.118", "source": "https://www.metmuseum.org/art/collection/search/449330", "credit": "Rogers Fund, 1938", "note": "The long strokes of the inscription point inward, drawing the eye from the rim toward the centre.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
+  {"id": "greek-ivory", "file": 13, "title": "Ivory decorative plaque", "culture": "Greek · Archaic period", "date": "Second half of the 7th century BCE", "material": "Ivory", "museum": "The Metropolitan Museum of Art", "accession": "17.190.73", "source": "https://www.metmuseum.org/art/collection/search/249186", "credit": "Gift of J. Pierpont Morgan, 1917", "note": "The Met identifies the figures as daughters of King Proitos of Argos, who refused to recognise Dionysos as a god.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
+  {"id": "magdeburg-plaque", "file": 14, "title": "Plaque with Christ Receiving Magdeburg Cathedral from Emperor Otto I", "culture": "Ottonian · Probably made in Milan", "date": "c. 962–968", "material": "Elephant ivory", "museum": "The Metropolitan Museum of Art", "accession": "41.100.157", "source": "https://www.metmuseum.org/art/collection/search/467730", "credit": "Gift of George Blumenthal, 1941", "note": "Emperor Otto presents a miniature church to Christ. Behind them, the carver pierced the ivory in a checkerboard pattern.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
+  {"id": "veracruz-disk", "file": 15, "title": "Disk", "culture": "Mexico · Classic Veracruz", "date": "600–900 CE", "material": "Slate and cinnabar", "museum": "The Metropolitan Museum of Art", "accession": "00.5.991", "source": "https://www.metmuseum.org/art/collection/search/307734", "credit": "Museum Purchase, 1900", "note": "Scrolls frame a young man in profile. The disk may once have backed a mirror.", "rights": "Public domain", "rightsVerified": true, "scale": 1}
 ];
 const artifacts = records.map(record => ({
   maker: null, dimensions: null, desktopScale: 1, mobileScale: 1, annotationSide: 'auto',
@@ -298,13 +307,12 @@ menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { hideNote(); if (menuButton.getAttribute('aria-expanded') === 'true') { setMenu(false); menuButton.focus(); } } });
 $('.explore-button').addEventListener('click', () => { if (exploreDestination) location.assign(exploreDestination); else placeholder('Begin exploring'); });
 if (exploreDestination) $('.explore-button').removeAttribute('aria-disabled');
-function paragraph(text, parent) { if (!text) return; const p = document.createElement('p'); p.textContent = text; parent.append(p); }
 function populate() {
   $('#object-title').textContent = selected.title;
-  const metadata = $('.object-metadata'); metadata.replaceChildren();
-  paragraph([selected.maker, selected.culture].filter(Boolean).join(' · '), metadata);
-  paragraph([selected.date, selected.noteMaterial || selected.material].filter(Boolean).join(' · '), metadata);
-  paragraph(`${selected.museum} · ${selected.accession || ''}`, metadata);
+  $('.object-culture').textContent = [selected.maker, selected.culture].filter(Boolean).join(' · ');
+  $('.object-metadata').textContent = [selected.date, selected.material].filter(Boolean).join(' · ');
+  $('.object-museum').textContent = selected.museum;
+  $('.object-accession').textContent = selected.accession ? 'Accession no. ' + selected.accession : '';
   $('.object-annotation').textContent = selected.note;
   $('.object-source').href = selected.source;
   const credit = $('[data-object-credit]'); credit.replaceChildren(); const link = document.createElement('a'); link.href = selected.source; link.target = '_blank'; link.rel = 'noopener'; link.textContent = `${selected.title} · ${selected.museum}`; credit.append(link, document.createElement('br'), document.createTextNode(`${selected.credit || ''} · ${selected.rights}`));

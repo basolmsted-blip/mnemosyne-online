@@ -31,3 +31,45 @@
 
 .new-item-button{position:absolute;right:24px;z-index:12;min-height:42px;padding:10px 23px;border:1px solid #555;border-radius:28px;background:#fff;color:#111;font:400 14px/1.2 var(--sans);white-space:nowrap}.new-item-button:hover{background:#f5f5f5}
 @media(max-width:1000px){.gallery-hero{min-height:612px;grid-template-rows:minmax(0,1fr) 52px 52px 94px}.new-item-button{position:relative;top:auto;right:auto;grid-row:3;justify-self:center;align-self:center;min-height:36px;padding:7px 25px;font-size:13px}.explore-button{grid-row:4}}
+
+/* Archival object catalogue */
+.object-dialog {
+  inset: 0;
+  width: min(520px, calc(100% - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: clamp(22px, 5vw, 38px);
+  text-align: left;
+  overflow-wrap: anywhere;
+  transform: none;
+  border: 1px solid #d8d2c6;
+  border-radius: 3px;
+  background: #f6f3eb;
+  color: #25231f;
+  box-shadow: 0 4px 20px #0002;
+}
+.object-dialog::backdrop { background: rgb(23 21 18 / 52%); }
+.object-dialog[open] { animation: catalogue-open .16s ease-out; }
+@keyframes catalogue-open { from { opacity: 0; translate: 0 3px; } }
+.object-dialog p { margin: 0; }
+.object-dialog .catalogue-heading, .object-culture, .catalogue-label {
+  font: 500 11px/1.5 system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #675f55;
+}
+.object-dialog .catalogue-heading {
+  padding: 0 32px 13px 0;
+  margin-bottom: 21px;
+  border-bottom: 1px solid #d8d2c6;
+}
+.object-dialog .dialog-close { top: clamp(8px, 3vw, 23px); right: clamp(8px, 3vw, 23px); color: #48443e; }
+.object-dialog h2 { margin: 6px 0 10px; font: 400 clamp(27px, 4.5vw, 36px)/1.08 var(--serif); }
+.object-metadata { color: #48443e; font: 15px/1.45 var(--serif); }
+.object-dialog .object-annotation { margin: 18px 0 22px; font: 18px/1.46 var(--serif); color: #25231f; }
+.catalogue-footer { display: flex; flex-wrap: wrap; align-items: end; gap: 5px 20px; padding-top: 15px; border-top: 1px solid #d8d2c6; }
+.catalogue-footer div { flex: 1 1 205px; }
+.object-museum { font: 16px/1.4 var(--serif); }
+.object-accession { color: #675f55; font: 13px/1.5 var(--serif); }
+.catalogue-footer .object-source { margin: 0 0 0 auto; min-height: 44px; display: inline-flex; align-items: center; color: #48443e; font: 15px var(--serif); text-underline-offset: 4px; }
+.object-dialog :focus-visible { outline: 2px solid #685b49; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .object-dialog[open] { animation: none; } }
