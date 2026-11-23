@@ -1,4 +1,4 @@
-function createHomepageAudio(button, soundtrack, isMobileDevice, status) {
+function createHomepageAudio(button, soundtrack, isMobileDevice, status, { inheritTrack = false } = {}) {
   const key = 'mnemosyne.ambience.v1';
   function read() {
     try { return JSON.parse(sessionStorage.getItem(key)); } catch { return null; }
@@ -30,22 +30,22 @@ function createHomepageAudio(button, soundtrack, isMobileDevice, status) {
     ++request; wanted = false; audio.pause(); stopWriting(); context?.suspend();
     save(null); path = defaultPath; credit(); display();
   }
-  async function start(saved) {
+  async function start(saved, fromClick = false) {
     if (isMobileDevice) return;
     const current = ++request;
-    path = saved && tracks[saved.path] ? saved.path : defaultPath;
+    path = inheritTrack && saved && tracks[saved.path] ? saved.path : defaultPath;
     wanted = true; display(); credit();
     try {
       if (audio.getAttribute('src') !== path) audio.src = path;
-      audio.currentTime = Number(saved?.time) || 0;
+      audio.currentTime = saved?.path === path ? Number(saved.time) || 0 : 0;
       audio.volume = tracks[path].volume;
-      await audio.play();
-      if (current !== request) return;
-      save({path, time: audio.currentTime});
-      if (!saved && !context && (window.AudioContext || window.webkitAudioContext)) {
+      if (fromClick && !context && (window.AudioContext || window.webkitAudioContext)) {
         context = new (window.AudioContext || window.webkitAudioContext)();
       }
       context?.resume().catch(() => {});
+      await audio.play();
+      if (current !== request) return;
+      save({path, time: audio.currentTime});
       status.textContent = '';
     } catch {
       if (current !== request) return;
@@ -62,7 +62,7 @@ function createHomepageAudio(button, soundtrack, isMobileDevice, status) {
     scratch.connect(filter).connect(gain).connect(context.destination); const current = scratch; button.dataset.writingActive = 'true';
     current.onended = () => { current.disconnect(); filter.disconnect(); gain.disconnect(); if (scratch === current) { scratch = null; delete button.dataset.writingActive; } }; current.start();
   }
-  button.addEventListener('click', () => wanted ? stop() : start(read()));
+  button.addEventListener('click', () => wanted ? stop() : start(read(), true));
   window.addEventListener('pagehide', () => {
     if (wanted) save({path, time: audio.currentTime});
     ++request; wanted = false; audio.pause(); stopWriting();
