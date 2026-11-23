@@ -5,51 +5,7 @@
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mnemosyne — Archaeology</title><meta name="description" content="Explore archaeology, objects, and the human past.">
-<link rel="stylesheet" href="assets/css/homepage.css?v=c154c69027">
-<link rel="stylesheet" href="assets/css/catalogue-card.css?v=d459f322f1">
-<link rel="preload" href="assets/images/homepage/mnemosyne-typography.webp" as="image">
-<link rel="icon" href="/favicon.ico"></head>
-<body class="gallery-home">
-<a class="skip-link" href="#main-content">Skip to the object</a>
-<header class="gallery-header">
-  <a class="gallery-logo" href="/" aria-label="Mnemosyne home"><img src="assets/images/homepage/mnemosyne-logo-dark.webp" width="1491" height="1241" alt=""></a>
-  <nav class="desktop-nav" aria-label="Main navigation" data-navigation></nav>
-  <button class="sound-toggle" type="button" aria-pressed="false"><img class="sound-zigzag" src="assets/images/homepage/page-element-sound.webp" width="1086" height="614" alt=""><span>Sound Off</span></button>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation">MENU <span class="hamburger" aria-hidden="true"><i></i><i></i><i></i></span></button>
-</header>
-<div class="mobile-menu" id="mobile-navigation" inert><nav aria-label="Mobile navigation" data-navigation></nav></div>
-<main id="main-content" tabindex="-1">
-  <section class="gallery-hero" aria-label="An object from the collection">
-    <div class="wordmark-band wordmark-band--upper" aria-hidden="true"><div class="wordmark-track"><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""></div></div>
-    <div class="wordmark-band wordmark-band--lower" aria-hidden="true"><div class="wordmark-track"><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""></div></div>
-    <div class="artifact-stage">
-      <img class="artifact-image" alt="" fetchpriority="high" decoding="async">
-      <button class="artifact-target" type="button" aria-label="Discover this object"></button>
-      <h1 class="foreground-wordmark"><img src="assets/images/homepage/mnemosyne-typography.webp" width="4225" height="769" alt="Mnemosyne"></h1>
-      <aside class="curator-note" role="note" id="curator-note" hidden></aside>
-    </div>
-    <button class="discover-button" type="button">Discover object</button>
-    <button class="new-item-button" type="button">View new item</button>
-    <button class="explore-button" type="button" >BEGIN EXPLORING <span class="chevron" aria-hidden="true"></span></button>
-  </section>
-  <footer class="gallery-credits"><p data-object-credit></p><p><a href="https://opengameart.org/content/awestruck" target="_blank" rel="noopener">Awestruck — isaiah658</a> · CC0</p></footer>
-  <p class="sr-only" role="status" id="gallery-status"></p>
-  <noscript><p class="no-script">Enable JavaScript to discover the collection’s objects.</p></noscript>
-</main>
-<dialog class="object-dialog" aria-labelledby="object-title">
-  <button class="dialog-close" type="button" aria-label="Close object details" autofocus>×</button>
-  <p class="catalogue-heading">Mnemosyne · Object catalogue</p>
-  <p class="object-culture"></p>
-  <h2 id="object-title"></h2>
-  <p class="object-metadata"></p>
-  <p class="object-annotation"></p>
-  <footer class="catalogue-footer"><div><p class="catalogue-label">Collection</p><p class="object-museum"></p><p class="object-accession"></p></div>
-  <a class="object-source" target="_blank" rel="noopener">Object details</a></footer>
-</dialog>
-
-
 <script>
-(()=>{
 /* Add objects here; the renderer, history, labels and credits are data-driven.
    Metadata checked 2026-11-09. Null fields are deliberately not guessed. */
 const AIC = 'Art Institute of Chicago';
@@ -130,54 +86,61 @@ function readHistory(storage) {
   try { const value = JSON.parse(storage.getItem('mnemosyne.home.recent') || '[]'); return Array.isArray(value) ? value.filter(id => typeof id === 'string').slice(-2) : []; } catch { return []; }
 }
 
+let upcomingArtifact = chooseArtifact(artifacts, readHistorySafe());
+function readHistorySafe() { try { return readHistory(localStorage); } catch { return []; } }
+const firstImage = document.createElement('link');
+firstImage.rel = 'preload'; firstImage.as = 'image'; firstImage.fetchPriority = 'high';
+firstImage.href = upcomingArtifact.image;
+document.head.append(firstImage);
+</script>
+<link rel="stylesheet" href="assets/css/homepage.css?v=c154c69027">
+<link rel="stylesheet" href="assets/css/catalogue-card.css?v=0e6102aafc">
+<link rel="preload" href="assets/images/homepage/mnemosyne-typography.webp" as="image">
+<link rel="icon" href="/favicon.ico"></head>
+<body class="gallery-home">
+<a class="skip-link" href="#main-content">Skip to the object</a>
+<header class="gallery-header">
+  <a class="gallery-logo" href="/" aria-label="Mnemosyne home"><img src="assets/images/homepage/mnemosyne-logo-dark.webp" width="1491" height="1241" alt=""></a>
+  <nav class="desktop-nav" aria-label="Main navigation" data-navigation></nav>
+  <button class="sound-toggle" type="button" aria-pressed="false"><img class="sound-zigzag" src="assets/images/homepage/page-element-sound.webp" width="1086" height="614" alt=""><span>Sound Off</span></button>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation">MENU <span class="hamburger" aria-hidden="true"><i></i><i></i><i></i></span></button>
+</header>
+<div class="mobile-menu" id="mobile-navigation" inert><nav aria-label="Mobile navigation" data-navigation></nav></div>
+<main id="main-content" tabindex="-1">
+  <section class="gallery-hero" aria-label="An object from the collection">
+    <div class="wordmark-band wordmark-band--upper" aria-hidden="true"><div class="wordmark-track"><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""></div></div>
+    <div class="wordmark-band wordmark-band--lower" aria-hidden="true"><div class="wordmark-track"><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""><img src="assets/images/homepage/mnemosyne-typography.webp" alt=""></div></div>
+    <div class="artifact-stage">
+      <img class="artifact-image" alt="" fetchpriority="high" decoding="async">
+      <button class="artifact-target" type="button" aria-label="Discover this object"></button>
+      <h1 class="foreground-wordmark"><img src="assets/images/homepage/mnemosyne-typography.webp" width="4225" height="769" alt="Mnemosyne"></h1>
+      <aside class="curator-note" role="note" id="curator-note" hidden></aside>
+    </div>
+    <button class="discover-button" type="button">Discover object</button>
+    <button class="new-item-button" type="button">View new item</button>
+    <button class="explore-button" type="button" >BEGIN EXPLORING <span class="chevron" aria-hidden="true"></span></button>
+  </section>
+  <footer class="gallery-credits"><p data-object-credit></p><p data-sound-credit><a href="https://opengameart.org/content/awestruck" target="_blank" rel="noopener">Awestruck — isaiah658</a> · CC0</p></footer>
+  <p class="sr-only" role="status" id="gallery-status"></p>
+  <noscript><p class="no-script">Enable JavaScript to discover the collection’s objects.</p></noscript>
+</main>
+<dialog class="object-dialog" aria-labelledby="object-title">
+  <button class="dialog-close" type="button" aria-label="Close object details" autofocus>×</button>
+  <p class="catalogue-heading">Mnemosyne · Object catalogue</p>
+  <p class="object-culture"></p>
+  <h2 id="object-title"></h2>
+  <p class="object-metadata"></p>
+  <p class="object-annotation"></p>
+  <footer class="catalogue-footer"><div><p class="catalogue-label">Collection</p><p class="object-museum"></p><p class="object-accession"></p></div>
+  <a class="object-source" target="_blank" rel="noopener">Object details</a></footer>
+</dialog>
+
+
+<script src="/assets/js/ambience.js"></script>
+<script>
+(()=>{
 // Same filtered, pressure-modulated noise synthesis as exhibition-player.js.
 // Isolated here so the homepage does not initialize exhibition navigation/audio.
-function createHomepageAudio(button, soundtrack, isMobileDevice, status) {
-  let context, scratch, fade, request = 0, wanted = false;
-  const audio = new Audio(); audio.loop = true; audio.preload = 'none'; audio.volume = 0;
-  audio.addEventListener('playing', () => { button.dataset.playing = 'true'; });
-  for (const event of ['pause', 'ended', 'error', 'waiting']) audio.addEventListener(event, () => { delete button.dataset.playing; });
-  function display() { button.setAttribute('aria-pressed', String(wanted)); button.querySelector('span').textContent = wanted ? 'Sound On' : 'Sound Off'; }
-  function stopWriting() { if (scratch) { try { scratch.stop(); } catch {} scratch = null; } delete button.dataset.writingActive; }
-  function ramp(target, done) {
-    cancelAnimationFrame(fade); const start = performance.now(), initial = audio.volume;
-    function tick(now) { const progress = Math.min(1, (now - start) / 550); audio.volume = initial + (target - initial) * progress; if (progress < 1) fade = requestAnimationFrame(tick); else done?.(); }
-    fade = requestAnimationFrame(tick);
-  }
-  function stop(immediate = false) {
-    ++request; wanted = false; delete button.dataset.playing; display(); stopWriting();
-    if (immediate) { cancelAnimationFrame(fade); audio.pause(); audio.volume = 0; context?.suspend(); }
-    else ramp(0, () => { audio.pause(); context?.suspend(); });
-  }
-  async function start() {
-    if (isMobileDevice) return;
-    const current = ++request; wanted = true; display();
-    cancelAnimationFrame(fade);
-    try {
-      const Context = window.AudioContext || window.webkitAudioContext;
-      if (Context) { context ||= new Context(); context.resume().catch(() => {}); }
-      if (!audio.src) audio.src = soundtrack.src;
-      await audio.play();
-      if (current !== request || isMobileDevice || document.hidden) { if (!wanted || isMobileDevice || document.hidden) audio.pause(); return; }
-      button.dataset.playing = 'true';
-      ramp(soundtrack.volume); status.textContent = '';
-    } catch { if (current === request) { stop(true); status.textContent = 'Sound could not start. Select Sound Off to try again.'; } }
-  }
-  function playWriting(seconds) {
-    stopWriting(); if (!wanted || isMobileDevice || context?.state !== 'running') return;
-    const length = Math.ceil(context.sampleRate * seconds), noise = context.createBuffer(1, length, context.sampleRate), samples = noise.getChannelData(0);
-    for (let i = 0; i < length; i++) { const t = i / context.sampleRate, stroke = Math.max(0, Math.sin(t * 48) + .3 * Math.sin(t * 91)); samples[i] = (Math.random() * 2 - 1) * stroke * .025 * Math.min(1, t * 30, (seconds - t) * 20); }
-    scratch = context.createBufferSource(); scratch.buffer = noise;
-    const filter = context.createBiquadFilter(), gain = context.createGain(); filter.type = 'bandpass'; filter.frequency.value = 2200; filter.Q.value = .7; gain.gain.value = .45;
-    scratch.connect(filter).connect(gain).connect(context.destination); const current = scratch; button.dataset.writingActive = 'true';
-    current.onended = () => { current.disconnect(); filter.disconnect(); gain.disconnect(); if (scratch === current) { scratch = null; delete button.dataset.writingActive; } }; current.start();
-  }
-  button.addEventListener('click', () => wanted ? stop() : start());
-  window.addEventListener('pagehide', () => stop(true));
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(true); });
-  return { playWriting, stopWriting };
-}
-
 function installNotes(wall,playWriting,stopWriting){
   const note=document.createElement('aside');note.className='exhibition-note';note.hidden=true;note.id='exhibition-object-note';note.setAttribute('role','note');
   wall.append(note);
@@ -321,7 +284,7 @@ function populate() {
 function select() {
   hideNote();
   const history = storage ? readHistory(storage) : memoryHistory;
-  selected = chooseArtifact(artifacts, history); memoryHistory = [...history, selected.id].slice(-2);
+  selected = upcomingArtifact && !history.includes(upcomingArtifact.id) ? upcomingArtifact : chooseArtifact(artifacts, history); upcomingArtifact = null; memoryHistory = [...history, selected.id].slice(-2);
   try { storage?.setItem('mnemosyne.home.recent', JSON.stringify(memoryHistory)); } catch { storage = undefined; }
   document.body.dataset.artifact = selected.id;
   image.classList.remove('is-loaded'); image.alt = selected.title; image.width = selected.intrinsic?.width || 2000; image.height = selected.intrinsic?.height || 2400;
@@ -330,6 +293,13 @@ function select() {
   image.onload = () => { if (version !== loadVersion) return; layout(); image.classList.add('is-loaded'); };
   image.onerror = () => { status.textContent = 'This object image could not load. Its details remain available.'; };
   image.src = selected.image;
+  image.decode().then(() => {
+    if (version !== loadVersion || navigator.connection?.saveData || /2g/.test(navigator.connection?.effectiveType || '')) return;
+    upcomingArtifact = chooseArtifact(artifacts, memoryHistory);
+    const nextImage = new Image();
+    nextImage.fetchPriority = 'low';
+    nextImage.src = upcomingArtifact.image;
+  }).catch(() => {});
   if (image.complete && image.naturalWidth) { layout(); image.classList.add('is-loaded'); }
 }
 function layout() {

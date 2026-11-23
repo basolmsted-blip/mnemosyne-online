@@ -30,9 +30,9 @@ dialog.object-dialog {
 .object-dialog .catalogue-heading {
   padding: 0 32px 13px 0; margin-bottom: 19px; border-bottom: 1px solid #d8d2c6;
 }
-.object-dialog h2 { font: 400 36px/1.1 var(--serif); margin: 7px 0 11px; }
+.object-dialog h2 { font: 400 36px/1.1 "Times New Roman", Times, serif; margin: 7px 0 11px; }
 .object-dialog .object-metadata { font: 14px/1.55 var(--sans); color: #48443e; }
-.object-dialog .object-annotation { margin: 20px 0 22px; font: 18px/1.5 var(--serif); }
+.object-dialog .object-annotation { margin: 20px 0 22px; font: 18px/1.5 "Times New Roman", Times, serif; }
 .object-dialog .catalogue-footer {
   display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between;
   gap: 4px 16px; border-top: 1px solid #d8d2c6; padding-top: 15px;
