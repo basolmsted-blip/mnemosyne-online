@@ -335,29 +335,64 @@ function layout() {
   if (noteVisible) positionNote();
 }
 function positionNote() {
-  const r = target.getBoundingClientRect(), s = stage.getBoundingClientRect(), [bx,by,bw,bh] = selected.bounds || [0,0,1,1];
-  const object = {left:r.left+bx*r.width,right:r.left+(bx+bw)*r.width};
+  const picture = image.getBoundingClientRect(), stageBox = stage.getBoundingClientRect();
+  const [bx, by, bw, bh] = selected.bounds || [0, 0, 1, 1];
+  const object = {
+    left: picture.left + bx * picture.width,
+    right: picture.left + (bx + bw) * picture.width,
+    top: picture.top + by * picture.height,
+    bottom: picture.top + (by + bh) * picture.height,
+  };
   const title = $('.foreground-wordmark').getBoundingClientRect();
-  const obstacles = [title, $('.gallery-header').getBoundingClientRect(), $('.gallery-credits').getBoundingClientRect(), $('.explore-button').getBoundingClientRect(), $('.new-item-button').getBoundingClientRect()];
+  const obstacles = [
+    {box: object, gap: 24}, {box: title, gap: 12},
+    ...['.gallery-header', '.gallery-credits', '.explore-button', '.new-item-button']
+      .map(selector => ({box: $(selector).getBoundingClientRect(), gap: 12})),
+  ];
+  const minY = Math.max(stageBox.top, 0) + 12;
+  const maxY = Math.min(stageBox.bottom, innerHeight) - 12;
+  const maxX = document.documentElement.clientWidth - 12;
   let best;
-  // Try both sides and compact type before giving up space to any fixed text.
-  for (const size of [23,21,19]) for (const right of [true,false]) {
-    const width = Math.min(380, right ? innerWidth-object.right-48 : object.left-48);
+
+  for (const size of [23, 21, 19]) for (const right of [true, false]) {
+    const width = Math.min(380, right ? maxX - object.right - 32 : object.left - 44);
     if (width < 140) continue;
-    note.style.width = `${width}px`; note.style.fontSize = `${size}px`;
-    const h = note.offsetHeight, x = right ? object.right+24 : object.left-width-24;
-    const lo = Math.max(s.top+12, obstacles[1].bottom+16), hi = s.bottom-h-12;
-    for (const desired of [title.top-h-24, title.bottom+24, lo]) {
-      const y = Math.max(lo,Math.min(hi,desired));
-      const overlap = obstacles.reduce((sum,o) => sum + Math.max(0,Math.min(x+width,o.right+12)-Math.max(x,o.left-12))*Math.max(0,Math.min(y+h,o.bottom+12)-Math.max(y,o.top-12)),0);
-      const score = overlap*100 + (23-size)*30 + Math.abs(y-(title.top-h-24));
-      if (!best || score < best.score) best = {x,y,width,size,score};
+    const x = right ? object.right + 32 : object.left - width - 32;
+    Object.assign(note.style, {
+      width: `${width}px`, fontSize: `${size}px`,
+      left: `${x - stageBox.left}px`, top: '0px',
+    });
+    if (note.scrollWidth > note.clientWidth + 1) continue;
+    // Measure the rotated note and check its painted bounds before showing it.
+    const measured = note.getBoundingClientRect();
+    if (measured.left < 12 || measured.right > maxX || measured.height > maxY - minY) continue;
+    const preferred = title.top - measured.height - 12;
+    const positions = [preferred, minY, maxY - measured.height];
+    for (const {box, gap} of obstacles) {
+      positions.push(box.top - gap - measured.height, box.bottom + gap);
+    }
+    for (const slot of positions) {
+      const y = Math.min(maxY - measured.height, Math.max(minY, slot));
+      if (obstacles.some(({box, gap}) =>
+        measured.left < box.right + gap && measured.right > box.left - gap &&
+        y < box.bottom + gap && y + measured.height > box.top - gap
+      )) continue;
+      const score = (23 - size) * 30 + Math.abs(y - preferred);
+      if (!best || score < best.score) best = {left: note.style.left, top: y - measured.top, width, size, score};
     }
   }
-  if (best) { note.style.width=`${best.width}px`; note.style.fontSize=`${best.size}px`; note.style.left=`${best.x-s.left}px`; note.style.top=`${best.y-s.top}px`; }
+
+  if (!best) {
+    hideNote();
+    return;
+  }
+  Object.assign(note.style, {
+    width: `${best.width}px`, fontSize: `${best.size}px`,
+    left: best.left, top: `${best.top}px`,
+  });
 }
 function showNote() {
-  if (mobile.matches || noteVisible || !image.complete) return;
+  if (mobile.matches || noteVisible || !image.naturalWidth) return;
   noteVisible = true; note.replaceChildren(); const count = writeNote(note, [selected.title, selected.culture, [selected.date, selected.noteMaterial || selected.material].filter(Boolean).join(' · '), [selected.museum, selected.accession].filter(Boolean).join(' · ')]); note.hidden = false;
   target.setAttribute('aria-describedby', 'curator-note'); positionNote();
   if (noteVisible && !reduced.matches) audio.playWriting(count * .014 + .13);
@@ -372,6 +407,8 @@ dialog.addEventListener('close', () => { if (opener?.getClientRects().length) op
 target.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') showNote(); }); target.addEventListener('pointerleave', () => { if (document.activeElement !== target) hideNote(); });
 target.addEventListener('focus', showNote); target.addEventListener('blur', hideNote);
 new ResizeObserver(layout).observe(stage);
+window.addEventListener('resize', () => { if (noteVisible) positionNote(); });
+window.addEventListener('scroll', () => { if (noteVisible) positionNote(); }, { passive: true });
 mobile.addEventListener('change', () => { hideNote(); setMenu(false); placeSoundControl(); layout(); });
 document.fonts.ready.then(layout);
 window.addEventListener('pagehide', hideNote);
