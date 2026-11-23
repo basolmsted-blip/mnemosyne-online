@@ -32,13 +32,16 @@
 .new-item-button{position:absolute;right:24px;z-index:12;min-height:42px;padding:10px 23px;border:1px solid #555;border-radius:28px;background:#fff;color:#111;font:400 14px/1.2 var(--sans);white-space:nowrap}.new-item-button:hover{background:#f5f5f5}
 @media(max-width:1000px){.gallery-hero{min-height:612px;grid-template-rows:minmax(0,1fr) 52px 52px 94px}.new-item-button{position:relative;top:auto;right:auto;grid-row:3;justify-self:center;align-self:center;min-height:36px;padding:7px 25px;font-size:13px}.explore-button{grid-row:4}}
 
-/* Keep both moving rows fully inside the phone gallery. */
+/* Restore the original mobile scale and framing with a full-width repeat. */
 @media (max-width: 1000px) {
-  .wordmark-band { --background-height: clamp(96px, 28vw, 200px); }
-  .wordmark-band--upper { top: 12%; }
-  .wordmark-band--lower { top: max(40%, calc(12% + var(--background-height) + 12px)); }
+  .wordmark-band { --background-height: clamp(220px, 44vh, 360px); }
+  .wordmark-band--upper { top: calc(46% - var(--background-height)); }
+  .wordmark-band--lower { top: calc(42% - 18px); }
   .wordmark-track img { width: calc(var(--background-height) * 2000 / 364); min-width: 0; }
   .wordmark-band--lower img { transform: translateY(-14.3043%); }
-  .wordmark-band--upper .wordmark-track { animation-duration: 48s; }
-  .wordmark-band--lower .wordmark-track { animation-duration: 53s; animation-delay: -16s; }
+  .wordmark-band--lower .wordmark-track { animation-delay: -20s; }
+}
+
+@media (max-width: 1000px) and (max-height: 500px) {
+  .wordmark-band { --background-height: 260px; }
 }
