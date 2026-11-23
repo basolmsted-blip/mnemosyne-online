@@ -1,0 +1,54 @@
+dialog.object-dialog {
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: calc(100% - 32px);
+  max-width: 520px;
+  height: fit-content;
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  padding: 28px 32px;
+  border: 1px solid #d8d2c6;
+  border-radius: 3px;
+  background: #f6f3eb;
+  color: #25231f;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.object-dialog::backdrop { background: rgb(23 21 18 / 45%); }
+.object-dialog :is(p, h2, footer, a) { text-align: left; margin: 0; }
+.object-dialog .dialog-close {
+  position: absolute; top: 12px; right: 14px; width: 44px; height: 44px;
+  display: grid; place-items: center; font: 25px/1 var(--sans); color: #48443e;
+}
+.object-dialog :is(.catalogue-heading, .object-culture, .catalogue-label) {
+  font: 500 12px/1.35 var(--sans); color: #665f55;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.object-dialog .catalogue-heading {
+  padding: 0 32px 10px 0; margin-bottom: 14px; border-bottom: 1px solid #d8d2c6;
+}
+.object-dialog h2 { font: 400 34px/1.08 var(--serif); margin: 4px 0 7px; }
+.object-dialog .object-metadata { font: 14px/1.4 var(--sans); color: #48443e; }
+.object-dialog .object-annotation { margin: 12px 0 15px; font: 16px/1.42 var(--serif); }
+.object-dialog .catalogue-footer {
+  display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between;
+  gap: 4px 16px; border-top: 1px solid #d8d2c6; padding-top: 10px;
+}
+.catalogue-footer > div { flex: 1 1 185px; }
+.object-dialog .object-museum { font: 14px/1.45 var(--sans); }
+.object-dialog .object-accession { font: 13px/1.45 var(--sans); color: #665f55; }
+.object-dialog .object-source {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font: 14px/1.3 var(--sans); text-decoration: underline; text-underline-offset: 3px;
+}
+@media (max-width: 600px) {
+  dialog.object-dialog { padding: 20px 22px; }
+  .object-dialog h2 { font-size: 28px; }
+  .object-dialog .dialog-close { top: 5px; right: 7px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .object-dialog[open] { animation: catalogue-appear .14s ease-out; }
+  @keyframes catalogue-appear { from { opacity: 0; } }
+}
