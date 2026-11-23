@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 <head>
 <meta charset="utf-8">
 <base href="/">
@@ -26,7 +26,7 @@ Object.assign(imageAudit, {"11": {"width": 2000, "height": 2000, "bounds": [0.28
 const records = [
   {id:'charger',file:1,title:'Charger',maker:'Talavera de la Reina Potteries',culture:'Spain',date:'1600–1699',material:'Tin-glazed earthenware',dimensions:'5.8 × 26.7 × 26.7 cm',museum:AIC,accession:'1895.152',
     source:'https://www.artic.edu/artworks/1605/charger',credit:'Gift of Mrs. F. H. Gardner through the Antiquarian Society',rights:'Public domain (owner supplied)',rightsVerified:false,rightsBasis:'owner-supplied',
-    note:"A charger is a large, shallow serving dish. On this tin-glazed example from Talavera, a painted animal fills the centre and branches decorate the broad rim.",scale:1.12,
+    note:"A charger is a large, shallow serving dish. On this tin-glazed example from Talavera, a painted animal fills the center and branches decorate the broad rim.",scale:1.12,
     metadataNote:'Metadata and public-domain designation supplied by project owner.'},
   {id:'horned-male',file:2,desktopScale:1.1,mobileScale:1.07,dimensions:'41.5 × 24.9 × 24.7 cm',title:'“Horned” Male',culture:'West Mexico · Colima, Comala style',date:'100 BCE–300 CE',material:'Earthenware with colored slips, black burial deposits',museum:CMA,accession:'1991.20',
     source:'https://www.clevelandart.org/art/1991.20',credit:'Fiftieth anniversary gift of the Womens Council in honor of the Museum’s Seventy-fifth anniversary',rights:'CC0',rightsVerified:true,
@@ -56,10 +56,10 @@ const records = [
   {id:'triptych',file:10,dimensions:'67 × 74 cm',rightsBasis:'secondary-record',metadataNote:'Museum page/API unavailable; metadata and CC0 image designation corroborated through the linked Commons record. Confirm against museum record before publication.',title:'Triptych Icon',culture:'Ethiopia',date:'1682–1706',material:'Tempera on linen, mounted on wood and bound with cord',museum:AIC,accession:'2006.11',
     source:'https://www.artic.edu/artworks/185651/triptych',credit:'Director’s Fund',rights:'CC0 (museum image reproduced on Wikimedia Commons)',rightsVerified:true,
     verificationSource:'https://commons.wikimedia.org/wiki/File:2006.11_-_Triptych_Icon.jpg',
-    note:"Three wooden panels carry Christian devotional paintings on linen. The Virgin and Child appear in the centre, flanked by sacred figures on the folding wings.",scale:1.06},
+    note:"Three wooden panels carry Christian devotional paintings on linen. The Virgin and Child appear in the center, flanked by sacred figures on the folding wings.",scale:1.06},
   {"id": "campanian-amphora", "file": 11, "title": "Terracotta neck-amphora (jar)", "culture": "South Italy · Campanian Greek", "date": "5th century BCE", "material": "Black-figure terracotta", "museum": "The Metropolitan Museum of Art", "accession": "06.1021.43", "source": "https://www.metmuseum.org/art/collection/search/247215", "credit": "Rogers Fund, 1906", "note": "This narrow-necked jar has two handles and figures painted in black against the clay. One side shows a seated figure beside a burning altar, and the other shows a reclining satyr.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
-  {"id": "nishapur-bowl", "file": 12, "title": "Bowl with Inscription, “Sovereignty is God’s”", "culture": "Iran · Excavated at Nishapur", "date": "Late 9th–early 10th century", "material": "Earthenware with white slip, black slip decoration, and transparent glaze", "museum": "The Metropolitan Museum of Art", "accession": "38.40.118", "source": "https://www.metmuseum.org/art/collection/search/449330", "credit": "Rogers Fund, 1938", "note": "Black Arabic lettering curves around the pale interior of this glazed bowl from Nishapur. The inscription reads ‘Sovereignty is God’s’, with the tall letters pointing toward the centre.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
-  {"id": "greek-ivory", "file": 13, "title": "Ivory decorative plaque", "culture": "Greek · Archaic period", "date": "Second half of the 7th century BCE", "material": "Ivory", "museum": "The Metropolitan Museum of Art", "accession": "17.190.73", "source": "https://www.metmuseum.org/art/collection/search/249186", "credit": "Gift of J. Pierpont Morgan, 1917", "note": "Two women stand side by side on this small carved ivory plaque. The Met identifies them as the daughters of King Proitos, who refused to recognise Dionysos as a god.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
+  {"id": "nishapur-bowl", "file": 12, "title": "Bowl with Inscription, “Sovereignty is God’s”", "culture": "Iran · Excavated at Nishapur", "date": "Late 9th–early 10th century", "material": "Earthenware with white slip, black slip decoration, and transparent glaze", "museum": "The Metropolitan Museum of Art", "accession": "38.40.118", "source": "https://www.metmuseum.org/art/collection/search/449330", "credit": "Rogers Fund, 1938", "note": "Black Arabic lettering curves around the pale interior of this glazed bowl from Nishapur. The inscription reads ‘Sovereignty is God’s’, with the tall letters pointing toward the center.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
+  {"id": "greek-ivory", "file": 13, "title": "Ivory decorative plaque", "culture": "Greek · Archaic period", "date": "Second half of the 7th century BCE", "material": "Ivory", "museum": "The Metropolitan Museum of Art", "accession": "17.190.73", "source": "https://www.metmuseum.org/art/collection/search/249186", "credit": "Gift of J. Pierpont Morgan, 1917", "note": "Two women stand side by side on this small carved ivory plaque. The Met identifies them as the daughters of King Proitos, who refused to recognize Dionysos as a god.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
   {"id": "magdeburg-plaque", "file": 14, "title": "Plaque with Christ Receiving Magdeburg Cathedral from Emperor Otto I", "culture": "Ottonian · Probably made in Milan", "date": "c. 962–968", "material": "Elephant ivory", "museum": "The Metropolitan Museum of Art", "accession": "41.100.157", "source": "https://www.metmuseum.org/art/collection/search/467730", "credit": "Gift of George Blumenthal, 1941", "note": "This openwork ivory relief shows Emperor Otto I presenting a model of Magdeburg Cathedral to Christ. The carver cut openings through the checkerboard background.", "rights": "Public domain", "rightsVerified": true, "scale": 1},
   {"id": "veracruz-disk", "file": 15, "title": "Disk", "culture": "Mexico · Classic Veracruz", "date": "600–900 CE", "material": "Slate and cinnabar", "museum": "The Metropolitan Museum of Art", "accession": "00.5.991", "source": "https://www.metmuseum.org/art/collection/search/307734", "credit": "Museum Purchase, 1900", "note": "This carved slate disk shows a young man in profile within a border of scrolls. It has a hole near the top and may once have served as the backing for a mirror.", "rights": "Public domain", "rightsVerified": true, "scale": 1}
 ];
@@ -126,7 +126,7 @@ document.head.append(firstImage);
 </main>
 <dialog class="object-dialog" aria-labelledby="object-title">
   <button class="dialog-close" type="button" aria-label="Close object details" autofocus>×</button>
-  <p class="catalogue-heading">Mnemosyne · Object catalogue</p>
+  <p class="catalogue-heading">Mnemosyne · Object catalog</p>
   <p class="object-culture"></p>
   <h2 id="object-title"></h2>
   <p class="object-metadata"></p>
